@@ -17,6 +17,8 @@ namespace BDD_VELOMAX_APP
 
         private int test4;
 
+        private int rearef;
+
 
     }
 }
