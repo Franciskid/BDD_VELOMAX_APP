@@ -100,5 +100,8 @@
     <Folder Include="VELOMAX\NewFolder1\" />
     <Folder Include="Views\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\velomax.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
