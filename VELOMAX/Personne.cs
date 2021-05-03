@@ -13,7 +13,5 @@ namespace BDD_VELOMAX_APP
         private int test2;
 
         private int test3;
-
-        private int test5;
     }
 }
