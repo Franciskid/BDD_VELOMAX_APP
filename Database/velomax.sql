@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS velomax;
 CREATE USER if not exists 'bozo'@'localhost' IDENTIFIED BY 'bozo';
 GRANT SELECT, SHOW VIEW ON $velomax.* TO 'bozo'@'localhost';
 
-
+use velomax;
 create table if not exists Pieces
 (
 	idPiece varchar(10) primary key not null,
