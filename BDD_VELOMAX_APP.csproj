@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\BDD_VELOMAX_APP.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +36,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>veloLogoRed.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -113,6 +117,7 @@
     <Compile Include="VELOMAX\DataWriter.cs" />
     <Compile Include="VELOMAX\Enum\Grandeurs.cs" />
     <Compile Include="VELOMAX\Enum\LigneProduit.cs" />
+    <Compile Include="VELOMAX\MyConstants.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -160,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database\velomax.sql" />
+    <Resource Include="veloLogoRed.ico" />
     <Resource Include="Images\velo2.png" />
     <Resource Include="Images\Velo2.jpg" />
     <Resource Include="Images\veloLogoBlack.png" />

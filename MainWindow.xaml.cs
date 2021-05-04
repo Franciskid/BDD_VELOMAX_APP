@@ -1,8 +1,10 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace BDD_VELOMAX_APP
 {
@@ -21,6 +24,9 @@ namespace BDD_VELOMAX_APP
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private BackgroundWorker connexionWorker = new BackgroundWorker();
+
         MyPages currentPage;
 
         public MyPages CurrentPage
@@ -92,7 +98,62 @@ namespace BDD_VELOMAX_APP
             InitializeComponent();
 
             CurrentPage = MyPages.Connexion;
+
+            LaunchWorkerCheckConnexion();
         }
+
+
+        private void LaunchWorkerCheckConnexion()
+        {
+            this.connexionWorker.DoWork += new DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.connexionWorker.RunWorkerAsync();
+        }
+
+        private async void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            CheckConnexion();
+        }
+
+        public void CheckConnexion()
+        {
+            while (true)
+            {
+                if (DataReader.ServerIsUp())
+                {
+                    if (!App.MySQLServerConnected)
+                    {
+                        App.MySQLServerConnected = true;
+
+                        this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
+                        {
+                            this.TB_Connected.Text = "Connecté au serveur";
+                            this.logoConnecté.Kind = PackIconKind.CheckCircle;
+                            this.logoConnecté.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#086e1e"));
+                        }));
+
+
+                    }
+                }
+                else
+                {
+                    if (App.MySQLServerConnected)
+                    {
+                        App.MySQLServerConnected = false;
+
+                        this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
+                        {
+                            this.TB_Connected.Text = "Erreur de connexion au serveur";
+                            this.logoConnecté.Kind = PackIconKind.CloseCircle;
+                            this.logoConnecté.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#c71c33"));
+                        }));
+                    }
+                }
+
+                System.Threading.Thread.Sleep(200);
+            }
+
+        }
+
 
         private void ButtMenuOpen_Click(object sender, RoutedEventArgs e)
         {

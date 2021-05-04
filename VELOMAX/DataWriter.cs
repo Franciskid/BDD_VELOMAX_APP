@@ -19,7 +19,7 @@ namespace BDD_VELOMAX_APP
                 cmd.ExecuteNonQuery();
                 maConnexion.Close();
             }
-            catch (MySqlException e)
+            catch (Exception e)
             {
                 Console.WriteLine(" ErreurConnexion : " + e.ToString());
             }
@@ -38,7 +38,7 @@ namespace BDD_VELOMAX_APP
                 maConnexion = new MySqlConnection(connexionString);
                 maConnexion.Open();
             }
-            catch (MySqlException e)
+            catch (Exception e)
             {
                 Console.WriteLine(" ErreurConnexion : " + e.ToString());
                 return null;

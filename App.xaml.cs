@@ -19,6 +19,8 @@ namespace BDD_VELOMAX_APP
 
         public static bool IsConnected = false;
 
+        public static bool MySQLServerConnected = false;
+
         private void ExecuteSQLScript()
         {
             var fileContent = File.ReadAllText("../../Database/velomax.sql");
