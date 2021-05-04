@@ -11,6 +11,7 @@ namespace BDD_VELOMAX_APP
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+    /// ké
     public partial class App : Application
     {
     }
