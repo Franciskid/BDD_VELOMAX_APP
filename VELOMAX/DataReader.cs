@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP.VELOMAX
 {
-    class TEST
+    class DataReader
     {
-        private int test;
     }
 }

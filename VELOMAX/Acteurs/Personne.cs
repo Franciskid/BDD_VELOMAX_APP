@@ -8,5 +8,6 @@ namespace BDD_VELOMAX_APP
 {
     abstract class Personne
     {
+
     }
 }
