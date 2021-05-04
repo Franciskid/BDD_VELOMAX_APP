@@ -11,19 +11,19 @@ namespace BDD_VELOMAX_APP
     {
         public static void ExecuteNonQuery(string commandes)
         {
-            var maConnexion = OpenConnexion();
             try
             {
+                var maConnexion = OpenConnexion();
                 var cmd = maConnexion.CreateCommand();
                 cmd.CommandText = commandes;
-                int a = cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
+                maConnexion.Close();
             }
             catch (MySqlException e)
             {
                 Console.WriteLine(" ErreurConnexion : " + e.ToString());
             }
 
-            maConnexion.Close();
         }
 
         public static MySqlConnection OpenConnexion()
