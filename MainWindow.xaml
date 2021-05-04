@@ -12,14 +12,14 @@
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="95"/>
+                <EasingDoubleKeyFrame KeyTime="0" Value="92"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="300"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="MenuClose">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="300"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="95"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="92"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
 
@@ -41,9 +41,9 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1" Background="BlueViolet">
             <DockPanel>
-                <Grid x:Name="GridTitleBar"  Height="40" VerticalAlignment="Top" Background="#0d1536" Panel.ZIndex="1" MouseDown="GridTitleBar_MouseDown">
+                <Grid x:Name="GridTitleBar" VerticalAlignment="Top" Background="#0d1536" Panel.ZIndex="1" MouseDown="GridTitleBar_MouseDown">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
@@ -54,7 +54,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Image Grid.Column="0" Margin="10, 0, 0, 0" Source="Images/veloLogoWhite.png"  Width="40" RenderOptions.BitmapScalingMode="Fant"/>
-                            
+
                             <TextBlock Grid.Column="1" Foreground="AliceBlue" VerticalAlignment="Center" FontSize="15" FontWeight="Light" Margin="30,0,0,0">
                                   VéloMax
                             </TextBlock>
@@ -67,7 +67,7 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 0, 20, 0">
                                 <TextBlock x:Name="TB_Connected" Foreground="AliceBlue" VerticalAlignment="Center" FontSize="12" FontWeight="Light">
-                                  
+
                                 </TextBlock>
                                 <materialDesign:PackIcon x:Name="logoConnecté" Kind="DatabaseRemove" Height="25" Width="25" Foreground="#c71c33" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 0, 0, 0" />
                             </StackPanel>
@@ -93,29 +93,22 @@
                 </Grid.RowDefinitions>
                 <Grid  Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="11*"/>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="60*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.ColumnSpan="3">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.Background>
-                            <ImageBrush Stretch="None" ImageSource="Images/velo2.png" AlignmentX="Center"/>
-                        </Grid.Background>
-                        <TextBlock Grid.Column="0" Panel.ZIndex="0" FontSize="28" FontWeight="ExtraBlack" Foreground="#d7d7f7" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.Background>
+                        <ImageBrush Stretch="None" ImageSource="Images/velo2.png" AlignmentX="Center"/>
+                    </Grid.Background>
+                    <TextBlock Grid.Column="0" Panel.ZIndex="0" FontSize="28" FontWeight="ExtraBlack" Foreground="#d7d7f7" HorizontalAlignment="Center" VerticalAlignment="Center">
                         VéloMax
-                        </TextBlock>
-                        <Grid Grid.Column="1" Panel.ZIndex="1" HorizontalAlignment="Left">
-                            <Button Style="{StaticResource HalfTransparent}" x:Name="ButtMenuOpen" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right"  Click="ButtMenuOpen_Click" Visibility="Hidden" BorderThickness="0" Cursor="Hand">
-                                <materialDesign:PackIcon Kind="Menu" Foreground="#d7d7f7" Width="100" Height="100" Margin="-5, 0, 0, 0"/>
-                            </Button>
-                            <Button Style="{StaticResource HalfTransparent}" x:Name="ButtMenuClose" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Click="ButtMenuClose_Click" BorderThickness="0" Cursor="Hand">
-                                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#d7d7f7" Width="100" Height="100"/>
-                            </Button>
-                        </Grid>
+                    </TextBlock>
+                    <Grid Grid.Column="1" Panel.ZIndex="1" HorizontalAlignment="Left">
+                        <Button Style="{StaticResource HalfTransparent}" x:Name="ButtMenuOpen" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right"  Click="ButtMenuOpen_Click" Visibility="Hidden" BorderThickness="0" Cursor="Hand">
+                            <materialDesign:PackIcon Kind="Menu" Foreground="#d7d7f7" Width="100" Height="100" Margin="-5, 0, 0, 0"/>
+                        </Button>
+                        <Button Style="{StaticResource HalfTransparent}" x:Name="ButtMenuClose" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Click="ButtMenuClose_Click" BorderThickness="0" Cursor="Hand">
+                            <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#d7d7f7" Width="100" Height="100"/>
+                        </Button>
                     </Grid>
                 </Grid>
 
@@ -139,8 +132,10 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon x:Name="LogoMain" Grid.Column="0" Kind="HomeAccount" Height="50" Width="50" Foreground="#FFF76B00" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0"/>
-                            <TextBlock x:Name="TB_Main" Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue" >Menu Principal</TextBlock>
+                            <materialDesign:PackIcon x:Name="LogoMain" Grid.Column="0" Kind="HomeAccount" Height="50" Width="50" Foreground="#FFF76B00" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
+                            <TextBlock x:Name="TB_Main" Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue" HorizontalAlignment="Center"  >
+                                Menu Principal
+                            </TextBlock>
                         </Grid>
                     </Button>
 
@@ -152,8 +147,10 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon x:Name="LogoClients"  Grid.Column="0" Kind="PersonMultipleAdd" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0" />
-                            <TextBlock x:Name="TB_Clients"  Grid.Column="1"   VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Clients / Effectifs</TextBlock>
+                            <materialDesign:PackIcon x:Name="LogoClients"  Grid.Column="0" Kind="PersonMultipleAdd" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0" />
+                            <TextBlock x:Name="TB_Clients"  Grid.Column="1"   VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue" HorizontalAlignment="Center" >
+                                Clients / Effectifs
+                            </TextBlock>
                         </Grid>
                     </Button>
 
@@ -164,8 +161,10 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon x:Name="LogoCommandes"  Grid.Column="0"  Kind="CartAdd" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0"/>
-                            <TextBlock x:Name="TB_Commandes"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Commandes</TextBlock>
+                            <materialDesign:PackIcon x:Name="LogoCommandes"  Grid.Column="0"  Kind="CartAdd" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
+                            <TextBlock x:Name="TB_Commandes"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue" HorizontalAlignment="Center" >
+                                Commandes
+                            </TextBlock>
                         </Grid>
                     </Button>
 
@@ -176,8 +175,10 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon x:Name="LogoStats"  Grid.Column="0" Kind="BarChart" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0"/>
-                            <TextBlock x:Name="TB_Stats"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Statistiques</TextBlock>
+                            <materialDesign:PackIcon x:Name="LogoStats"  Grid.Column="0" Kind="BikeFast" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
+                            <TextBlock x:Name="TB_Stats"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue" HorizontalAlignment="Center" >
+                                Statistiques
+                            </TextBlock>
                         </Grid>
                     </Button>
 
@@ -188,8 +189,10 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon x:Name="LogoOther"  Grid.Column="0" Kind="QuestionMarkCircle" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0"/>
-                            <TextBlock x:Name="TB_Other"   Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Menu mystère</TextBlock>
+                            <materialDesign:PackIcon x:Name="LogoOther"  Grid.Column="0" Kind="QuestionMarkCircle" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
+                            <TextBlock x:Name="TB_Other"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue" HorizontalAlignment="Center" >
+                                Menu mystère
+                            </TextBlock>
                         </Grid>
                     </Button>
                 </Grid>
