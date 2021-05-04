@@ -142,9 +142,20 @@ namespace BDD_VELOMAX_APP
 
                         this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
                         {
+                            this.TB_Connected.Text = "Connexion au serveur";
+                            this.Spinner.Visibility = Visibility.Visible;
+                            this.logoConnecté.Visibility = Visibility.Hidden;
+                        }));
+
+                        System.Threading.Thread.Sleep(1000);
+
+                        this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
+                        {
                             this.TB_Connected.Text = "Connecté au serveur";
                             this.logoConnecté.Kind = PackIconKind.DatabaseCheck;
                             this.logoConnecté.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#086e1e"));
+                            this.Spinner.Visibility = Visibility.Hidden;
+                            this.logoConnecté.Visibility = Visibility.Visible;
                         }));
                     }
                 }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BDD_VELOMAX_APP"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Icon="Images/veloLogoRed.ico"
@@ -67,9 +68,12 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 0, 20, 0">
                                 <TextBlock x:Name="TB_Connected" Foreground="AliceBlue" VerticalAlignment="Center" FontSize="12" FontWeight="Light">
-
+                                     Impossible de se connecter au serveur
                                 </TextBlock>
-                                <materialDesign:PackIcon x:Name="logoConnecté" Kind="DatabaseRemove" Height="25" Width="25" Foreground="#c71c33" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 0, 0, 0" />
+                                <Grid Height="40" Width="40">
+                                    <materialDesign:PackIcon x:Name="logoConnecté" Kind="DatabaseRemove" Height="25" Width="25" Foreground="#c71c33" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 0, 0, 0" />
+                                    <fa:ImageAwesome x:Name="Spinner" Icon="Refresh" Spin="True" Foreground="AliceBlue" Width="30" Visibility="Hidden"/>
+                                </Grid>
                             </StackPanel>
                             <Button Style="{StaticResource BasicButton}" x:Name="MinimizeButton" Grid.Column="1" Click="MinimizeButton_Click" BorderThickness="0">
                                 <materialDesign:PackIcon Kind="Minus" Foreground="AliceBlue" Width="60" Height="25"/>
