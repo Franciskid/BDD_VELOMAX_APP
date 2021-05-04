@@ -55,6 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="VELOMAX\Commercial\ProgrammesFidelio\Fidelio.cs" />
+    <Compile Include="VELOMAX\Commercial\Modele.cs" />
+    <Compile Include="VELOMAX\Commercial\ProgrammesFidelio\IFidelio.cs" />
+    <Compile Include="VELOMAX\Enum\Grandeurs.cs" />
+    <Compile Include="VELOMAX\Enum\LigneProduit.cs" />
     <Compile Include="VELOMAX\TEST.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -98,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
+    <Folder Include="VELOMAX\Acteurs\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
