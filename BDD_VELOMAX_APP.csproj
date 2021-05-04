@@ -98,7 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
-    <Folder Include="VELOMAX\NewFolder1\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
