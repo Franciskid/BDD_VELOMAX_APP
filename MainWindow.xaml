@@ -4,9 +4,187 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BDD_VELOMAX_APP"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Background="Red">
-        
+        ResizeMode="NoResize"
+        Icon="Images/veloLogoRed.ico"
+        Title="MainWindow" Height="750" Width="1200"  WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="95"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="300"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="300"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="95"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtMenuOpen">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtMenuClose">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" Background="BlueViolet">
+            <DockPanel>
+                <Grid x:Name="GridTitleBar"  Height="40" VerticalAlignment="Top" Background="#0d1536" Panel.ZIndex="1" MouseDown="GridTitleBar_MouseDown">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid HorizontalAlignment="Left" Margin="10, 0, 0, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="Images/veloLogoWhite.png" Grid.Column="0" Margin="10, 0, 0, 0"/>
+                            <TextBlock Grid.Column="1" Foreground="AliceBlue" VerticalAlignment="Center" FontSize="15" FontWeight="Light" Margin="30,0,0,0">
+                                  VéloMax
+                            </TextBlock>
+                        </Grid>
+                        <Grid HorizontalAlignment="Right">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="MinimizeButton" Grid.Column="0" Background="Transparent" Click="MinimizeButton_Click" BorderThickness="0">
+                                <materialDesign:PackIcon Kind="WindowMinimize" Foreground="AliceBlue" Width="100" Height="25"/>
+                            </Button>
+                            <Button x:Name="CloseButton" Grid.Column="1" Background="Transparent" Click="CloseButton_Click" BorderThickness="0">
+                                <materialDesign:PackIcon Kind="Close" Foreground="AliceBlue" Width="100" Height="30"/>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <ContentControl x:Name="ActivateItemAsync"/>
+                    </Grid>
+                </Grid>
+            </DockPanel>
+        </Grid>
+        <Grid Grid.Column="0">
+            <Grid x:Name="GridMenu" Width="300" Background="#0d1536" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid  Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="60*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.ColumnSpan="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.Background>
+                            <ImageBrush Stretch="None" ImageSource="Images/velo.jpg" AlignmentX="Right"/>
+                        </Grid.Background>
+                        <TextBlock Grid.Column="0" Panel.ZIndex="0" FontSize="28" FontWeight="ExtraBlack" Foreground="#d7d7f7" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        VéloMax
+                        </TextBlock>
+                        <Grid Grid.Column="1" Panel.ZIndex="1" HorizontalAlignment="Left">
+                            <Button x:Name="ButtMenuOpen" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Background="Transparent" Click="ButtMenuOpen_Click" Visibility="Hidden" BorderThickness="0" Cursor="Hand">
+                                <materialDesign:PackIcon Kind="Menu" Foreground="#d7d7f7" Width="100" Height="100" Margin="-5, 0, 0, 0"/>
+                            </Button>
+                            <Button x:Name="ButtMenuClose" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Background="Transparent" Click="ButtMenuClose_Click" BorderThickness="0" Cursor="Hand">
+                                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#d7d7f7" Width="100" Height="100"/>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="1" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="61*"/>
+                        <ColumnDefinition Width="14*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button x:Name="ButtMain" Grid.Row="0" Background="Transparent"  HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch"  HorizontalContentAlignment="Left" BorderThickness="0" Click="ButtMain_Click" Cursor="Hand" Grid.ColumnSpan="2" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon x:Name="LogoMain" Grid.Column="0" Kind="HomeAccount" Height="50" Width="50" Foreground="#FFF76B00" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0"/>
+                            <TextBlock Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue" >Menu Principal</TextBlock>
+                        </Grid>
+                    </Button>
+
+
+                    <Button x:Name="ButtClients" Grid.Row="1" Background="Transparent"   HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch" HorizontalContentAlignment="Left"  BorderThickness="0" Click="ButtClients_Click" Cursor="Hand" Grid.ColumnSpan="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon x:Name="LogoClients"  Grid.Column="0" Kind="PersonMultipleAdd" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0" />
+                            <TextBlock Grid.Column="1"   VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Clients / Effectifs</TextBlock>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="ButtCommande" Grid.Row="2" Background="Transparent"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                        HorizontalContentAlignment="Left"  BorderThickness="0" Click="ButtCommande_Click" Cursor="Hand" Grid.ColumnSpan="2">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon x:Name="LogoCommandes"  Grid.Column="0"  Kind="CartAdd" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0"/>
+                            <TextBlock  Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Commandes</TextBlock>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="ButtStats" Grid.Row="3" Background="Transparent"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                        HorizontalContentAlignment="Left"  BorderThickness="0" Click="ButtStats_Click" Cursor="Hand" Grid.ColumnSpan="2">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon x:Name="LogoStats"  Grid.Column="0" Kind="BarChart" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0"/>
+                            <TextBlock  Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Statistiques</TextBlock>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="ButtOther" Grid.Row="4" Background="Transparent"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ButtOther_Click" 
+                        HorizontalContentAlignment="Left" BorderThickness="0" Cursor="Hand" Grid.ColumnSpan="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon x:Name="LogoOther"  Grid.Column="0" Kind="Trophy" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0"/>
+                            <TextBlock  Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Trophée</TextBlock>
+                        </Grid>
+                    </Button>
+                </Grid>
+            </Grid>
+
+        </Grid>
     </Grid>
 </Window>

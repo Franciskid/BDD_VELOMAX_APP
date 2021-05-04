@@ -17,6 +17,8 @@ namespace BDD_VELOMAX_APP
     public partial class App : Application
     {
 
+        public static bool IsConnected = false;
+
         private void ExecuteSQLScript()
         {
             var fileContent = File.ReadAllText("../../Database/velomax.sql");
