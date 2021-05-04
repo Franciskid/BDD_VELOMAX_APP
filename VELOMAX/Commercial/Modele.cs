@@ -24,6 +24,9 @@ namespace BDD_VELOMAX_APP.VELOMAX
         public DateTime Discontinuation { get; }
 
 
-        public
+        public Modele()
+        {
+
+        }
     }
 }
