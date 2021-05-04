@@ -160,6 +160,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database\velomax.sql" />
+    <Resource Include="Images\velo2.png" />
+    <Resource Include="Images\Velo2.jpg" />
     <Resource Include="Images\veloLogoBlack.png" />
     <Resource Include="Images\veloLogoBlue.png" />
     <Resource Include="Images\veloLogoGreen.png" />

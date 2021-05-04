@@ -93,7 +93,7 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid.Background>
-                            <ImageBrush Stretch="None" ImageSource="Images/velo.jpg" AlignmentX="Right"/>
+                            <ImageBrush Stretch="None" ImageSource="Images/velo2.png" AlignmentX="Center"/>
                         </Grid.Background>
                         <TextBlock Grid.Column="0" Panel.ZIndex="0" FontSize="28" FontWeight="ExtraBlack" Foreground="#d7d7f7" HorizontalAlignment="Center" VerticalAlignment="Center">
                         VéloMax
@@ -178,8 +178,8 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon x:Name="LogoOther"  Grid.Column="0" Kind="Trophy" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0"/>
-                            <TextBlock  Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Trophée</TextBlock>
+                            <materialDesign:PackIcon x:Name="LogoOther"  Grid.Column="0" Kind="QuestionMarkCircle" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0"/>
+                            <TextBlock  Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Menu mystère</TextBlock>
                         </Grid>
                     </Button>
                 </Grid>
