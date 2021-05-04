@@ -14,5 +14,7 @@ namespace BDD_VELOMAX_APP
 
         private int test3;
         private int test42;
+        private int TEER;
+        
     }
 }
