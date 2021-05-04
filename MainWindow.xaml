@@ -22,6 +22,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="95"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+
     </Window.Resources>
 
     <Window.Triggers>
@@ -51,7 +52,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Image Source="Images/veloLogoWhite.png" Grid.Column="0" Margin="10, 0, 0, 0"/>
+
+                            <Image Grid.Column="0" Margin="10, 0, 0, 0" Source="Images/veloLogoWhite.png"  Width="40" RenderOptions.BitmapScalingMode="Fant"/>
+                            
                             <TextBlock Grid.Column="1" Foreground="AliceBlue" VerticalAlignment="Center" FontSize="15" FontWeight="Light" Margin="30,0,0,0">
                                   VéloMax
                             </TextBlock>
@@ -64,15 +67,15 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 0, 20, 0">
                                 <TextBlock x:Name="TB_Connected" Foreground="AliceBlue" VerticalAlignment="Center" FontSize="12" FontWeight="Light">
-                                  Erreur de connexion au serveur
+                                  
                                 </TextBlock>
-                                <materialDesign:PackIcon x:Name="logoConnecté" Kind="CloseCircle" Height="25" Width="25" Foreground="#c71c33" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 0, 0, 0" />
+                                <materialDesign:PackIcon x:Name="logoConnecté" Kind="DatabaseRemove" Height="25" Width="25" Foreground="#c71c33" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 0, 0, 0" />
                             </StackPanel>
-                            <Button x:Name="MinimizeButton" Grid.Column="1" Background="Transparent" Click="MinimizeButton_Click" BorderThickness="0">
-                                <materialDesign:PackIcon Kind="WindowMinimize" Foreground="AliceBlue" Width="100" Height="25"/>
+                            <Button Style="{StaticResource BasicButton}" x:Name="MinimizeButton" Grid.Column="1" Click="MinimizeButton_Click" BorderThickness="0">
+                                <materialDesign:PackIcon Kind="Minus" Foreground="AliceBlue" Width="60" Height="25"/>
                             </Button>
-                            <Button x:Name="CloseButton" Grid.Column="2" Background="Transparent" Click="CloseButton_Click" BorderThickness="0">
-                                <materialDesign:PackIcon Kind="Close" Foreground="AliceBlue" Width="100" Height="30"/>
+                            <Button Style="{StaticResource CloseButton}" x:Name="CloseButton" Grid.Column="2" Click="CloseButton_Click" BorderThickness="0" Width="60">
+                                <materialDesign:PackIcon Kind="WindowClose" Foreground="AliceBlue" Width="40" Height="25"/>
                             </Button>
                         </Grid>
                     </Grid>
@@ -106,10 +109,10 @@
                         VéloMax
                         </TextBlock>
                         <Grid Grid.Column="1" Panel.ZIndex="1" HorizontalAlignment="Left">
-                            <Button x:Name="ButtMenuOpen" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Background="Transparent" Click="ButtMenuOpen_Click" Visibility="Hidden" BorderThickness="0" Cursor="Hand">
+                            <Button Style="{StaticResource HalfTransparent}" x:Name="ButtMenuOpen" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right"  Click="ButtMenuOpen_Click" Visibility="Hidden" BorderThickness="0" Cursor="Hand">
                                 <materialDesign:PackIcon Kind="Menu" Foreground="#d7d7f7" Width="100" Height="100" Margin="-5, 0, 0, 0"/>
                             </Button>
-                            <Button x:Name="ButtMenuClose" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Background="Transparent" Click="ButtMenuClose_Click" BorderThickness="0" Cursor="Hand">
+                            <Button Style="{StaticResource HalfTransparent}" x:Name="ButtMenuClose" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Click="ButtMenuClose_Click" BorderThickness="0" Cursor="Hand">
                                 <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#d7d7f7" Width="100" Height="100"/>
                             </Button>
                         </Grid>
@@ -129,7 +132,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Button x:Name="ButtMain" Grid.Row="0" Background="Transparent"  HorizontalAlignment="Stretch" 
+                    <Button Style="{StaticResource BasicButton}" x:Name="ButtMain" Grid.Row="0" HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch"  HorizontalContentAlignment="Left" BorderThickness="0" Click="ButtMain_Click" Cursor="Hand" Grid.ColumnSpan="2" >
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -137,12 +140,12 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon x:Name="LogoMain" Grid.Column="0" Kind="HomeAccount" Height="50" Width="50" Foreground="#FFF76B00" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0"/>
-                            <TextBlock Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue" >Menu Principal</TextBlock>
+                            <TextBlock x:Name="TB_Main" Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue" >Menu Principal</TextBlock>
                         </Grid>
                     </Button>
 
 
-                    <Button x:Name="ButtClients" Grid.Row="1" Background="Transparent"   HorizontalAlignment="Stretch" 
+                    <Button Style="{StaticResource BasicButton}" x:Name="ButtClients" Grid.Row="1"   HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" HorizontalContentAlignment="Left"  BorderThickness="0" Click="ButtClients_Click" Cursor="Hand" Grid.ColumnSpan="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -150,11 +153,11 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon x:Name="LogoClients"  Grid.Column="0" Kind="PersonMultipleAdd" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0" />
-                            <TextBlock Grid.Column="1"   VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Clients / Effectifs</TextBlock>
+                            <TextBlock x:Name="TB_Clients"  Grid.Column="1"   VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Clients / Effectifs</TextBlock>
                         </Grid>
                     </Button>
 
-                    <Button x:Name="ButtCommande" Grid.Row="2" Background="Transparent"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                    <Button Style="{StaticResource BasicButton}" x:Name="ButtCommande" Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         HorizontalContentAlignment="Left"  BorderThickness="0" Click="ButtCommande_Click" Cursor="Hand" Grid.ColumnSpan="2">
                         <Grid >
                             <Grid.ColumnDefinitions>
@@ -162,11 +165,11 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon x:Name="LogoCommandes"  Grid.Column="0"  Kind="CartAdd" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0"/>
-                            <TextBlock  Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Commandes</TextBlock>
+                            <TextBlock x:Name="TB_Commandes"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Commandes</TextBlock>
                         </Grid>
                     </Button>
 
-                    <Button x:Name="ButtStats" Grid.Row="3" Background="Transparent"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                    <Button Style="{StaticResource BasicButton}" x:Name="ButtStats" Grid.Row="3"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         HorizontalContentAlignment="Left"  BorderThickness="0" Click="ButtStats_Click" Cursor="Hand" Grid.ColumnSpan="2">
                         <Grid >
                             <Grid.ColumnDefinitions>
@@ -174,11 +177,11 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon x:Name="LogoStats"  Grid.Column="0" Kind="BarChart" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0"/>
-                            <TextBlock  Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Statistiques</TextBlock>
+                            <TextBlock x:Name="TB_Stats"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Statistiques</TextBlock>
                         </Grid>
                     </Button>
 
-                    <Button x:Name="ButtOther" Grid.Row="4" Background="Transparent"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ButtOther_Click" 
+                    <Button Style="{StaticResource BasicButton}" x:Name="ButtOther" Grid.Row="4"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ButtOther_Click" 
                         HorizontalContentAlignment="Left" BorderThickness="0" Cursor="Hand" Grid.ColumnSpan="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -186,7 +189,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon x:Name="LogoOther"  Grid.Column="0" Kind="QuestionMarkCircle" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25, 0, 0, 0"/>
-                            <TextBlock  Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Menu mystère</TextBlock>
+                            <TextBlock x:Name="TB_Other"   Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue">Menu mystère</TextBlock>
                         </Grid>
                     </Button>
                 </Grid>

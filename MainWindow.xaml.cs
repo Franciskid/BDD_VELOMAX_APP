@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -42,28 +43,33 @@ namespace BDD_VELOMAX_APP
                 {
                     case MyPages.Connexion:
                     case MyPages.Connecté:
-                        this.ButtMain.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
+                        //this.ButtMain.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
                         this.LogoMain.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
+                        this.TB_Main.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
                         break;
 
                     case MyPages.Clients:
-                        this.ButtClients.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF13480B"));
+                        //this.ButtClients.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
                         this.LogoClients.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
+                        this.TB_Clients.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
                         break;
 
                     case MyPages.Commandes:
-                        this.ButtCommande.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF13480B"));
+                        //this.ButtCommande.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
                         this.LogoCommandes.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
+                        this.TB_Commandes.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
                         break;
 
                     case MyPages.Stats:
-                        this.ButtStats.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF13480B"));
+                        //this.ButtStats.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
                         this.LogoStats.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
+                        this.TB_Stats.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
                         break;
 
                     case MyPages.Other:
-                        this.ButtOther.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF13480B"));
+                        //this.ButtOther.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
                         this.LogoOther.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
+                        this.TB_Other.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
                         break;
                 }
             }
@@ -79,6 +85,14 @@ namespace BDD_VELOMAX_APP
                 ButtStats,
                 ButtOther
             };
+            List<TextBlock> tb = new List<TextBlock>()
+            {
+                this.TB_Clients,
+                TB_Commandes,
+                TB_Main,
+                TB_Other,
+                TB_Stats
+            };
             List<PackIcon> logos = new List<PackIcon>()
             {
                 LogoMain,
@@ -88,8 +102,9 @@ namespace BDD_VELOMAX_APP
                 LogoOther,
             };
 
-            buttons.ForEach(x => x.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#0d1536"));
+            //buttons.ForEach(x => x.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#00000000"));
             logos.ForEach(x => x.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#d7d7f7"));
+            tb.ForEach(x => x.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#d7d7f7"));
         }
 
 
@@ -100,6 +115,7 @@ namespace BDD_VELOMAX_APP
             CurrentPage = MyPages.Connexion;
 
             LaunchWorkerCheckConnexion();
+
         }
 
 
@@ -127,11 +143,9 @@ namespace BDD_VELOMAX_APP
                         this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
                         {
                             this.TB_Connected.Text = "Connecté au serveur";
-                            this.logoConnecté.Kind = PackIconKind.CheckCircle;
+                            this.logoConnecté.Kind = PackIconKind.DatabaseCheck;
                             this.logoConnecté.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#086e1e"));
                         }));
-
-
                     }
                 }
                 else
@@ -142,14 +156,14 @@ namespace BDD_VELOMAX_APP
 
                         this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
                         {
-                            this.TB_Connected.Text = "Erreur de connexion au serveur";
-                            this.logoConnecté.Kind = PackIconKind.CloseCircle;
+                            this.TB_Connected.Text = "Impossible de se connecter au serveur";
+                            this.logoConnecté.Kind = PackIconKind.DatabaseRemove;
                             this.logoConnecté.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#c71c33"));
                         }));
                     }
                 }
 
-                System.Threading.Thread.Sleep(200);
+                System.Threading.Thread.Sleep(50);
             }
 
         }
