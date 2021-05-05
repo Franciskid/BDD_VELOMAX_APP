@@ -125,6 +125,14 @@
     <Compile Include="VELOMAX\Enum\Grandeurs.cs" />
     <Compile Include="VELOMAX\Enum\LigneProduit.cs" />
     <Compile Include="VELOMAX\MyConstants.cs" />
+    <Page Include="Styles\ButtonResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\StringResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -137,6 +145,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\ToolTipResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="VELOMAX\ISQL.cs" />
@@ -154,6 +166,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\velomaxSpeedLogoWhite.png" />
+    <Resource Include="Images\velomaxSpeedLogoBlack.png" />
     <Resource Include="Images\velomaxLogoWhite2.png" />
     <Resource Include="Images\velomaxLogoWhite.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
