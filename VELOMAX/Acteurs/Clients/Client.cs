@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    abstract class Client
+    abstract class Client : ISQL
     {
         public Adresse Adresse { get; private set; }
 
         public string Telephone { get; private set; }
 
         public string AdresseMail { get; private set; }
+
+
+        public object ID { get; private set; }
 
 
         protected Client(Adresse adresse, string tel, string mail)

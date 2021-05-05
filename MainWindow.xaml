@@ -40,9 +40,9 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="1" Background="BlueViolet">
+        <Grid Grid.Column="1" Background="{StaticResource MainPage}">
             <DockPanel>
-                <Grid x:Name="GridTitleBar" VerticalAlignment="Top" Background="#0d1536" Panel.ZIndex="1" MouseDown="GridTitleBar_MouseDown">
+                <Grid x:Name="GridTitleBar" VerticalAlignment="Top" Background="{DynamicResource ResourceKey=MenuBackColor}" Panel.ZIndex="1" MouseDown="GridTitleBar_MouseDown">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
@@ -56,7 +56,7 @@
 
                             <Image Grid.Column="0" Margin="10, 0, 0, 0" Source="Images/velomaxSpeedLogoWhite.png"  Width="40" RenderOptions.BitmapScalingMode="Fant"/>
 
-                            <TextBlock Grid.Column="1" Foreground="AliceBlue" VerticalAlignment="Center" FontSize="15" FontWeight="Light" Margin="30,0,0,0" Text="{StaticResource Title}"/>
+                            <TextBlock Grid.Column="1" Foreground="{StaticResource MenuFontColor}" VerticalAlignment="Center" FontSize="15" FontWeight="Light" Margin="30,0,0,0" Text="{StaticResource Title}"/>
                         </Grid>
                         <Grid HorizontalAlignment="Right">
                             <Grid.ColumnDefinitions>
@@ -65,7 +65,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 0, 20, 0">
-                                <TextBlock x:Name="TB_Connected" Foreground="AliceBlue" VerticalAlignment="Center" FontSize="12" FontWeight="Light">
+                                <TextBlock x:Name="TB_Connected" Foreground="{StaticResource MenuFontColor}" VerticalAlignment="Center" FontSize="12" FontWeight="Light">
                                      Impossible de se connecter au serveur
                                 </TextBlock>
                                 <Grid Height="40" Width="40">
@@ -94,7 +94,7 @@
             </DockPanel>
         </Grid>
         <Grid Grid.Column="0">
-            <Grid x:Name="GridMenu" Width="300" Background="#0d1536" HorizontalAlignment="Left">
+            <Grid x:Name="GridMenu" Width="300" Background="{StaticResource MenuBackColor}" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -107,13 +107,13 @@
                     <Grid.Background>
                         <ImageBrush Stretch="None" ImageSource="Images/velo2.png" AlignmentX="Center"/>
                     </Grid.Background>
-                    <TextBlock Grid.Column="0" Panel.ZIndex="0" FontSize="28" FontWeight="ExtraBlack" Foreground="#d7d7f7" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{StaticResource Title}"/>
+                    <TextBlock Grid.Column="0" Panel.ZIndex="0" FontSize="28" FontWeight="ExtraBlack" Foreground="{StaticResource MenuCloseOpenFont}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{StaticResource Title}"/>
                     <Grid Grid.Column="1" Panel.ZIndex="1" HorizontalAlignment="Left">
                         <Button Style="{StaticResource HalfTransparent}" x:Name="ButtMenuOpen" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right"  Click="ButtMenuOpen_Click" Visibility="Hidden" BorderThickness="0" Cursor="Hand">
-                            <materialDesign:PackIcon Kind="Menu" Foreground="#d7d7f7" Width="100" Height="100" Margin="-5, 0, 0, 0"/>
+                            <materialDesign:PackIcon Kind="Menu" Foreground="{StaticResource MenuCloseOpenFont}" Width="100" Height="100" Margin="-5, 0, 0, 0"/>
                         </Button>
                         <Button Style="{StaticResource HalfTransparent}" x:Name="ButtMenuClose" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Click="ButtMenuClose_Click" BorderThickness="0" Cursor="Hand">
-                            <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#d7d7f7" Width="100" Height="100"/>
+                            <materialDesign:PackIcon Kind="ArrowLeft" Foreground="{StaticResource MenuCloseOpenFont}" Width="100" Height="100"/>
                         </Button>
                     </Grid>
                 </Grid>
@@ -138,7 +138,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon x:Name="LogoMain" Grid.Column="0" Kind="HomeAccount" Height="50" Width="50" Foreground="#FFF76B00" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
-                            <TextBlock x:Name="TB_Main" Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuMain}" />
+                            <TextBlock x:Name="TB_Main" Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuMain}" />
                         </Grid>
                         <Button.ToolTip >
                             <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuMain}" />
@@ -154,7 +154,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon x:Name="LogoClients"  Grid.Column="0" Kind="PersonMultipleAdd" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0" />
-                            <TextBlock x:Name="TB_Clients"  Grid.Column="1"   VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuClient}" />
+                            <TextBlock x:Name="TB_Clients"  Grid.Column="1"   VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuClient}" />
                         </Grid>
                         <Button.ToolTip>
                             <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuClient}" />
@@ -169,7 +169,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon x:Name="LogoCommandes"  Grid.Column="0"  Kind="CartAdd" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
-                            <TextBlock x:Name="TB_Commandes"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue" HorizontalAlignment="Center"  Text="{StaticResource ResourceKey=MenuCommandes}" />
+                            <TextBlock x:Name="TB_Commandes"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center"  Text="{StaticResource ResourceKey=MenuCommandes}" />
                         </Grid>
                         <Button.ToolTip>
                             <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuCommandes}" />
@@ -184,7 +184,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon x:Name="LogoStats"  Grid.Column="0" Kind="BikeFast" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
-                            <TextBlock x:Name="TB_Stats"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue" HorizontalAlignment="Center"  Text="{StaticResource ResourceKey=MenuStats}" />
+                            <TextBlock x:Name="TB_Stats"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center"  Text="{StaticResource ResourceKey=MenuStats}" />
                         </Grid>
                         <Button.ToolTip>
                             <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuStats}" />
@@ -199,7 +199,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon x:Name="LogoOther"  Grid.Column="0" Kind="QuestionMarkCircle" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
-                            <TextBlock x:Name="TB_Other"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="AliceBlue" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuAutre}" />
+                            <TextBlock x:Name="TB_Other"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuAutre}" />
                         </Grid>
                         <Button.ToolTip>
                             <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuAutre}" />

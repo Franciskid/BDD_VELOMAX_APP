@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class Fidelio : IFidelio
+    class Fidelio : IFidelio, ISQL
     {
         public float Prix { get; }
 
@@ -16,9 +16,11 @@ namespace BDD_VELOMAX_APP
 
         public string Description { get; }
 
+        public object ID { get; private set; }
 
-        public Fidelio(float prix, float rabais, float duree, string description)
+        public Fidelio(int id, string description, float prix, float rabais, float duree)
         {
+            this.ID = id;
             this.Prix = prix;
             this.Rabais = rabais;
             this.Duree_annee = duree;

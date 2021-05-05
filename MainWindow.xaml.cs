@@ -44,32 +44,32 @@ namespace BDD_VELOMAX_APP
                     case MyPages.Connexion:
                     case MyPages.Connecté:
                         //this.ButtMain.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
-                        this.LogoMain.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
-                        this.TB_Main.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
+                        this.LogoMain.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");//(new BrushConverter().ConvertFrom("#cc7523"));
+                        this.TB_Main.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
                         break;
 
                     case MyPages.Clients:
                         //this.ButtClients.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
-                        this.LogoClients.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
-                        this.TB_Clients.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
+                        this.LogoClients.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
+                        this.TB_Clients.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
                         break;
 
                     case MyPages.Commandes:
                         //this.ButtCommande.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
-                        this.LogoCommandes.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
-                        this.TB_Commandes.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
+                        this.LogoCommandes.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
+                        this.TB_Commandes.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
                         break;
 
                     case MyPages.Stats:
                         //this.ButtStats.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
-                        this.LogoStats.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
-                        this.TB_Stats.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
+                        this.LogoStats.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
+                        this.TB_Stats.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
                         break;
 
                     case MyPages.Other:
                         //this.ButtOther.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
-                        this.LogoOther.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
-                        this.TB_Other.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#cc7523"));
+                        this.LogoOther.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
+                        this.TB_Other.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
                         break;
                 }
             }
@@ -103,8 +103,8 @@ namespace BDD_VELOMAX_APP
             };
 
             //buttons.ForEach(x => x.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#00000000"));
-            logos.ForEach(x => x.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#d7d7f7"));
-            tb.ForEach(x => x.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#d7d7f7"));
+            logos.ForEach(x => x.Foreground = (SolidColorBrush)FindResource("MenuFontColor"));//BrushConverter().ConvertFrom("#d7d7f7"));
+            tb.ForEach(x => x.Foreground = (SolidColorBrush)FindResource("MenuFontColor")); //new BrushConverter().ConvertFrom("#d7d7f7"));
         }
 
 

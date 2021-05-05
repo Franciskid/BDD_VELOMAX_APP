@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Styles/StringResources.xaml"/>
                 <ResourceDictionary Source="Styles/ButtonResources.xaml"/>
                 <ResourceDictionary Source="Styles/ToolTipResources.xaml"/>
+                <ResourceDictionary Source="Styles/ColorsResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

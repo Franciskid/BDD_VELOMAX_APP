@@ -32,6 +32,8 @@ namespace BDD_VELOMAX_APP
         {
             ExecuteSQLScript();
 
+            var a = DataReader.Read<Fidelio>().ConvertAll(x => (Fidelio)x);
+
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
         }
