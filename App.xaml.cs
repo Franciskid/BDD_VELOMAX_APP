@@ -17,7 +17,7 @@ namespace BDD_VELOMAX_APP
     public partial class App : Application
     {
 
-        public static bool IsConnected = false;
+        public static bool IsConnected = true;
 
         public static bool MySQLServerConnected = false;
 
@@ -36,6 +36,4 @@ namespace BDD_VELOMAX_APP
             mainWindow.Show();
         }
     }
-
-    
 }

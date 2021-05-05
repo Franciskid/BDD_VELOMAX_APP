@@ -35,7 +35,7 @@ namespace BDD_VELOMAX_APP
             get => currentPage;
             set
             {
-                ActivateItemAsync.Content = value.ToView();
+                //ActivateItemAsync.Content = value.ToView();
                 currentPage = value;
 
                 ModifyColorButton();

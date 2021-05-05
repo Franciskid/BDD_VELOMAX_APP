@@ -33,7 +33,7 @@ create table if not exists Assemblages
     ordinateur varchar(10) ,
     panier  varchar(10) ,
     
-     foreign key (cadre) references Pieces(idPiece),
+	foreign key (cadre) references Pieces(idPiece),
     foreign key (guidon) references Pieces(idPiece),
     foreign key (freins) references Pieces(idPiece),
     foreign key (selle) references Pieces(idPiece),
@@ -115,6 +115,16 @@ create table if not exists Commandes
     dateLivraison dateTime
     
 );
+
+create table if not exists Comptes
+(
+	idCompte int primary key auto_increment not null,
+    pseudo varchar(30),
+    motdepasse varchar(255) default null,
+    unique key(pseudo)
+);
+
+insert into Comptes(pseudo, motdepasse) values ('admin', sha1('adminpassword'));
 
 
 insert into Pieces(idPiece, nom) 

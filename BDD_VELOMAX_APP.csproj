@@ -113,11 +113,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="VELOMAX\Acteurs\Clients\Client.cs" />
+    <Compile Include="VELOMAX\Acteurs\Clients\ClientBoutique.cs" />
+    <Compile Include="VELOMAX\Acteurs\Clients\ClientIndividuel.cs" />
     <Compile Include="VELOMAX\Commercial\ProgrammesFidelio\Fidelio.cs" />
     <Compile Include="VELOMAX\Commercial\Modele.cs" />
     <Compile Include="VELOMAX\Commercial\ProgrammesFidelio\IFidelio.cs" />
     <Compile Include="VELOMAX\DataReader.cs" />
     <Compile Include="VELOMAX\DataWriter.cs" />
+    <Compile Include="VELOMAX\Enum\Adresse.cs" />
     <Compile Include="VELOMAX\Enum\Grandeurs.cs" />
     <Compile Include="VELOMAX\Enum\LigneProduit.cs" />
     <Compile Include="VELOMAX\MyConstants.cs" />
@@ -150,6 +154,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\velomaxLogoWhite2.png" />
+    <Resource Include="Images\velomaxLogoWhite.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
