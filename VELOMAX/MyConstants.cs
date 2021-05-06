@@ -12,15 +12,25 @@ namespace BDD_VELOMAX_APP
                                          "DATABASE=velomax;" +
                                          "UID=root;PASSWORD='root'";
 
-        public const string ADRESSE = "adresse";
-        public const string ASSEMBLAGES = "assemblages";
-        public const string CLIENTS = "clients";
-        public const string COMMANDES = "commandes";
-        public const string COMPTES = "comptes";
-        public const string FIDELIO = "fidelio";
-        public const string FOURNISSEURS = "fournisseurs";
-        public const string MODELES = "modeles";
-        public const string PIECES = "pieces";
+        public const string TABLE_ADRESSE = "adresse";
+        public const string TABLE_ASSEMBLAGES = "assemblages";
+        public const string TABLE_CLIENTS = "clients";
+        public const string TABLE_COMMANDES = "commandes";
+        public const string TABLE_COMPTES = "comptes";
+        public const string TABLE_FIDELIO = "fidelio";
+        public const string TABLE_FOURNISSEURS = "fournisseurs";
+        public const string TABLE_MODELES = "modeles";
+        public const string TABLE_PIECES = "pieces";
+
+        public const string TABLE_idADRESSE = "idAdresse";
+        public const string TABLE_idASSEMBLAGES = "idAssemblage";
+        public const string TABLE_idCLIENTS = "idClient";
+        public const string TABLE_idCOMMANDES = "idCommande";
+        public const string TABLE_idCOMPTES = "idCompte";
+        public const string TABLE_idFIDELIO = "idFidelio";
+        public const string TABLE_idFOURNISSEURS = "siret";
+        public const string TABLE_idMODELES = "idModele";
+        public const string TABLE_idPIECES = "idPiece";
 
         public static readonly Dictionary<string, List<string>> DICOVALUES = InitializeDic();
 
@@ -28,42 +38,68 @@ namespace BDD_VELOMAX_APP
         {
             Dictionary<string, List<string>> dico = new Dictionary<string, List<string>>()
             {
-                { ADRESSE, new List<string>() { "idAdresse", "rue", "ville", "codePostal", "pays" } },
-                { ASSEMBLAGES, new List<string>() { "idAssemblage", "nom", "grandeur", "cadre", "guidon", "freins", "selle", "derailleur_avant", "derailleur_arriere", "roue_avant", "roue_arriere", "reflecteurs", "pedalier", "ordinateur", "panier", } },
-                { CLIENTS, new List<string>() { "idClient", "typeClient", "nom", "prenom", "idAdresse", "telephone", "courriel", "nomContact", "remise", "fidelio", "idFidelio", "dateAdhesionFidelio" } },
-                { COMMANDES, new List<string>() { "idCommande", "dateCommande", "dateLivraison"} },
-                { COMPTES, new List<string>() { "idCompte", "pseudo", "motdepasse"} },
-                { FIDELIO, new List<string>() { "idFidelio", "nom", "prix", "duree_annee", "rabais" } },
-                { FOURNISSEURS, new List<string>() { "siret", "nom", "contact", "idAdresse", "score" } },
-                { MODELES, new List<string>() { "idModele", "nom", "prix", "ligne", "dateIntroduction", "dateDiscontinuation" } },
-                { PIECES, new List<string>() { "idPiece", "nom", "nomFournisseur", "numProduit", "prix", "dateIntroduction", "dateDiscontinuation", "delaiApprovisionnement" } },
+                { TABLE_ADRESSE, new List<string>() { TABLE_idADRESSE, "rue", "ville", "codePostal", "pays" } },
+                { TABLE_ASSEMBLAGES, new List<string>() { TABLE_idASSEMBLAGES, "nom", "grandeur", "cadre", "guidon", "freins", "selle", "derailleur_avant", "derailleur_arriere", "roue_avant", "roue_arriere", "reflecteurs", "pedalier", "ordinateur", "panier", } },
+                { TABLE_CLIENTS, new List<string>() { TABLE_idCLIENTS, "typeClient", "nom", "prenom", "idAdresse", "telephone", "courriel", "nomContact", "remise", "fidelio", "idFidelio", "dateAdhesionFidelio" } },
+                { TABLE_COMMANDES, new List<string>() { TABLE_idCOMMANDES, "dateCommande", "dateLivraison"} },
+                { TABLE_COMPTES, new List<string>() { TABLE_idCOMPTES, "pseudo", "motdepasse"} },
+                { TABLE_FIDELIO, new List<string>() { TABLE_idFIDELIO, "nom", "prix", "duree_annee", "rabais" } },
+                { TABLE_FOURNISSEURS, new List<string>() { TABLE_idFOURNISSEURS, "nom", "contact", "idAdresse", "score" } },
+                { TABLE_MODELES, new List<string>() { TABLE_idMODELES, "nom", "prix", "ligne", "dateIntroduction", "dateDiscontinuation" } },
+                { TABLE_PIECES, new List<string>() { TABLE_idPIECES, "nom", "nomFournisseur", "numProduit", "prix", "dateIntroduction", "dateDiscontinuation", "delaiApprovisionnement" } },
             };
 
             return dico;
         }
 
 
+        public static string TypeToID(Type type)
+        {
+            if (type == typeof(Adresse))
+            {
+                return TABLE_idCLIENTS;
+            }
+            if (type == typeof(Fidelio))
+            {
+                return TABLE_idFIDELIO;
+            }
+            if (type == typeof(Client))
+            {
+                return TABLE_idCLIENTS;
+            }
+            if (type == typeof(Modele))
+            {
+                return TABLE_idMODELES;
+            }
+            if (type == typeof(Compte))
+            {
+                return TABLE_idCOMPTES;
+            }
+
+            return null;
+        }
+
         public static string TypeToTable(Type type)
         {
             if (type == typeof(Adresse))
             {
-                return CLIENTS;
+                return TABLE_CLIENTS;
             }
             if (type == typeof(Fidelio))
             {
-                return FIDELIO;
+                return TABLE_FIDELIO;
             }
             if (type == typeof(Client))
             {
-                return CLIENTS;
+                return TABLE_CLIENTS;
             }
-            if (type == typeof(Client))
+            if (type == typeof(Compte))
             {
-                return CLIENTS;
+                return TABLE_COMPTES;
             }
-            if (type == typeof(Client))
+            if (type == typeof(Modele))
             {
-                return CLIENTS;
+                return TABLE_MODELES;
             }
 
             return null;

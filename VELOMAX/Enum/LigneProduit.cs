@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BDD_VELOMAX_APP.VELOMAX
+namespace BDD_VELOMAX_APP
 {
     public enum LigneProduit
     {
@@ -31,6 +31,24 @@ namespace BDD_VELOMAX_APP.VELOMAX
 
                 default:
                     return "Erreur ligne produit";
+            }
+        }
+
+        public static LigneProduit DescriptionToLigneProduit(string str)
+        {
+            switch (str)
+            {
+                case "VTT":
+                    return LigneProduit.VTT;
+                case "Vélo de course":
+                    return LigneProduit.Vélo_Course;
+                case "Classique":
+                    return LigneProduit.Classique;
+                case "BMX":
+                    return LigneProduit.BMX;
+
+                default:
+                    return (LigneProduit)(-1);
             }
         }
     }

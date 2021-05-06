@@ -24,5 +24,7 @@ namespace BDD_VELOMAX_APP
             this.Telephone = tel;
             this.AdresseMail = mail;
         }
+
+        public virtual string IdToString() => "idClient";
     }
 }

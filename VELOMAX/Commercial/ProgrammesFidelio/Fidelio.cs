@@ -26,5 +26,7 @@ namespace BDD_VELOMAX_APP
             this.Duree_annee = duree;
             this.Description = description;
         }
+
+        public string IdToString() => "idFidelio";
     }
 }

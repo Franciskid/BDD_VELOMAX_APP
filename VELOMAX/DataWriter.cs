@@ -13,7 +13,7 @@ namespace BDD_VELOMAX_APP
         {
             try
             {
-                var maConnexion = OpenConnexion();
+                var maConnexion = DataReader.OpenConnexion();
                 var cmd = maConnexion.CreateCommand();
                 cmd.CommandText = commandes;
                 cmd.ExecuteNonQuery();
@@ -24,27 +24,6 @@ namespace BDD_VELOMAX_APP
                 Console.WriteLine(" ErreurConnexion : " + e.ToString());
             }
 
-        }
-
-        public static MySqlConnection OpenConnexion()
-        {
-            MySqlConnection maConnexion = null;
-            try
-            {
-                string connexionString = "SERVER=localhost;PORT=3306;" +
-                                         "DATABASE=velomax;" +
-                                         "UID=root;PASSWORD='root'";
-
-                maConnexion = new MySqlConnection(connexionString);
-                maConnexion.Open();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(" ErreurConnexion : " + e.ToString());
-                return null;
-            }
-
-            return maConnexion;
         }
     }
 }

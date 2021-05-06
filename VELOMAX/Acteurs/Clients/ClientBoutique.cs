@@ -17,5 +17,6 @@ namespace BDD_VELOMAX_APP.VELOMAX.Acteurs.Clients
             this.NomEntreprise = nomEntr;
             this.NomContact = nomContact;
         }
+
     }
 }

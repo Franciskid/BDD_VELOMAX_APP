@@ -55,8 +55,8 @@ create table if not exists Modeles
     nom varchar(30),
     prix int,
     ligne varchar(30),
-    dateIntroduction datetime,
-    dateDiscontinuation datetime
+    dateIntroduction datetime default CURRENT_TIMESTAMP,
+    dateDiscontinuation datetime default CURRENT_TIMESTAMP
 );
 ALTER TABLE Modeles AUTO_INCREMENT = 101;
 

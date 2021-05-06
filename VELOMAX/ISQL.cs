@@ -11,6 +11,15 @@ namespace BDD_VELOMAX_APP
     /// </summary>
     interface ISQL
     {
+        /// <summary>
+        /// Id
+        /// </summary>
         object ID { get; }
+
+        /// <summary>
+        /// Nom de l'id
+        /// </summary>
+        /// <returns></returns>
+        string IdToString();
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BDD_VELOMAX_APP.VELOMAX
+namespace BDD_VELOMAX_APP
 {
     class Modele : ISQL
     {
@@ -24,9 +24,16 @@ namespace BDD_VELOMAX_APP.VELOMAX
         public DateTime Discontinuation { get; }
 
 
-        public Modele()
+        public Modele(int id, string nom, int prix, string ligne, DateTime intro, DateTime discont)
         {
-
+            this.ID = id;
+            this.Nom = nom;
+            this.Prix = prix;
+            this.Ligne = MyHelper.DescriptionToLigneProduit(ligne);
+            this.Introduction = intro;
+            this.Discontinuation = discont;
         }
+
+        public string IdToString() => "idModele";
     }
 }
