@@ -32,8 +32,6 @@ namespace BDD_VELOMAX_APP
         {
             ExecuteSQLScript();
 
-            var a = DataReader.Read<Modele>();
-
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
         }

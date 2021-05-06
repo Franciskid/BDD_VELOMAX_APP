@@ -50,7 +50,7 @@ namespace BDD_VELOMAX_APP
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static List<T> Read<T>() where T : ISQL => Read<T>($"SELECT * FROM {MyConstants.TypeToTable(typeof(T))}");
-        
+
 
         /// <summary>
         /// Renvoie le premier objet qui satisfait la condition liée à la propriété et à l'objet indiqués. Si aucune propriété n'est indiquée, on comparera l'objet à l'id de la table.
@@ -59,7 +59,7 @@ namespace BDD_VELOMAX_APP
         /// <param name="id"></param>
         /// <param name="nomPropriété"></param>
         /// <returns></returns>
-        public static T GetObject<T>(object id, string nomPropriété = null) where T : ISQL => 
+        public static T GetObject<T>(object id, string nomPropriété = null) where T : ISQL =>
             Read<T>($"SELECT * FROM {MyConstants.TypeToTable(typeof(T))} WHERE {nomPropriété ?? MyConstants.TypeToID(typeof(T))} = '{id}'").FirstOrDefault();
 
 
@@ -130,7 +130,7 @@ namespace BDD_VELOMAX_APP
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        public List<List<object>> ReadQuery(string query)
+        public static List<List<object>> ReadQuery(string query)
         {
             MySqlConnection c = null;
             try
@@ -146,15 +146,12 @@ namespace BDD_VELOMAX_APP
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     List<List<object>> l = new List<List<object>>();
-                    if (reader.Read())
+                    for (int x = 0; reader.Read(); x++)
                     {
-                        for (int x = 0; reader.Read(); x++)
-                        {
-                            l.Add(new List<object>());
+                        l.Add(new List<object>());
 
-                            for (int i = 0; i < reader.FieldCount; i++)
-                                l[x].Add(reader.GetValue(i));
-                        }
+                        for (int i = 0; i < reader.FieldCount; i++)
+                            l[x].Add(reader.GetValue(i));
                     }
 
                     return l;
