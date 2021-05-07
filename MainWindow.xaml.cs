@@ -266,7 +266,7 @@ namespace BDD_VELOMAX_APP
 
     public static partial class MyHelper
     {
-        public static UserControl ToView(this MyPages m)
+        public static object ToView(this MyPages m)
         {
             switch (m)
             {
