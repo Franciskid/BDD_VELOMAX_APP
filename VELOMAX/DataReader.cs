@@ -29,11 +29,11 @@ namespace BDD_VELOMAX_APP
         /// Ouvre une connexion avec le serveur MySQL
         /// </summary>
         /// <returns></returns>
-        public static MySqlConnection OpenConnexion()
+        public static MySqlConnection OpenConnexion(bool db = true)
         {
             try
             {
-                var mySQLCon = new MySqlConnection(MyConstants.CONNEXION_STRING);
+                var mySQLCon = new MySqlConnection(db ? MyConstants.CONNEXION_STRING_DB : MyConstants.CONNEXION_STRING);
                 mySQLCon.Open();
                 return mySQLCon;
             }
