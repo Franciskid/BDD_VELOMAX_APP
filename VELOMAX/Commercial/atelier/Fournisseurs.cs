@@ -26,7 +26,7 @@ namespace BDD_VELOMAX_APP
             this.Iadresse = DataReader.GetObject<Adresse>(Iadresse);
             this.Score = (Score)Scores;
         }
-        public object ID { get; private set; }
+        public object ID => Siret;
         public virtual string IdToString() => "Siret";
     }
 }

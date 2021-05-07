@@ -42,7 +42,7 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1" Background="{StaticResource MainPage}">
             <DockPanel>
-                <Grid x:Name="GridTitleBar" VerticalAlignment="Top" Background="{DynamicResource ResourceKey=MenuBackColor}" Panel.ZIndex="1" MouseDown="GridTitleBar_MouseDown">
+                <Grid x:Name="GridTitleBar" Background="{DynamicResource ResourceKey=MenuBackColor}" Panel.ZIndex="1" MouseDown="GridTitleBar_MouseDown">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
@@ -87,7 +87,7 @@
                             </Button>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="1" Background="{StaticResource MainPage}">
                         <ContentControl x:Name="ContentItem"/>
                     </Grid>
                 </Grid>
