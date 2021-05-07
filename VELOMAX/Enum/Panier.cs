@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    public enum Grandeurs
+    public enum Panier
     {
-        Adultes, 
-        Hommes,
-        Dames,
-        Jeunes,
-        Garcons,
-        Filles,
+        S01,
+        S05,
+        S73,
+        S74,
     }
 }

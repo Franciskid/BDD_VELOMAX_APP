@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    public enum Grandeurs
+    public enum Ordinateur
     {
-        Adultes, 
-        Hommes,
-        Dames,
-        Jeunes,
-        Garcons,
-        Filles,
+        O2,
+        O4,
     }
 }

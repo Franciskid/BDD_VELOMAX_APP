@@ -19,7 +19,7 @@ namespace BDD_VELOMAX_APP
             {
                 return OpenConnexion().State == System.Data.ConnectionState.Open;
             }
-            catch (MySqlException e)
+            catch (Exception e)
             {
                 return false;
             }
@@ -44,13 +44,13 @@ namespace BDD_VELOMAX_APP
         }
 
 
+
         /// <summary>
         /// Lit une table
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static List<T> Read<T>() where T : ISQL => Read<T>($"SELECT * FROM {MyConstants.TypeToTable(typeof(T))}");
-
 
         /// <summary>
         /// Renvoie le premier objet qui satisfait la condition liée à la propriété et à l'objet indiqués. Si aucune propriété n'est indiquée, on comparera l'objet à l'id de la table.
@@ -62,12 +62,11 @@ namespace BDD_VELOMAX_APP
         public static T GetObject<T>(object id, string nomPropriété = null) where T : ISQL =>
             Read<T>($"SELECT * FROM {MyConstants.TypeToTable(typeof(T))} WHERE {nomPropriété ?? MyConstants.TypeToID(typeof(T))} = '{id}'").FirstOrDefault();
 
-
         /// <summary>
         /// Lit une table de donnée en entier en fonction d'une condition. 
         /// Les objets sélectionnés doivent forcément correspondre en type et en ordre à la classe <see cref="ISQL"/> indiquée.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">Type <see cref="ISQL"/></typeparam>
         /// <param name="query"></param>
         /// <returns></returns>
         public static List<T> Read<T>(string query) where T : ISQL
@@ -85,33 +84,43 @@ namespace BDD_VELOMAX_APP
                 MySqlCommand command = new MySqlCommand(query, c);
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
-                    List<ISQL> l = new List<ISQL>();
+                    List<T> l = new List<T>();
+
                     while (reader.Read())
                     {
                         if (typeof(T) == typeof(Fidelio))
                         {
                             var val = MyConstants.DICOVALUES[MyConstants.TABLE_FIDELIO];
-                            l.Add(new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
+                            l.Add((T)(ISQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
                         }
-                        if (typeof(T) == typeof(Client))
+                        if (typeof(T) == typeof(ClientIndividuel))
                         {
                             var val = MyConstants.DICOVALUES[MyConstants.TABLE_CLIENTS];
-                            l.Add(new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
+                            l.Add((T)(ISQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
+                        }
+                        if (typeof(T) == typeof(ClientBoutique))
+                        {
+                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_CLIENTS];
+                            l.Add((T)(ISQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
                         }
                         if (typeof(T) == typeof(Modele))
                         {
                             var val = MyConstants.DICOVALUES[MyConstants.TABLE_MODELES];
-                            var a = new Modele((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (string)reader[val[3]], reader.GetDateTime(val[4]), reader.GetDateTime(val[5]));
-                            l.Add(a);
+                            l.Add((T)(ISQL)new Modele((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (string)reader[val[3]], reader.GetDateTime(val[4]), reader.GetDateTime(val[5])));
                         }
                         if (typeof(T) == typeof(Compte))
                         {
                             var val = MyConstants.DICOVALUES[MyConstants.TABLE_COMPTES];
-                            l.Add(new Compte((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]]));
+                            l.Add((T)(ISQL)new Compte((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]]));
+                        }
+                        if (typeof(T) == typeof(Assemblage))
+                        {
+                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_COMPTES];
+                            l.Add((T)(ISQL)new Assemblage((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[3]], (string)reader[val[4]],(string)reader[val[5]], (string)reader[val[6]], (string)reader[val[7]], (string)reader[val[8]], (string)reader[val[9]], (string)reader[val[10]], (string)reader[val[11]], (string)reader[val[12]], (string)reader[val[13]], (string)reader[val[14]]));
                         }
                     }
 
-                    return l.ConvertAll(x => (T)x);
+                    return l;
                 }
             }
             catch (Exception ex)
@@ -123,6 +132,7 @@ namespace BDD_VELOMAX_APP
                 c?.Close();
             }
         }
+
 
 
         /// <summary>

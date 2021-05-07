@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    abstract class Personne
+    public enum Freins
     {
+        F3,
+        F9,
 
     }
 }

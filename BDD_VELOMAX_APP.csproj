@@ -117,14 +117,27 @@
     <Compile Include="VELOMAX\Acteurs\Clients\ClientBoutique.cs" />
     <Compile Include="VELOMAX\Acteurs\Clients\ClientIndividuel.cs" />
     <Compile Include="VELOMAX\Acteurs\Compte.cs" />
+    <Compile Include="VELOMAX\Commercial\atelier\Assemblage.cs" />
     <Compile Include="VELOMAX\Commercial\ProgrammesFidelio\Fidelio.cs" />
     <Compile Include="VELOMAX\Commercial\Modele.cs" />
     <Compile Include="VELOMAX\Commercial\ProgrammesFidelio\IFidelio.cs" />
     <Compile Include="VELOMAX\DataReader.cs" />
     <Compile Include="VELOMAX\DataWriter.cs" />
     <Compile Include="VELOMAX\Enum\Adresse.cs" />
+    <Compile Include="VELOMAX\Enum\Cadre.cs" />
+    <Compile Include="VELOMAX\Enum\Derailleur_arriere.cs" />
+    <Compile Include="VELOMAX\Enum\Derailleur_avant.cs" />
+    <Compile Include="VELOMAX\Enum\Freins.cs" />
     <Compile Include="VELOMAX\Enum\Grandeurs.cs" />
+    <Compile Include="VELOMAX\Enum\Guidon.cs" />
     <Compile Include="VELOMAX\Enum\LigneProduit.cs" />
+    <Compile Include="VELOMAX\Enum\Ordinateur.cs" />
+    <Compile Include="VELOMAX\Enum\Panier.cs" />
+    <Compile Include="VELOMAX\Enum\Pedalier.cs" />
+    <Compile Include="VELOMAX\Enum\Reflecteurs.cs" />
+    <Compile Include="VELOMAX\Enum\Roue_arriere.cs" />
+    <Compile Include="VELOMAX\Enum\Roue_avant.cs" />
+    <Compile Include="VELOMAX\Enum\Selles.cs" />
     <Compile Include="VELOMAX\MyConstants.cs" />
     <Page Include="Styles\ButtonResources.xaml">
       <SubType>Designer</SubType>
@@ -157,7 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="VELOMAX\ISQL.cs" />
-    <Compile Include="VELOMAX\Acteurs\Personne.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

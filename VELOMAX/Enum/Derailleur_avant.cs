@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    public enum Grandeurs
+    public enum Derailleur_avant
     {
-        Adultes, 
-        Hommes,
-        Dames,
-        Jeunes,
-        Garcons,
-        Filles,
+        DV132,
+       DV133,
+        DV15,
+        DV17,
+        DV41,
+        DV57,
+        DV87,
+
     }
 }

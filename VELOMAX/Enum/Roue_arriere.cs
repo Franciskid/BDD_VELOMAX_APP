@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    public enum Grandeurs
+    public enum Roue_arriere
     {
-        Adultes, 
-        Hommes,
-        Dames,
-        Jeunes,
-        Garcons,
-        Filles,
+        R12,
+        R18,
+        R2,
+        R32,
+        R46,
+        R47,
+
     }
 }
