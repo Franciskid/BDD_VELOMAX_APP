@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BDD_VELOMAX_APP.VELOMAX.Commercial.atelier
+namespace BDD_VELOMAX_APP
 {
     class Commande
     {

@@ -119,6 +119,7 @@
     <Compile Include="VELOMAX\Acteurs\Compte.cs" />
     <Compile Include="VELOMAX\Commercial\atelier\Assemblage.cs" />
     <Compile Include="VELOMAX\Commercial\atelier\Commande.cs" />
+    <Compile Include="VELOMAX\Commercial\atelier\Fournisseurs.cs" />
     <Compile Include="VELOMAX\Commercial\ProgrammesFidelio\Fidelio.cs" />
     <Compile Include="VELOMAX\Commercial\Modele.cs" />
     <Compile Include="VELOMAX\Commercial\ProgrammesFidelio\IFidelio.cs" />
