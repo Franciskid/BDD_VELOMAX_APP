@@ -113,11 +113,6 @@ namespace BDD_VELOMAX_APP
                             var val = MyConstants.DICOVALUES[MyConstants.TABLE_COMPTES];
                             l.Add((T)(ISQL)new Compte((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]]));
                         }
-                        if (typeof(T) == typeof(Assemblage))
-                        {
-                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_COMPTES];
-                            l.Add((T)(ISQL)new Assemblage((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[3]], (string)reader[val[4]],(string)reader[val[5]], (string)reader[val[6]], (string)reader[val[7]], (string)reader[val[8]], (string)reader[val[9]], (string)reader[val[10]], (string)reader[val[11]], (string)reader[val[12]], (string)reader[val[13]], (string)reader[val[14]]));
-                        }
                     }
 
                     return l;
