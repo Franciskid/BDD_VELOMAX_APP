@@ -8,19 +8,19 @@ namespace BDD_VELOMAX_APP
 {
     public enum Cadre
     {
-     C01,
-     C02,
-     C15,
-     C25,
-     C26,
-     C32,
-     C34,
-     C43,
-     C43f,
-     C44f,
-     C76,
-     C87,
-     C87f,
+        C01,
+        C02,
+        C15,
+        C25,
+        C26,
+        C32,
+        C34,
+        C43,
+        C43f,
+        C44f,
+        C76,
+        C87,
+        C87f,
     }
 
     public static partial class MyHelper
