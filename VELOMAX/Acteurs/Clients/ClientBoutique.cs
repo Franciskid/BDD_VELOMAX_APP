@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BDD_VELOMAX_APP.VELOMAX.Acteurs.Clients
+namespace BDD_VELOMAX_APP
 {
     class ClientBoutique : Client
     {
