@@ -50,6 +50,24 @@ namespace BDD_VELOMAX_APP
                 default:
                     return (LigneProduit)(-1);
             }
+
+        }
+
+        /// <summary>
+        /// Convertit un string dans l'enum indiqué.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public static T StringToEnum<T>(string val) where T : Enum
+        {
+            foreach (var gt in Enum.GetValues(typeof(T)))
+            {
+                if (val == gt.ToString())
+                    return (T)gt;
+            }
+
+            return default(T);
         }
     }
 }

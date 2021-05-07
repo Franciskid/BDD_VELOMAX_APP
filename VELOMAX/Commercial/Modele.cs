@@ -29,7 +29,7 @@ namespace BDD_VELOMAX_APP
             this.ID = id;
             this.Nom = nom;
             this.Prix = prix;
-            this.Ligne = MyHelper.DescriptionToLigneProduit(ligne);
+            this.Ligne = MyHelper.StringToEnum<LigneProduit>(ligne);
             this.Introduction = intro;
             this.Discontinuation = discont;
         }
