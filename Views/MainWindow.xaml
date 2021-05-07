@@ -1,4 +1,4 @@
-﻿<Window x:Class="BDD_VELOMAX_APP.MainWindow"
+﻿<Window x:Class="BDD_VELOMAX_APP.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -88,7 +88,7 @@
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="1">
-                        <ContentControl x:Name="ContentItem"/>
+                        <ContentControl x:Name="ActivateItemAsync"/>
                     </Grid>
                 </Grid>
             </DockPanel>
