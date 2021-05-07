@@ -34,25 +34,6 @@ namespace BDD_VELOMAX_APP
             }
         }
 
-        public static LigneProduit DescriptionToLigneProduit(string str)
-        {
-            switch (str)
-            {
-                case "VTT":
-                    return LigneProduit.VTT;
-                case "Vélo de course":
-                    return LigneProduit.Vélo_Course;
-                case "Classique":
-                    return LigneProduit.Classique;
-                case "BMX":
-                    return LigneProduit.BMX;
-
-                default:
-                    return (LigneProduit)(-1);
-            }
-
-        }
-
         /// <summary>
         /// Convertit un string dans l'enum indiqué.
         /// </summary>
