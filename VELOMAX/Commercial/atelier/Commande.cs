@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class Commande
+    class Commande: ISQL
     {
         public int IdCommande { get; private set; }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class Fournisseurs
+    class Fournisseurs:ISQL
     {
         public int Siret { get; private set; }
 

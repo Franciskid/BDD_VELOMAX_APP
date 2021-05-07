@@ -72,7 +72,7 @@ namespace BDD_VELOMAX_APP
         public static List<T> Read<T>(string query) where T : ISQL
         {
             MySqlConnection c = null;
-            try
+           //try
             {
                 c = OpenConnexion();
 
@@ -138,11 +138,11 @@ namespace BDD_VELOMAX_APP
                     return l;
                 }
             }
-            catch (Exception ex)
+            ///catch (Exception ex)
             {
                 return null;
             }
-            finally
+            //finally
             {
                 c?.Close();
             }
