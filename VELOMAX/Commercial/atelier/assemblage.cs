@@ -39,24 +39,24 @@ namespace BDD_VELOMAX_APP
         public Panier Panier { get; private set; }
 
 
-        public Assemblage(int idAssemblage, string Nom, Grandeurs Grandeurs, Cadre Cadre, Guidon Guidon, Freins Freins, Selles Selles, Derailleur_avant derailleur_Avant,
-            Derailleur_arriere derailleur_Arriere, Roue_avant roue_Avant, Roue_arriere roue_Arriere, Reflecteurs Reflecteurs, Pedalier Pedalier, Ordinateur Ordinateur, Panier Panier)
+        public Assemblage(int idAssemblage, string Nom, string Grandeurs, string Cadre, string Guidon, string Freins, string Selles, string derailleur_Avant,
+            string derailleur_Arriere, string roue_Avant, string roue_Arriere, string Reflecteurs, string Pedalier, string Ordinateur, string Panier)
         {
             this.idAssemblage = idAssemblage;
             this.Nom = Nom;
-            this.Grandeurs = Grandeurs;
-            this.Cadre = Cadre;
-            this.Guidon = Guidon;
-            this.Freins = Freins;
-            this.Selles = Selles;
-            this.derailleur_Avant = derailleur_Avant;
-            this.derailleur_Arriere = derailleur_Arriere;
-            this.roue_Avant = roue_Avant;
-            this.roue_Arriere = roue_Arriere;
-            this.Reflecteurs = Reflecteurs;
-            this.Pedalier = Pedalier;
-            this.Ordinateur = Ordinateur;
-            this.Panier = Panier;
+            this.Grandeurs = MyHelper.StringToEnum<Grandeurs>(Grandeurs); 
+            this.Cadre = MyHelper.StringToEnum < Cadre > (Cadre);
+            this.Guidon = MyHelper.StringToEnum <Guidon>( Guidon);
+            this.Freins = MyHelper.StringToEnum <Freins> (Freins);
+            this.Selles = MyHelper.StringToEnum <Selles> (Selles);
+            this.derailleur_Avant = MyHelper.StringToEnum < Derailleur_avant >( derailleur_Avant);
+            this.derailleur_Arriere = MyHelper.StringToEnum < Derailleur_arriere > (derailleur_Arriere);
+            this.roue_Avant = MyHelper.StringToEnum < Roue_avant > (roue_Avant);
+            this.roue_Arriere = MyHelper.StringToEnum < Roue_arriere > (roue_Arriere);
+            this.Reflecteurs = MyHelper.StringToEnum < Reflecteurs > (Reflecteurs);
+            this.Pedalier = MyHelper.StringToEnum < Pedalier > (Pedalier);
+            this.Ordinateur = MyHelper.StringToEnum < Ordinateur > (Ordinateur);
+            this.Panier = MyHelper.StringToEnum < Panier > (Panier);
         }
 
         public object ID { get; private set; }
