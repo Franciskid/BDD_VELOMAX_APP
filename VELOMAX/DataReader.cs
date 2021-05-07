@@ -126,12 +126,17 @@ namespace BDD_VELOMAX_APP
                         if (typeof(T) == typeof(Commande))
                         {
                             var val = MyConstants.DICOVALUES[MyConstants.TABLE_COMMANDES];
-                            l.Add((T)(ISQL)new Commande((int)reader[val[0]], (DateTime)reader[val[1]], (DateTime)reader[val[2]]));
+                            l.Add((T)(ISQL)new Commande((int)reader[val[0]], reader.GetDateTime(val[1]), reader.GetDateTime(val[2])));
                         }
                         if (typeof(T) == typeof(Fournisseurs))
                         {
                             var val = MyConstants.DICOVALUES[MyConstants.TABLE_FOURNISSEURS];
-                            l.Add((T)(ISQL)new Fournisseurs((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[2]], (int)reader[val[3]]));
+                            l.Add((T)(ISQL)new Fournisseurs((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[3]], (int)reader[val[4]]));
+                        }
+                        if (typeof(T) == typeof(Pieces))
+                        {
+                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_PIECES];
+                            l.Add((T)(ISQL)new Pieces(reader.GetStringSafe(0), reader.GetStringSafe(1), reader.GetStringSafe(2), (int)reader[val[2]], (float)reader[val[3]], reader.GetDateTime(val[4]), reader.GetDateTime(val[5]), reader.GetDateTime(val[6])));
                         }
                     }
 

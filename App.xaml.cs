@@ -36,6 +36,7 @@ namespace BDD_VELOMAX_APP
             var b = DataReader.Read<Commande>();
             var c = DataReader.Read<Fournisseurs>();
             var d = DataReader.Read<Adresse>();
+            var Q = DataReader.Read<Pieces>();
 
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
