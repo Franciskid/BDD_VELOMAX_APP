@@ -25,7 +25,7 @@ namespace BDD_VELOMAX_APP
 
     public static partial class MyHelper
     {
-        public static string Description(this LigneProduit ligne)
+        public static string Descripion(this LigneProduit ligne)
         {
             switch (ligne)
             {
@@ -43,7 +43,7 @@ namespace BDD_VELOMAX_APP
             }
         }
 
-        public static LigneProduit DescriptionToLigneProduit(string str)
+        public static LigneProduit DescriptionoLigneProduit(string str)
         {
             switch (str)
             {

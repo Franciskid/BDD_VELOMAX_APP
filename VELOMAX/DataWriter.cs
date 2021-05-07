@@ -13,7 +13,7 @@ namespace BDD_VELOMAX_APP
         {
             try
             {
-                var maConnexion = DataReader.OpenConnexion();
+                var maConnexion = DataReader.OpenConnexion(false);
                 var cmd = maConnexion.CreateCommand();
                 cmd.CommandText = commandes;
                 cmd.ExecuteNonQuery();
@@ -25,5 +25,6 @@ namespace BDD_VELOMAX_APP
             }
 
         }
+
     }
 }

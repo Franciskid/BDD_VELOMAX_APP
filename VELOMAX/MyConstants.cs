@@ -8,8 +8,12 @@ namespace BDD_VELOMAX_APP
 {
     class MyConstants
     {
-        public const string CONNEXION_STRING = "SERVER=localhost;PORT=3306;" +
+        public const string CONNEXION_STRING_DB = "SERVER=localhost;PORT=3306;" +
                                          "DATABASE=velomax;" +
+                                         "UID=root;PASSWORD='root'";
+
+        public const string CONNEXION_STRING = "SERVER=localhost;PORT=3306;" +
+                                         "" +
                                          "UID=root;PASSWORD='root'";
 
         public const string TABLE_ADRESSE = "adresse";
