@@ -88,6 +88,11 @@ namespace BDD_VELOMAX_APP
 
                     while (reader.Read())
                     {
+                        if (typeof(T) == typeof(Adresse))
+                        {
+                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_ADRESSE];
+                            l.Add((T)(ISQL)new Adresse((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[3]], (string)reader[val[4]]));
+                        }
                         if (typeof(T) == typeof(Fidelio))
                         {
                             var val = MyConstants.DICOVALUES[MyConstants.TABLE_FIDELIO];
@@ -115,9 +120,21 @@ namespace BDD_VELOMAX_APP
                         }
                         if (typeof(T) == typeof(Assemblage))
                         {
-                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_COMPTES];
+                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_ASSEMBLAGES];
                             l.Add((T)(ISQL)new Assemblage((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[3]], (string)reader[val[4]], (string)reader[val[5]], (string)reader[val[6]], (string)reader[val[7]], (string)reader[val[8]], (string)reader[val[9]], (string)reader[val[10]], (string)reader[val[11]], (string)reader[val[12]], (string)reader[val[13]], (string)reader[val[14]]));
                         }
+                        if (typeof(T) == typeof(Commande))
+                        {
+                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_COMMANDES];
+                            l.Add((T)(ISQL)new Commande((int)reader[val[0]], (DateTime)reader[val[1]], (DateTime)reader[val[2]]));
+                        }
+                        if (typeof(T) == typeof(Fournisseurs))
+                        {
+                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_FOURNISSEURS];
+                            l.Add((T)(ISQL)new Fournisseurs((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[2]],(int)reader[val[3]]));
+                        }
+
+
                     }
 
                     return l;
