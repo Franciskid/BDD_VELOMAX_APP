@@ -9,7 +9,6 @@ namespace BDD_VELOMAX_APP
 {
     class Assemblage : ISQL
     {
-        public int idAssemblage { get; private set; }
         public string Nom { get; private set; }
 
         public Grandeurs Grandeurs { get; private set; }
@@ -42,7 +41,7 @@ namespace BDD_VELOMAX_APP
         public Assemblage(int idAssemblage, string Nom, string Grandeurs, string Cadre, string Guidon, string Freins, string Selles, string derailleur_Avant,
             string derailleur_Arriere, string roue_Avant, string roue_Arriere, string Reflecteurs, string Pedalier, string Ordinateur, string Panier)
         {
-            this.idAssemblage = idAssemblage;
+            this.ID = idAssemblage;
             this.Nom = Nom;
             this.Grandeurs = MyHelper.StringToEnum<Grandeurs>(Grandeurs);
             this.Cadre = MyHelper.StringToEnum<Cadre>(Cadre);

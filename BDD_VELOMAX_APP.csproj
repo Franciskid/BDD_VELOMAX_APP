@@ -126,13 +126,14 @@
     <Compile Include="VELOMAX\DataReader.cs" />
     <Compile Include="VELOMAX\DataWriter.cs" />
     <Compile Include="VELOMAX\Enum\Adresse.cs" />
-    <Compile Include="VELOMAX\Enum\Cadre.cs" />
-    <Compile Include="VELOMAX\Enum\Derailleur_arriere.cs" />
-    <Compile Include="VELOMAX\Enum\Derailleur_avant.cs" />
-    <Compile Include="VELOMAX\Enum\Freins.cs" />
+    <Compile Include="VELOMAX\Enum\AssemblagesEnum\Cadre.cs" />
+    <Compile Include="VELOMAX\Enum\AssemblagesEnum\Derailleur_arriere.cs" />
+    <Compile Include="VELOMAX\Enum\AssemblagesEnum\Derailleur_avant.cs" />
+    <Compile Include="VELOMAX\Enum\AssemblagesEnum\Freins.cs" />
     <Compile Include="VELOMAX\Enum\Grandeurs.cs" />
-    <Compile Include="VELOMAX\Enum\Guidon.cs" />
+    <Compile Include="VELOMAX\Enum\AssemblagesEnum\Guidon.cs" />
     <Compile Include="VELOMAX\Enum\LigneProduit.cs" />
+<<<<<<< HEAD
     <Compile Include="VELOMAX\Enum\Ordinateur.cs" />
     <Compile Include="VELOMAX\Enum\Panier.cs" />
     <Compile Include="VELOMAX\Enum\Pedalier.cs" />
@@ -141,7 +142,19 @@
     <Compile Include="VELOMAX\Enum\Roue_avant.cs" />
     <Compile Include="VELOMAX\Enum\Score.cs" />
     <Compile Include="VELOMAX\Enum\Selles.cs" />
+=======
+    <Compile Include="VELOMAX\Enum\AssemblagesEnum\Ordinateur.cs" />
+    <Compile Include="VELOMAX\Enum\AssemblagesEnum\Panier.cs" />
+    <Compile Include="VELOMAX\Enum\AssemblagesEnum\Pedalier.cs" />
+    <Compile Include="VELOMAX\Enum\AssemblagesEnum\Reflecteurs.cs" />
+    <Compile Include="VELOMAX\Enum\AssemblagesEnum\Roue_arriere.cs" />
+    <Compile Include="VELOMAX\Enum\AssemblagesEnum\Roue_avant.cs" />
+    <Compile Include="VELOMAX\Enum\AssemblagesEnum\Selles.cs" />
+>>>>>>> fa73d908f4f470084d24bf89c623ed03f33c3e8d
     <Compile Include="VELOMAX\MyConstants.cs" />
+    <Compile Include="Views\ClientPage.xaml.cs">
+      <DependentUpon>ClientPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="Styles\ButtonResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,6 +180,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Styles\ToolTipResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClientPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,9 +225,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />

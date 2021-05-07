@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using BDD_VELOMAX_APP.Views;
 using MySql.Data.MySqlClient;
 
 namespace BDD_VELOMAX_APP
@@ -31,8 +32,6 @@ namespace BDD_VELOMAX_APP
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             ExecuteSQLScript();
-
-            var a = DataReader.Read<Assemblage>();
 
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();

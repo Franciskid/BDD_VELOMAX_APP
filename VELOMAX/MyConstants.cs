@@ -79,6 +79,10 @@ namespace BDD_VELOMAX_APP
             {
                 return TABLE_idCOMPTES;
             }
+            if (type == typeof(Assemblage))
+            {
+                return TABLE_idASSEMBLAGES;
+            }
 
             return null;
         }
@@ -104,6 +108,10 @@ namespace BDD_VELOMAX_APP
             if (type == typeof(Modele))
             {
                 return TABLE_MODELES;
+            }
+            if (type == typeof(Assemblage))
+            {
+                return TABLE_ASSEMBLAGES;
             }
 
             return null;

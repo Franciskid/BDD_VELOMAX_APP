@@ -121,7 +121,11 @@ namespace BDD_VELOMAX_APP
                         if (typeof(T) == typeof(Assemblage))
                         {
                             var val = MyConstants.DICOVALUES[MyConstants.TABLE_ASSEMBLAGES];
+<<<<<<< HEAD
                             l.Add((T)(ISQL)new Assemblage((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[3]], (string)reader[val[4]], (string)reader[val[5]], (string)reader[val[6]], (string)reader[val[7]], (string)reader[val[8]], (string)reader[val[9]], (string)reader[val[10]], (string)reader[val[11]], (string)reader[val[12]], (string)reader[val[13]], (string)reader[val[14]]));
+=======
+                            l.Add((T)(ISQL)new Assemblage((int)reader[val[0]], reader.GetStringSafe(1), reader.GetStringSafe(2), reader.GetStringSafe(3), reader.GetStringSafe(4), reader.GetStringSafe(5), reader.GetStringSafe(6), reader.GetStringSafe(7), reader.GetStringSafe(8), reader.GetStringSafe(9), reader.GetStringSafe(10), reader.GetStringSafe(11), reader.GetStringSafe(12), reader.GetStringSafe(12), reader.GetStringSafe(13)));
+>>>>>>> fa73d908f4f470084d24bf89c623ed03f33c3e8d
                         }
                         if (typeof(T) == typeof(Commande))
                         {
@@ -194,5 +198,13 @@ namespace BDD_VELOMAX_APP
             }
         }
 
+    }
+
+    public static partial class MyHelper
+    {
+        public static string GetStringSafe(this MySqlDataReader @this, int column)
+        {
+            return !@this.IsDBNull(column) ? @this.GetString(column) : null;
+        }
     }
 }
