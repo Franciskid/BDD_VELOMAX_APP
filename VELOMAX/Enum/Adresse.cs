@@ -9,7 +9,7 @@ namespace BDD_VELOMAX_APP
     /// <summary>
     /// Représente une adresse physique d'une personne.
     /// </summary>
-    public class Adresse
+    public class Adresse:ISQL
     {
         /// <summary>
         /// Numéro
@@ -57,5 +57,8 @@ namespace BDD_VELOMAX_APP
         {
             return this.Numéro + " " + this.Rue + " " + CodePostal + " " + Ville;
         }
+
+        public object ID { get; private set; }
+        public virtual string IdToString() => "rue";
     }
 }
