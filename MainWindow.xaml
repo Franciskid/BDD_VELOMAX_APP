@@ -40,15 +40,15 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="1" Background="{StaticResource MainPage}">
+        <Grid Grid.Column="1">
             <DockPanel>
-                <Grid x:Name="GridTitleBar" Background="{DynamicResource ResourceKey=MenuBackColor}" Panel.ZIndex="1" MouseDown="GridTitleBar_MouseDown">
+                <Grid  Background="{DynamicResource ResourceKey=MenuBackColor}" Panel.ZIndex="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <Grid HorizontalAlignment="Left" Margin="10, 0, 0, 0">
+                    <Grid x:Name="GridTitleBar" Grid.Row="0" MouseDown="GridTitleBar_MouseDown">
+                        <Grid HorizontalAlignment="Left" Margin="10, 0, 0, 0" MouseDown="GridTitleBar_MouseDown">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -58,7 +58,7 @@
 
                             <TextBlock Grid.Column="1" Foreground="{StaticResource MenuFontColor}" VerticalAlignment="Center" FontSize="15" FontWeight="Light" Margin="30,0,0,0" Text="{StaticResource Title}"/>
                         </Grid>
-                        <Grid HorizontalAlignment="Right">
+                        <Grid HorizontalAlignment="Right" MouseDown="GridTitleBar_MouseDown">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -128,6 +128,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
 
                     <Button Style="{StaticResource BasicButton}" x:Name="ButtMain" Grid.Row="0" HorizontalAlignment="Stretch" 
@@ -161,7 +162,22 @@
                         </Button.ToolTip>
                     </Button>
 
-                    <Button Style="{StaticResource BasicButton}" x:Name="ButtCommande" Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                    <Button Style="{StaticResource BasicButton}" x:Name="ButtPieces" Grid.Row="2"   HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch" HorizontalContentAlignment="Left"  BorderThickness="0" Click="ButtPieces_Click" Cursor="Hand">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon x:Name="LogoPieces"  Grid.Column="0" Kind="BicycleBasket" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0" />
+                            <TextBlock x:Name="TB_Pieces"  Grid.Column="1"   VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuPieces}" />
+                        </Grid>
+                        <Button.ToolTip>
+                            <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuPieces}" />
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button Style="{StaticResource BasicButton}" x:Name="ButtCommande" Grid.Row="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         HorizontalContentAlignment="Left"  BorderThickness="0" Click="ButtCommande_Click" Cursor="Hand">
                         <Grid >
                             <Grid.ColumnDefinitions>
@@ -176,7 +192,7 @@
                         </Button.ToolTip>
                     </Button>
 
-                    <Button Style="{StaticResource BasicButton}" x:Name="ButtStats" Grid.Row="3"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                    <Button Style="{StaticResource BasicButton}" x:Name="ButtStats" Grid.Row="4"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         HorizontalContentAlignment="Left"  BorderThickness="0" Click="ButtStats_Click" Cursor="Hand">
                         <Grid >
                             <Grid.ColumnDefinitions>
@@ -191,7 +207,7 @@
                         </Button.ToolTip>
                     </Button>
 
-                    <Button Style="{StaticResource BasicButton}" x:Name="ButtOther" Grid.Row="4"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ButtOther_Click" 
+                    <Button Style="{StaticResource BasicButton}" x:Name="ButtOther" Grid.Row="5"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ButtOther_Click" 
                         HorizontalContentAlignment="Left" BorderThickness="0" Cursor="Hand">
                         <Grid>
                             <Grid.ColumnDefinitions>

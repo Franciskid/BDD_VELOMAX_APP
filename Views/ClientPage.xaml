@@ -9,7 +9,7 @@
     <Grid>
         <Image>
             <Image.Source>
-                ../Images/velo.jpg
+                ../Images/veloLogoGreen.png
             </Image.Source>
         </Image>
     </Grid>

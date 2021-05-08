@@ -55,6 +55,12 @@ namespace BDD_VELOMAX_APP
                         this.TB_Clients.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
                         break;
 
+                    case MyPages.Pieces:
+                        //this.ButtClients.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
+                        this.LogoPieces.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
+                        this.TB_Pieces.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
+                        break;
+
                     case MyPages.Commandes:
                         //this.ButtCommande.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
                         this.LogoCommandes.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
@@ -83,6 +89,7 @@ namespace BDD_VELOMAX_APP
                 this.ButtMain,
                 ButtClients,
                 ButtCommande,
+                ButtPieces,
                 ButtStats,
                 ButtOther
             };
@@ -90,6 +97,7 @@ namespace BDD_VELOMAX_APP
             {
                 this.TB_Clients,
                 TB_Commandes,
+                TB_Pieces,
                 TB_Main,
                 TB_Other,
                 TB_Stats
@@ -99,6 +107,7 @@ namespace BDD_VELOMAX_APP
                 LogoMain,
                 LogoClients,
                 LogoCommandes,
+                LogoPieces,
                 LogoStats,
                 LogoOther,
             };
@@ -204,6 +213,11 @@ namespace BDD_VELOMAX_APP
             ChangePage(MyPages.Clients);
         }
 
+        private void ButtPieces_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePage(MyPages.Pieces);
+        }
+
         private void ButtCommande_Click(object sender, RoutedEventArgs e)
         {
             ChangePage(MyPages.Commandes);
@@ -259,6 +273,7 @@ namespace BDD_VELOMAX_APP
         Connexion,
         Connecté,
         Clients,
+        Pieces,
         Commandes,
         Stats,
         Other

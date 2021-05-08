@@ -7,6 +7,7 @@
     <system:String x:Key="MenuStats">Statistiques</system:String>
     <system:String x:Key="MenuAutre">Menu mystère</system:String>
     <system:String x:Key="MenuClient">Clients</system:String>
+    <system:String x:Key="MenuPieces">Pièces</system:String>
     <system:String x:Key="MenuCommandes">Commandes</system:String>
 
     <!--Bar titre-->
