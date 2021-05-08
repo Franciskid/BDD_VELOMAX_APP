@@ -28,15 +28,23 @@ namespace BDD_VELOMAX_APP
             DataWriter.ExecuteNonQuery(fileContent);
         }
 
-        private void Application_Startup(object sender, StartupEventArgs e)
+        /// <summary>
+        /// On teste ici
+        /// </summary>
+        private void TestFunction()
         {
-            ExecuteSQLScript();
-
             var a = DataReader.Read<Assemblage>();
             var b = DataReader.Read<Commande>();
             var c = DataReader.Read<Fournisseurs>();
             var d = DataReader.Read<Adresse>();
             var Q = DataReader.Read<Pieces>();
+        }
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            ExecuteSQLScript();
+
+            //TestFunction();
 
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();

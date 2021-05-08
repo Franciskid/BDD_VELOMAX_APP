@@ -8,9 +8,9 @@ namespace BDD_VELOMAX_APP
 {
     public enum Score
     {
-        s = 1,
-        o = 2,
-        r = 3,
-        e = 4,
+        PasOuf = 1,
+        Mouais = 2,
+        Lourd = 3,
+        Enorme = 4,
     }
 }
