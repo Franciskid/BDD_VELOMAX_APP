@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class Assemblage : ISQL
+    class Assemblage : IMySQL
     {
         public string Nom { get; private set; }
 
@@ -59,7 +59,7 @@ namespace BDD_VELOMAX_APP
         }
 
         public object ID { get; private set; }
-        public virtual string IdToString() => "idAssemblage";
+        public virtual string SaveStr() => "idAssemblage";
     }
 
 }

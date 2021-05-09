@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Configuration;
+using System.Collections.Specialized;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,7 +36,7 @@ namespace BDD_VELOMAX_APP
         {
             try
             {
-                var mySQLCon = new MySqlConnection(db ? MyConstants.CONNEXION_STRING_DB : MyConstants.CONNEXION_STRING);
+                var mySQLCon = new MySqlConnection(ConfigurationManager.AppSettings.Get(db ? "ServeurConnexionDB" : "ServeurConnexion"));
                 mySQLCon.Open();
 
                 if (mySQLCon.State != System.Data.ConnectionState.Open)

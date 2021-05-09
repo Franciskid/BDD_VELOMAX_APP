@@ -9,6 +9,10 @@ namespace BDD_VELOMAX_APP
 {
     static class DataWriter
     {
+        /// <summary>
+        /// Execute une déclaration sur la base de donnée
+        /// </summary>
+        /// <param name="commandes"></param>
         public static void ExecuteNonQuery(string commandes)
         {
             try
