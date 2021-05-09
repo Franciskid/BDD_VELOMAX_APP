@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class Fournisseurs:ISQL
+    class Fournisseurs:IMySQL
     {
         public int Siret { get; private set; }
 
@@ -27,6 +27,6 @@ namespace BDD_VELOMAX_APP
             this.Score = (Score)Scores;
         }
         public object ID => Siret;
-        public virtual string IdToString() => "Siret";
+        public virtual string SaveStr() => "Siret";
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class Pieces:ISQL
+    class Pieces:IMySQL
     {
         public string IdPiece { get; private set; }
 
@@ -40,6 +40,6 @@ namespace BDD_VELOMAX_APP
 
 
         public object ID { get; private set; }
-        public virtual string IdToString() => "IdPiece";
+        public virtual string SaveStr() => "IdPiece";
     }
 }

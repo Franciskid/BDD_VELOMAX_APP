@@ -17,7 +17,7 @@ create table if not exists Pieces
 
 create table if not exists Assemblages
 (
-	idAssemblage int auto_increment primary key not null,
+	idAssemblage int primary key auto_increment not null,
 	nom varchar(30),
     grandeur ENUM('Hommes', 'Dames', 'Adultes', 'Jeunes', 'Garçons', 'Filles'),
     cadre  varchar(10) ,
@@ -51,7 +51,7 @@ ALTER TABLE assemblages AUTO_INCREMENT = 100001;
 
 create table if not exists Modeles
 (
-	idModele INT auto_increment PRIMARY KEY NOT NULL,
+	idModele INT PRIMARY KEY auto_increment NOT NULL,
     nom varchar(30),
     prix int,
     ligne varchar(30),
@@ -71,7 +71,7 @@ create table if not exists Fidelio
 
 create table if not exists Adresse
 (
-	idAdresse int primary key not null,
+	idAdresse int primary key auto_increment not null,
     rue varchar(30),
     ville varchar(30),
     codePostal varchar(30),
@@ -80,7 +80,7 @@ create table if not exists Adresse
 
 create table if not exists Clients
 (
-	idClient int primary key not null,
+	idClient int primary key auto_increment not null,
     typeClient enum('personne', 'boutique') not null,
     nom varchar(30),
     prenom varchar(30),
@@ -99,7 +99,7 @@ create table if not exists Clients
 
 create table if not exists Fournisseurs
 (
-	siret int primary key not null,
+	siret int primary key auto_increment not null,
     nom varchar(30),
     contact varchar(30),
     idAdresse int,
@@ -110,7 +110,7 @@ create table if not exists Fournisseurs
 
 create table if not exists Commandes
 (
-	idCommande int auto_increment primary key not null, 
+	idCommande int primary key  auto_increment not null, 
     dateCommande datetime,
     dateLivraison dateTime
     

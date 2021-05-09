@@ -9,7 +9,7 @@ namespace BDD_VELOMAX_APP
     /// <summary>
     /// Représente une adresse physique d'une personne.
     /// </summary>
-    public class Adresse:ISQL
+    public class Adresse : IMySQL
     {
         /// <summary>
         /// Numéro
@@ -44,12 +44,14 @@ namespace BDD_VELOMAX_APP
         /// <param name="rue"></param>
         /// <param name="codepostal"></param>
         /// <param name="ville"></param>
-        public Adresse(int numero, string rue, string codepostal, string ville, string province)
+        /// <param name="province"></param>
+        public Adresse(int? id, string rue, string ville, string codepostal, string province)
         {
-            this.Numéro = numero;
+            this.ID = id;
             this.Rue = rue;
             this.CodePostal = int.Parse(codepostal);
             this.Ville = ville;
+            this.Province = province;
         }
 
 
@@ -59,6 +61,7 @@ namespace BDD_VELOMAX_APP
         }
 
         public object ID { get; private set; }
-        public virtual string IdToString() => "rue";
+
+        public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Rue}', '{CodePostal}', '{Ville}', '{Province}'";
     }
 }

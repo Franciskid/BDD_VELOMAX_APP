@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    abstract class Client : ISQL
+    abstract class Client : IMySQL
     {
         public Adresse Adresse { get; private set; }
 
@@ -25,6 +25,6 @@ namespace BDD_VELOMAX_APP
             this.AdresseMail = mail;
         }
 
-        public virtual string IdToString() => "idClient";
+        public virtual string SaveStr() => "idClient";
     }
 }

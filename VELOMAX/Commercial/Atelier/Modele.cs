@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class Modele : ISQL
+    class Modele : IMySQL
     {
         /// <summary>
         /// int
@@ -34,6 +34,6 @@ namespace BDD_VELOMAX_APP
             this.Discontinuation = discont;
         }
 
-        public string IdToString() => "idModele";
+        public string SaveStr() => "idModele";
     }
 }

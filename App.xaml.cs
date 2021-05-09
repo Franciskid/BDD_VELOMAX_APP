@@ -34,17 +34,29 @@ namespace BDD_VELOMAX_APP
         private void TestFunction()
         {
             var a = DataReader.Read<Assemblage>();
-            var b = DataReader.Read<Commande>();
-            var c = DataReader.Read<Fournisseurs>();
-            var d = DataReader.Read<Adresse>();
-            var Q = DataReader.Read<Pieces>();
+            var b = DataReader.Read<Adresse>();
+            var c = DataReader.Read<Client>();
+            var d = DataReader.Read<Commande>();
+            var e = DataReader.Read<Fournisseurs>();
+            var f = DataReader.Read<Pieces>();
+        }
+
+        /// <summary>
+        /// On teste ici
+        /// </summary>
+        private void TestFunction2()
+        {
+            Adresse ad = new Adresse(null, "10 rue de la concierge", "Paris", "75009", "France");
+
+            DataWriter.Insert(ad);
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             ExecuteSQLScript();
 
-            //TestFunction();
+            TestFunction();
+            TestFunction2();
 
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();

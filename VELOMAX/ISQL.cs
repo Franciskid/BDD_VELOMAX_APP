@@ -9,7 +9,7 @@ namespace BDD_VELOMAX_APP
     /// <summary>
     /// Spécifie les classes qui implémentent des tables dans la base de donnée velomax
     /// </summary>
-    interface ISQL
+    interface IMySQL
     {
         /// <summary>
         /// Id
@@ -17,9 +17,9 @@ namespace BDD_VELOMAX_APP
         object ID { get; }
 
         /// <summary>
-        /// Nom de l'id
+        /// String à sauvegarder dans la base de donnée : les propriétés séparées par une ','
         /// </summary>
         /// <returns></returns>
-        string IdToString();
+        string SaveStr();
     }
 }

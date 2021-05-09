@@ -36,6 +36,9 @@ namespace BDD_VELOMAX_APP
             {
                 var mySQLCon = new MySqlConnection(db ? MyConstants.CONNEXION_STRING_DB : MyConstants.CONNEXION_STRING);
                 mySQLCon.Open();
+
+                if (mySQLCon.State != System.Data.ConnectionState.Open)
+                    return null;
                 return mySQLCon;
             }
             catch (Exception e)
@@ -51,7 +54,7 @@ namespace BDD_VELOMAX_APP
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static List<T> Read<T>() where T : ISQL => Read<T>($"SELECT * FROM {MyConstants.TypeToTable(typeof(T))}");
+        public static List<T> Read<T>() where T : IMySQL => Read<T>($"SELECT * FROM {MyConstants.TypeToTable(typeof(T))}");
 
         /// <summary>
         /// Renvoie le premier objet qui satisfait la condition liée à la propriété et à l'objet indiqués. Si aucune propriété n'est indiquée, on comparera l'objet à l'id de la table.
@@ -60,98 +63,95 @@ namespace BDD_VELOMAX_APP
         /// <param name="id"></param>
         /// <param name="nomPropriété"></param>
         /// <returns></returns>
-        public static T GetObject<T>(object id, string nomPropriété = null) where T : ISQL =>
+        public static T GetObject<T>(object id, string nomPropriété = null) where T : IMySQL =>
             Read<T>($"SELECT * FROM {MyConstants.TypeToTable(typeof(T))} WHERE {nomPropriété ?? MyConstants.TypeToID(typeof(T))} = '{id}'").FirstOrDefault();
 
 
         /// <summary>
         /// Lit une table de donnée en entier en fonction d'une condition. 
-        /// Les objets sélectionnés doivent forcément correspondre en type et en ordre à la classe <see cref="ISQL"/> indiquée.
+        /// Les objets sélectionnés doivent forcément correspondre en type et en ordre à la classe <see cref="IMySQL"/> indiquée.
         /// </summary>
-        /// <typeparam name="T">Type <see cref="ISQL"/></typeparam>
+        /// <typeparam name="T">Type <see cref="IMySQL"/></typeparam>
         /// <param name="query"></param>
         /// <returns></returns>
-        public static List<T> Read<T>(string query) where T : ISQL
+        public static List<T> Read<T>(string query) where T : IMySQL
         {
-            MySqlConnection c = null;
-           //try
+            try
             {
-                c = OpenConnexion();
-
-                if (c == null)
+                using (MySqlConnection c = OpenConnexion())
                 {
-                    return null;
-                }
-
-                MySqlCommand command = new MySqlCommand(query, c);
-                using (MySqlDataReader reader = command.ExecuteReader())
-                {
-                    List<T> l = new List<T>();
-
-                    while (reader.Read())
+                    if (c == null)
                     {
-                        if (typeof(T) == typeof(Adresse))
-                        {
-                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_ADRESSE];
-                            l.Add((T)(ISQL)new Adresse((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[3]], (string)reader[val[4]]));
-                        }
-                        if (typeof(T) == typeof(Fidelio))
-                        {
-                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_FIDELIO];
-                            l.Add((T)(ISQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
-                        }
-                        if (typeof(T) == typeof(ClientIndividuel))
-                        {
-                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_CLIENTS];
-                            l.Add((T)(ISQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
-                        }
-                        if (typeof(T) == typeof(ClientBoutique))
-                        {
-                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_CLIENTS];
-                            l.Add((T)(ISQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
-                        }
-                        if (typeof(T) == typeof(Modele))
-                        {
-                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_MODELES];
-                            l.Add((T)(ISQL)new Modele((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (string)reader[val[3]], reader.GetDateTime(val[4]), reader.GetDateTime(val[5])));
-                        }
-                        if (typeof(T) == typeof(Compte))
-                        {
-                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_COMPTES];
-                            l.Add((T)(ISQL)new Compte((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]]));
-                        }
-                        if (typeof(T) == typeof(Assemblage))
-                        {
-                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_ASSEMBLAGES];
-                            l.Add((T)(ISQL)new Assemblage((int)reader[val[0]], reader.GetStringSafe(1), reader.GetStringSafe(2), reader.GetStringSafe(3), reader.GetStringSafe(4), reader.GetStringSafe(5), reader.GetStringSafe(6), reader.GetStringSafe(7), reader.GetStringSafe(8), reader.GetStringSafe(9), reader.GetStringSafe(10), reader.GetStringSafe(11), reader.GetStringSafe(12), reader.GetStringSafe(12), reader.GetStringSafe(13)));
-                        }
-                        if (typeof(T) == typeof(Commande))
-                        {
-                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_COMMANDES];
-                            l.Add((T)(ISQL)new Commande((int)reader[val[0]], reader.GetDateTime(val[1]), reader.GetDateTime(val[2])));
-                        }
-                        if (typeof(T) == typeof(Fournisseurs))
-                        {
-                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_FOURNISSEURS];
-                            l.Add((T)(ISQL)new Fournisseurs((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[3]], (int)reader[val[4]]));
-                        }
-                        if (typeof(T) == typeof(Pieces))
-                        {
-                            var val = MyConstants.DICOVALUES[MyConstants.TABLE_PIECES];
-                            l.Add((T)(ISQL)new Pieces(reader.GetStringSafe(0), reader.GetStringSafe(1), reader.GetStringSafe(2), (int)reader[val[2]], (float)reader[val[3]], reader.GetDateTime(val[4]), reader.GetDateTime(val[5]), reader.GetDateTime(val[6])));
-                        }
+                        return null;
                     }
 
-                    return l;
+                    MySqlCommand command = new MySqlCommand(query, c);
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        List<T> l = new List<T>();
+
+                        while (reader.Read())
+                        {
+                            if (typeof(T) == typeof(Adresse))
+                            {
+                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_ADRESSE];
+                                l.Add((T)(IMySQL)new Adresse((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[3]], (string)reader[val[4]]));
+                            }
+                            if (typeof(T) == typeof(Fidelio))
+                            {
+                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_FIDELIO];
+                                l.Add((T)(IMySQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
+                            }
+                            if (typeof(T) == typeof(ClientIndividuel))
+                            {
+                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_CLIENTS];
+                                l.Add((T)(IMySQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
+                            }
+                            if (typeof(T) == typeof(ClientBoutique))
+                            {
+                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_CLIENTS];
+                                l.Add((T)(IMySQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
+                            }
+                            if (typeof(T) == typeof(Modele))
+                            {
+                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_MODELES];
+                                l.Add((T)(IMySQL)new Modele((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (string)reader[val[3]], reader.GetDateTime(val[4]), reader.GetDateTime(val[5])));
+                            }
+                            if (typeof(T) == typeof(Compte))
+                            {
+                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_COMPTES];
+                                l.Add((T)(IMySQL)new Compte((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]]));
+                            }
+                            if (typeof(T) == typeof(Assemblage))
+                            {
+                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_ASSEMBLAGES];
+                                l.Add((T)(IMySQL)new Assemblage((int)reader[val[0]], reader.GetStringSafe(1), reader.GetStringSafe(2), reader.GetStringSafe(3), reader.GetStringSafe(4), reader.GetStringSafe(5), reader.GetStringSafe(6), reader.GetStringSafe(7), reader.GetStringSafe(8), reader.GetStringSafe(9), reader.GetStringSafe(10), reader.GetStringSafe(11), reader.GetStringSafe(12), reader.GetStringSafe(12), reader.GetStringSafe(13)));
+                            }
+                            if (typeof(T) == typeof(Commande))
+                            {
+                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_COMMANDES];
+                                l.Add((T)(IMySQL)new Commande((int)reader[val[0]], reader.GetDateTime(val[1]), reader.GetDateTime(val[2])));
+                            }
+                            if (typeof(T) == typeof(Fournisseurs))
+                            {
+                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_FOURNISSEURS];
+                                l.Add((T)(IMySQL)new Fournisseurs((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[3]], (int)reader[val[4]]));
+                            }
+                            if (typeof(T) == typeof(Pieces))
+                            {
+                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_PIECES];
+                                l.Add((T)(IMySQL)new Pieces(reader.GetStringSafe(0), reader.GetStringSafe(1), reader.GetStringSafe(2), (int)reader[val[2]], (float)reader[val[3]], reader.GetDateTime(val[4]), reader.GetDateTime(val[5]), reader.GetDateTime(val[6])));
+                            }
+                        }
+
+                        return l;
+                    }
                 }
+
             }
-            ///catch (Exception ex)
+            catch (Exception ex)
             {
                 return null;
-            }
-            //finally
-            {
-                c?.Close();
             }
         }
 

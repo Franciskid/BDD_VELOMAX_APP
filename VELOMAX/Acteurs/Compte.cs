@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    public class Compte : ISQL
+    public class Compte : IMySQL
     {
         public object ID { get; private set; }
 
@@ -23,7 +23,7 @@ namespace BDD_VELOMAX_APP
             this.MDP_SHA1 = motdepasse;
         }
 
-        public string IdToString() => "idCompte";
+        public string SaveStr() => "idCompte";
     }
 
     public static partial class MyHelper

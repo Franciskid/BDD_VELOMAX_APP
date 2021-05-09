@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class Commande: ISQL
+    class Commande: IMySQL
     {
         public int IdCommande { get; private set; }
 
@@ -21,6 +21,6 @@ namespace BDD_VELOMAX_APP
             this.DateLivraison = DateLivraison;
         }
         public object ID { get; private set; }
-        public virtual string IdToString() => "IdCommande";
+        public virtual string SaveStr() => "IdCommande";
     }
 }

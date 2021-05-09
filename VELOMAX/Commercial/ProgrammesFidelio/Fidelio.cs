@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class Fidelio : IFidelio, ISQL
+    class Fidelio : IFidelio, IMySQL
     {
         public float Prix { get; }
 
@@ -27,6 +27,6 @@ namespace BDD_VELOMAX_APP
             this.Description = description;
         }
 
-        public string IdToString() => "idFidelio";
+        public string SaveStr() => "idFidelio";
     }
 }
