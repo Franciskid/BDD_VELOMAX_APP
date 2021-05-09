@@ -28,6 +28,7 @@ namespace BDD_VELOMAX_APP
         /// <summary>
         /// Ouvre une connexion avec le serveur MySQL
         /// </summary>
+        /// <param name="db">Se connecte à la base de donnée 'velomax' ou juste au serveur</param>
         /// <returns></returns>
         public static MySqlConnection OpenConnexion(bool db = true)
         {
@@ -61,6 +62,7 @@ namespace BDD_VELOMAX_APP
         /// <returns></returns>
         public static T GetObject<T>(object id, string nomPropriété = null) where T : ISQL =>
             Read<T>($"SELECT * FROM {MyConstants.TypeToTable(typeof(T))} WHERE {nomPropriété ?? MyConstants.TypeToID(typeof(T))} = '{id}'").FirstOrDefault();
+
 
         /// <summary>
         /// Lit une table de donnée en entier en fonction d'une condition. 
@@ -201,6 +203,12 @@ namespace BDD_VELOMAX_APP
 
     public static partial class MyHelper
     {
+        /// <summary>
+        /// Vérifie si le string recherché est bien non null et en renvoie la valeur de manière sécurisé.
+        /// </summary>
+        /// <param name="this"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
         public static string GetStringSafe(this MySqlDataReader @this, int column)
         {
             return !@this.IsDBNull(column) ? @this.GetString(column) : null;
