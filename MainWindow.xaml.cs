@@ -20,7 +20,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace BDD_VELOMAX_APP
-{
+{///test yznid qui sert ar 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
