@@ -288,6 +288,9 @@ namespace BDD_VELOMAX_APP
                 case MyPages.Clients:
                     return new ClientPage();
 
+                case MyPages.Commandes:
+                    return new PageTESTT();
+
                 default:
                     return null;
             }
