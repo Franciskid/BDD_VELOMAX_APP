@@ -17,6 +17,7 @@ namespace BDD_VELOMAX_APP
             this.NomEntreprise = nomEntr;
             this.NomContact = nomContact;
         }
-
+        public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{typeClient}', '{nom}', '{prenom}', '{telephone}','{courriel}',{nomContact}" +
+            $" {'remise'},{'fidelio'},{'idFidelio'},{'dateAdhesionFidelio'}";
     }
 }
