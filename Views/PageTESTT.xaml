@@ -201,19 +201,19 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Button x:Name="Butt_Client" Grid.Row="0" Margin="5" Background="#FF33B733" Foreground="AntiqueWhite" FontSize="20" Padding="10" FontWeight="Bold" Cursor="Hand"
-                            ToolTip="CLIENT, remplir : Nom/Prenom/Telephone/Adresse/" Click="Butt_Client_Click">
+                            ToolTip="CLIENT, remplir : Nom/Prenom/Telephone/Adresse/" >
                         Ajouter Client
                     </Button>
                     <Button x:Name="Butt_Commis" Grid.Row="1" Margin="5" Background="#FF33B733" Foreground="AntiqueWhite" FontSize="20" Padding="10" FontWeight="Bold" Cursor="Hand"
-                            ToolTip="COMMIS, remplir : Nom/Prenom/Telephone/Adresse/Date(pas obligé)/Etat de l'employé(ne peut pas etre en livraison)/" Click="Butt_Commis_Click">
+                            ToolTip="COMMIS, remplir : Nom/Prenom/Telephone/Adresse/Date(pas obligé)/Etat de l'employé(ne peut pas etre en livraison)/">
                         Ajouter Commis
                     </Button>
                     <Button x:Name="Butt_Livreur" Grid.Row="2" Margin="5" Background="#FF33B733" Foreground="AntiqueWhite" FontSize="20" Padding="10" FontWeight="Bold" Cursor="Hand"
-                            ToolTip="LIVREUR, remplir : Nom/Prenom/Telephone/Adresse/Etat de l'employé/Mode de transport/" Click="Butt_Livreur_Click">
+                            ToolTip="LIVREUR, remplir : Nom/Prenom/Telephone/Adresse/Etat de l'employé/Mode de transport/">
                         Ajouter Livreur
                     </Button>
                     <Button x:Name="Butt_Account" Grid.Row="3" Margin="5" Background="#FF33B733" Foreground="AntiqueWhite" FontSize="20" Padding="10" FontWeight="Bold" Cursor="Hand"
-                            ToolTip="COMPTE, remplir : Nom/Mot de passe/" Click="Butt_Account_Click">
+                            ToolTip="COMPTE, remplir : Nom/Mot de passe/">
                         Ajouter Compte
                     </Button>
                 </Grid>
