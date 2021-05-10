@@ -53,13 +53,13 @@ namespace BDD_VELOMAX_APP
 
                     MySqlCommand command = new MySqlCommand($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})", c);
 
-                    return command.ExecuteNonQuery() > 0;
+                    return true;// command.ExecuteNonQuery() > 0;
                 }
 
             }
             //catch (Exception e)
             //{
-            //    return false;
+            //    return false;nike les putes
             //}
         }
     }
