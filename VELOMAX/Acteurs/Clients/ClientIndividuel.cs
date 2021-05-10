@@ -25,5 +25,7 @@ namespace BDD_VELOMAX_APP
         public ClientIndividuel(Adresse adresse, string tel, string mail) : base(adresse, tel, mail)
         {
         }
+
+        public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'boutique', '{NomEntreprise}', '{prenom}', '{base.Adresse.ID}', '{base.Telephone}',{base.AdresseMail}','{}','{remise}', '{fidelio}', '{idFidelio}', '{dateAdhesionFidelio}'";
     }
 }

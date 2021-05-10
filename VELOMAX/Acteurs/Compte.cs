@@ -52,5 +52,8 @@ namespace BDD_VELOMAX_APP
         /// <param name="util"></param>
         /// <returns></returns>
         public static bool ComparePassword(string pass, Compte util) => HashPasswordSHA1(util.Nom, pass) == util.MDP_SHA1;
+
+
+        public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{pseudo}','{motdepasse}','{unique}'";
     }
 }
