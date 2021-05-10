@@ -24,5 +24,10 @@ namespace BDD_VELOMAX_APP.Views
         {
             InitializeComponent();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

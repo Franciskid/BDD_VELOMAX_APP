@@ -6,11 +6,22 @@
              xmlns:local="clr-namespace:BDD_VELOMAX_APP.Views"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="900">
-    <Grid>
-        <Image>
-            <Image.Source>
-                ../Images/veloLogoGreen.png
-            </Image.Source>
-        </Image>
+    <Grid Background="purple" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="500" Width="500">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.Row="0" Background="Purple" TextChanged="TextBox_TextChanged"  >
+            
+        </TextBox>
     </Grid>
 </UserControl>
