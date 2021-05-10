@@ -20,7 +20,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0">
+        <TextBox Grid.Row="0" Background="Purple" TextChanged="TextBox_TextChanged"  >
             
         </TextBox>
     </Grid>

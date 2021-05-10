@@ -59,7 +59,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <!--Nom-->
+                    Nom
                     <Grid Grid.Row="0" Grid.Column="0">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                             <TextBlock FontSize="16" FontWeight="Bold" Foreground="#FF2F6508" HorizontalAlignment="Center">
@@ -70,7 +70,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <!--Nom-->
+                    Nom
                     <Grid Grid.Row="1" Grid.Column="0">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                             <TextBlock FontSize="16" FontWeight="Bold" Foreground="#FF2F6508" HorizontalAlignment="Center">
@@ -81,7 +81,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <!--Nom-->
+                    Nom
                     <Grid Grid.Row="2" Grid.Column="0">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                             <TextBlock FontSize="16" FontWeight="Bold" Foreground="#FF2F6508" HorizontalAlignment="Center">
@@ -91,8 +91,8 @@
                                      Text="{Binding Telephone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </Grid>
-                    <!--Id-->
-                    <!--<Grid Grid.Row="3" Grid.Column="0">
+                    Id
+                    <Grid Grid.Row="3" Grid.Column="0">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                             <TextBlock FontSize="16" FontWeight="Bold" Foreground="#FF2F6508" HorizontalAlignment="Center">
                                 ID
@@ -100,11 +100,11 @@
                             <TextBox Width="170" FontSize="25" VerticalAlignment="Center" Padding="5" PreviewTextInput="TextBox_PreviewTextInput_OnlyNumbers"       
                                      Text="{Binding ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
-                    </Grid>-->
+                    </Grid>
                     <Grid Grid.Row="3" Grid.Column="0">
                         <Image Source="../Images/veloLogoBlack.png"/>
                     </Grid>
-                    <!--Nom-->
+                    Nom
                     <Grid Grid.Row="0" Grid.Column="1">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                             <TextBlock FontSize="16" FontWeight="Bold" Foreground="#FF2F6508" HorizontalAlignment="Center">
@@ -114,7 +114,7 @@
                                      Text="{Binding Rue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </Grid>
-                    <!--Nom-->
+                    Nom
                     <Grid Grid.Row="1" Grid.Column="1">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                             <TextBlock FontSize="16" FontWeight="Bold" Foreground="#FF2F6508" HorizontalAlignment="Center">
@@ -124,7 +124,7 @@
                                      Text="{Binding NumeroRue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </Grid>
-                    <!--Nom-->
+                    Nom
                     <Grid Grid.Row="2" Grid.Column="1">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                             <TextBlock FontSize="16" FontWeight="Bold" Foreground="#FF2F6508" HorizontalAlignment="Center">
@@ -134,7 +134,7 @@
                                       Text="{Binding CodePostal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </Grid>
-                    <!--Nom-->
+                    Nom
                     <Grid Grid.Row="3" Grid.Column="1">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                             <TextBlock FontSize="16" FontWeight="Bold" Foreground="#FF2F6508" HorizontalAlignment="Center">
@@ -145,7 +145,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <!--Nom-->
+                    Nom
                     <Grid Grid.Row="0" Grid.Column="2">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                             <TextBlock FontSize="16" FontWeight="Bold" Foreground="#FF2F6508" HorizontalAlignment="Center">
@@ -156,7 +156,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <!--Nom-->
+                    Nom
                     <Grid Grid.Row="1" Grid.Column="2">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                             <TextBlock FontSize="16" FontWeight="Bold" Foreground="#FF2F6508" HorizontalAlignment="Center">
@@ -167,7 +167,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <!--Nom-->
+                    Nom
                     <Grid Grid.Row="2" Grid.Column="2">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                             <TextBlock FontSize="16" FontWeight="Bold" Foreground="#FF2F6508" HorizontalAlignment="Center">
@@ -178,7 +178,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <!--Nom-->
+                    Nom
                     <Grid Grid.Row="3" Grid.Column="2">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                             <TextBlock FontSize="16" FontWeight="Bold" Foreground="#FF2F6508" HorizontalAlignment="Center">
