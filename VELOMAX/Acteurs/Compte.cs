@@ -23,7 +23,7 @@ namespace BDD_VELOMAX_APP
             this.MDP_SHA1 = motdepasse;
         }
 
-        public string SaveStr() => "idCompte";
+        public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{MDP_SHA1}";
     }
 
     public static partial class MyHelper
@@ -54,6 +54,5 @@ namespace BDD_VELOMAX_APP
         public static bool ComparePassword(string pass, Compte util) => HashPasswordSHA1(util.Nom, pass) == util.MDP_SHA1;
 
 
-        public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{pseudo}','{motdepasse}','{unique}'";
     }
 }
