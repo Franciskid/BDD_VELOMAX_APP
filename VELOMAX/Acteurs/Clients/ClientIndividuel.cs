@@ -22,10 +22,10 @@ namespace BDD_VELOMAX_APP
         public DateTime DateAdhésionProgramme { get; private set; }
 
 
-        public ClientIndividuel(Adresse adresse, string tel, string mail) : base(adresse, tel, mail)
+        public ClientIndividuel(Adresse adresse, string tel, string mail, int remise, Fidelio fidel) : base(adresse, tel, mail)
         {
         }
 
-        public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'boutique', '{NomEntreprise}', '{prenom}', '{base.Adresse.ID}', '{base.Telephone}',{base.AdresseMail}','{}','{remise}', '{fidelio}', '{idFidelio}', '{dateAdhesionFidelio}'";
+        public override string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'individuel', '{Nom}', '{Prénom}', '{base.Adresse.ID}', '{base.Telephone}',{base.AdresseMail}";
     }
 }
