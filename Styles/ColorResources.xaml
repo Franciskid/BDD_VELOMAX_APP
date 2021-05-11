@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <SolidColorBrush x:Key="MenuBackColor" Color="#0d1536"/>
+    <SolidColorBrush x:Key="MainPage" Color="#3d35db"/>
+
+    <SolidColorBrush x:Key="MenuFontColor" Color="AliceBlue"/>
+    <SolidColorBrush x:Key="MenuFontColorFocus" Color="#cc7523"/>
+
+    <SolidColorBrush x:Key="MenuCloseOpenFont" Color="#4Dffffff"/>
+
+    <SolidColorBrush x:Key="ButtonOnHover" Color="#4D0d1536"/>
+
+    <Color x:Key="MenuGradientStart">#0d1536</Color>
+    <Color x:Key="MenuGradientMid">#800d1536</Color>
+    <Color x:Key="MenuGradientEnd">#000d1536</Color>
+
+    <Color x:Key="TitleBarGradientStart">#0d1536</Color>
+    <Color x:Key="TitleBarGradientMid">#800d1536</Color>
+    <Color x:Key="TitleBarGradientEnd">#000d1536</Color>
+    
+</ResourceDictionary>

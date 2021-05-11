@@ -153,8 +153,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\ColorsResources.xaml">
+    <Page Include="Styles\ColorResources.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ImageResources.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\StringResources.xaml">
@@ -201,6 +204,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\veloBackground.jpg" />
+    <Resource Include="Images\veloBackground2.jpg" />
     <Resource Include="Images\Yanis Dahmouche West Event Poster.png" />
     <Resource Include="Images\velomaxSpeedLogoWhite.png" />
     <Resource Include="Images\velomaxSpeedLogoBlack.png" />

@@ -36,18 +36,30 @@
     </Window.Triggers>
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="{DynamicResource ResourceKey=BackImage}" Stretch="UniformToFill"/>
+        </Grid.Background>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1">
             <DockPanel>
-                <Grid  Background="{DynamicResource ResourceKey=MenuBackColor}" Panel.ZIndex="1">
+                <Grid>
+                    <!-->Background="{DynamicResource ResourceKey=MenuBackColor}"><!-->
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid x:Name="GridTitleBar" Grid.Row="0" MouseDown="GridTitleBar_MouseDown">
+
+                        <Grid.Background>
+                            <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
+                                <GradientStop Color="{DynamicResource ResourceKey=MenuGradientMid}" Offset="0.0"/>
+                                <GradientStop Color="{DynamicResource ResourceKey=MenuGradientEnd}" Offset="0.6"/>
+                            </LinearGradientBrush>
+                        </Grid.Background>
                         <Grid HorizontalAlignment="Left" Margin="10, 0, 0, 0" MouseDown="GridTitleBar_MouseDown">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -65,9 +77,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 0, 20, 0">
-                                <TextBlock x:Name="TB_Connected" Foreground="{StaticResource MenuFontColor}" VerticalAlignment="Center" FontSize="12" FontWeight="Light">
-                                     Impossible de se connecter au serveur
-                                </TextBlock>
+                                <TextBlock x:Name="TB_Connected" Foreground="{StaticResource MenuFontColor}" VerticalAlignment="Center" FontSize="12" FontWeight="Light" Text="{StaticResource CantConnect}"/>
                                 <Grid Height="40" Width="40">
                                     <materialDesign:PackIcon x:Name="logoConnecté" Kind="DatabaseRemove" Height="25" Width="25" Foreground="#c71c33" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 0, 0, 0" />
                                     <fa:ImageAwesome x:Name="Spinner" Icon="Refresh" Spin="True" Foreground="AliceBlue" Width="30" Visibility="Hidden"/>
@@ -87,14 +97,23 @@
                             </Button>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Row="1" Background="{StaticResource MainPage}">
+                    <Grid Grid.Row="1">
+                        <!--> Background="{StaticResource MainPage}"> <!-->
                         <ContentControl x:Name="ContentItem"/>
                     </Grid>
                 </Grid>
             </DockPanel>
         </Grid>
         <Grid Grid.Column="0">
-            <Grid x:Name="GridMenu" Width="300" Background="{StaticResource MenuBackColor}" HorizontalAlignment="Left">
+            <Grid x:Name="GridMenu" Width="300" HorizontalAlignment="Left" >
+                <!--></>Background="{StaticResource MenuBackColor}" ><!-->
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0, 0.5" EndPoint="1, 0.5" >
+                        <GradientStop Color="{DynamicResource ResourceKey=MenuGradientStart}" Offset="0"/>
+                        <GradientStop Color="{DynamicResource ResourceKey=MenuGradientMid}" Offset="0.7"/>
+                        <GradientStop Color="{DynamicResource ResourceKey=MenuGradientEnd}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -104,9 +123,11 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Grid.Background>
-                        <ImageBrush Stretch="None" ImageSource="Images/velo2.png" AlignmentX="Center"/>
-                    </Grid.Background>
+                    <!--<Grid.Background>
+                        <ImageBrush Stretch="None" -->
+                    <!--ImageSource="Images/velo2.png"-->
+                    <!-- AlignmentX="Center"/>
+                    </Grid.Background>-->
                     <TextBlock Grid.Column="0" Panel.ZIndex="0" FontSize="28" FontWeight="ExtraBlack" Foreground="{StaticResource MenuCloseOpenFont}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{StaticResource Title}"/>
                     <Grid Grid.Column="1" Panel.ZIndex="1" HorizontalAlignment="Left">
                         <Button Style="{StaticResource HalfTransparent}" x:Name="ButtMenuOpen" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right"  Click="ButtMenuOpen_Click" Visibility="Hidden" BorderThickness="0" Cursor="Hand">

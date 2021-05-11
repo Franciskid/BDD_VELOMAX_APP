@@ -152,16 +152,16 @@ namespace BDD_VELOMAX_APP
 
                         this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
                         {
-                            this.TB_Connected.Text = "Connexion au serveur";
+                            this.TB_Connected.Text = (string)FindResource("Connecting");
                             this.Spinner.Visibility = Visibility.Visible;
                             this.logoConnecté.Visibility = Visibility.Hidden;
                         }));
 
-                        System.Threading.Thread.Sleep(1000);
+                        System.Threading.Thread.Sleep(1500);
 
                         this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
                         {
-                            this.TB_Connected.Text = "Connecté au serveur";
+                            this.TB_Connected.Text = (string)FindResource("Connected");
                             this.logoConnecté.Kind = PackIconKind.DatabaseCheck;
                             this.logoConnecté.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#086e1e"));
                             this.Spinner.Visibility = Visibility.Hidden;
@@ -177,7 +177,7 @@ namespace BDD_VELOMAX_APP
 
                         this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
                         {
-                            this.TB_Connected.Text = "Impossible de se connecter au serveur";
+                            this.TB_Connected.Text = (string)FindResource("CantConnect");
                             this.logoConnecté.Kind = PackIconKind.DatabaseRemove;
                             this.logoConnecté.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#c71c33"));
                         }));

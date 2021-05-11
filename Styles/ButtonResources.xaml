@@ -14,7 +14,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#243a91"/>
+                <Setter Property="Background" Value="{DynamicResource ButtonOnHover}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

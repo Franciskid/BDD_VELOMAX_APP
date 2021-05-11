@@ -14,6 +14,11 @@
     <system:String x:Key="Fermer">Fermer</system:String>
     <system:String x:Key="Minimiser">Minimiser</system:String>
 
+    <!--Bar titre Statut connexion-->
+    <system:String x:Key="CantConnect">Impossible de se connecter au serveur</system:String>
+    <system:String x:Key="Connecting">Connexion au serveur ...</system:String>
+    <system:String x:Key="Connected">Connecté au serveur</system:String>
+    
     <!--Titre-->
     <system:String x:Key="Title">VéloMax</system:String>
 </ResourceDictionary>
