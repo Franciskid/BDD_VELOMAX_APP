@@ -10,6 +10,8 @@
     <ImageSource x:Key="BackImage6">../Images/veloBackground6.jpg</ImageSource>
     <ImageSource x:Key="BackImage7">../Images/veloBackground7.jpg</ImageSource>
     <ImageSource x:Key="BackImage8">../Images/veloBackground8.jpg</ImageSource>
+    <ImageSource x:Key="BackImage9">../Images/veloBackground9.jpg</ImageSource>
+    <ImageSource x:Key="BackImage10">../Images/veloBackground10.jpg</ImageSource>
 
     <system:Int32 x:Key="TempsMSChangementBackgroundImage">15000</system:Int32>
 

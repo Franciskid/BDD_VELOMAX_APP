@@ -72,6 +72,7 @@
                         </Grid>
                         <Grid HorizontalAlignment="Right" MouseDown="GridTitleBar_MouseDown">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -83,16 +84,22 @@
                                     <fa:ImageAwesome x:Name="Spinner" Icon="Refresh" Spin="True" Foreground="AliceBlue" Width="30" Visibility="Hidden"/>
                                 </Grid>
                             </StackPanel>
-                            <Button Style="{StaticResource BasicButton}" x:Name="MinimizeButton" Grid.Column="1" Click="MinimizeButton_Click" BorderThickness="0">
+                            <Button Style="{StaticResource BasicButton}" x:Name="MinimizeButton" Grid.Column="2" Click="MinimizeButton_Click" BorderThickness="0">
                                 <materialDesign:PackIcon Kind="Minus" Foreground="AliceBlue" Width="60" Height="25"/>
                                 <Button.ToolTip>
                                     <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Minimiser}" />
                                 </Button.ToolTip>
                             </Button>
-                            <Button Style="{StaticResource CloseButton}" x:Name="CloseButton" Grid.Column="2" Click="CloseButton_Click" BorderThickness="0" Width="60">
+                            <Button Style="{StaticResource CloseButton}" x:Name="CloseButton" Grid.Column="3" Click="CloseButton_Click" BorderThickness="0" Width="60">
                                 <materialDesign:PackIcon Kind="WindowClose" Foreground="AliceBlue" Width="40" Height="25"/>
                                 <Button.ToolTip>
                                     <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Fermer}" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button Style="{StaticResource ParamButton}" x:Name="Paramètres" Grid.Column="1" BorderThickness="0" Margin="15, 0, 25, 0" Cursor="Hand">
+                                <materialDesign:PackIcon Kind="Settings" Height="25" Width="25"  Foreground="{Binding ElementName=Paramètres, Path=Foreground}"/>
+                                <Button.ToolTip>
+                                    <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Paramètres}" />
                                 </Button.ToolTip>
                             </Button>
                         </Grid>

@@ -218,6 +218,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\veloBackground10.jpg" />
+    <Resource Include="Images\veloBackground9.jpg" />
     <Resource Include="Images\veloBackground3.jpg" />
     <Resource Include="Images\veloBackground4.jpg" />
     <Resource Include="Images\veloBackground5.jpg" />

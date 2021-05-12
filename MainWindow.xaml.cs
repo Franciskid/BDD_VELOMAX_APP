@@ -204,10 +204,10 @@ namespace BDD_VELOMAX_APP
             {
                 System.Threading.Thread.Sleep((Int32)FindResource($"TempsMSChangementBackgroundImage"));
 
-                int temp = r.Next(1, 9);
+                int temp = r.Next(1, 11);
 
                 while (a == temp)
-                    temp = r.Next(1, 9);
+                    temp = r.Next(1, 11);
                 a = temp;
 
                 var source = this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>

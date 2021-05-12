@@ -8,6 +8,8 @@
     <SolidColorBrush x:Key="MenuFontColor" Color="AliceBlue"/>
     <SolidColorBrush x:Key="MenuFontColorFocus" Color="#cc7523"/>
 
+    <SolidColorBrush x:Key="ParamHover" Color="#aac8e3"/>
+
     <SolidColorBrush x:Key="MenuCloseOpenFont" Color="#4Dffffff"/>
 
     <SolidColorBrush x:Key="ButtonOnHover" Color="#4D0d1536"/>
