@@ -36,217 +36,222 @@
         </EventTrigger>
     </Window.Triggers>
 
-    <Grid x:Name="MainBackgroundGrid">
+    <Grid x:Name="MainBackgroundGrid2">
         <Grid.Background>
-            <ImageBrush x:Name="MainBackgroundImage" ImageSource="{DynamicResource ResourceKey=BackImage2}" Stretch="UniformToFill"/>
+            <ImageBrush x:Name="MainBackground2Image" Stretch="UniformToFill"/>
         </Grid.Background>
+        <Grid x:Name="MainBackgroundGrid">
+            <Grid.Background>
+                <ImageBrush x:Name="MainBackgroundImage" ImageSource="{DynamicResource ResourceKey=BackImage2}" Stretch="UniformToFill"/>
+            </Grid.Background>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="1">
-            <DockPanel>
-                <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <DockPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid x:Name="GridTitleBar" Grid.Row="0" MouseDown="GridTitleBar_MouseDown">
+
+                            <Grid.Background>
+                                <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
+                                    <GradientStop Color="{DynamicResource ResourceKey=MenuGradientMid}" Offset="0.0"/>
+                                    <GradientStop Color="{DynamicResource ResourceKey=MenuGradientEnd}" Offset="0.6"/>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                            <Grid HorizontalAlignment="Left" Margin="10, 0, 0, 0" MouseDown="GridTitleBar_MouseDown">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0" Margin="10, 0, 0, 0" Source="Images/velomaxSpeedLogoWhite.png"  Width="40" RenderOptions.BitmapScalingMode="Fant"/>
+
+                                <TextBlock Grid.Column="1" Foreground="{StaticResource MenuFontColor}" VerticalAlignment="Center" FontSize="15" FontWeight="Light" Margin="30,0,0,0" Text="{StaticResource Title}"/>
+                            </Grid>
+                            <Grid HorizontalAlignment="Right" MouseDown="GridTitleBar_MouseDown">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 0, 20, 0">
+                                    <TextBlock x:Name="TB_Connected" Foreground="{StaticResource MenuFontColor}" VerticalAlignment="Center" FontSize="12" FontWeight="Light" Text="{StaticResource CantConnect}"/>
+                                    <Grid Height="40" Width="40">
+                                        <materialDesign:PackIcon x:Name="logoConnecté" Kind="DatabaseRemove" Height="25" Width="25" Foreground="#c71c33" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 0, 0, 0" />
+                                        <fa:ImageAwesome x:Name="Spinner" Icon="Refresh" Spin="True" Foreground="AliceBlue" Width="30" Visibility="Hidden"/>
+                                    </Grid>
+                                </StackPanel>
+                                <Button Style="{StaticResource BasicButton}" x:Name="MinimizeButton" Grid.Column="2" Click="MinimizeButton_Click" BorderThickness="0">
+                                    <materialDesign:PackIcon Kind="Minus" Foreground="AliceBlue" Width="60" Height="25"/>
+                                    <Button.ToolTip>
+                                        <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Minimiser}" />
+                                    </Button.ToolTip>
+                                </Button>
+                                <Button Style="{StaticResource CloseButton}" x:Name="CloseButton" Grid.Column="3" Click="CloseButton_Click" BorderThickness="0" Width="60">
+                                    <materialDesign:PackIcon Kind="WindowClose" Foreground="AliceBlue" Width="40" Height="25"/>
+                                    <Button.ToolTip>
+                                        <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Fermer}" />
+                                    </Button.ToolTip>
+                                </Button>
+                                <Button Style="{StaticResource ParamButton}" x:Name="Paramètres" Grid.Column="1" BorderThickness="0" Margin="15, 0, 25, 0" Cursor="Hand">
+                                    <materialDesign:PackIcon Kind="Settings" Height="25" Width="25"  Foreground="{Binding ElementName=Paramètres, Path=Foreground}"/>
+                                    <Button.ToolTip>
+                                        <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Paramètres}" />
+                                    </Button.ToolTip>
+                                </Button>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <!--> Background="{StaticResource MainPage}"> <!-->
+                            <ContentControl x:Name="ContentItem"/>
+                        </Grid>
+                    </Grid>
+                </DockPanel>
+            </Grid>
+            <Grid Grid.Column="0">
+                <Grid x:Name="GridMenu" Width="300" HorizontalAlignment="Left" >
+                    <!--></>Background="{StaticResource MenuBackColor}" ><!-->
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="0, 0.5" EndPoint="1, 0.5" >
+                            <GradientStop Color="{DynamicResource ResourceKey=MenuGradientStart}" Offset="0"/>
+                            <GradientStop Color="{DynamicResource ResourceKey=MenuGradientMid}" Offset="0.7"/>
+                            <GradientStop Color="{DynamicResource ResourceKey=MenuGradientEnd}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid x:Name="GridTitleBar" Grid.Row="0" MouseDown="GridTitleBar_MouseDown">
-
-                        <Grid.Background>
-                            <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
-                                <GradientStop Color="{DynamicResource ResourceKey=MenuGradientMid}" Offset="0.0"/>
-                                <GradientStop Color="{DynamicResource ResourceKey=MenuGradientEnd}" Offset="0.6"/>
-                            </LinearGradientBrush>
-                        </Grid.Background>
-                        <Grid HorizontalAlignment="Left" Margin="10, 0, 0, 0" MouseDown="GridTitleBar_MouseDown">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-
-                            <Image Grid.Column="0" Margin="10, 0, 0, 0" Source="Images/velomaxSpeedLogoWhite.png"  Width="40" RenderOptions.BitmapScalingMode="Fant"/>
-
-                            <TextBlock Grid.Column="1" Foreground="{StaticResource MenuFontColor}" VerticalAlignment="Center" FontSize="15" FontWeight="Light" Margin="30,0,0,0" Text="{StaticResource Title}"/>
-                        </Grid>
-                        <Grid HorizontalAlignment="Right" MouseDown="GridTitleBar_MouseDown">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 0, 20, 0">
-                                <TextBlock x:Name="TB_Connected" Foreground="{StaticResource MenuFontColor}" VerticalAlignment="Center" FontSize="12" FontWeight="Light" Text="{StaticResource CantConnect}"/>
-                                <Grid Height="40" Width="40">
-                                    <materialDesign:PackIcon x:Name="logoConnecté" Kind="DatabaseRemove" Height="25" Width="25" Foreground="#c71c33" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 0, 0, 0" />
-                                    <fa:ImageAwesome x:Name="Spinner" Icon="Refresh" Spin="True" Foreground="AliceBlue" Width="30" Visibility="Hidden"/>
-                                </Grid>
-                            </StackPanel>
-                            <Button Style="{StaticResource BasicButton}" x:Name="MinimizeButton" Grid.Column="2" Click="MinimizeButton_Click" BorderThickness="0">
-                                <materialDesign:PackIcon Kind="Minus" Foreground="AliceBlue" Width="60" Height="25"/>
-                                <Button.ToolTip>
-                                    <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Minimiser}" />
-                                </Button.ToolTip>
+                    <Grid  Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Panel.ZIndex="0" FontSize="28" FontWeight="ExtraBlack" Foreground="{StaticResource MenuCloseOpenFont}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{StaticResource Title}"/>
+                        <Grid Grid.Column="1" Panel.ZIndex="1" HorizontalAlignment="Left">
+                            <Button Style="{StaticResource HalfTransparent}" x:Name="ButtMenuOpen" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right"  Click="ButtMenuOpen_Click" Visibility="Hidden" BorderThickness="0" Cursor="Hand">
+                                <materialDesign:PackIcon Kind="Menu" Foreground="{StaticResource MenuCloseOpenFont}" Width="100" Height="100" Margin="-5, 0, 0, 0"/>
                             </Button>
-                            <Button Style="{StaticResource CloseButton}" x:Name="CloseButton" Grid.Column="3" Click="CloseButton_Click" BorderThickness="0" Width="60">
-                                <materialDesign:PackIcon Kind="WindowClose" Foreground="AliceBlue" Width="40" Height="25"/>
-                                <Button.ToolTip>
-                                    <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Fermer}" />
-                                </Button.ToolTip>
-                            </Button>
-                            <Button Style="{StaticResource ParamButton}" x:Name="Paramètres" Grid.Column="1" BorderThickness="0" Margin="15, 0, 25, 0" Cursor="Hand">
-                                <materialDesign:PackIcon Kind="Settings" Height="25" Width="25"  Foreground="{Binding ElementName=Paramètres, Path=Foreground}"/>
-                                <Button.ToolTip>
-                                    <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Paramètres}" />
-                                </Button.ToolTip>
+                            <Button Style="{StaticResource HalfTransparent}" x:Name="ButtMenuClose" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Click="ButtMenuClose_Click" BorderThickness="0" Cursor="Hand">
+                                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="{StaticResource MenuCloseOpenFont}" Width="100" Height="100"/>
                             </Button>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Row="1">
-                        <!--> Background="{StaticResource MainPage}"> <!-->
-                        <ContentControl x:Name="ContentItem"/>
-                    </Grid>
-                </Grid>
-            </DockPanel>
-        </Grid>
-        <Grid Grid.Column="0">
-            <Grid x:Name="GridMenu" Width="300" HorizontalAlignment="Left" >
-                <!--></>Background="{StaticResource MenuBackColor}" ><!-->
-                <Grid.Background>
-                    <LinearGradientBrush StartPoint="0, 0.5" EndPoint="1, 0.5" >
-                        <GradientStop Color="{DynamicResource ResourceKey=MenuGradientStart}" Offset="0"/>
-                        <GradientStop Color="{DynamicResource ResourceKey=MenuGradientMid}" Offset="0.7"/>
-                        <GradientStop Color="{DynamicResource ResourceKey=MenuGradientEnd}" Offset="1"/>
-                    </LinearGradientBrush>
-                </Grid.Background>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid  Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Panel.ZIndex="0" FontSize="28" FontWeight="ExtraBlack" Foreground="{StaticResource MenuCloseOpenFont}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{StaticResource Title}"/>
-                    <Grid Grid.Column="1" Panel.ZIndex="1" HorizontalAlignment="Left">
-                        <Button Style="{StaticResource HalfTransparent}" x:Name="ButtMenuOpen" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right"  Click="ButtMenuOpen_Click" Visibility="Hidden" BorderThickness="0" Cursor="Hand">
-                            <materialDesign:PackIcon Kind="Menu" Foreground="{StaticResource MenuCloseOpenFont}" Width="100" Height="100" Margin="-5, 0, 0, 0"/>
-                        </Button>
-                        <Button Style="{StaticResource HalfTransparent}" x:Name="ButtMenuClose" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Click="ButtMenuClose_Click" BorderThickness="0" Cursor="Hand">
-                            <materialDesign:PackIcon Kind="ArrowLeft" Foreground="{StaticResource MenuCloseOpenFont}" Width="100" Height="100"/>
-                        </Button>
-                    </Grid>
-                </Grid>
 
-                <Grid Grid.Row="1" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
-                    <Button Style="{StaticResource BasicButton}" x:Name="ButtMain" Grid.Row="0" HorizontalAlignment="Stretch" 
+                        <Button Style="{StaticResource BasicButton}" x:Name="ButtMain" Grid.Row="0" HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch"  HorizontalContentAlignment="Left" BorderThickness="0" Click="ButtMain_Click" Cursor="Hand" >
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon x:Name="LogoMain" Grid.Column="0" Kind="HomeAccount" Height="50" Width="50" Foreground="#FFF76B00" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
-                            <TextBlock x:Name="TB_Main" Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuMain}" />
-                        </Grid>
-                        <Button.ToolTip >
-                            <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuMain}" />
-                        </Button.ToolTip>
-                    </Button>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon x:Name="LogoMain" Grid.Column="0" Kind="HomeAccount" Height="50" Width="50" Foreground="#FFF76B00" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
+                                <TextBlock x:Name="TB_Main" Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuMain}" />
+                            </Grid>
+                            <Button.ToolTip >
+                                <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuMain}" />
+                            </Button.ToolTip>
+                        </Button>
 
 
-                    <Button Style="{StaticResource BasicButton}" x:Name="ButtClients" Grid.Row="1"   HorizontalAlignment="Stretch" 
+                        <Button Style="{StaticResource BasicButton}" x:Name="ButtClients" Grid.Row="1"   HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" HorizontalContentAlignment="Left"  BorderThickness="0" Click="ButtClients_Click" Cursor="Hand">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon x:Name="LogoClients"  Grid.Column="0" Kind="PersonMultipleAdd" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0" />
-                            <TextBlock x:Name="TB_Clients"  Grid.Column="1"   VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuClient}" />
-                        </Grid>
-                        <Button.ToolTip>
-                            <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuClient}" />
-                        </Button.ToolTip>
-                    </Button>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon x:Name="LogoClients"  Grid.Column="0" Kind="PersonMultipleAdd" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0" />
+                                <TextBlock x:Name="TB_Clients"  Grid.Column="1"   VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuClient}" />
+                            </Grid>
+                            <Button.ToolTip>
+                                <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuClient}" />
+                            </Button.ToolTip>
+                        </Button>
 
-                    <Button Style="{StaticResource BasicButton}" x:Name="ButtPieces" Grid.Row="2"   HorizontalAlignment="Stretch" 
+                        <Button Style="{StaticResource BasicButton}" x:Name="ButtPieces" Grid.Row="2"   HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" HorizontalContentAlignment="Left"  BorderThickness="0" Click="ButtPieces_Click" Cursor="Hand">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon x:Name="LogoPieces"  Grid.Column="0" Kind="BicycleBasket" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0" />
-                            <TextBlock x:Name="TB_Pieces"  Grid.Column="1"   VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuPieces}" />
-                        </Grid>
-                        <Button.ToolTip>
-                            <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuPieces}" />
-                        </Button.ToolTip>
-                    </Button>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon x:Name="LogoPieces"  Grid.Column="0" Kind="BicycleBasket" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0" />
+                                <TextBlock x:Name="TB_Pieces"  Grid.Column="1"   VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuPieces}" />
+                            </Grid>
+                            <Button.ToolTip>
+                                <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuPieces}" />
+                            </Button.ToolTip>
+                        </Button>
 
-                    <Button Style="{StaticResource BasicButton}" x:Name="ButtCommande" Grid.Row="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                        <Button Style="{StaticResource BasicButton}" x:Name="ButtCommande" Grid.Row="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         HorizontalContentAlignment="Left"  BorderThickness="0" Click="ButtCommande_Click" Cursor="Hand">
-                        <Grid >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon x:Name="LogoCommandes"  Grid.Column="0"  Kind="CartAdd" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
-                            <TextBlock x:Name="TB_Commandes"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center"  Text="{StaticResource ResourceKey=MenuCommandes}" />
-                        </Grid>
-                        <Button.ToolTip>
-                            <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuCommandes}" />
-                        </Button.ToolTip>
-                    </Button>
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon x:Name="LogoCommandes"  Grid.Column="0"  Kind="CartAdd" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
+                                <TextBlock x:Name="TB_Commandes"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center"  Text="{StaticResource ResourceKey=MenuCommandes}" />
+                            </Grid>
+                            <Button.ToolTip>
+                                <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuCommandes}" />
+                            </Button.ToolTip>
+                        </Button>
 
-                    <Button Style="{StaticResource BasicButton}" x:Name="ButtStats" Grid.Row="4"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                        <Button Style="{StaticResource BasicButton}" x:Name="ButtStats" Grid.Row="4"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         HorizontalContentAlignment="Left"  BorderThickness="0" Click="ButtStats_Click" Cursor="Hand">
-                        <Grid >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon x:Name="LogoStats"  Grid.Column="0" Kind="BikeFast" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
-                            <TextBlock x:Name="TB_Stats"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center"  Text="{StaticResource ResourceKey=MenuStats}" />
-                        </Grid>
-                        <Button.ToolTip>
-                            <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuStats}" />
-                        </Button.ToolTip>
-                    </Button>
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon x:Name="LogoStats"  Grid.Column="0" Kind="BikeFast" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
+                                <TextBlock x:Name="TB_Stats"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center"  Text="{StaticResource ResourceKey=MenuStats}" />
+                            </Grid>
+                            <Button.ToolTip>
+                                <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuStats}" />
+                            </Button.ToolTip>
+                        </Button>
 
-                    <Button Style="{StaticResource BasicButton}" x:Name="ButtOther" Grid.Row="5"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ButtOther_Click" 
+                        <Button Style="{StaticResource BasicButton}" x:Name="ButtOther" Grid.Row="5"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ButtOther_Click" 
                         HorizontalContentAlignment="Left" BorderThickness="0" Cursor="Hand">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon x:Name="LogoOther"  Grid.Column="0" Kind="QuestionMarkCircle" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
-                            <TextBlock x:Name="TB_Other"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuAutre}" />
-                        </Grid>
-                        <Button.ToolTip>
-                            <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuAutre}" />
-                        </Button.ToolTip>
-                    </Button>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon x:Name="LogoOther"  Grid.Column="0" Kind="QuestionMarkCircle" Height="50" Width="50" Foreground="#d7d7f7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="22, 0, 0, 0"/>
+                                <TextBlock x:Name="TB_Other"   Grid.Column="1"  VerticalAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" Text="{StaticResource ResourceKey=MenuAutre}" />
+                            </Grid>
+                            <Button.ToolTip>
+                                <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=MenuAutre}" />
+                            </Button.ToolTip>
+                        </Button>
+                    </Grid>
                 </Grid>
-            </Grid>
 
+            </Grid>
         </Grid>
     </Grid>
 </Window>

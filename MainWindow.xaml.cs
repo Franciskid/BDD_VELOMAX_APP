@@ -195,6 +195,7 @@ namespace BDD_VELOMAX_APP
 
         }
 
+        private bool firstGrid = true;
         private Random r = new Random();
         private async void backgroundWorker_DoWork_ChangeImage(object sender, DoWorkEventArgs e)
         {
@@ -210,10 +211,13 @@ namespace BDD_VELOMAX_APP
                     temp = r.Next(1, 11);
                 a = temp;
 
-                var source = this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
-                    ChangeImage((ImageBrush)MainBackgroundGrid.Background, (ImageSource)FindResource($"BackImage{a}"), new TimeSpan(0, 0, 1), new TimeSpan(0, 0, 1)))
-                    );
+                //var source = this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
+                //    ChangeImage((ImageBrush)MainBackgroundGrid.Background, (ImageSource)FindResource($"BackImage{a}"), new TimeSpan(0, 0, 1), new TimeSpan(0, 0, 1)))
+                //    );
 
+                var source = this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
+                    ChangeImage2((ImageBrush)MainBackgroundGrid.Background, (ImageBrush)MainBackgroundGrid2.Background, (ImageSource)FindResource($"BackImage{a}"), new TimeSpan(0, 0, 2), new TimeSpan(0, 0, 2)))
+                    );
             }
         }
 
@@ -247,6 +251,44 @@ namespace BDD_VELOMAX_APP
                 image.BeginAnimation(Brush.OpacityProperty, fadeInAnimation, HandoffBehavior.Compose);
             }
         }
+
+        private void ChangeImage2(ImageBrush image1, ImageBrush image2, ImageSource newIm, TimeSpan fadeInTime, TimeSpan fadeOutTime)
+        {
+            var fadeInAnimation = new DoubleAnimation(0, 1, fadeInTime);
+
+
+            if (firstGrid)
+            {
+                image2.ImageSource = newIm;
+
+                fadeInAnimation.Completed += (o, e) =>
+                {
+                    image2.Opacity = 1;
+                };
+
+                var fadeOutAnimation = new DoubleAnimation(1, 0, fadeOutTime);
+
+                image1.BeginAnimation(Brush.OpacityProperty, fadeOutAnimation);
+                image2.BeginAnimation(Brush.OpacityProperty, fadeInAnimation);
+            }
+            else
+            {
+                image1.ImageSource = newIm;
+
+                fadeInAnimation.Completed += (o, e) =>
+                {
+                    image1.Opacity = 1;
+                };
+
+                var fadeOutAnimation = new DoubleAnimation(1, 0, fadeOutTime);
+
+
+                image2.BeginAnimation(Brush.OpacityProperty, fadeOutAnimation);
+                image1.BeginAnimation(Brush.OpacityProperty, fadeInAnimation);
+            }
+            firstGrid = !firstGrid;
+        }
+
 
         private void ButtMenuOpen_Click(object sender, RoutedEventArgs e)
         {
