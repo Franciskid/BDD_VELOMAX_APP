@@ -47,15 +47,15 @@ namespace BDD_VELOMAX_APP
         /// </summary>
         private void TestFunction2()
         {
-            Adresse ad1 = new Adresse(null, "12 rue de la concierge", "Paris", "75009", "France");
-            Adresse ad2 = new Adresse(null, "12 rue de la concierge", "Paris", "75009", "France");
-            Adresse ad3 = new Adresse(null, "12 rue de la concierge", "Paris", "75009", "France");
-            Adresse ad4 = new Adresse(null, "12 rue de la concierge", "Paris", "75009", "France");
+            Adresse ad1 = new Adresse(null, "regre rue de la concierge", "Paris", "75009", "France");
+            Adresse ad2 = new Adresse(null, "1zrt rue de la concierge", "Paris", "75009", "France");
+            Adresse ad3 = new Adresse(null, "16 rue de la concierge", "Paris", "75009", "France");
+            Adresse ad4 = new Adresse(null, "15 rue de la concierge", "Paris", "75009", "France");
 
-            DataWriter.Insert(ad1);
-            DataWriter.Insert(ad2);
-            DataWriter.Insert(ad3);
-            DataWriter.Insert(ad4);
+            int a = (int)DataWriter.Insert(ad1);
+            int b = (int)DataWriter.Insert(ad2);
+            int c = (int)DataWriter.Insert(ad3);
+            int d = (int)DataWriter.Insert(ad4);
 
 
 
