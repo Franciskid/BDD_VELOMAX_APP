@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
-{
+{ /// <summary>
+/// francois
+/// </summary>
     public enum Nommodele
     {
         Kilimandjaro,

@@ -38,41 +38,29 @@ namespace BDD_VELOMAX_APP
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static object Insert(IMySQL obj)
+        public static bool Insert(IMySQL obj)
         {
-            try
+            //try
             {
                 using (MySqlConnection c = DataReader.OpenConnexion())
                 {
                     if (c == null)
                     {
-                        return null;
+                        return false;
                     }
 
                     string table = MyConstants.TypeToTable(obj.GetType());
 
                     MySqlCommand command = new MySqlCommand($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})", c);
 
-                    if (command.ExecuteNonQuery() > 0)
-                    {
-                        string val = DataReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault().ToString();
-
-                        bool numb = int.TryParse(DataReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault().ToString(), out int res);
-
-                        if (numb)
-                            return res;
-
-                        return val;
-                    }
-
-                    return -1;
+                    return command.ExecuteNonQuery() > 0;
                 }
 
             }
-            catch (Exception e)
-            {
-                return null;
-            }
+            //catch (Exception e)
+            //{
+            //    return false;
+            //}
         }
     }
 }
