@@ -34,6 +34,6 @@ namespace BDD_VELOMAX_APP
             this.Discontinuation = discont;
         }
 
-        public string SaveStr() => "idModele";
+        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{Prix}' , '{Ligne}', '{Introduction}','{Discontinuation}'";
     }
 }
