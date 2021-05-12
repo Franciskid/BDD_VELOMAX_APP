@@ -36,6 +36,12 @@ namespace BDD_VELOMAX_APP
             this.ProgrammeFidélité = fidel;
         }
 
-        public override string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'individuel', '{Nom}','{Prénom}', '{base.Adresse.ID}', '{base.Telephone}',{base.AdresseMail},'','{Remise}','{ProgrammeFidélité}','',''";
+        public override string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'individuel', '{Nom}','{Prénom}', " +
+            $"{(base.Adresse.ID != null ? $"'{base.Adresse.ID}'" : "null")}, " +
+            $"'{base.Telephone}','{base.AdresseMail}',''," +
+            $"'{Remise}'," +
+            $"{(this.ProgrammeFidélité != null ? $"True" : "False")}," +
+            $"'{(this.ProgrammeFidélité.ID != null ? $"{this.ProgrammeFidélité.ID}" : "null")}'," +
+            $"'{(this.ProgrammeFidélité != null ? $"{DateAdhésionProgramme:dd/MM:yyyy}" : "")}'";
     }
 }

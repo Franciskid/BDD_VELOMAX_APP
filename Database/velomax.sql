@@ -3,6 +3,7 @@ CREATE USER if not exists 'bozo'@'localhost' IDENTIFIED BY 'bozo';
 GRANT SELECT, SHOW VIEW ON $velomax.* TO 'bozo'@'localhost';
 
 use velomax;
+drop table if exists Pieces;
 create table if not exists Pieces
 (
 	idPiece varchar(10) primary key not null,
@@ -15,6 +16,7 @@ create table if not exists Pieces
     delaiApprovisionnement datetime
 );
 
+drop table if exists Assemblages;
 create table if not exists Assemblages
 (
 	idAssemblage int primary key auto_increment not null,
@@ -49,6 +51,7 @@ create table if not exists Assemblages
 );
 ALTER TABLE assemblages AUTO_INCREMENT = 100001;
 
+drop table if exists Modeles;
 create table if not exists Modeles
 (
 	idModele INT PRIMARY KEY auto_increment NOT NULL,
@@ -60,6 +63,7 @@ create table if not exists Modeles
 );
 ALTER TABLE Modeles AUTO_INCREMENT = 101;
 
+drop table if exists Fidelio;
 create table if not exists Fidelio
 (
 	idFidelio INT auto_increment PRIMARY KEY NOT NULL,
@@ -69,6 +73,7 @@ create table if not exists Fidelio
     rabais float4
 );
 
+drop table if exists Adresse;
 create table if not exists Adresse
 (
 	idAdresse int primary key auto_increment not null,
@@ -77,10 +82,12 @@ create table if not exists Adresse
     codePostal varchar(30),
     pays varchar(30)
 );
+
+drop table if exists Clients;
 create table if not exists Clients
 (
 	idClient int primary key auto_increment not null,
-    typeClient enum('personne', 'boutique') not null,
+    typeClient enum('individuel', 'boutique') not null,
     nom varchar(30),
     prenom varchar(30),
     idAdresse int,
@@ -96,6 +103,7 @@ create table if not exists Clients
     foreign key (idAdresse) references Adresse(idAdresse)
 );ALTER TABLE Modeles AUTO_INCREMENT = 101;
 
+drop table if exists Fournisseurs;
 create table if not exists Fournisseurs
 (
 	siret int primary key auto_increment not null,
@@ -107,6 +115,7 @@ create table if not exists Fournisseurs
     foreign key (idAdresse) references Adresse(idAdresse)
 );
 
+drop table if exists Commandes;
 create table if not exists Commandes
 (
 	idCommande int primary key  auto_increment not null, 
@@ -115,6 +124,7 @@ create table if not exists Commandes
     
 );
 
+drop table if exists Comptes;
 create table if not exists Comptes
 (
 	idCompte int primary key auto_increment not null,
