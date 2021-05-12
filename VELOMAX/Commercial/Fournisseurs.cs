@@ -27,6 +27,6 @@ namespace BDD_VELOMAX_APP
             this.Score = (Score)Scores;
         }
         public object ID => Siret;
-        public virtual string SaveStr() => "Siret";
+        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{Contact}' , '{Iadresse}', '{Score}'";
     }
 }
