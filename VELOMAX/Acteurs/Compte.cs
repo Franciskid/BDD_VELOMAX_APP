@@ -16,7 +16,7 @@ namespace BDD_VELOMAX_APP
         public string MDP_SHA1 { get; private set; }
 
 
-        public Compte(int id, string nom, string motdepasse)
+        public Compte(Object id, string nom, string motdepasse)
         {
             this.ID = id;
             this.Nom = nom;

@@ -77,7 +77,6 @@ create table if not exists Adresse
     codePostal varchar(30),
     pays varchar(30)
 );
-
 create table if not exists Clients
 (
 	idClient int primary key auto_increment not null,
@@ -85,7 +84,7 @@ create table if not exists Clients
     nom varchar(30),
     prenom varchar(30),
     idAdresse int,
-    telephone int,
+    telephone varchar(30),
     courriel varchar(30),
     nomContact varchar(30),
     remise int,
@@ -95,7 +94,7 @@ create table if not exists Clients
     
     foreign key (idFidelio) references Fidelio(idFidelio),
     foreign key (idAdresse) references Adresse(idAdresse)
-);
+);ALTER TABLE Modeles AUTO_INCREMENT = 101;
 
 create table if not exists Fournisseurs
 (

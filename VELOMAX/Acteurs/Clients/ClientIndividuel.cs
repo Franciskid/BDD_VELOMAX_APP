@@ -12,6 +12,8 @@ namespace BDD_VELOMAX_APP
 
         public string Prénom { get; private set; }
 
+        public int Remise { get; private set; }
+
 
         /// <summary>
         /// Programme fidélité du client. Si ce paramètre est null alors le client n'a pas souscris à un programme de fidélité
@@ -22,10 +24,18 @@ namespace BDD_VELOMAX_APP
         public DateTime DateAdhésionProgramme { get; private set; }
 
 
-        public ClientIndividuel(Adresse adresse, string tel, string mail, int remise, Fidelio fidel) : base(adresse, tel, mail)
+        public ClientIndividuel(Object Id,Adresse adresse, string prenom, string nom, string tel, string mail,int remise, Fidelio fidel) : base(adresse, tel, mail)
         {
+            ID = Id;
+            this.Adresse = Adresse;
+            this.Prénom = prenom;
+            this.Nom = nom;
+            base.Telephone = tel;
+            base.AdresseMail = mail;
+            this.Remise = remise;
+            this.ProgrammeFidélité = fidel;
         }
 
-        public override string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'individuel', '{Nom}', '{Prénom}', '{base.Adresse.ID}', '{base.Telephone}',{base.AdresseMail}";
+        public override string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'individuel', '{Nom}','{Prénom}', '{base.Adresse.ID}', '{base.Telephone}',{base.AdresseMail},'','{Remise}','{ProgrammeFidélité}','',''";
     }
 }
