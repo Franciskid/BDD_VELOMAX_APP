@@ -59,7 +59,7 @@ namespace BDD_VELOMAX_APP
         }
 
         public object ID { get; private set; }
-        public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") +$"'{Nom}', 'grandeur', '{Cadre}', '{Guidon}','{Freins}', '{Selles}', '{Derailleur_Avant}', '{Derailleur_Arriere}','{Roue_Avant}', '{Roue_Arriere}', '{Reflecteurs}', '{Pedalier}','{Ordinateur}', '{Panier}'";
+        public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") +$"'{Nom}', '{Grandeurs}', '{Cadre}', '{Guidon}','{Freins}', '{Selles}', '{Derailleur_Avant}', '{Derailleur_Arriere}','{Roue_Avant}', '{Roue_Arriere}', '{Reflecteurs}', '{Pedalier}','{Ordinateur}', '{Panier}'";
     }
 
 }
