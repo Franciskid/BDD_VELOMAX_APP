@@ -21,5 +21,5 @@
     <Color x:Key="TitleBarGradientStart">#0d1536</Color>
     <Color x:Key="TitleBarGradientMid">#800d1536</Color>
     <Color x:Key="TitleBarGradientEnd">#000d1536</Color>
-    
+
 </ResourceDictionary>

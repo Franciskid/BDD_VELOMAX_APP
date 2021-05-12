@@ -7,7 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical" Width="200" VerticalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="0,40,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button Content="test"/>
+            <Button Content="test"/>
             <Button Content="test"/>
         </StackPanel>
     </Grid>
