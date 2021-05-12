@@ -9,6 +9,7 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Icon="veloLogoRed.ico"
+        Background="{StaticResource MenuBackColor}"
         Title="VéloMax" Height="750" Width="1200"  WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
@@ -35,9 +36,9 @@
         </EventTrigger>
     </Window.Triggers>
 
-    <Grid>
+    <Grid x:Name="MainBackgroundGrid">
         <Grid.Background>
-            <ImageBrush ImageSource="{DynamicResource ResourceKey=BackImage}" Stretch="UniformToFill"/>
+            <ImageBrush x:Name="MainBackgroundImage" ImageSource="{DynamicResource ResourceKey=BackImage2}" Stretch="UniformToFill"/>
         </Grid.Background>
 
         <Grid.ColumnDefinitions>
@@ -47,7 +48,6 @@
         <Grid Grid.Column="1">
             <DockPanel>
                 <Grid>
-                    <!-->Background="{DynamicResource ResourceKey=MenuBackColor}"><!-->
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
@@ -123,11 +123,6 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <!--<Grid.Background>
-                        <ImageBrush Stretch="None" -->
-                    <!--ImageSource="Images/velo2.png"-->
-                    <!-- AlignmentX="Center"/>
-                    </Grid.Background>-->
                     <TextBlock Grid.Column="0" Panel.ZIndex="0" FontSize="28" FontWeight="ExtraBlack" Foreground="{StaticResource MenuCloseOpenFont}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{StaticResource Title}"/>
                     <Grid Grid.Column="1" Panel.ZIndex="1" HorizontalAlignment="Left">
                         <Button Style="{StaticResource HalfTransparent}" x:Name="ButtMenuOpen" Width="100" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right"  Click="ButtMenuOpen_Click" Visibility="Hidden" BorderThickness="0" Cursor="Hand">

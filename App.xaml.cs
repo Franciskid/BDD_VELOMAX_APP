@@ -46,7 +46,7 @@ namespace BDD_VELOMAX_APP
         /// </summary>
         private void TestFunction2()
         {
-            Adresse ad = new Adresse(null, "10 rue de la concierge", "Paris", "75009", "France");
+            Adresse ad = new Adresse(null, "12 rue de la concierge", "Paris", "75009", "France");
 
             DataWriter.Insert(ad);
         }

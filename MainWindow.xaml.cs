@@ -28,6 +28,7 @@ namespace BDD_VELOMAX_APP
     {
 
         private BackgroundWorker connexionWorker = new BackgroundWorker();
+        private BackgroundWorker imageWorker = new BackgroundWorker();
 
         MyPages currentPage;
 
@@ -125,22 +126,27 @@ namespace BDD_VELOMAX_APP
             CurrentPage = MyPages.Connexion;
 
             LaunchWorkerCheckConnexion();
-
+            LaunchWorkerChangeImage();
         }
 
 
         private void LaunchWorkerCheckConnexion()
         {
-            this.connexionWorker.DoWork += new DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.connexionWorker.DoWork += new DoWorkEventHandler(this.backgroundWorker_DoWork_Connection);
             this.connexionWorker.RunWorkerAsync();
         }
 
-        private async void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void LaunchWorkerChangeImage()
+        {
+            this.imageWorker.DoWork += new DoWorkEventHandler(this.backgroundWorker_DoWork_ChangeImage);
+            this.imageWorker.RunWorkerAsync();
+        }
+
+        private async void backgroundWorker_DoWork_Connection(object sender, DoWorkEventArgs e)
         {
             CheckConnexion();
         }
-
-        public void CheckConnexion()
+        private void CheckConnexion()
         {
             while (true)
             {
@@ -189,6 +195,58 @@ namespace BDD_VELOMAX_APP
 
         }
 
+        private Random r = new Random();
+        private async void backgroundWorker_DoWork_ChangeImage(object sender, DoWorkEventArgs e)
+        {
+            int a = 2;
+
+            while (true)
+            {
+                System.Threading.Thread.Sleep(10000);
+
+                int temp = r.Next(1, 9);
+
+                while (a == temp)
+                    temp = r.Next(1, 9);
+                a = temp;
+
+                var source = this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
+                    ChangeImage((ImageBrush)MainBackgroundGrid.Background, (ImageSource)FindResource($"BackImage{a}"), new TimeSpan(0, 0, 1), new TimeSpan(0, 0, 1)))
+                    );
+
+            }
+        }
+
+
+        private void ChangeImage(ImageBrush image, ImageSource newIm, TimeSpan fadeInTime, TimeSpan fadeOutTime)
+        {
+            var fadeInAnimation = new DoubleAnimation(0, 1, fadeInTime);
+
+            fadeInAnimation.Completed += (o, e) =>
+            {
+                image.Opacity = 1;
+            };
+
+            if (image.ImageSource != null)
+            {
+                var fadeOutAnimation = new DoubleAnimation(1, 0, fadeOutTime);
+
+                fadeOutAnimation.Completed += (o, e) =>
+                {
+                    image.ImageSource = newIm;
+                    image.Opacity = 0;
+                    image.BeginAnimation(Brush.OpacityProperty, fadeInAnimation, HandoffBehavior.Compose);
+                };
+
+                image.BeginAnimation(Brush.OpacityProperty, fadeOutAnimation);
+            }
+            else
+            {
+                image.Opacity = 0;
+                image.ImageSource = newIm;
+                image.BeginAnimation(Brush.OpacityProperty, fadeInAnimation, HandoffBehavior.Compose);
+            }
+        }
 
         private void ButtMenuOpen_Click(object sender, RoutedEventArgs e)
         {

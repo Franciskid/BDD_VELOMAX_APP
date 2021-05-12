@@ -2,6 +2,13 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <ImageSource x:Key="BackImage">../Images/veloBackground2.jpg</ImageSource>
+    <ImageSource x:Key="BackImage1">../Images/veloBackground1.jpg</ImageSource>
+    <ImageSource x:Key="BackImage2">../Images/veloBackground2.jpg</ImageSource>
+    <ImageSource x:Key="BackImage3">../Images/veloBackground3.jpg</ImageSource>
+    <ImageSource x:Key="BackImage4">../Images/veloBackground4.jpg</ImageSource>
+    <ImageSource x:Key="BackImage5">../Images/veloBackground5.jpg</ImageSource>
+    <ImageSource x:Key="BackImage6">../Images/veloBackground6.jpg</ImageSource>
+    <ImageSource x:Key="BackImage7">../Images/veloBackground7.jpg</ImageSource>
+    <ImageSource x:Key="BackImage8">../Images/veloBackground8.jpg</ImageSource>
 
 </ResourceDictionary>
