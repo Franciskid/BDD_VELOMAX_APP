@@ -3,7 +3,16 @@ CREATE USER if not exists 'bozo'@'localhost' IDENTIFIED BY 'bozo';
 GRANT SELECT, SHOW VIEW ON $velomax.* TO 'bozo'@'localhost';
 
 use velomax;
+
+drop table if exists Assemblages;
 drop table if exists Pieces;
+drop table if exists Modeles;
+drop table if exists Clients;
+drop table if exists Fidelio;
+drop table if exists Fournisseurs;
+drop table if exists Adresse;
+drop table if exists Comptes;
+
 create table if not exists Pieces
 (
 	idPiece varchar(10) primary key not null,
@@ -16,7 +25,6 @@ create table if not exists Pieces
     delaiApprovisionnement datetime
 );
 
-drop table if exists Assemblages;
 create table if not exists Assemblages
 (
 	idAssemblage int primary key auto_increment not null,
@@ -129,8 +137,7 @@ create table if not exists Comptes
 (
 	idCompte int primary key auto_increment not null,
     pseudo varchar(30),
-    motdepasse varchar(255) default null,
-    unique key(pseudo)
+    motdepasse varchar(255) default null
 );
 
 insert into Comptes(pseudo, motdepasse) values ('admin', sha1('adminpassword'));
