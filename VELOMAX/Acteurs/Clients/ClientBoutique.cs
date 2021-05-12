@@ -23,6 +23,9 @@ namespace BDD_VELOMAX_APP
             this.NomEntreprise = nomEntr;
             this.NomContact = nomContact;
         }
-        public override string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'boutique', '{NomEntreprise}', null, '{base.Adresse.ID}', '{base.Telephone}','{base.AdresseMail}','{NomContact}', null,null,null,null";
+
+        public override string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'boutique', '{NomEntreprise}',null," +
+            $"{(base.Adresse.ID != null ? $"'{base.Adresse.ID}'" : "null")}, " +
+            $"'{base.Telephone}','{base.AdresseMail}','{NomContact}',null, null, null, null";
     }
 }
