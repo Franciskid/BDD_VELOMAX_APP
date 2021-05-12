@@ -202,7 +202,7 @@ namespace BDD_VELOMAX_APP
 
             while (true)
             {
-                System.Threading.Thread.Sleep(10000);
+                System.Threading.Thread.Sleep((Int32)FindResource($"TempsMSChangementBackgroundImage"));
 
                 int temp = r.Next(1, 9);
 

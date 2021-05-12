@@ -11,4 +11,6 @@
     <ImageSource x:Key="BackImage7">../Images/veloBackground7.jpg</ImageSource>
     <ImageSource x:Key="BackImage8">../Images/veloBackground8.jpg</ImageSource>
 
+    <system:Int32 x:Key="TempsMSChangementBackgroundImage">15000</system:Int32>
+
 </ResourceDictionary>
