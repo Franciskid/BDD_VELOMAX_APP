@@ -13,7 +13,7 @@ namespace BDD_VELOMAX_APP
         /// </summary>
         public object ID { get; }
 
-        public Nommodele Nom { get; private set; }
+        public NomModeles Nom { get; private set; }
 
         public int Prix { get; }
 
@@ -27,13 +27,13 @@ namespace BDD_VELOMAX_APP
         public Modele(int? id, string nom, int prix, string ligne, DateTime intro, DateTime discont)
         {
             this.ID = id;
-            this.Nom = MyHelper.StringToEnum<Nommodele>(nom);
+            this.Nom = MyHelper.StringToEnum<NomModeles>(nom);
             this.Prix = prix;
             this.Ligne = MyHelper.StringToEnum<LigneProduit>(ligne);
             this.Introduction = intro;
             this.Discontinuation = discont;
         }
 
-        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{Prix}' , '{Ligne}', '{Introduction}','{Discontinuation}'";
+        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{Prix}' , '{Ligne}', '{Introduction:dd/MM/yyyy}','{Discontinuation:dd/MM/yyyy}'";
     }
 }

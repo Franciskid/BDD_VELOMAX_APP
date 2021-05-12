@@ -8,7 +8,7 @@ namespace BDD_VELOMAX_APP
 { /// <summary>
 /// francois
 /// </summary>
-    public enum Nommodele
+    public enum NomModeles
     {
         Kilimandjaro,
         NorthPole,

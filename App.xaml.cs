@@ -63,8 +63,8 @@ namespace BDD_VELOMAX_APP
         {
             ExecuteSQLScript();
 
-            TestFunction();
-            TestFunction2();
+            //TestFunction();
+            //TestFunction2();
 
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
