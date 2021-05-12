@@ -21,6 +21,6 @@ namespace BDD_VELOMAX_APP
             this.DateLivraison = DateLivraison;
         }
         public object ID { get; private set; }
-        public virtual string SaveStr() => "IdCommande";
+        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{DateCommande}','{DateLivraison}'";
     }
 }

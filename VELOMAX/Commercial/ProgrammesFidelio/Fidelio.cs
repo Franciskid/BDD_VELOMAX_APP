@@ -27,6 +27,6 @@ namespace BDD_VELOMAX_APP
             this.Description = description;
         }
 
-        public string SaveStr() => "idFidelio";
+        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Prix}','{Rabais}' , '{Duree_annee}', '{Description}'";
     }
 }
