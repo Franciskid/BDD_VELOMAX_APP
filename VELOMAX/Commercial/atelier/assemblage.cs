@@ -38,7 +38,7 @@ namespace BDD_VELOMAX_APP
         public Panier Panier { get; private set; }
 
 
-        public Assemblage(int idAssemblage, string Nom, string Grandeurs, string Cadre, string Guidon, string Freins, string Selles, string derailleur_Avant,
+        public Assemblage(object idAssemblage, string Nom, string Grandeurs, string Cadre, string Guidon, string Freins, string Selles, string derailleur_Avant,
             string derailleur_Arriere, string roue_Avant, string roue_Arriere, string Reflecteurs, string Pedalier, string Ordinateur, string Panier)
         {
             this.ID = idAssemblage;

@@ -388,13 +388,15 @@ namespace BDD_VELOMAX_APP
                 case MyPages.Clients:
                     return new ClientPage();
 
-                case MyPages.Commandes:
-                    return new PageTESTT();
+                case MyPages.Connexion:
+                    return new ConnectionPage();
+
+                case MyPages.Connecté:
+                    return new ConnectionPage();
 
                 default:
                     return null;
             }
-            return null;
         }
     }
 }

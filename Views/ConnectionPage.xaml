@@ -11,6 +11,7 @@
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Margin" Value="0,40,0,0"/>
+                    <Setter Property="Height" Value="50"/>
                 </Style>
             </StackPanel.Resources>
             <Button Content="test"/>
