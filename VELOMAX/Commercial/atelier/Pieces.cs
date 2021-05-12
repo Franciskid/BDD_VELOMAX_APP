@@ -40,6 +40,6 @@ namespace BDD_VELOMAX_APP
 
 
         public object ID { get; private set; }
-        public virtual string SaveStr() => "IdPiece";
+        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{NomFournisseur}' , '{NumProduit}', '{Prix}','{DateIntroduction}','{DateDiscontinuation}','{DelaiApprovisionnement}'";
     }
 }
