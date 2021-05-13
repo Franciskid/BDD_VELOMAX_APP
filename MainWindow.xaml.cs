@@ -20,12 +20,14 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace BDD_VELOMAX_APP
-{///test yznid qui sert ar 
+{
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public static MainWindow FenetrePrincipale { get; private set; }
 
         private BackgroundWorker connexionWorker = new BackgroundWorker();
         private BackgroundWorker imageWorker = new BackgroundWorker();
@@ -127,6 +129,8 @@ namespace BDD_VELOMAX_APP
 
             LaunchWorkerCheckConnexion();
             LaunchWorkerChangeImage();
+
+            FenetrePrincipale = this;
         }
 
 
@@ -165,15 +169,16 @@ namespace BDD_VELOMAX_APP
 
                         System.Threading.Thread.Sleep(1500);
 
-                        this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
-                        {
-                            this.TB_Connected.Text = (string)FindResource("Connected");
-                            this.logoConnecté.Kind = PackIconKind.DatabaseCheck;
-                            this.logoConnecté.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#086e1e"));
-                            this.Spinner.Visibility = Visibility.Hidden;
-                            this.logoConnecté.Visibility = Visibility.Visible;
-                        }));
                     }
+
+                    this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
+                    {
+                        this.TB_Connected.Text = (string)FindResource("Connected") + (App.IsConnected && App.Compte?.Nom != null ? $" ({App.Compte?.Nom})" : "");
+                        this.logoConnecté.Kind = PackIconKind.DatabaseCheck;
+                        this.logoConnecté.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#086e1e"));
+                        this.Spinner.Visibility = Visibility.Hidden;
+                        this.logoConnecté.Visibility = Visibility.Visible;
+                    }));
                 }
                 else
                 {
@@ -190,7 +195,7 @@ namespace BDD_VELOMAX_APP
                     }
                 }
 
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(100);
             }
 
         }
@@ -203,6 +208,9 @@ namespace BDD_VELOMAX_APP
 
             while (true)
             {
+                var source = this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
+                    ChangeImage2((ImageBrush)MainBackgroundGrid.Background, (ImageBrush)MainBackgroundGrid2.Background, (ImageSource)FindResource($"BackImage{a}"), new TimeSpan(0, 0, 2), new TimeSpan(0, 0, 2)))
+                    );
                 System.Threading.Thread.Sleep((Int32)FindResource($"TempsMSChangementBackgroundImage"));
 
                 int temp = r.Next(1, 11);
@@ -215,9 +223,6 @@ namespace BDD_VELOMAX_APP
                 //    ChangeImage((ImageBrush)MainBackgroundGrid.Background, (ImageSource)FindResource($"BackImage{a}"), new TimeSpan(0, 0, 1), new TimeSpan(0, 0, 1)))
                 //    );
 
-                var source = this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
-                    ChangeImage2((ImageBrush)MainBackgroundGrid.Background, (ImageBrush)MainBackgroundGrid2.Background, (ImageSource)FindResource($"BackImage{a}"), new TimeSpan(0, 0, 2), new TimeSpan(0, 0, 2)))
-                    );
             }
         }
 
@@ -256,37 +261,45 @@ namespace BDD_VELOMAX_APP
         {
             var fadeInAnimation = new DoubleAnimation(0, 1, fadeInTime);
 
-
-            if (firstGrid)
+            if (image1 != null || image2 != null)
             {
-                image2.ImageSource = newIm;
-
-                fadeInAnimation.Completed += (o, e) =>
+                if (firstGrid)
                 {
-                    image2.Opacity = 1;
-                };
+                    image2.ImageSource = newIm;
 
-                var fadeOutAnimation = new DoubleAnimation(1, 0, fadeOutTime);
+                    fadeInAnimation.Completed += (o, e) =>
+                    {
+                        image2.Opacity = 1;
+                    };
 
-                image1.BeginAnimation(Brush.OpacityProperty, fadeOutAnimation);
-                image2.BeginAnimation(Brush.OpacityProperty, fadeInAnimation);
+                    var fadeOutAnimation = new DoubleAnimation(1, 0, fadeOutTime);
+
+                    image1.BeginAnimation(Brush.OpacityProperty, fadeOutAnimation);
+                    image2.BeginAnimation(Brush.OpacityProperty, fadeInAnimation);
+                }
+                else
+                {
+                    image1.ImageSource = newIm;
+
+                    fadeInAnimation.Completed += (o, e) =>
+                    {
+                        image1.Opacity = 1;
+                    };
+
+                    var fadeOutAnimation = new DoubleAnimation(1, 0, fadeOutTime);
+
+
+                    image2.BeginAnimation(Brush.OpacityProperty, fadeOutAnimation);
+                    image1.BeginAnimation(Brush.OpacityProperty, fadeInAnimation);
+                }
+                firstGrid = !firstGrid;
             }
             else
             {
+                image1.Opacity = 0;
                 image1.ImageSource = newIm;
-
-                fadeInAnimation.Completed += (o, e) =>
-                {
-                    image1.Opacity = 1;
-                };
-
-                var fadeOutAnimation = new DoubleAnimation(1, 0, fadeOutTime);
-
-
-                image2.BeginAnimation(Brush.OpacityProperty, fadeOutAnimation);
                 image1.BeginAnimation(Brush.OpacityProperty, fadeInAnimation);
             }
-            firstGrid = !firstGrid;
         }
 
 
@@ -333,7 +346,7 @@ namespace BDD_VELOMAX_APP
             ChangePage(MyPages.Other);
         }
 
-        private void ChangePage(MyPages page)
+        public void ChangePage(MyPages page)
         {
             if (App.IsConnected)
             {
@@ -347,6 +360,27 @@ namespace BDD_VELOMAX_APP
                 MessageBox.Show("Impossible de changer de page, vous devez d'abord vous authentifier pour y accéder !", "Erreur");
             }
         }
+
+
+        /// <summary>
+        /// Appeler quand on vient de se connecter
+        /// </summary>
+        public void JustConnected()
+        {
+            this.TB_Connected.Text += $" ({App.Compte.Nom})";
+
+            this.Butt_User.Visibility = Visibility.Visible;
+            TB_UserCompte.Text = App.Compte.Nom;
+        }
+
+        /// <summary>
+        /// Appeler quand on vient de se connecter
+        /// </summary>
+        public void JustDisconnected()
+        {
+            this.TB_Connected.Text = (string)FindResource("Connected");
+        }
+
 
         private void GridTitleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -414,7 +448,7 @@ namespace BDD_VELOMAX_APP
                     return new ConnectionPage();
 
                 case MyPages.Connecté:
-                    return new ConnectionPage();
+                    return new ConnectedPage();
 
                 default:
                     return null;

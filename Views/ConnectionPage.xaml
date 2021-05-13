@@ -24,10 +24,10 @@
                 <TextBlock Style="{DynamicResource MaterialDesignBody1TextBlock}" HorizontalAlignment="Center" FontSize="30">
                     Veuillez vous connecter
                 </TextBlock>
-                <TextBox Style="{DynamicResource MaterialDesignTextBox}" materialDesign:HintAssist.Hint="Nom d'utilisateur"  materialDesign:HintAssist.IsFloating="True" Margin="25, 30, 25, 30"/>
-                <PasswordBox Style="{DynamicResource MaterialDesignPasswordBox}" materialDesign:HintAssist.Hint="Mot de passe"  materialDesign:HintAssist.IsFloating="True"  Margin="25, 0, 25, 50"/>
-                <Button Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Content="Se Connecter" Background="{StaticResource DeepPurple}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20"/>
-                <CheckBox Style="{DynamicResource MaterialDesignUserForegroundCheckBox}" Content="Rester connecter" Foreground="AliceBlue" Margin="25, 10, 0, 30" IsChecked="False" FontSize="13" FontWeight="Normal" Background="{StaticResource DeepPurple}" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="TB_UserName" Style="{DynamicResource MaterialDesignTextBox}" materialDesign:HintAssist.Hint="Nom d'utilisateur"  materialDesign:HintAssist.IsFloating="True" Margin="25, 30, 25, 30"/>
+                <PasswordBox x:Name="TB_UserPW" Style="{DynamicResource MaterialDesignPasswordBox}" materialDesign:HintAssist.Hint="Mot de passe"  materialDesign:HintAssist.IsFloating="True"  Margin="25, 0, 25, 50"/>
+                <Button x:Name="Butt_Connect" Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Click="Butt_Connect_Click" Content="Se Connecter" Background="{StaticResource DeepPurple}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20" IsDefault="True"/>
+                <CheckBox x:Name="CB_StayConnect" Style="{DynamicResource MaterialDesignUserForegroundCheckBox}" Content="Rester connecter" Foreground="AliceBlue" Margin="25, 10, 0, 30" IsChecked="False" FontSize="15" FontWeight="Normal" Background="{StaticResource DeepPurple}" VerticalContentAlignment="Center"/>
             </StackPanel>
         </Border>
     </Grid>

@@ -36,7 +36,7 @@ namespace BDD_VELOMAX_APP
         {
             try
             {
-                var mySQLCon = new MySqlConnection(ConfigurationManager.AppSettings.Get(db ? "ServeurConnexionDB" : "ServeurConnexion"));
+                var mySQLCon = new MySqlConnection(ConfigurationManager.AppSettings.Get(db ? App.Admin ? "ServeurConnexionDBRoot" : "ServeurConnexionDBBozo" : App.Admin ? "ServeurConnexionRoot" : "ServeurConnexionBozo"));
                 mySQLCon.Open();
 
                 if (mySQLCon.State != System.Data.ConnectionState.Open)

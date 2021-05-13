@@ -51,8 +51,7 @@ namespace BDD_VELOMAX_APP
         /// <param name="pass">Non haché</param>
         /// <param name="util"></param>
         /// <returns></returns>
-        public static bool ComparePassword(string pass, Compte util) => HashPasswordSHA1(util.Nom, pass) == util.MDP_SHA1;
-
+        public static bool ComparePassword(string pass, Compte util) => HashPasswordSHA1(util.Nom, pass).ToLower() == util.MDP_SHA1.ToLower();
 
     }
 }

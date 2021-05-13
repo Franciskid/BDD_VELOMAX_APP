@@ -42,7 +42,7 @@
         </Grid.Background>
         <Grid x:Name="MainBackgroundGrid">
             <Grid.Background>
-                <ImageBrush x:Name="MainBackgroundImage" ImageSource="{DynamicResource ResourceKey=BackImage2}" Stretch="UniformToFill"/>
+                <ImageBrush x:Name="MainBackgroundImage" Stretch="UniformToFill"/>
             </Grid.Background>
 
             <Grid.ColumnDefinitions>
@@ -80,6 +80,7 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 0, 20, 0">
                                     <TextBlock x:Name="TB_Connected" Foreground="{StaticResource MenuFontColor}" VerticalAlignment="Center" FontSize="12" FontWeight="Light" Text="{StaticResource CantConnect}"/>
@@ -88,22 +89,31 @@
                                         <fa:ImageAwesome x:Name="Spinner" Icon="Refresh" Spin="True" Foreground="AliceBlue" Width="30" Visibility="Hidden"/>
                                     </Grid>
                                 </StackPanel>
-                                <Button Style="{StaticResource BasicButton}" x:Name="MinimizeButton" Grid.Column="2" Click="MinimizeButton_Click" BorderThickness="0">
+                                <Button Style="{StaticResource BasicButton}" x:Name="Butt_Minimize" Grid.Column="3" Click="MinimizeButton_Click" BorderThickness="0">
                                     <materialDesign:PackIcon Kind="Minus" Foreground="AliceBlue" Width="60" Height="25"/>
                                     <Button.ToolTip>
                                         <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Minimiser}" />
                                     </Button.ToolTip>
                                 </Button>
-                                <Button Style="{StaticResource CloseButton}" x:Name="CloseButton" Grid.Column="3" Click="CloseButton_Click" BorderThickness="0" Width="60">
+                                <Button Style="{StaticResource CloseButton}" x:Name="Butt_Close" Grid.Column="4" Click="CloseButton_Click" BorderThickness="0" Width="60">
                                     <materialDesign:PackIcon Kind="WindowClose" Foreground="AliceBlue" Width="40" Height="25"/>
                                     <Button.ToolTip>
                                         <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Fermer}" />
                                     </Button.ToolTip>
                                 </Button>
-                                <Button Style="{StaticResource ParamButton}" x:Name="Paramètres" Grid.Column="1" BorderThickness="0" Margin="15, 0, 25, 0" Cursor="Hand">
-                                    <materialDesign:PackIcon Kind="Settings" Height="25" Width="25"  Foreground="{Binding ElementName=Paramètres, Path=Foreground}"/>
+                                <Button Style="{StaticResource ParamButton}" x:Name="Butt_Paramètres" Grid.Column="2" BorderThickness="0" Margin="15, 0, 25, 0" Cursor="Hand">
+                                    <materialDesign:PackIcon Kind="Settings" Height="25" Width="25"  Foreground="{Binding ElementName=Butt_Paramètres, Path=Foreground}"/>
                                     <Button.ToolTip>
                                         <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Paramètres}" />
+                                    </Button.ToolTip>
+                                </Button>
+                                <Button x:Name="Butt_User" Grid.Column="1" Style="{StaticResource TranspButton}" HorizontalContentAlignment="Center" Margin="0, 5, 20, 5" Width="40" Padding="5, 5, 5, 10" Visibility="Collapsed">
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" >
+                                        <materialDesign:PackIcon x:Name="logoUser" Kind="User" Height="25" Width="25" Foreground="DarkGreen" HorizontalAlignment="Center" />
+                                        <TextBlock x:Name="TB_UserCompte" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" FontSize="12" FontWeight="Heavy" Text=""/>
+                                    </StackPanel>
+                                    <Button.ToolTip>
+                                        <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=CompteButton}" />
                                     </Button.ToolTip>
                                 </Button>
                             </Grid>

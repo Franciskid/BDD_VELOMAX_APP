@@ -24,5 +24,30 @@ namespace BDD_VELOMAX_APP.Views
         {
             InitializeComponent();
         }
+
+        private void Butt_Connect_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(this.TB_UserName.Text))
+            {
+                if (!string.IsNullOrWhiteSpace(this.TB_UserPW.Password))
+                {
+                    var compte = DataReader.GetObject<Compte>(this.TB_UserName.Text, "pseudo");
+
+                    if (compte != null && MyHelper.ComparePassword(this.TB_UserPW.Password, compte))
+                    {
+                        App.IsConnected = true;
+
+                        App.Compte = compte;
+
+                        MainWindow.FenetrePrincipale.ChangePage(MyPages.Connecté);
+                        MainWindow.FenetrePrincipale.JustConnected();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nom d'utilisateur inexistant ou mot de passe incorrect", "Impossible de se connecter", MessageBoxButton.OK);
+                    }
+                }
+            }
+        }
     }
 }

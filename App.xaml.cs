@@ -17,9 +17,22 @@ namespace BDD_VELOMAX_APP
     public partial class App : Application
     {
 
-        public static bool IsConnected = true;
+        public static bool IsConnected { get; set; } = false;
 
-        public static bool MySQLServerConnected = false;
+        public static bool Admin { get; set; } = true;
+
+        private static Compte compte;
+        public static Compte Compte
+        {
+            get => compte;
+            set
+            {
+                compte = value;
+                Admin = compte.Nom.ToLower() == "root";
+            }
+        }
+
+        public static bool MySQLServerConnected { get; set; } = false;
 
         private void ExecuteSQLScript()
         {
