@@ -13,7 +13,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="900">
     <Grid>
-        <Border Width="450" VerticalAlignment="Center" Padding="70" Background="{StaticResource ConnexionPage}" CornerRadius="15">
+        <Border Width="450" Height="500" VerticalAlignment="Center" Padding="70" Background="{StaticResource ConnexionPage}" CornerRadius="15">
             <StackPanel Orientation="Vertical" >
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type TextBox}">

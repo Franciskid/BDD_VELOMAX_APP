@@ -107,10 +107,10 @@
                                         <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Paramètres}" />
                                     </Button.ToolTip>
                                 </Button>
-                                <Button x:Name="Butt_User" Grid.Column="1" Style="{StaticResource TranspButton}" HorizontalContentAlignment="Center" Margin="0, 5, 20, 5" Width="40" Padding="5, 5, 5, 10" Visibility="Collapsed">
+                                <Button x:Name="Butt_User" Grid.Column="1" Style="{StaticResource TranspButton}" HorizontalContentAlignment="Center" Margin="0, 5, 20, 5" MinWidth="40" Padding="5, 5, 5, 10" Visibility="Collapsed" Click="ButtMain_Click">
                                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" >
                                         <materialDesign:PackIcon x:Name="logoUser" Kind="User" Height="25" Width="25" Foreground="DarkGreen" HorizontalAlignment="Center" />
-                                        <TextBlock x:Name="TB_UserCompte" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" FontSize="12" FontWeight="Heavy" Text=""/>
+                                        <TextBlock x:Name="TB_UserCompte" Foreground="{StaticResource MenuFontColor}" HorizontalAlignment="Center" FontSize="12" FontWeight="Heavy" Text="root"/>
                                     </StackPanel>
                                     <Button.ToolTip>
                                         <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=CompteButton}" />
@@ -119,7 +119,6 @@
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1">
-                            <!--> Background="{StaticResource MainPage}"> <!-->
                             <ContentControl x:Name="ContentItem"/>
                         </Grid>
                     </Grid>
