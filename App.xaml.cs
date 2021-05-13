@@ -64,6 +64,8 @@ namespace BDD_VELOMAX_APP
             Adresse ad = new Adresse(null, "igh", "iuh", "ibkb", "iugaud");
 
             int id = (int)DataWriter.Insert(ad);
+
+            var o = DataReader.GetObject<Adresse>(id);
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
