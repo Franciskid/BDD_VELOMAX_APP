@@ -28,7 +28,7 @@ namespace BDD_VELOMAX_APP
             set
             {
                 compte = value;
-                Admin = compte.Nom.ToLower() == "root";
+                Admin = value == null ? false : compte.Nom.ToLower() == "root";
             }
         }
 

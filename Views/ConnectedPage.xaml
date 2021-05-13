@@ -3,10 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.FontWeight="Bold"
+             TextElement.Foreground="AliceBlue"
+             TextElement.FontSize="20"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
              xmlns:local="clr-namespace:BDD_VELOMAX_APP.Views"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="900">
     <Grid>
-            
+        <Border Width="450" VerticalAlignment="Center" Padding="70" Background="{StaticResource ConnexionPage}" CornerRadius="15">
+            <StackPanel Orientation="Vertical" >
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Margin" Value="0,40,40,0"/>
+                        <Setter Property="Height" Value="50"/>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock Style="{DynamicResource MaterialDesignBody1TextBlock}" HorizontalAlignment="Center" FontSize="20" Margin="0, 0, 0, 0">
+                    Votre compte :
+                </TextBlock>
+                <TextBlock x:Name="TB_UserName" Style="{DynamicResource MaterialDesignBody1TextBlock}" HorizontalAlignment="Center" FontSize="30" Margin="0, 0, 0, 100" FontWeight="Black">
+                    Username
+                </TextBlock>
+                <Button x:Name="Butt_Disconnect" Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Click="Butt_Disconnect_Click" Content="Se déconnecter" Background="{StaticResource DeepPurple}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20" IsDefault="True"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

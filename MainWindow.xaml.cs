@@ -379,6 +379,8 @@ namespace BDD_VELOMAX_APP
         public void JustDisconnected()
         {
             this.TB_Connected.Text = (string)FindResource("Connected");
+
+            this.Butt_User.Visibility = Visibility.Collapsed;
         }
 
 

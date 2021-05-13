@@ -23,6 +23,17 @@ namespace BDD_VELOMAX_APP.Views
         public ConnectedPage()
         {
             InitializeComponent();
+            TB_UserName.Text = App.Compte.Nom;
+        }
+
+        private void Butt_Disconnect_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.FenetrePrincipale.ChangePage(MyPages.Connexion);
+            MainWindow.FenetrePrincipale.JustDisconnected();
+
+            App.IsConnected = false;
+            App.Compte = null;
+
         }
     }
 }
