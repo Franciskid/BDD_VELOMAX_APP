@@ -61,15 +61,9 @@ namespace BDD_VELOMAX_APP
         private void TestFunction2()
         {
 
+            Adresse ad = new Adresse(null, "igh", "iuh", "ibkb", "iugaud");
 
-
-           
-            Modele jt = new Modele(null, "NorthPole", 120, "VTT",DateTime.Now, DateTime.Now);
-
-            
-            DataWriter.Insert(jt);
-
-
+            int id = (int)DataWriter.Insert(ad);
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
@@ -77,7 +71,7 @@ namespace BDD_VELOMAX_APP
             ExecuteSQLScript();
 
             //TestFunction();
-            //TestFunction2();
+            TestFunction2();
 
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();

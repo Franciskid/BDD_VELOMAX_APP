@@ -24,7 +24,7 @@ namespace BDD_VELOMAX_APP
         /// <summary>
         /// Code postal
         /// </summary>
-        public int CodePostal { get; }
+        public string CodePostal { get; }
 
         /// <summary>
         /// Ville
@@ -49,7 +49,7 @@ namespace BDD_VELOMAX_APP
         {
             this.ID = id;
             this.Rue = rue;
-            this.CodePostal = int.Parse(codepostal);
+            this.CodePostal = codepostal;
             this.Ville = ville;
             this.Province = province;
         }
