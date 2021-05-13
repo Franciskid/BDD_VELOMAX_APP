@@ -169,26 +169,27 @@ namespace BDD_VELOMAX_APP
             MySqlConnection c = null;
             try
             {
-                c = OpenConnexion();
-
-                if (c == null)
+                using (c = OpenConnexion())
                 {
-                    return null;
-                }
-
-                MySqlCommand command = new MySqlCommand(query, c);
-                using (MySqlDataReader reader = command.ExecuteReader())
-                {
-                    List<List<object>> l = new List<List<object>>();
-                    for (int x = 0; reader.Read(); x++)
+                    if (c == null)
                     {
-                        l.Add(new List<object>());
-
-                        for (int i = 0; i < reader.FieldCount; i++)
-                            l[x].Add(reader.GetValue(i));
+                        return null;
                     }
 
-                    return l;
+                    MySqlCommand command = new MySqlCommand(query, c);
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        List<List<object>> l = new List<List<object>>();
+                        for (int x = 0; reader.Read(); x++)
+                        {
+                            l.Add(new List<object>());
+
+                            for (int i = 0; i < reader.FieldCount; i++)
+                                l[x].Add(reader.GetValue(i));
+                        }
+
+                        return l;
+                    }
                 }
             }
             catch (Exception ex)

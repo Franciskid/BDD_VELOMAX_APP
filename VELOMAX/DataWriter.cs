@@ -51,18 +51,20 @@ namespace BDD_VELOMAX_APP
 
                     string table = MyConstants.TypeToTable(obj.GetType());
 
-                    MySqlCommand command = new MySqlCommand($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})", c);
-
-                    if (command.ExecuteNonQuery() > 0)
+                    using (MySqlCommand command = new MySqlCommand($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})", c))
                     {
-                        object o = DataReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault();
-
-                        if (int.TryParse(o.ToString(), out int res))
+                        if (command.ExecuteNonQuery() > 0)
                         {
-                            return res + 1; //+1 car la fct renvoie l'id -1 pour une raison inconnue
-                        }
+                            object o = DataReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault();
 
-                        return o;
+                            if (int.TryParse(o.ToString(), out int res))
+                            {
+                                return res + 1; //+1 car la fct renvoie l'id -1 pour une raison inconnue
+                            }
+
+
+                            return o;
+                        }
                     }
 
                     return null;
