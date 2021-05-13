@@ -4,19 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BDD_VELOMAX_APP.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.FontWeight="Bold"
+             TextElement.Foreground="AliceBlue"
+             TextElement.FontSize="20"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="700" d:DesignWidth="900">
     <Grid>
-        <StackPanel Orientation="Vertical" Width="200" VerticalAlignment="Center">
-            <StackPanel.Resources>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Margin" Value="0,40,0,0"/>
-                    <Setter Property="Height" Value="50"/>
-                </Style>
-            </StackPanel.Resources>
-            <Button Content="test"/>
-            <Button Content="test"/>
-            <Button Content="test"/>
-        </StackPanel>
+        <Border Width="450" VerticalAlignment="Center" Padding="70" Background="{StaticResource ConnexionPage}" CornerRadius="15">
+            <StackPanel Orientation="Vertical" >
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Margin" Value="0,40,40,0"/>
+                        <Setter Property="Height" Value="50"/>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock Style="{DynamicResource MaterialDesignBody1TextBlock}" HorizontalAlignment="Center" FontSize="30">
+                    Veuillez vous connecter
+                </TextBlock>
+                <TextBox Style="{DynamicResource MaterialDesignTextBox}" materialDesign:HintAssist.Hint="Nom d'utilisateur"  materialDesign:HintAssist.IsFloating="True" Margin="25, 30, 25, 30"/>
+                <PasswordBox Style="{DynamicResource MaterialDesignPasswordBox}" materialDesign:HintAssist.Hint="Mot de passe"  materialDesign:HintAssist.IsFloating="True"  Margin="25, 0, 25, 50"/>
+                <Button Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Content="Se Connecter" Background="{StaticResource DeepPurple}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20"/>
+                <CheckBox Style="{DynamicResource MaterialDesignUserForegroundCheckBox}" Content="Rester connecter" Foreground="AliceBlue" Margin="25, 10, 0, 30" IsChecked="False" FontSize="13" FontWeight="Normal" Background="{StaticResource DeepPurple}" VerticalContentAlignment="Center"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

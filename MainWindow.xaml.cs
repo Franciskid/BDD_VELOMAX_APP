@@ -366,6 +366,28 @@ namespace BDD_VELOMAX_APP
         {
             Application.Current.MainWindow.Close();
         }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SystemCommands.ShowSystemMenu(this, GetMousePosition());
+        }
+
+        #region Helper mouse pos
+
+        /// <summary>
+        /// Gets the current mouse position on the screen
+        /// </summary>
+        /// <returns></returns>
+        private Point GetMousePosition()
+        {
+            // Position of the mouse relative to the window
+            var position = Mouse.GetPosition(this);
+
+            // Add the window position so its a "ToScreen"
+            return new Point(position.X + this.Left, position.Y + this.Top);
+        }
+
+        #endregion
     }
 
     public enum MyPages

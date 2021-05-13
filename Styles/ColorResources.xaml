@@ -14,6 +14,9 @@
 
     <SolidColorBrush x:Key="ButtonOnHover" Color="#4D0d1536"/>
 
+    <SolidColorBrush x:Key="ConnexionPage" Color="#BF0d1536"/>
+    <SolidColorBrush x:Key="DeepPurple" Color="#Bf5d3ab1"/>
+
     <Color x:Key="MenuGradientStart">#0d1536</Color>
     <Color x:Key="MenuGradientMid">#800d1536</Color>
     <Color x:Key="MenuGradientEnd">#000d1536</Color>

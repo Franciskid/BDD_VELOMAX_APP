@@ -70,7 +70,7 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
 
-                                <Image Grid.Column="0" Margin="10, 0, 0, 0" Source="Images/velomaxSpeedLogoWhite.png"  Width="40" RenderOptions.BitmapScalingMode="Fant"/>
+                                <Image Grid.Column="0" Margin="10, 0, 0, 0" Source="Images/velomaxSpeedLogoWhite.png"  Width="40" RenderOptions.BitmapScalingMode="Fant" MouseDown="Image_MouseDown"/>
 
                                 <TextBlock Grid.Column="1" Foreground="{StaticResource MenuFontColor}" VerticalAlignment="Center" FontSize="15" FontWeight="Light" Margin="30,0,0,0" Text="{StaticResource Title}"/>
                             </Grid>
