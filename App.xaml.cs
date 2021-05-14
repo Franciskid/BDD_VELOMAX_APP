@@ -38,7 +38,7 @@ namespace BDD_VELOMAX_APP
         {
             var fileContent = File.ReadAllText("../../Database/velomax.sql");
 
-            DataWriter.ExecuteNonQuery(fileContent);
+            DataWriter.ExecuteNonQuery(fileContent, false);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace BDD_VELOMAX_APP
 
             bool b = DataWriter.Update(o1);
 
-            bool bb = DataWriter.Remove(o2);
+            int bbb = DataWriter.Remove<Adresse>(id2);
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)

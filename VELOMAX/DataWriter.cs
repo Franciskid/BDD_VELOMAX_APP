@@ -13,24 +13,26 @@ namespace BDD_VELOMAX_APP
         /// Execute une déclaration sur la base de donnée
         /// </summary>
         /// <param name="commandes"></param>
-        public static void ExecuteNonQuery(string commandes)
+        /// <param name="dbCreated"></param>
+        public static int ExecuteNonQuery(string commandes, bool dbCreated = true)
         {
             try
             {
-                using (var maConnexion = DataReader.OpenConnexion(false))
+                using (var c = DataReader.OpenConnexion(dbCreated))
                 {
-                    var cmd = maConnexion.CreateCommand();
-                    cmd.CommandText = commandes;
-                    cmd.ExecuteNonQuery();
-                    maConnexion.Close();
+                    using (MySqlCommand command = new MySqlCommand(commandes, c))
+                    {
+                        return command.ExecuteNonQuery();
+                    }
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine(" ErreurConnexion : " + e.ToString());
+                return -1;
             }
 
         }
+
 
 
         /// <summary>
@@ -42,7 +44,7 @@ namespace BDD_VELOMAX_APP
         {
             string table = MyConstants.TypeToTable(obj.GetType());
 
-            if (InternalUpdate($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})"))
+            if (ExecuteNonQuery($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})") > 0)
             {
                 object o = DataReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault();
 
@@ -57,37 +59,11 @@ namespace BDD_VELOMAX_APP
             return null;
         }
 
+        public static bool Update(IMySQL obj) => ExecuteNonQuery($"UPDATE {MyConstants.TypeToTable(obj.GetType())} SET {MyConstants.UpdateRowSet(obj)} WHERE {MyConstants.TypeToID(obj.GetType())} = '{obj.ID}';") > 0;
 
+        public static bool Remove(IMySQL obj) => ExecuteNonQuery($"DELETE FROM {MyConstants.TypeToTable(obj.GetType())} WHERE {MyConstants.TypeToID(obj.GetType())} = '{obj.ID}';") > 0;
 
-        public static bool Update(IMySQL obj) => InternalUpdate($"UPDATE {MyConstants.TypeToTable(obj.GetType())} SET {MyConstants.UpdateRowSet(obj)} WHERE {MyConstants.TypeToID(obj.GetType())} = '{obj.ID}';");
+        public static int Remove<T>(object id, string nomPropriété = null) => ExecuteNonQuery($"DELETE FROM {MyConstants.TypeToTable(typeof(T))} WHERE {nomPropriété ?? MyConstants.TypeToID(typeof(T))} = '{id}';");
 
-        public static bool Remove(IMySQL obj) => InternalUpdate($"DELETE FROM {MyConstants.TypeToTable(obj.GetType())} WHERE {MyConstants.TypeToID(obj.GetType())} = '{obj.ID}';");
-
-        public static bool Remove<T>(object id, string nomPropriété = null) => InternalUpdate($"DELETE FROM {MyConstants.TypeToID(typeof(T))} where {nomPropriété ?? MyConstants.TypeToID(typeof(T))} = '{id}';");
-
-
-        private static bool InternalUpdate(string query)
-        {
-            try
-            {
-                using (MySqlConnection c = DataReader.OpenConnexion())
-                {
-                    if (c == null)
-                    {
-                        return false;
-                    }
-
-                    using (MySqlCommand command = new MySqlCommand(query, c))
-                    {
-                        return command.ExecuteNonQuery() > 0;
-                    }
-                }
-
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
     }
 }
