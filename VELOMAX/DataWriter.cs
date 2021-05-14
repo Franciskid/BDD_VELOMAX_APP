@@ -59,10 +59,26 @@ namespace BDD_VELOMAX_APP
             return null;
         }
 
+        /// <summary>
+        /// Met à jour un objet dans la base de donnée
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static bool Update(IMySQL obj) => ExecuteNonQuery($"UPDATE {MyConstants.TypeToTable(obj.GetType())} SET {MyConstants.UpdateRowSet(obj)} WHERE {MyConstants.TypeToID(obj.GetType())} = '{obj.ID}';") > 0;
 
+        /// <summary>
+        /// Supprime un objet dans la base de donnée
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static bool Remove(IMySQL obj) => ExecuteNonQuery($"DELETE FROM {MyConstants.TypeToTable(obj.GetType())} WHERE {MyConstants.TypeToID(obj.GetType())} = '{obj.ID}';") > 0;
 
+        /// <summary>
+        /// Supprime un ou des objets dans la base de donnée à partir d'une valeur d'une propriété spécifiée (sinon alors on compare à l'id de <typeparamref name="T"/>)
+        /// </summary>
+        /// <param name="id">Valeur à supprimer</param>
+        /// <param name="nomPropriété">Propriété à laquelle comparer l'objet (si null alors on utilise l'id)</param>
+        /// <returns></returns>
         public static int Remove<T>(object id, string nomPropriété = null) => ExecuteNonQuery($"DELETE FROM {MyConstants.TypeToTable(typeof(T))} WHERE {nomPropriété ?? MyConstants.TypeToID(typeof(T))} = '{id}';");
 
     }
