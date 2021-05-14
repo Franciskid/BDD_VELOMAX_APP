@@ -40,40 +40,53 @@ namespace BDD_VELOMAX_APP
         /// <returns></returns>
         public static object Insert(IMySQL obj)
         {
+            string table = MyConstants.TypeToTable(obj.GetType());
+
+            if (InternalUpdate($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})"))
+            {
+                object o = DataReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault();
+
+                if (o != null && int.TryParse(o.ToString(), out int res))
+                {
+                    return res;// + 1; //+1 car la fct renvoie l'id -1 pour une raison inconnue EDIT : ne renvoie plus de +1 pour encore une raison inconnue
+                }
+
+                return o;
+            }
+
+            return null;
+        }
+
+
+
+        public static bool Update(IMySQL obj) => InternalUpdate($"UPDATE {MyConstants.TypeToTable(obj.GetType())} SET {MyConstants.UpdateRowSet(obj)} WHERE {MyConstants.TypeToID(obj.GetType())} = '{obj.ID}';");
+
+        public static bool Remove(IMySQL obj) => InternalUpdate($"DELETE FROM {MyConstants.TypeToTable(obj.GetType())} WHERE {MyConstants.TypeToID(obj.GetType())} = '{obj.ID}';");
+
+        public static bool Remove<T>(object id, string nomPropriété = null) => InternalUpdate($"DELETE FROM {MyConstants.TypeToID(typeof(T))} where {nomPropriété ?? MyConstants.TypeToID(typeof(T))} = '{id}';");
+
+
+        private static bool InternalUpdate(string query)
+        {
             try
             {
                 using (MySqlConnection c = DataReader.OpenConnexion())
                 {
                     if (c == null)
                     {
-                        return null;
+                        return false;
                     }
 
-                    string table = MyConstants.TypeToTable(obj.GetType());
-
-                    using (MySqlCommand command = new MySqlCommand($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})", c))
+                    using (MySqlCommand command = new MySqlCommand(query, c))
                     {
-                        if (command.ExecuteNonQuery() > 0)
-                        {
-                            object o = DataReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault();
-
-                            if (int.TryParse(o.ToString(), out int res))
-                            {
-                                return res + 1; //+1 car la fct renvoie l'id -1 pour une raison inconnue
-                            }
-
-
-                            return o;
-                        }
+                        return command.ExecuteNonQuery() > 0;
                     }
-
-                    return null;
                 }
 
             }
             catch (Exception e)
             {
-                return null;
+                return false;
             }
         }
     }

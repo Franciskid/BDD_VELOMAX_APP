@@ -12,11 +12,6 @@ namespace BDD_VELOMAX_APP
     public class Adresse : IMySQL
     {
         /// <summary>
-        /// Numéro
-        /// </summary>
-        public int Numéro { get; }
-
-        /// <summary>
         /// Rue
         /// </summary>
         public string Rue { get; }
@@ -24,7 +19,7 @@ namespace BDD_VELOMAX_APP
         /// <summary>
         /// Code postal
         /// </summary>
-        public string CodePostal { get; }
+        public string CodePostal { get; set; }
 
         /// <summary>
         /// Ville
@@ -55,13 +50,8 @@ namespace BDD_VELOMAX_APP
         }
 
 
-        public override string ToString()
-        {
-            return this.Numéro + " " + this.Rue + " " + CodePostal + " " + Ville;
-        }
-
         public object ID { get; private set; }
 
-        public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Rue}', '{CodePostal}', '{Ville}', '{Province}'";
+        public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Rue}', '{Ville}', '{CodePostal}', '{Province}'";
     }
 }

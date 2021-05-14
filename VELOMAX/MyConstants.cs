@@ -48,6 +48,9 @@ namespace BDD_VELOMAX_APP
             return dico;
         }
 
+        public static string UpdateRowSet(IMySQL obj)
+            => string.Join(",", DICOVALUES[TypeToTable(obj.GetType())].Select((x, y) => $"{x} = {obj.SaveStr().Split(',')[y++]}"));
+
 
         public static string TypeToID(Type type)
         {

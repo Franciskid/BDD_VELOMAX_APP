@@ -28,7 +28,7 @@ namespace BDD_VELOMAX_APP
             set
             {
                 compte = value;
-                Admin = value == null ? false : compte.Nom.ToLower() == "root";
+                Admin = value != null && compte.Nom.ToLower() == "root";
             }
         }
 
@@ -61,18 +61,29 @@ namespace BDD_VELOMAX_APP
         private void TestFunction2()
         {
 
-            Adresse ad = new Adresse(null, "igh", "iuh", "ibkb", "iugaud");
+            Adresse ad1 = new Adresse(null, "igrgfeh", "iuh", "ibkb", "iugaud");
+            Adresse ad2 = new Adresse(null, "iazgh", "iuazh", "ibkb", "iugaud");
+            Adresse ad3 = new Adresse(null, "igazdh", "idazuh", "azdibkb", "iugaud");
 
-            int id = (int)DataWriter.Insert(ad);
 
-            var o = DataReader.GetObject<Adresse>(id);
+            int id1 = (int)DataWriter.Insert(ad1);
+            int id2 = (int)DataWriter.Insert(ad2);
+            int id3 = (int)DataWriter.Insert(ad3);
+
+            var o = DataReader.GetObject<Adresse>(id1);
+
+            o.CodePostal = "UPDATE";
+
+            bool b = DataWriter.Update(o);
+
+            //bool bb = DataWriter.Remove(o);
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             ExecuteSQLScript();
 
-            //TestFunction();
+            TestFunction();
             TestFunction2();
 
             MainWindow mainWindow = new MainWindow();

@@ -16,7 +16,7 @@ namespace BDD_VELOMAX_APP
 
         public ClientBoutique(object ID,Adresse adresse, string tel, string mail, string nomEntr, string nomContact) : base(adresse, tel, mail)
         {
-            ID = ID;
+            base.ID = ID;
             base.Adresse = Adresse;
             base.Telephone = tel;
             base.AdresseMail = mail;

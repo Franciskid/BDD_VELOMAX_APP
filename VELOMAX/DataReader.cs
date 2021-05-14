@@ -94,54 +94,45 @@ namespace BDD_VELOMAX_APP
 
                         while (reader.Read())
                         {
+                            var val = MyConstants.DICOVALUES[MyConstants.TypeToTable(typeof(T))];
                             if (typeof(T) == typeof(Adresse))
                             {
-                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_ADRESSE];
                                 l.Add((T)(IMySQL)new Adresse((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[3]], (string)reader[val[4]]));
                             }
                             if (typeof(T) == typeof(Fidelio))
                             {
-                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_FIDELIO];
                                 l.Add((T)(IMySQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
                             }
                             if (typeof(T) == typeof(ClientIndividuel))
                             {
-                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_CLIENTS];
                                 l.Add((T)(IMySQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
                             }
                             if (typeof(T) == typeof(ClientBoutique))
                             {
-                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_CLIENTS];
                                 l.Add((T)(IMySQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
                             }
                             if (typeof(T) == typeof(Modele))
                             {
-                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_MODELES];
                                 l.Add((T)(IMySQL)new Modele((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (string)reader[val[3]], reader.GetDateTime(val[4]), reader.GetDateTime(val[5])));
                             }
                             if (typeof(T) == typeof(Compte))
                             {
-                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_COMPTES];
                                 l.Add((T)(IMySQL)new Compte((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]]));
                             }
                             if (typeof(T) == typeof(Assemblage))
                             {
-                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_ASSEMBLAGES];
                                 l.Add((T)(IMySQL)new Assemblage((int)reader[val[0]], reader.GetStringSafe(1), reader.GetStringSafe(2), reader.GetStringSafe(3), reader.GetStringSafe(4), reader.GetStringSafe(5), reader.GetStringSafe(6), reader.GetStringSafe(7), reader.GetStringSafe(8), reader.GetStringSafe(9), reader.GetStringSafe(10), reader.GetStringSafe(11), reader.GetStringSafe(12), reader.GetStringSafe(12), reader.GetStringSafe(13)));
                             }
                             if (typeof(T) == typeof(Commande))
                             {
-                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_COMMANDES];
                                 l.Add((T)(IMySQL)new Commande((int)reader[val[0]], reader.GetDateTime(val[1]), reader.GetDateTime(val[2])));
                             }
                             if (typeof(T) == typeof(Fournisseurs))
                             {
-                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_FOURNISSEURS];
                                 l.Add((T)(IMySQL)new Fournisseurs((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[3]], (int)reader[val[4]]));
                             }
                             if (typeof(T) == typeof(Pieces))
                             {
-                                var val = MyConstants.DICOVALUES[MyConstants.TABLE_PIECES];
                                 l.Add((T)(IMySQL)new Pieces(reader.GetStringSafe(0), reader.GetStringSafe(1), reader.GetStringSafe(2), (int)reader[val[2]], (float)reader[val[3]], reader.GetDateTime(val[4]), reader.GetDateTime(val[5]), reader.GetDateTime(val[6])));
                             }
                         }
@@ -166,10 +157,9 @@ namespace BDD_VELOMAX_APP
         /// <returns></returns>
         public static List<List<object>> ReadQuery(string query)
         {
-            MySqlConnection c = null;
             try
             {
-                using (c = OpenConnexion())
+                using (MySqlConnection c = OpenConnexion())
                 {
                     if (c == null)
                     {
@@ -195,10 +185,6 @@ namespace BDD_VELOMAX_APP
             catch (Exception ex)
             {
                 return null;
-            }
-            finally
-            {
-                c?.Close();
             }
         }
 
