@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,23 @@ namespace BDD_VELOMAX_APP.Views
     /// </summary>
     public partial class ClientPage : UserControl
     {
+        public float Remise { get; set; } = 0;
+
+        public ObservableCollection<Fidelio> ListeFidelio { get; set; } = new ObservableCollection<Fidelio>() { new Fidelio(-1, "Pas de fidélio", 0, 0, 0) };
+
+        public Fidelio SelectedFidelio { get; set; }
+
         public ClientPage()
         {
             InitializeComponent();
+
+            DataContext = this;
+
+            var fidel = DataReader.Read<Fidelio>();
+
+            fidel.ForEach(x => ListeFidelio.Add(x));
+
+            SelectedFidelio = ListeFidelio[0];
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -31,6 +46,21 @@ namespace BDD_VELOMAX_APP.Views
         }
 
         private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Butt_Add_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Butt_Update_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Butt_Delete_Click(object sender, RoutedEventArgs e)
         {
 
         }
