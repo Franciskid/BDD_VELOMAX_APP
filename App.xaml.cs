@@ -70,13 +70,15 @@ namespace BDD_VELOMAX_APP
             int id2 = (int)DataWriter.Insert(ad2);
             int id3 = (int)DataWriter.Insert(ad3);
 
-            var o = DataReader.GetObject<Adresse>(id1);
+            var o1 = DataReader.GetObject<Adresse>(id1);
+            var o2 = DataReader.GetObject<Adresse>(id2);
 
-            o.CodePostal = "UPDATE";
 
-            bool b = DataWriter.Update(o);
+            o1.CodePostal = "UPDATE";
 
-            //bool bb = DataWriter.Remove(o);
+            bool b = DataWriter.Update(o1);
+
+            bool bb = DataWriter.Remove(o2);
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
