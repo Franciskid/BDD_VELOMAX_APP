@@ -46,12 +46,15 @@ namespace BDD_VELOMAX_APP
         /// </summary>
         private void TestFunction()
         {
-            var a = DataReader.Read<Assemblage>();
             var b = DataReader.Read<Adresse>();
+            var a = DataReader.Read<Assemblage>();
             var c = DataReader.Read<Client>();
             var d = DataReader.Read<Commande>();
-            var e = DataReader.Read<Fournisseurs>();
-            var f = DataReader.Read<Pieces>();
+            var cazd = DataReader.Read<Compte>();
+            var daz = DataReader.Read<Fidelio>();
+            var eef = DataReader.Read<Fournisseurs>();
+            var f = DataReader.Read<Modele>();
+            var fe = DataReader.Read<Pieces>();
 
         }
 
