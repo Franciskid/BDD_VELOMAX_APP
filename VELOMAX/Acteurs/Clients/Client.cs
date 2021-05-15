@@ -18,9 +18,9 @@ namespace BDD_VELOMAX_APP
         public object ID { get; protected set; }
 
 
-        protected Client(Adresse adresse, string tel, string mail)
+        protected Client(object ID, int idAdresse, string tel, string mail)
         {
-            this.Adresse = adresse;
+            this.Adresse = DataReader.GetObject<Adresse>(idAdresse);
             this.Telephone = tel;
             this.AdresseMail = mail;
         }
