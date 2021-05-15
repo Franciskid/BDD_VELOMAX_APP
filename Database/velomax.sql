@@ -269,5 +269,14 @@ values('Kilimandjaro',  569, 'VTT'),
 ('Mud Zinger I',  279, 'BMX'),
 ('Mud Zinger II',  359, 'BMX');
 
+insert into Adresse(rue, ville, codePostal,pays)
+values("rue de la pompe","paris","75002","france"),
+("Boulevard de Belleville","paris","75020","france"),
+("rue Lecourbe","paris","75019","france"),
+("B","paris","75017","france"),
 
+
+
+insert into Clients(typeClient, nom, idAdresse, telephone, courriel, nomContact)
+values('boutique',"Haribo",1,"06 26 43 43 14","hario@gmail.com","defer");
 
