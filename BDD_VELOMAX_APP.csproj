@@ -159,6 +159,9 @@
     <Compile Include="Views\PageTESTT.xaml.cs">
       <DependentUpon>PageTESTT.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pagestatistique.xaml.cs">
+      <DependentUpon>Pagestatistique.xaml</DependentUpon>
+    </Compile>
     <Page Include="Styles\ButtonResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -206,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PageTESTT.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pagestatistique.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
