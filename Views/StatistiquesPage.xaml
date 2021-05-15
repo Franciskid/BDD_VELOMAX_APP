@@ -11,11 +11,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:BDD_VELOMAX_APP.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="900">
+             d:DesignHeight="700" d:DesignWidth="900">
 
 
     <Grid >
-        <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="15" >
+        <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="15" Margin="20">
             <!--Background="{StaticResource ConnexionPage}"-->
             <Border.Background>
                 <RadialGradientBrush 
@@ -35,17 +35,20 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="100*" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="100*"/>
-                    <RowDefinition Height="100*" />
-                    <RowDefinition Height="100*" />
-                    <RowDefinition Height="100*"/>
-                    <RowDefinition Height="100*" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="100*" />
                 </Grid.RowDefinitions>
 
-                <TextBlock FontSize="50" FontWeight="Bold" Grid.Row="0"  Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" Foreground="AliceBlue">
-                    statistique
+                <Border Grid.Row="1" Grid.RowSpan="6" Grid.Column="0" HorizontalAlignment="Right" BorderThickness="2" BorderBrush="AliceBlue" VerticalAlignment="Stretch" Margin="0, -1, 0, 5"/>
+                <Border Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="AliceBlue" VerticalAlignment="Bottom" Margin="5, 0, 5, 0"/>
+                
+                <TextBlock FontSize="50" FontWeight="Bold" Grid.Row="0"  Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" Foreground="AliceBlue" Margin="0, 0, 0, 20">
+                    Menu Statistiques
                 </TextBlock>
                 <TextBlock FontSize="30" FontWeight="Bold" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 1</TextBlock>
                 <TextBlock FontSize="30" FontWeight="Bold" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 2</TextBlock>
