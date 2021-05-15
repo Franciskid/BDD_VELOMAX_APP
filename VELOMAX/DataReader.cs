@@ -34,7 +34,7 @@ namespace BDD_VELOMAX_APP
         /// <returns></returns>
         public static MySqlConnection OpenConnexion(bool db = true)
         {
-            try
+            try //Pas de using ici évidemment
             {
                 var mySQLCon = new MySqlConnection(ConfigurationManager.AppSettings.Get(db ? App.Admin ? "ServeurConnexionDBRoot" : "ServeurConnexionDBBozo" : App.Admin ? "ServeurConnexionRoot" : "ServeurConnexionBozo"));
                 mySQLCon.Open();
@@ -87,7 +87,7 @@ namespace BDD_VELOMAX_APP
                         return null;
                     }
 
-                    MySqlCommand command = new MySqlCommand(query, c);
+                    using (MySqlCommand command = new MySqlCommand(query, c))
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
                         List<T> l = new List<T>();
@@ -166,7 +166,7 @@ namespace BDD_VELOMAX_APP
                         return null;
                     }
 
-                    MySqlCommand command = new MySqlCommand(query, c);
+                    using (MySqlCommand command = new MySqlCommand(query, c))
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
                         List<List<object>> l = new List<List<object>>();
