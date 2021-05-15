@@ -8,8 +8,6 @@ namespace BDD_VELOMAX_APP
 {
     class Pieces:IMySQL
     {
-        public string IdPiece { get; private set; }
-
         public string Nom { get; private set; }
 
         public int SiretFournisseur { get; private set; }
@@ -28,7 +26,7 @@ namespace BDD_VELOMAX_APP
 
         public Pieces (string IdPiece, string Nom, int siretFournisseur, int NumProduit, float Prix, int qté, DateTime DateIntroduction, DateTime DateDiscontinuation, DateTime DelaiApprovisionnement)
         {
-            this.IdPiece = IdPiece;
+            this.ID = IdPiece;
             this.Nom = Nom;
             this.SiretFournisseur = siretFournisseur;
             this.NumProduit = NumProduit;
@@ -38,8 +36,6 @@ namespace BDD_VELOMAX_APP
             this.DateDiscontinuation = DateDiscontinuation;
             this.DelaiApprovisionnement = DelaiApprovisionnement;
         }
-
-
 
 
         public object ID { get; private set; }

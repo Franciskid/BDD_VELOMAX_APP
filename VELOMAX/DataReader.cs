@@ -78,7 +78,7 @@ namespace BDD_VELOMAX_APP
         /// <returns></returns>
         public static List<T> Read<T>(string query) where T : IMySQL
         {
-            //try
+            try
             {
                 using (MySqlConnection c = OpenConnexion())
                 {
@@ -129,11 +129,11 @@ namespace BDD_VELOMAX_APP
                             }
                             if (typeof(T) == typeof(Fournisseurs))
                             {
-                                l.Add((T)(IMySQL)new Fournisseurs((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (string)reader[val[3]], (int)reader[val[4]]));
+                                l.Add((T)(IMySQL)new Fournisseurs((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (int)reader[val[3]], int.Parse((string)reader[val[4]])));
                             }
                             if (typeof(T) == typeof(Pieces))
                             {
-                                l.Add((T)(IMySQL)new Pieces(reader.GetStringSafe(0), reader.GetStringSafe(1), reader.GetStringSafe(2), (int)reader[val[2]], (float)reader[val[3]], reader.GetDateTime(val[4]), reader.GetDateTime(val[5]), reader.GetDateTime(val[6])));
+                                l.Add((T)(IMySQL)new Pieces(reader.GetStringSafe(0), reader.GetStringSafe(1), (int)reader[val[2]], (int)reader[val[3]], (Single)reader[val[4]], (int)reader[val[5]], reader.GetDateTimeSafe(6), reader.GetDateTimeSafe(7), reader.GetDateTimeSafe(8)));
                             }
                         }
 
@@ -142,10 +142,10 @@ namespace BDD_VELOMAX_APP
                 }
 
             }
-            //catch (Exception ex)
-            //{
-            //    return null;
-            //}
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
 
@@ -201,6 +201,16 @@ namespace BDD_VELOMAX_APP
         public static string GetStringSafe(this MySqlDataReader @this, int column)
         {
             return !@this.IsDBNull(column) ? @this.GetString(column) : null;
+        }
+        /// <summary>
+        /// Vérifie si le datetime recherché est bien non null et en renvoie la valeur de manière sécurisé.
+        /// </summary>
+        /// <param name="this"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
+        public static DateTime GetDateTimeSafe(this MySqlDataReader @this, int column)
+        {
+            return !@this.IsDBNull(column) ? @this.GetDateTime(column) : default;
         }
     }
 }

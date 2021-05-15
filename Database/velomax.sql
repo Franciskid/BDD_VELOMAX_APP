@@ -25,7 +25,7 @@ create table if not exists Adresse
 
 create table if not exists Fournisseurs
 (
-	siret int primary key auto_increment not null,
+	siret int primary key not null,
     nom varchar(30),
     contact varchar(30),
     idAdresse int,
@@ -38,15 +38,15 @@ create table if not exists Pieces
 (
 	idPiece varchar(10) primary key not null,
     nom varchar(30),
-    fournisseurId int,
-    numProduit int,
-    prix int,
-    quantité int,
+    fournisseurId int not null default 0,
+    numProduit int not null default 1,
+    prix float not null default 1,
+    quantité int not null default 1,
     dateIntroduction datetime,
     dateDiscontinuation datetime,
     delaiApprovisionnement datetime,
     
-	foreign key (fournisseurId) references Fournisseurs(siret)
+	foreign key (fournisseurId) references fournisseurs(siret)
 );
 
 create table if not exists Assemblages
@@ -133,7 +133,7 @@ create table if not exists Commandes
     dateCommande datetime,
     dateLivraison dateTime,
     
-    foreign key (clientid) references Client(idClient)
+    foreign key (clientid) references Clients(idClient)
     
 );
 
@@ -147,21 +147,26 @@ create table if not exists Comptes
 
 insert into Comptes(pseudo, motdepasse) values ('root', sha1('rootroot')), ('bozo', sha1('bozobozo'));
 
+insert into adresse(idAdresse, rue, ville, codePostal, pays)
+values(1, "rue nulle part", "Marseille", "13000", "France");
 
-insert into Pieces(idPiece, nom) 
-values('C32', 'Cadre'),
-('C34', 'Cadre'),
-('C76', 'Cadre'),
-('C43',  'Cadre'),
-('C44f',  'Cadre'),
-('C43f',  'Cadre'),
-('C01' , 'Cadre'),
-('C02' , 'Cadre'),
-('C15',  'Cadre'),
-('C87' , 'Cadre'),
-('C87f',  'Cadre'),
-('C25' , 'Cadre'),
-('C26' , 'Cadre');
+insert into fournisseurs(siret, nom, contact, idAdresse, score) 
+values(0, "TEST", "CONTACT_TEST", 1, 2);
+
+insert into Pieces(idPiece, nom, fournisseurId) 
+values('C32', 'Cadre', 0),
+('C34', 'Cadre', 0),
+('C76', 'Cadre', 0),
+('C43',  'Cadre', 0),
+('C44f',  'Cadre', 0),
+('C43f',  'Cadre', 0),
+('C01' , 'Cadre', 0),
+('C02' , 'Cadre', 0),
+('C15',  'Cadre', 0),
+('C87' , 'Cadre', 0),
+('C87f',  'Cadre', 0),
+('C25' , 'Cadre', 0),
+('C26' , 'Cadre', 0);
  
 insert into Pieces(nom, idPiece) 
 values('Guidon', 'G7'),
