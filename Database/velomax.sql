@@ -303,7 +303,7 @@ values('boutique',"Haribo",1,"06 26 43 43 14","hario@gmail.com","Defer"),
   
 
 
-insert into Clients(typeClient, prenom,nom, idAdresse, telephone, courriel,remise,ProgrammeFidélité)
+insert into Clients(typeClient, prenom,nom, idAdresse, telephone, courriel,remise,idFidelio)
 value('individuel',"Jean","Roul",5,"06 26 22 18 40","j.roul@gmail.com",4,1),
 ('individuel',"Louise","¨Pril",6,"06 46 52 18 41","l.pril@gmail.com",1,2),
 ('individuel',"Yanis","Quille",7,"06 16 50 98 44","y.quille@gmail.com",3,3),
