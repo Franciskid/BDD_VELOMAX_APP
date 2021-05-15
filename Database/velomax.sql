@@ -288,10 +288,24 @@ insert into Adresse(rue, ville, codePostal,pays)
 values("rue de la pompe","paris","75002","france"),
 ("Boulevard de Belleville","paris","75020","france"),
 ("rue Lecourbe","paris","75019","france"),
-("B","paris","75017","france");
-
-
+("Rue de Vaugirard","paris","75012","france"),
+("rue de Courcelles","paris","75014","france"),
+("avenue de la République","paris","75016","france"),
+("Avenue Mozart","paris","75018","france"),
+("place de la Bourse","paris","75010","france");
 
 insert into Clients(typeClient, nom, idAdresse, telephone, courriel, nomContact)
-values('boutique',"Haribo",1,"06 26 43 43 14","hario@gmail.com","defer");
+values('boutique',"Haribo",1,"06 26 43 43 14","hario@gmail.com","Defer"),
+('boutique',"EDF",2,"06 46 45 41 24","EDF@gmail.com","Dureau"),
+('boutique',"PMU",4,"06 36 15 22 18","PMU@gmail.com","Blanc"),
+('boutique',"Michelin",3,"06 56 42 28 08","PMU@gmail.com","Blanc");
+
+  
+
+
+insert into Clients(typeClient, prenom,nom, idAdresse, telephone, courriel,remise,ProgrammeFidélité)
+value('individuel',"Jean","Roul",5,"06 26 22 18 40","j.roul@gmail.com",4,1),
+('individuel',"Louise","¨Pril",6,"06 46 52 18 41","l.pril@gmail.com",1,2),
+('individuel',"Yanis","Quille",7,"06 16 50 98 44","y.quille@gmail.com",3,3),
+('individuel',"Nabile","zoul",8,"06 06 51 38 34","n.zoul@gmail.com",4,4);
 
