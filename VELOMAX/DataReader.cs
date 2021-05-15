@@ -78,7 +78,7 @@ namespace BDD_VELOMAX_APP
         /// <returns></returns>
         public static List<T> Read<T>(string query) where T : IMySQL
         {
-            try
+            //try
             {
                 using (MySqlConnection c = OpenConnexion())
                 {
@@ -142,10 +142,10 @@ namespace BDD_VELOMAX_APP
                 }
 
             }
-            catch (Exception ex)
-            {
-                return null;
-            }
+            //catch (Exception ex)
+            //{
+            //    return null;
+            //}
         }
 
 

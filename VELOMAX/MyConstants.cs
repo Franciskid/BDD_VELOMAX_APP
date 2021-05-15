@@ -42,7 +42,7 @@ namespace BDD_VELOMAX_APP
                 { TABLE_FIDELIO, new List<string>() { TABLE_idFIDELIO, "nom", "prix", "duree_annee", "rabais" } },
                 { TABLE_FOURNISSEURS, new List<string>() { TABLE_idFOURNISSEURS, "nom", "contact", "idAdresse", "score" } },
                 { TABLE_MODELES, new List<string>() { TABLE_idMODELES, "nom", "prix", "ligne", "dateIntroduction", "dateDiscontinuation" } },
-                { TABLE_PIECES, new List<string>() { TABLE_idPIECES, "nom", "nomFournisseur", "numProduit", "prix", "dateIntroduction", "dateDiscontinuation", "delaiApprovisionnement" } },
+                { TABLE_PIECES, new List<string>() { TABLE_idPIECES, "nom", "fournisseurId", "numProduit", "prix", "quantité", "dateIntroduction", "dateDiscontinuation", "delaiApprovisionnement" } },
             };
 
             return dico;

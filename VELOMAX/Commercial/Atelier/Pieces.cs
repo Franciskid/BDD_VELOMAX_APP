@@ -12,11 +12,13 @@ namespace BDD_VELOMAX_APP
 
         public string Nom { get; private set; }
 
-        public string NomFournisseur { get; private set; }
+        public int SiretFournisseur { get; private set; }
 
         public int NumProduit { get; private set; }
 
         public float Prix { get; private set; }
+
+        public int Quantité { get; private set; }
 
         public DateTime DateIntroduction { get; private set; }
 
@@ -24,13 +26,14 @@ namespace BDD_VELOMAX_APP
 
         public DateTime DelaiApprovisionnement { get; private set; }
 
-        public Pieces (string IdPiece, string Nom, string NomFournisseur, int NumProduit, float Prix, DateTime DateIntroduction, DateTime DateDiscontinuation, DateTime DelaiApprovisionnement)
+        public Pieces (string IdPiece, string Nom, int siretFournisseur, int NumProduit, float Prix, int qté, DateTime DateIntroduction, DateTime DateDiscontinuation, DateTime DelaiApprovisionnement)
         {
             this.IdPiece = IdPiece;
             this.Nom = Nom;
-            this.NomFournisseur = NomFournisseur;
+            this.SiretFournisseur = siretFournisseur;
             this.NumProduit = NumProduit;
             this.Prix = Prix;
+            this.Quantité = qté;
             this.DateIntroduction = DateIntroduction;
             this.DateDiscontinuation = DateDiscontinuation;
             this.DelaiApprovisionnement = DelaiApprovisionnement;
@@ -40,6 +43,6 @@ namespace BDD_VELOMAX_APP
 
 
         public object ID { get; private set; }
-        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{NomFournisseur}' , '{NumProduit}', '{Prix}','{DateIntroduction}','{DateDiscontinuation}','{DelaiApprovisionnement}'";
+        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{SiretFournisseur}','{NumProduit}','{Prix}','{Quantité}','{DateIntroduction}','{DateDiscontinuation}','{DelaiApprovisionnement}'";
     }
 }

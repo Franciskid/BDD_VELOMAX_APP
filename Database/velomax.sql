@@ -14,16 +14,39 @@ drop table if exists Clients;
 drop table if exists Adresse;
 drop table if exists Fidelio;
 
+create table if not exists Adresse
+(
+	idAdresse int primary key auto_increment not null,
+    rue varchar(30),
+    ville varchar(30),
+    codePostal varchar(30),
+    pays varchar(30)
+);
+
+create table if not exists Fournisseurs
+(
+	siret int primary key auto_increment not null,
+    nom varchar(30),
+    contact varchar(30),
+    idAdresse int,
+    score enum('1', '2', '3', '4'),
+    
+    foreign key (idAdresse) references Adresse(idAdresse)
+);
+
 create table if not exists Pieces
 (
 	idPiece varchar(10) primary key not null,
     nom varchar(30),
-    nomFournisseur varchar(30),
+    fournisseurId int,
     numProduit int,
     prix int,
+    quantité int,
     dateIntroduction datetime,
     dateDiscontinuation datetime,
-    delaiApprovisionnement datetime
+    delaiApprovisionnement datetime,
+    
+	foreign key (fournisseurId) references Fournisseurs(siret)
 );
 
 create table if not exists Assemblages
@@ -80,14 +103,6 @@ create table if not exists Fidelio
     rabais float4
 );
 
-create table if not exists Adresse
-(
-	idAdresse int primary key auto_increment not null,
-    rue varchar(30),
-    ville varchar(30),
-    codePostal varchar(30),
-    pays varchar(30)
-);
 
 create table if not exists Clients
 (
@@ -106,24 +121,19 @@ create table if not exists Clients
     
     foreign key (idFidelio) references Fidelio(idFidelio),
     foreign key (idAdresse) references Adresse(idAdresse)
-);ALTER TABLE Modeles AUTO_INCREMENT = 101;
-
-create table if not exists Fournisseurs
-(
-	siret int primary key auto_increment not null,
-    nom varchar(30),
-    contact varchar(30),
-    idAdresse int,
-    score enum('1', '2', '3', '4'),
-    
-    foreign key (idAdresse) references Adresse(idAdresse)
 );
+ALTER TABLE Modeles AUTO_INCREMENT = 101;
+
 
 create table if not exists Commandes
 (
 	idCommande int primary key  auto_increment not null, 
+    numCommande int,
+    clientid int,
     dateCommande datetime,
-    dateLivraison dateTime
+    dateLivraison dateTime,
+    
+    foreign key (clientid) references Client(idClient)
     
 );
 
@@ -273,7 +283,7 @@ insert into Adresse(rue, ville, codePostal,pays)
 values("rue de la pompe","paris","75002","france"),
 ("Boulevard de Belleville","paris","75020","france"),
 ("rue Lecourbe","paris","75019","france"),
-("B","paris","75017","france"),
+("B","paris","75017","france");
 
 
 
