@@ -58,12 +58,6 @@
                 <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Chiffres d'affires</TextBlock>
                 <DataGrid Grid.Row="2" Grid.Column="0" Background="Transparent" x:Name="statsquantite" HorizontalAlignment="Stretch" Foreground="AliceBlue">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding ID}" Foreground="AliceBlue"/>
-                        <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Foreground="AliceBlue"/>
-                        <DataGridTextColumn Header="Prix" Binding="{Binding Prix}"/>
-                        <DataGridTextColumn Header="quantité vendue" Binding="{Binding Quantité_vendue}"/>
-                        <DataGridTextColumn Header="delai" Binding="{Binding DelaiApprovisionnement}" />
-
                     </DataGrid.Columns>
                     <DataGrid.RowDetailsTemplate>
                         <DataTemplate>
@@ -73,10 +67,7 @@
                 </DataGrid>
                 <DataGrid Grid.Row="2" Grid.Column="1" Background="Transparent" x:Name="statsfidelite" HorizontalAlignment="Stretch" Foreground="AliceBlue">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="typeClient" Binding="{Binding TypeClient}" Foreground="AliceBlue"/>
-                        <DataGridTextColumn Header="nom" Binding="{Binding Nom}"/>
-                        <DataGridTextColumn Header="telephone" Binding="{Binding Telephone}"/>
-                        <DataGridTextColumn Header="courriel" Binding="{Binding ourriel}"/>
+   
                     </DataGrid.Columns>
                     <DataGrid.RowDetailsTemplate>
                         <DataTemplate>
@@ -86,20 +77,13 @@
                 </DataGrid>
                 <DataGrid Grid.Row="4" Grid.Column="0" Background="Transparent" x:Name="smeilleurclient" HorizontalAlignment="Stretch" Foreground="AliceBlue">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="typeClient" Binding="{Binding TypeClient}" Foreground="AliceBlue"/>
-                        <DataGridTextColumn Header="nom" Binding="{Binding Nom}"/>
-                        <DataGridTextColumn Header="telephone" Binding="{Binding Telephone}"/>
-                        <DataGridTextColumn Header="courriel" Binding="{Binding Courriel}"/>
-                        <DataGridTextColumn Header="Total acheter" Binding="{Binding Total_acheter}"/>
+
 
                     </DataGrid.Columns>
-                    <DataGrid.RowDetailsTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Details}" Margin="10" />
-                        </DataTemplate>
-                    </DataGrid.RowDetailsTemplate>
                 </DataGrid>
-                <TextBlock Grid.Row="6" Grid.Column="0" Background="Transparent" x:Name="moyenne" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"/> 
+                <TextBlock Grid.Row="6" Grid.Column="0" Background="Transparent" x:Name="moyenne" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" Background="Transparent" x:Name="moyenepieces" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="6" Grid.Column="1" Background="Transparent" x:Name="chiffredaffaires" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
 
         </Border>
