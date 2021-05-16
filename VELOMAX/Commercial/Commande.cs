@@ -16,19 +16,19 @@ namespace BDD_VELOMAX_APP
 
         public Pieces Piece { get; private set; }
 
-        public Assemblage Assemblage { get; private set; }
+        public Modele Modele { get; private set; }
 
         public DateTime DateCommande { get; private set; }
 
         public DateTime DateLivraison { get; private set; }
 
-        public Commande(int? idCommande, int numCommande, int idClient, string idPiece, int? idAssemblage, DateTime DateCommande, DateTime DateLivraison)
+        public Commande(int? idCommande, int numCommande, int idClient, string idPiece, int? idModele, DateTime DateCommande, DateTime DateLivraison)
         {
             this.ID = idCommande;
             this.IDCommande = numCommande;
             this.Client = DataReader.GetObject<Client>(idClient);
             this.Piece = idPiece != null ? DataReader.GetObject<Pieces>(idPiece) : null;
-            this.Assemblage = idAssemblage != null ? DataReader.GetObject<Assemblage>(idAssemblage) : null;
+            this.Modele = idModele != null ? DataReader.GetObject<Modele>(idModele) : null;
             this.DateCommande = DateCommande;
             this.DateLivraison = DateLivraison;
         }
