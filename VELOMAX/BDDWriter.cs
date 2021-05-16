@@ -67,7 +67,7 @@ namespace BDD_VELOMAX_APP
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-       // public static bool Update(IMySQL obj) => ExecuteNonQuery($"UPDATE {MyConstants.TypeToTable(obj.GetType())} SET {MyConstants.UpdateRowSet(obj)} WHERE {MyConstants.TypeToID(obj.GetType())} = '{obj.ID}';") > 0;
+        public static bool Update(IMySQL obj) => ExecuteNonQuery($"UPDATE {MyConstants.TypeToTable(obj.GetType())} SET {MyConstants.UpdateRowSet(obj)} WHERE {MyConstants.TypeToID(obj.GetType())} = '{obj.ID}';") > 0;
 
         /// <summary>
         /// Supprime un objet dans la base de donnée
