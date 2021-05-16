@@ -20,8 +20,8 @@ namespace BDD_VELOMAX_APP.Views
     /// </summary>
     public partial class Pagestastique : UserControl
     {
-            public Pagestastique()
-            {
+        public Pagestastique()
+        {
 
             int nbrpiecesvendu = 0;
             int nombrepiecevenduparclients = 0;
@@ -35,7 +35,7 @@ namespace BDD_VELOMAX_APP.Views
 
             ///quantité
             List<Squantite> statsquantites = new List<Squantite>();
-           
+
             foreach (Pieces a in DataReader.Read<Pieces>())
             {
                 nbrpiecesvendu = 0;
@@ -50,28 +50,28 @@ namespace BDD_VELOMAX_APP.Views
                             nbrpiecesvendu++;
                             nombrepiecevenduparclients++;
                         }
-                    
+
                     }
-                    if (c.Modele!=null)
+                    if (c.Modele != null)
                     {
-                       
+
                         var r = DataReader.ReadQuery($"SELECT cadre, guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier  FROM velomax.assemblages where nom={a.Nom};").FirstOrDefault();
-                        foreach (object i in r) 
+                        foreach (object i in r)
                         {
-                                if (a.ID.ToString() == i.ToString())
+                            if (a.ID.ToString() == i.ToString())
                             {
                                 nbrpiecesvendu++;
                                 nombrepiecevenduparclients++;
                             }
                         }
                     }
-                    
+
                 }
-                statsquantites.Add(new Squantite(a.ID.ToString(),a.Nom, a.Prix, a.DelaiApprovisionnement, nbrpiecesvendu));
+                statsquantites.Add(new Squantite(a.ID.ToString(), a.Nom, a.Prix, a.DelaiApprovisionnement, nbrpiecesvendu));
             }
 
             statsquantite.ItemsSource = statsquantites;
-           
+
             ///fidelité
             List<Sfidel> Sfidels = new List<Sfidel>();
 
@@ -114,9 +114,9 @@ namespace BDD_VELOMAX_APP.Views
             {
                 if (c.Modele != null)
                 {
-                    prixmoyendescommandes+=c.Modele.Prix;
+                    prixmoyendescommandes += c.Modele.Prix;
                 }
-                if (c.Piece!=null)
+                if (c.Piece != null)
                 {
                     prixmoyendescommandes += c.Piece.Prix;
                 }
@@ -126,16 +126,16 @@ namespace BDD_VELOMAX_APP.Views
 
 
 
-            Chiffredaffaire =(int) prixmoyendescommandes;   ///chiffre d'affaire
+            Chiffredaffaire = (int)prixmoyendescommandes;   ///chiffre d'affaire
 
-            prixmoyendescommandes =(prixmoyendescommandes / n); ///prix moyen
+            prixmoyendescommandes = (prixmoyendescommandes / n); ///prix moyen
 
-            nombrepiecevenduparclients = (int) nombrepiecevenduparclients / 1; /// nombre de piece vendu en moyenne 
+            nombrepiecevenduparclients = (int)nombrepiecevenduparclients / 1; /// nombre de piece vendu en moyenne 
 
-            moyenne.Text =prixmoyendescommandes.ToString()+" € ";
+            moyenne.Text = prixmoyendescommandes.ToString() + " € ";
 
 
-            
+
         }
         public class Squantite
         {
@@ -155,7 +155,7 @@ namespace BDD_VELOMAX_APP.Views
                     return String.Format("{0} vaut {1} il faut attendre le {2} avant de se faire livrer.", this.Nom, this.Prix, DateTime.Now.AddMonths(this.DelaiApprovisionnement.Month));
                 }
             }
-            public Squantite(string ID,string nom, float prix, DateTime delaiApprovisionnement, int quantite)
+            public Squantite(string ID, string nom, float prix, DateTime delaiApprovisionnement, int quantite)
             {
                 this.ID = ID;
                 this.Nom = nom;

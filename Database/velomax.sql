@@ -131,13 +131,13 @@ create table if not exists Commandes
     numCommande int,
     clientid int,
     pieceid varchar(30),
-    assemblageid int,
+    modeleid int,
     dateCommande datetime,
     dateLivraison dateTime,
     
     foreign key (clientid) references Clients(idClient),
-    foreign key (pieceid) references Pieces(idPiece),
-    foreign key (assemblageid) references Assemblages(idAssemblage)
+    foreign key (pieceid) references Pieces(idPiece)
+    #foreign key (modeleid) references modeles(idModele)
     
 );
 
@@ -330,7 +330,7 @@ values('individuel',"Jean","Raoul",1,"06 26 22 18 40","j.roul@gmail.com","rara",
 ('individuel',"Christian","Villeneuve",1,"06 12 54 81 67","christistheone@gmail.com","rara",1,2,3,"20/06/13");
 
 
-insert into Commandes(numCommande, clientid, pieceid, modeleId, dateCommande, dateLivraison)
+insert into Commandes(numCommande, clientid, pieceid, modeleid, dateCommande, dateLivraison)
 values(1,1,'C01',Null,"17/01/12","20/01/12"),
 (1,1,'G12',Null,"17/01/12","20/01/12"),
 (2,2,'S37',Null,"10/02/12","20/02/12"),
@@ -342,14 +342,14 @@ values(1,1,'C01',Null,"17/01/12","20/01/12"),
 (6,4,'C15',Null,"01/03/12","07/03/12"),
 (6,4,'C26',Null,"01/03/12","07/03/12"),
 (6,4,'S73',Null,"01/03/12","07/03/12"),
-(7,5,Null,100009,"03/03/12","05/03/12"),
-(8,6,Null,100010,"10/03/12","10/03/12"),
-(8,6,Null,100010,"10/03/12","10/03/12"),
-(9,7,null,100011,"12/03/12","18/03/12"),
-(10,8,null,100012,"15/03/12","20/03/12"),
-(11,9,null,100013,"19/03/12","25/03/12"),
-(12,10,null,100014,"21/03/12","28/03/12"),
-(12,10,null,100001,"12/03/12","18/03/12"),
-(13,11,null,100002,"25/03/12","30/03/12"),
-(14,12,null,100003,"01/04/12","03/04/12"),
-(15,13,null,100004,"25/03/12","30/03/12");
+(7,5,Null,1,"03/03/12","05/03/12"),
+(8,6,Null,1,"10/03/12","10/03/12"),
+(8,6,Null,2,"10/03/12","10/03/12"),
+(9,7,null,2,"12/03/12","18/03/12"),
+(10,8,null,3,"15/03/12","20/03/12"),
+(11,9,null,3,"19/03/12","25/03/12"),
+(12,10,null,4,"21/03/12","28/03/12"),
+(12,10,null,4,"12/03/12","18/03/12"),
+(13,11,null,4,"25/03/12","30/03/12"),
+(14,12,null,5,"01/04/12","03/04/12"),
+(15,13,null,7,"25/03/12","30/03/12");
