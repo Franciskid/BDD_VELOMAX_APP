@@ -92,7 +92,7 @@ namespace BDD_VELOMAX_APP.Views
             ///plusieurmoyenne
             foreach (Commande c in DataReader.Read<Commande>())
             {
-                if (c.Assemblage != null)
+                if (c.Modele != null)
                 {
                     prixmoyendescommandes += 100;
                 }
