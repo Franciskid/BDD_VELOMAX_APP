@@ -20,14 +20,15 @@ namespace BDD_VELOMAX_APP.Views
     /// </summary>
     public partial class Pagestastique : UserControl
     {
-        int nbrpiecesvendu=0;
-        int nombrepiecevenduparclients = 0;
-        float prixmoyendescommandes=0;
-        int n = 0;
-        float Chiffredaffaire = 0;
-        float totalclientencour =0;
             public Pagestastique()
             {
+
+            int nbrpiecesvendu = 0;
+            int nombrepiecevenduparclients = 0;
+            float prixmoyendescommandes = 0;
+            int n = 0;
+            float Chiffredaffaire = 0;
+            float totalclientencour = 0;
             InitializeComponent();
 
             this.DataContext = this;
@@ -40,12 +41,26 @@ namespace BDD_VELOMAX_APP.Views
                 nbrpiecesvendu = 0;
                 foreach (Commande c in DataReader.Read<Commande>())
                 {
+
+                    if (c.Piece != null)
+                    {
+
+                        if (a.ID.ToString() == c.Piece.ID.ToString())
+                        {
+                            nbrpiecesvendu++;
+                            nombrepiecevenduparclients++;
+                        }
                     
-                    if (a.ID.ToString()==c.Piece.ID.ToString())
-                    { 
-                        nbrpiecesvendu++;
-                        nombrepiecevenduparclients ++;
                     }
+                    if (c.Modele!=null)
+                    {
+                        if (a.ID.ToString() == c.Piece.ID.ToString())
+                        {
+
+                        }
+                        var r = DataReader.ReadQuery("SELECT cadre, guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier  FROM velomax.assemblages where nom={0};",a.Nom) ;
+                    }
+                    
                 }
                 statsquantites.Add(new Squantite(a.ID.ToString(),a.Nom, a.Prix, a.DelaiApprovisionnement, nbrpiecesvendu));
             }
@@ -94,7 +109,7 @@ namespace BDD_VELOMAX_APP.Views
             {
                 if (c.Modele != null)
                 {
-                    prixmoyendescommandes += 100;
+                    prixmoyendescommandes+=c.Modele.Prix;
                 }
                 if (c.Piece!=null)
                 {
@@ -112,7 +127,7 @@ namespace BDD_VELOMAX_APP.Views
 
             nombrepiecevenduparclients = (int) nombrepiecevenduparclients / 1; /// nombre de piece vendu en moyenne 
 
-            moyenne.Text =prixmoyendescommandes.ToString();
+            moyenne.Text =prixmoyendescommandes.ToString()+" € ";
 
 
             

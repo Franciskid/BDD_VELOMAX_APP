@@ -79,9 +79,9 @@ namespace BDD_VELOMAX_APP
             var o2 = DataReader.GetObject<Adresse>(id2);
 
 
-            o1.CodePostal = "UPDATE";
+            //o1.CodePostal = "UPDATE";
 
-            bool b = DataWriter.Update(o1);
+           // bool b = DataWriter.Update(o1);
 
             int bbb = DataWriter.Remove<Adresse>(id2);
         }
