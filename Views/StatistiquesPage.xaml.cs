@@ -55,7 +55,7 @@ namespace BDD_VELOMAX_APP.Views
                     if (c.Modele != null)
                     {
 
-                        var r = BDDReader.ReadQuery($"SELECT cadre, guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier  FROM velomax.assemblages where nom={c.Modele.Nom};").FirstOrDefault();
+                        var r = BDDReader.ReadQuery($"SELECT cadre, guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier  FROM velomax.assemblages where nom='{c.Modele.Nom}';").FirstOrDefault();
                         foreach (object i in r)
                         {
                             if (a.ID.ToString() == i.ToString())
