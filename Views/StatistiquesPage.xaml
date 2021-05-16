@@ -86,11 +86,12 @@
                 </DataGrid>
                 <DataGrid Grid.Row="4" Grid.Column="0" Background="Transparent" x:Name="smeilleurclient" HorizontalAlignment="Stretch" Foreground="AliceBlue">
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="Total acheter" Binding="{Binding Total_acheter}"/>
                         <DataGridTextColumn Header="typeClient" Binding="{Binding TypeClient}" Foreground="AliceBlue"/>
                         <DataGridTextColumn Header="nom" Binding="{Binding Nom}"/>
                         <DataGridTextColumn Header="telephone" Binding="{Binding Telephone}"/>
                         <DataGridTextColumn Header="courriel" Binding="{Binding Courriel}"/>
-                        <DataGridTextColumn Header="Total acheter" Binding="{Binding Total_acheter}"/>
+                        
 
                     </DataGrid.Columns>
                     <DataGrid.RowDetailsTemplate>
