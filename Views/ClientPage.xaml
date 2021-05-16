@@ -33,7 +33,7 @@
 
             <DockPanel VerticalAlignment="Stretch">
 
-                <DataGrid Height="250" Margin="20" Background="Transparent" BorderThickness="2" BorderBrush="AliceBlue" DockPanel.Dock="Top" SelectionChanged="DataGrid_SelectionChanged" Name="DatagridClients">
+                <DataGrid Height="250" Margin="20" Background="Lavender" BorderThickness="2" BorderBrush="AliceBlue" DockPanel.Dock="Top" SelectionChanged="DataGrid_SelectionChanged" Name="DatagridClients">
                 </DataGrid>
 
                 <Grid DockPanel.Dock="Bottom">

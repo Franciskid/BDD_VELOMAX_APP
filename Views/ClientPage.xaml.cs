@@ -45,6 +45,7 @@ namespace BDD_VELOMAX_APP.Views
             SelectedFidelio = ListeFidelio[0];
             List<ClientIndividuel> a = DataReader.Read<ClientIndividuel>();
             DatagridClients.ItemsSource = a;
+        
         }
        
 
