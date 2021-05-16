@@ -114,7 +114,7 @@ namespace BDD_VELOMAX_APP.Views
                         totalclientencour = j + f;
                         if (totalclientencour != 0)
                         {
-                            if (Smeilleurs.Contains(new Smeilleur("individuel", b.Nom, b.Telephone, b.AdresseMail, (float)totalclientencour)) == false)
+                            if (Smeilleurs.Contains(new Smeilleur((float)totalclientencour, "individuel", b.Nom, b.Telephone, b.AdresseMail)) == false)
                             {
                                 bool test = true;
                                 foreach (Smeilleur J in Smeilleurs)
@@ -124,7 +124,7 @@ namespace BDD_VELOMAX_APP.Views
                                 }
                                 if (test == true)
                                 {
-                                    Smeilleurs.Add(new Smeilleur("individuel", b.Nom, b.Telephone, b.AdresseMail, (float)totalclientencour));
+                                    Smeilleurs.Add(new Smeilleur((float)totalclientencour,"individuel", b.Nom, b.Telephone, b.AdresseMail));
                                 }
                             }
                         }
@@ -156,7 +156,7 @@ namespace BDD_VELOMAX_APP.Views
                     totalclientencour = j + f;
                     if (totalclientencour != 0)
                     {
-                        if (Smeilleurs.Contains(new Smeilleur("Boutique", b.NomEntreprise, b.Telephone, b.AdresseMail, (float)totalclientencour)) == false)
+                        if (Smeilleurs.Contains(new Smeilleur((float)totalclientencour,"Boutique", b.NomEntreprise, b.Telephone, b.AdresseMail)) == false)
                         {
 
                             bool test = true;
@@ -167,7 +167,7 @@ namespace BDD_VELOMAX_APP.Views
                             }
                             if (test == true)
                             {
-                                Smeilleurs.Add(new Smeilleur("Boutique", b.NomEntreprise, b.Telephone, b.AdresseMail, (float)totalclientencour));
+                                Smeilleurs.Add(new Smeilleur((float)totalclientencour,"Boutique", b.NomEntreprise, b.Telephone, b.AdresseMail));
                             }
                         }
                     }
@@ -277,7 +277,7 @@ namespace BDD_VELOMAX_APP.Views
 
             public float Total_acheter { get; set; }
 
-            public Smeilleur(string typeClient, string nom, string telephone, string courriel, float score)
+            public Smeilleur(float score, string typeClient, string nom, string telephone, string courriel)
             {
                 this.TypeClient = typeClient;
                 this.Nom = nom;
