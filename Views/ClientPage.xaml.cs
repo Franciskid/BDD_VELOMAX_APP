@@ -31,14 +31,14 @@ namespace BDD_VELOMAX_APP.Views
 
         public Fidelio SelectedFidelio { get; set; }
 
-        public IEnumerable<ClientViewModel> ListeClients = DataReader.Read<Client>().Select(x => new ClientViewModel(x));
+        public IEnumerable<ClientViewModel> ListeClients = BDDReader.Read<Client>().Select(x => new ClientViewModel(x));
 
 
         public ClientPage()
         {
             InitializeComponent();
 
-            var fidel = DataReader.Read<Fidelio>();
+            var fidel = BDDReader.Read<Fidelio>();
 
             fidel.ForEach(x => ListeFidelio.Add(x));
 

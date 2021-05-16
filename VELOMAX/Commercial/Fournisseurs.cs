@@ -21,7 +21,7 @@ namespace BDD_VELOMAX_APP
             this.ID = Siret;
             this.Nom = Nom;
             this.Contact = Contact;
-            this.Adresse = DataReader.GetObject<Adresse>(iDadresse);
+            this.Adresse = BDDReader.GetObject<Adresse>(iDadresse);
             this.Score = (Score)Scores;
         }
         public object ID { get; }

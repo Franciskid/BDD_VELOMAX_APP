@@ -26,9 +26,9 @@ namespace BDD_VELOMAX_APP
         {
             this.ID = idCommande;
             this.IDCommande = numCommande;
-            this.Client = DataReader.GetObject<Client>(idClient);
-            this.Piece = idPiece != null ? DataReader.GetObject<Pieces>(idPiece) : null;
-            this.Modele = idModele != null ? DataReader.GetObject<Modele>(idModele) : null;
+            this.Client = BDDReader.GetObject<Client>(idClient);
+            this.Piece = idPiece != null ? BDDReader.GetObject<Pieces>(idPiece) : null;
+            this.Modele = idModele != null ? BDDReader.GetObject<Modele>(idModele) : null;
             this.DateCommande = DateCommande;
             this.DateLivraison = DateLivraison;
         }

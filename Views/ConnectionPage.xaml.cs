@@ -31,7 +31,7 @@ namespace BDD_VELOMAX_APP.Views
             {
                 if (!string.IsNullOrWhiteSpace(this.TB_UserPW.Password))
                 {
-                    var compte = DataReader.GetObject<Compte>(this.TB_UserName.Text, "pseudo");
+                    var compte = BDDReader.GetObject<Compte>(this.TB_UserName.Text, "pseudo");
 
                     if (compte != null && MyHelper.ComparePassword(this.TB_UserPW.Password, compte))
                     {

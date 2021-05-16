@@ -36,10 +36,10 @@ namespace BDD_VELOMAX_APP.Views
             ///quantité
             List<Squantite> statsquantites = new List<Squantite>();
 
-            foreach (Pieces a in DataReader.Read<Pieces>())
+            foreach (Pieces a in BDDReader.Read<Pieces>())
             {
                 nbrpiecesvendu = 0;
-                foreach (Commande c in DataReader.Read<Commande>())
+                foreach (Commande c in BDDReader.Read<Commande>())
                 {
 
                     if (c.Piece != null)
@@ -55,7 +55,7 @@ namespace BDD_VELOMAX_APP.Views
                     if (c.Modele != null)
                     {
 
-                        var r = DataReader.ReadQuery($"SELECT cadre, guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier  FROM velomax.assemblages where nom={a.Nom};").FirstOrDefault();
+                        var r = BDDReader.ReadQuery($"SELECT cadre, guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier  FROM velomax.assemblages where nom={a.Nom};").FirstOrDefault();
                         foreach (object i in r)
                         {
                             if (a.ID.ToString() == i.ToString())
@@ -75,7 +75,7 @@ namespace BDD_VELOMAX_APP.Views
             ///fidelité
             List<Sfidel> Sfidels = new List<Sfidel>();
 
-            foreach (ClientIndividuel a in DataReader.Read<ClientIndividuel>())
+            foreach (ClientIndividuel a in BDDReader.Read<ClientIndividuel>())
             {
                 if (a.ProgrammeFidélité != null)
                 {
@@ -110,7 +110,7 @@ namespace BDD_VELOMAX_APP.Views
             */
 
             ///plusieurmoyenne
-            foreach (Commande c in DataReader.Read<Commande>())
+            foreach (Commande c in BDDReader.Read<Commande>())
             {
                 if (c.Modele != null)
                 {

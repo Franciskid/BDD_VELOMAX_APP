@@ -154,7 +154,7 @@ namespace BDD_VELOMAX_APP
         {
             while (true)
             {
-                if (DataReader.ServerIsUp())
+                if (BDDReader.ServerIsUp())
                 {
                     if (!App.MySQLServerConnected)
                     {

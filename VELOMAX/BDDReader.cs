@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class DataReader
+    class BDDReader
     {
         /// <summary>
         /// Vérifie si le serveur MySQL est lancé et si on arrive à s'y connecter

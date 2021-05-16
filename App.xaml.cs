@@ -38,7 +38,7 @@ namespace BDD_VELOMAX_APP
         {
             var fileContent = File.ReadAllText("../../Database/velomax.sql");
 
-            DataWriter.ExecuteNonQuery(fileContent, false);
+            BDDWriter.ExecuteNonQuery(fileContent, false);
         }
 
         /// <summary>
@@ -46,17 +46,17 @@ namespace BDD_VELOMAX_APP
         /// </summary>
         private void TestFunction()
         {
-            var b = DataReader.Read<Adresse>();
-            var a = DataReader.Read<Assemblage>();
-            var c = DataReader.Read<Client>();
-            var cdd = DataReader.Read<ClientBoutique>();
-            var cded = DataReader.Read<ClientIndividuel>();
-            var d = DataReader.Read<Commande>();
-            var cazd = DataReader.Read<Compte>();
-            var daz = DataReader.Read<Fidelio>();
-            var eef = DataReader.Read<Fournisseurs>();
-            var f = DataReader.Read<Modele>();
-            var fe = DataReader.Read<Pieces>();
+            var b = BDDReader.Read<Adresse>();
+            var a = BDDReader.Read<Assemblage>();
+            var c = BDDReader.Read<Client>();
+            var cdd = BDDReader.Read<ClientBoutique>();
+            var cded = BDDReader.Read<ClientIndividuel>();
+            var d = BDDReader.Read<Commande>();
+            var cazd = BDDReader.Read<Compte>();
+            var daz = BDDReader.Read<Fidelio>();
+            var eef = BDDReader.Read<Fournisseurs>();
+            var f = BDDReader.Read<Modele>();
+            var fe = BDDReader.Read<Pieces>();
 
         }
 
@@ -71,19 +71,19 @@ namespace BDD_VELOMAX_APP
             Adresse ad3 = new Adresse(null, "igazdh", "idazuh", "azdibkb", "iugaud");
 
 
-            int id1 = (int)DataWriter.Insert(ad1);
-            int id2 = (int)DataWriter.Insert(ad2);
-            int id3 = (int)DataWriter.Insert(ad3);
+            int id1 = (int)BDDWriter.Insert(ad1);
+            int id2 = (int)BDDWriter.Insert(ad2);
+            int id3 = (int)BDDWriter.Insert(ad3);
 
-            var o1 = DataReader.GetObject<Adresse>(id1);
-            var o2 = DataReader.GetObject<Adresse>(id2);
+            var o1 = BDDReader.GetObject<Adresse>(id1);
+            var o2 = BDDReader.GetObject<Adresse>(id2);
 
 
             //o1.CodePostal = "UPDATE";
 
            // bool b = DataWriter.Update(o1);
 
-            int bbb = DataWriter.Remove<Adresse>(id2);
+            int bbb = BDDWriter.Remove<Adresse>(id2);
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
