@@ -45,21 +45,48 @@ namespace BDD_VELOMAX_APP
         public static object Insert(IMySQL obj)
         {
             string table = MyConstants.TypeToTable(obj.GetType());
-
-            if (ExecuteNonQuery($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})") > 0)
+            using (var con = BDDReader.OpenConnexion(true))
             {
-                var a = BDDReader.ReadQuery("SELECT LAST_INSERT_ID();");
-                object o = BDDReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault();
-
-                if (o != null && int.TryParse(o.ToString(), out int res))
+                object o = null;
+                using (MySqlCommand command = new MySqlCommand($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})", con))
                 {
-                    return res;// + 1; //+1 car la fct renvoie l'id -1 pour une raison inconnue EDIT : ne renvoie plus de +1 pour encore une raison inconnue
-                }
+                    int rows = command.ExecuteNonQuery();
 
-                return o;
+                    command.CommandText = "SELECT LAST_INSERT_ID();";
+                    using (var c = command.ExecuteReader())
+                    {
+                        while (c.Read())
+                        {
+                            o = c[0];
+                        }
+                    }
+
+                    if (o != null && int.TryParse(o.ToString(), out int res))
+                    {
+                        return res;// + 1; //+1 car la fct renvoie l'id -1 pour une raison inconnue EDIT : ne renvoie plus de +1 pour encore une raison inconnue
+                    }
+
+                    return o;
+                }
             }
 
-            return null;
+            //if (ExecuteNonQuery($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})") > 0)
+            //{
+            //    var a = BDDReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault();
+            //    var aa = BDDReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault();
+            //    var aaa = BDDReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault();
+            //    var aaaa = BDDReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault();
+            //    var aaaaa = BDDReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault();
+
+            //    if (a != null && int.TryParse(a.ToString(), out int res))
+            //    {
+            //        return res;// + 1; //+1 car la fct renvoie l'id -1 pour une raison inconnue EDIT : ne renvoie plus de +1 pour encore une raison inconnue
+            //    }
+
+            //    return a;
+            //}
+
+            //return null;
         }
 
         /// <summary>

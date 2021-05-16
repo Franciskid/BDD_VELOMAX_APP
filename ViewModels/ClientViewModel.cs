@@ -180,6 +180,7 @@ namespace BDD_VELOMAX_APP
             else
             {
                 this.Type = "Boutique";
+                this.Nom = ((ClientBoutique)cli).NomEntreprise;
                 this.NomContact = ((ClientBoutique)cli).NomContact;
             }
         }
