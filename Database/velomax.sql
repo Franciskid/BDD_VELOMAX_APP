@@ -41,7 +41,7 @@ create table if not exists Pieces
     fournisseurId int not null default 0,
     numProduit int not null default 1,
     prix float not null default 1,
-    quantité int not null default 1,
+    quantité int not null default 0,
     dateIntroduction datetime,
     dateDiscontinuation datetime,
     delaiApprovisionnement datetime,
@@ -328,5 +328,36 @@ values('individuel',"Jean","Raoul",1,"06 26 22 18 40","j.roul@gmail.com","rara",
 ('individuel',"Frédérique","lebrun",1,"06 42 51 85 63","frédo.dug@gmail.com",null,1,2,3,"20/06/13"),
 ('individuel',"Léon","Quirion",1,"06 42 15 86 32","léonquirion@gmail.com",null,1,2,3,"20/06/13"),
 ('individuel',"Christian","Villeneuve",1,"06 12 54 81 67","christistheone@gmail.com",null,1,2,3,"20/06/13");
+
+
+insert into Commandes(numCommande, clientid, pieceid, assemblageid, dateCommande, dateLivraison)
+values(1,1,'C01',Null,"17/01/12","20/01/12"),
+(1,1,'G12',Null,"17/01/12","20/01/12"),
+(2,2,'S37',Null,"10/02/12","20/02/12"),
+(2,2,'S88',Null,"10/02/12","20/02/12"),
+(2,2,'S88',Null,"10/02/12","20/02/12"),
+(3,3,'S01',Null,"19/02/12","24/02/12"),
+(4,2,'C43f',Null,"25/02/12","27/02/12"),
+(5,1,'C25',Null,"25/02/12","27/02/12"),
+(6,4,'C15',Null,"01/03/12","07/03/12"),
+(6,4,'C26',Null,"01/03/12","07/03/12"),
+(6,4,'S73',Null,"01/03/12","07/03/12"),
+(7,5,Null,100009,"03/03/12","05/03/12"),
+(8,6,Null,100010,"10/03/12","10/03/12"),
+(8,6,Null,100010,"10/03/12","10/03/12"),
+(9,7,null,100011,"12/03/12","18/03/12"),
+(10,8,null,100012,"15/03/12","20/03/12"),
+(11,9,null,100013,"19/03/12","25/03/12"),
+(12,10,null,100014,"21/03/12","28/03/12"),
+(12,10,null,100001,"12/03/12","18/03/12"),
+(13,11,null,100002,"25/03/12","30/03/12"),
+
+
+
+
+
+
+
+
 
 
