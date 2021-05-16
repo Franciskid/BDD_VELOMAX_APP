@@ -103,11 +103,11 @@ namespace BDD_VELOMAX_APP
                             {
                                 l.Add((T)(IMySQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
                             }
-                            if (typeof(T) == typeof(ClientIndividuel) || (typeof(T) == typeof(Client) && (string)reader[val[1]] == "individuel"))
+                            if ((typeof(T) == typeof(ClientIndividuel) || typeof(T) == typeof(Client)) && (string)reader[val[1]] == "individuel")
                             {
                                 l.Add((T)(IMySQL)new ClientIndividuel((int)reader[val[0]], reader.GetStringSafe(2), reader.GetStringSafe(3), (int)reader[val[4]], reader.GetStringSafe(5), reader.GetStringSafe(6), (int)reader[val[8]], (int)reader[val[10]], reader.GetDateTimeSafe(11)));
                             }
-                            if (typeof(T) == typeof(ClientBoutique) || (typeof(T) == typeof(Client) && (string)reader[val[1]] == "boutique"))
+                            if ((typeof(T) == typeof(ClientBoutique) || typeof(T) == typeof(Client)) && (string)reader[val[1]] == "boutique")
                             {
                                 l.Add((T)(IMySQL)new ClientBoutique((int)reader[val[0]], reader.GetStringSafe(2), (int)reader[val[4]], reader.GetStringSafe(5), reader.GetStringSafe(6), reader.GetStringSafe(7)));
                             }

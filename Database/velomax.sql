@@ -299,7 +299,6 @@ values('boutique',"Haribo",1,"06 26 43 43 14","hario@gmail.com","Defer"),
 ('boutique',"EDF",2,"06 46 45 41 24","EDF@gmail.com","Dureau"),
 ('boutique',"PMU",4,"06 36 15 22 18","PMU@gmail.com","Blanc"),
 ('boutique',"Micheline",3,"06 56 42 28 08","PMU@gmail.com","Blanc");
- --  (int)reader[val[0]], reader.GetStringSafe(2), reader.GetStringSafe(3), (int)reader[val[4]], reader.GetStringSafe(5), reader.GetStringSafe(6), (int)reader[val[8]], (int)reader[val[10]], reader.GetDateTimeSafe(11)));
 
 insert into Clients(typeClient,prenom,nom,idAdresse,telephone,courriel,nomContact,remise,fidelio,idFidelio,dateAdhesionFidelio)
 values('individuel',"Jean","Raoul",1,"06 26 22 18 40","j.roul@gmail.com","rara",1,2,3,"20/06/13"),
