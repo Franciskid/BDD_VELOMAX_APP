@@ -204,8 +204,8 @@
     <Compile Include="VELOMAX\Commercial\ProgrammesFidelio\Fidelio.cs" />
     <Compile Include="VELOMAX\Commercial\Atelier\Modele.cs" />
     <Compile Include="VELOMAX\Commercial\ProgrammesFidelio\IFidelio.cs" />
-    <Compile Include="VELOMAX\DataReader.cs" />
-    <Compile Include="VELOMAX\DataWriter.cs" />
+    <Compile Include="VELOMAX\BDDReader.cs" />
+    <Compile Include="VELOMAX\BDDWriter.cs" />
     <Compile Include="VELOMAX\Enum\Adresse.cs" />
     <Compile Include="VELOMAX\Enum\AssemblagesEnum\Cadre.cs" />
     <Compile Include="VELOMAX\Enum\AssemblagesEnum\Derailleur_arriere.cs" />
@@ -224,6 +224,7 @@
     <Compile Include="VELOMAX\Enum\AssemblagesEnum\Selles.cs" />
     <Compile Include="VELOMAX\Enum\NomModeles.cs" />
     <Compile Include="VELOMAX\MyConstants.cs" />
+    <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="Views\ClientPage.xaml.cs">
       <DependentUpon>ClientPage.xaml</DependentUpon>
     </Compile>

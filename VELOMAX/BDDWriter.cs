@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    static class DataWriter
+    /// <summary>
+    /// Classe static pour écrire des données dans la BDD (accessible à root uniquement).
+    /// </summary>
+    static class BDDWriter
     {
         /// <summary>
         /// Execute une déclaration sur la base de donnée
@@ -18,7 +21,7 @@ namespace BDD_VELOMAX_APP
         {
             try
             {
-                using (var c = DataReader.OpenConnexion(dbCreated))
+                using (var c = BDDReader.OpenConnexion(dbCreated))
                 {
                     using (MySqlCommand command = new MySqlCommand(commandes, c))
                     {
@@ -45,8 +48,8 @@ namespace BDD_VELOMAX_APP
 
             if (ExecuteNonQuery($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})") > 0)
             {
-                var a = DataReader.ReadQuery("SELECT LAST_INSERT_ID();");
-                object o = DataReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault();
+                var a = BDDReader.ReadQuery("SELECT LAST_INSERT_ID();");
+                object o = BDDReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault();
 
                 if (o != null && int.TryParse(o.ToString(), out int res))
                 {

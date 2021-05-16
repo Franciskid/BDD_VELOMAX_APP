@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    abstract class Client : IMySQL
+    public abstract class Client : IMySQL
     {
         public Adresse Adresse { get; protected set; }
 
@@ -20,7 +20,8 @@ namespace BDD_VELOMAX_APP
 
         protected Client(object ID, int idAdresse, string tel, string mail)
         {
-            this.Adresse = DataReader.GetObject<Adresse>(idAdresse);
+            this.ID = ID;
+            this.Adresse = BDDReader.GetObject<Adresse>(idAdresse);
             this.Telephone = tel;
             this.AdresseMail = mail;
         }

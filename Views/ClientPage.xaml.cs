@@ -31,21 +31,22 @@ namespace BDD_VELOMAX_APP.Views
 
         public Fidelio SelectedFidelio { get; set; }
 
-     
+        public IEnumerable<ClientViewModel> ListeClients = BDDReader.Read<Client>().Select(x => new ClientViewModel(x));
+
+
         public ClientPage()
         {
             InitializeComponent();
 
-            DataContext = this;
-
-            var fidel = DataReader.Read<Fidelio>();
+            var fidel = BDDReader.Read<Fidelio>();
 
             fidel.ForEach(x => ListeFidelio.Add(x));
 
             SelectedFidelio = ListeFidelio[0];
-            List<ClientIndividuel> a = DataReader.Read<ClientIndividuel>();
-            DatagridClients.ItemsSource = a;
-        
+
+            DatagridClients.ItemsSource = ListeClients;
+
+            this.cb_fidelio.ItemsSource = ListeFidelio;
         }
        
 
@@ -78,7 +79,25 @@ namespace BDD_VELOMAX_APP.Views
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var o = (ClientViewModel)this.DataContext;
 
+            var val = this.DatagridClients.SelectedItem as ClientViewModel;
+
+            o.Nom = val.Nom;
+            o.Prénom = val.Prénom;
+            o.Adresse = val.Adresse;
+            o.Ville = val.Ville;
+            o.CodePostal = val.CodePostal;
+            o.Mail = val.Mail;
+            o.Téléphone = val.Téléphone;
+            o.Province = val.Province;
+            o.DateAdhésion = val.DateAdhésion;
+            o.DateFin = val.DateFin;
+            o.NomContact = val.NomContact;
+            o.Remise = val.Remise;
+            o.ProgrammeFidélité = val.ProgrammeFidélité;
+
+            var a = TB_CliIndividuel_Telephone.Text;
         }
 
        

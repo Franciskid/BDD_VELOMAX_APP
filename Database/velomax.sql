@@ -4,11 +4,11 @@ GRANT SELECT, SHOW VIEW ON velomax.* TO 'bozo'@'localhost';
 
 use velomax;
 
+drop table if exists Commandes;
 drop table if exists Assemblages;
 drop table if exists Pieces;
 drop table if exists Modeles;
 drop table if exists Comptes;
-drop table if exists Commandes;
 drop table if exists Fournisseurs;
 drop table if exists Clients;
 drop table if exists Adresse;
@@ -131,13 +131,13 @@ create table if not exists Commandes
     numCommande int,
     clientid int,
     pieceid varchar(30),
-    assemblageid int,
+    modeleid int,
     dateCommande datetime,
     dateLivraison dateTime,
     
     foreign key (clientid) references Clients(idClient),
-    foreign key (pieceid) references Pieces(idPiece),
-    foreign key (assemblageid) references Assemblages(idAssemblage)
+    foreign key (pieceid) references Pieces(idPiece)
+    #foreign key (modeleid) references modeles(idModele)
     
 );
 
@@ -330,7 +330,7 @@ values('individuel',"Jean","Raoul",1,"06 26 22 18 40","j.roul@gmail.com","rara",
 ('individuel',"Christian","Villeneuve",1,"06 12 54 81 67","christistheone@gmail.com","rara",1,2,3,"20/06/13");
 
 
-insert into Commandes(numCommande, clientid, pieceid, assemblageid, dateCommande, dateLivraison)
+insert into Commandes(numCommande, clientid, pieceid, modeleid, dateCommande, dateLivraison)
 values(1,1,'C01',Null,"17/01/12","20/01/12"),
 (1,1,'G12',Null,"17/01/12","20/01/12"),
 (2,2,'S37',Null,"10/02/12","20/02/12"),
@@ -372,3 +372,14 @@ values(1,1,'C01',Null,"17/01/12","20/01/12"),
 
 
 
+(7,5,Null,101,"03/03/12","05/03/12"),
+(8,6,Null,101,"10/03/12","10/03/12"),
+(8,6,Null,102,"10/03/12","10/03/12"),
+(9,7,null,102,"12/03/12","18/03/12"),
+(10,8,null,103,"15/03/12","20/03/12"),
+(11,9,null,103,"19/03/12","25/03/12"),
+(12,10,null,104,"21/03/12","28/03/12"),
+(12,10,null,104,"12/03/12","18/03/12"),
+(13,11,null,104,"25/03/12","30/03/12"),
+(14,12,null,105,"01/04/12","03/04/12"),
+(15,13,null,107,"25/03/12","30/03/12");
