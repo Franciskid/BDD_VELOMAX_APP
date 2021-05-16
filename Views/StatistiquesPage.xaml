@@ -50,12 +50,12 @@
                 <TextBlock FontSize="50" FontWeight="Bold" Grid.Row="0"  Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" Foreground="AliceBlue" Margin="0, 0, 0, 20">
                     Menu Statistiques
                 </TextBlock>
-                <TextBlock FontSize="30" FontWeight="Bold" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 1</TextBlock>
-                <TextBlock FontSize="30" FontWeight="Bold" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 2</TextBlock>
-                <TextBlock FontSize="30" FontWeight="Bold" Grid.Row="3" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 3</TextBlock>
-                <TextBlock FontSize="30" FontWeight="Bold" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 4</TextBlock>
-                <TextBlock FontSize="30" FontWeight="Bold" Grid.Row="5" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 5</TextBlock>
-                <TextBlock FontSize="30" FontWeight="Bold" Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 6</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 1</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 2</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="3" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 3</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 4</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="5" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Prix moyenne des commandes </TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 6</TextBlock>
                 <DataGrid Grid.Row="2" Grid.Column="0" Background="Transparent" x:Name="statsquantite" HorizontalAlignment="Stretch" Foreground="AliceBlue">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Foreground="AliceBlue"/>
@@ -71,6 +71,19 @@
                     </DataGrid.RowDetailsTemplate>
                 </DataGrid>
                 <DataGrid Grid.Row="2" Grid.Column="1" Background="Transparent" x:Name="statsfidelite" HorizontalAlignment="Stretch" Foreground="AliceBlue">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="typeClient" Binding="{Binding TypeClient}" Foreground="AliceBlue"/>
+                        <DataGridTextColumn Header="nom" Binding="{Binding Nom}"/>
+                        <DataGridTextColumn Header="telephone" Binding="{Binding Telephone}"/>
+                        <DataGridTextColumn Header="courriel" Binding="{Binding ourriel}"/>
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Details}" Margin="10" />
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                </DataGrid>
+                <DataGrid Grid.Row="4" Grid.Column="0" Background="Transparent" x:Name="smeilleurclient" HorizontalAlignment="Stretch" Foreground="AliceBlue">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="typeClient" Binding="{Binding TypeClient}" Foreground="AliceBlue"/>
                         <DataGridTextColumn Header="nom" Binding="{Binding Nom}"/>
