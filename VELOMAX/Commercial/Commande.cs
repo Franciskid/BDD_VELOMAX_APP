@@ -22,13 +22,13 @@ namespace BDD_VELOMAX_APP
 
         public DateTime DateLivraison { get; private set; }
 
-        public Commande(int? idCommande, int numCommande, int idClient, string idPiece, int idAssemblage, DateTime DateCommande, DateTime DateLivraison)
+        public Commande(int? idCommande, int numCommande, int idClient, string idPiece, int? idAssemblage, DateTime DateCommande, DateTime DateLivraison)
         {
             this.ID = idCommande;
             this.IDCommande = numCommande;
             this.Client = DataReader.GetObject<Client>(idClient);
-            this.Piece = DataReader.GetObject<Pieces>(idPiece);
-            this.Assemblage = DataReader.GetObject<Assemblage>(idAssemblage);
+            this.Piece = idPiece != null ? DataReader.GetObject<Pieces>(idPiece) : null;
+            this.Assemblage = idAssemblage != null ? DataReader.GetObject<Assemblage>(idAssemblage) : null;
             this.DateCommande = DateCommande;
             this.DateLivraison = DateLivraison;
         }
