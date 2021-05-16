@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class MyConstants
+    static class MyConstants
     {
         public const string TABLE_ADRESSE = "adresse";
         public const string TABLE_ASSEMBLAGES = "assemblages";

@@ -9,12 +9,12 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:BDD_VELOMAX_APP.Views"
+             xmlns:local="clr-namespace:BDD_VELOMAX_APP"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="900">
-    <!--<UserControl.DataContext>
-        <local:ClientPage/>
-    </UserControl.DataContext>-->
+    <UserControl.DataContext>
+        <local:ClientViewModel/>
+    </UserControl.DataContext>
 
     <Grid>
         <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="15" Margin="20">
@@ -33,7 +33,7 @@
 
             <DockPanel VerticalAlignment="Stretch">
 
-                <DataGrid Height="250" Margin="20" Background="Lavender" BorderThickness="2" BorderBrush="AliceBlue" DockPanel.Dock="Top" SelectionChanged="DataGrid_SelectionChanged" Name="DatagridClients">
+                <DataGrid Height="250" Margin="20" Background="Lavender" BorderThickness="2" BorderBrush="AliceBlue" DockPanel.Dock="Top" SelectionChanged="DataGrid_SelectionChanged" Name="DatagridClients" materialDesign:DataGridAssist.EnableEditBoxAssist="False">
                 </DataGrid>
 
                 <Grid DockPanel.Dock="Bottom">
@@ -63,7 +63,7 @@
 
                                         <TextBox x:Name="TB_CliIndividuel_Nom" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Nom"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10" Text="{Binding Nom, Mode=TwoWay}"/>
 
                                     </DockPanel>
                                     <DockPanel Grid.Row="1" Grid.Column="0">
@@ -71,7 +71,7 @@
 
                                         <TextBox x:Name="TB_CliIndividuel_Prenom" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Prenom"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10" Text="{Binding Prénom, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
@@ -80,7 +80,7 @@
 
                                         <TextBox x:Name="TB_CliIndividuel_Telephone" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Telephone"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Téléphone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                     </DockPanel>
 
@@ -89,7 +89,7 @@
 
                                         <TextBox x:Name="TB_CliIndividuel_Mail" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Mail"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Mail, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
@@ -99,7 +99,7 @@
 
                                         <TextBox  x:Name="TB_CliIndividuel_Rue" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Adresse"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Adresse, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
@@ -108,7 +108,7 @@
 
                                         <TextBox x:Name="TB_CliIndividuel_Ville" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Ville"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Ville, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
@@ -117,7 +117,7 @@
 
                                         <TextBox  x:Name="TB_CliIndividuel_CodePostal" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Code Postal"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding CodePostal, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
@@ -126,7 +126,7 @@
 
                                         <TextBox x:Name="TB_CliIndividuel_Province" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Province"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Province, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
@@ -135,21 +135,21 @@
 
                                         <TextBox x:Name="TB_CliIndividuel_Remise" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue" materialDesign:TextFieldAssist.PrefixText="%" materialDesign:TextFieldAssist.HasFilledTextField="True" 
                                              materialDesign:HintAssist.Hint="Remise %"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10" Text="{Binding Remise, StringFormat='#,#', UpdateSourceTrigger=PropertyChanged}"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Remise, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
                                     <DockPanel  Grid.Row="1" Grid.Column="2" >
                                         <materialDesign:PackIcon Kind="FormatListCheckbox" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 10, 15" Foreground="AliceBlue"/>
-                                        <ComboBox Style="{DynamicResource MaterialDesignComboBox}" materialDesign:HintAssist.Hint="Fidélio" IsEditable="True" Background="Transparent"
-                                                  ItemsSource="{Binding Path=ListeFidelio}" SelectedItem="{Binding SelectedFidelio}" DisplayMemberPath="Description" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0, 20, 10, 0">
+                                        <ComboBox Name="cb_fidelio" Style="{DynamicResource MaterialDesignComboBox}" materialDesign:HintAssist.Hint="Fidélio" IsEditable="True" Background="Transparent"
+                                                   SelectedItem="{Binding ProgrammeFidélité, Mode=TwoWay}" DisplayMemberPath="Description" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0, 20, 10, 0">
                                         </ComboBox>
                                     </DockPanel>
 
                                     <DockPanel  Grid.Row="2" Grid.Column="2" >
                                         <materialDesign:PackIcon Kind="DateRange" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 10, 15" Foreground="AliceBlue"/>
                                         <DatePicker Style="{DynamicResource MaterialDesignDatePicker}" materialDesign:HintAssist.Hint="Fidélio Date Fin" MinWidth="72" Background="Transparent" FontSize="16"
-                                                  Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0, 20, 10, 0">
+                                                  Foreground="AliceBlue" VerticalAlignment="Center" SelectedDate="{Binding DateAdhésion, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0, 20, 10, 0">
                                         </DatePicker>
                                     </DockPanel>
 
@@ -182,7 +182,7 @@
 
                                         <TextBox x:Name="TB_CliBoutique_Nom" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Nom Entreprise"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Nom, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
@@ -191,7 +191,7 @@
 
                                         <TextBox x:Name="TB_CliBoutique_NomContact" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Nom Contact"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding NomContact, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
@@ -201,7 +201,7 @@
 
                                         <TextBox x:Name="TB_CliBoutique_Telephone" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Telephone"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Téléphone, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
@@ -210,7 +210,7 @@
 
                                         <TextBox x:Name="TB_CliBoutique_Mail" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Mail"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Mail, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
@@ -222,7 +222,7 @@
 
                                         <TextBox  x:Name="TB_CliBoutique_Rue" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Adresse"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Adresse, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
@@ -231,7 +231,7 @@
 
                                         <TextBox x:Name="TB_CliBoutique_Ville" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Ville"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Ville, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
@@ -240,7 +240,7 @@
 
                                         <TextBox  x:Name="TB_CliBoutique_CodePostal" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Code Postal"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding CodePostal, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
@@ -249,7 +249,7 @@
 
                                         <TextBox x:Name="TB_CliBoutique_Province" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Province"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"/>
+                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Province, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
