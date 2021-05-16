@@ -14,16 +14,39 @@ drop table if exists Clients;
 drop table if exists Adresse;
 drop table if exists Fidelio;
 
+create table if not exists Adresse
+(
+	idAdresse int primary key auto_increment not null,
+    rue varchar(30),
+    ville varchar(30),
+    codePostal varchar(30),
+    pays varchar(30)
+);
+
+create table if not exists Fournisseurs
+(
+	siret int primary key not null,
+    nom varchar(30),
+    contact varchar(30),
+    idAdresse int,
+    score enum('1', '2', '3', '4'),
+    
+    foreign key (idAdresse) references Adresse(idAdresse)
+);
+
 create table if not exists Pieces
 (
 	idPiece varchar(10) primary key not null,
     nom varchar(30),
-    nomFournisseur varchar(30),
-    numProduit int,
-    prix int,
+    fournisseurId int not null default 0,
+    numProduit int not null default 1,
+    prix float not null default 1,
+    quantité int not null default 1,
     dateIntroduction datetime,
     dateDiscontinuation datetime,
-    delaiApprovisionnement datetime
+    delaiApprovisionnement datetime,
+    
+	foreign key (fournisseurId) references fournisseurs(siret)
 );
 
 create table if not exists Assemblages
@@ -80,14 +103,6 @@ create table if not exists Fidelio
     rabais float4
 );
 
-create table if not exists Adresse
-(
-	idAdresse int primary key auto_increment not null,
-    rue varchar(30),
-    ville varchar(30),
-    codePostal varchar(30),
-    pays varchar(30)
-);
 
 create table if not exists Clients
 (
@@ -106,24 +121,19 @@ create table if not exists Clients
     
     foreign key (idFidelio) references Fidelio(idFidelio),
     foreign key (idAdresse) references Adresse(idAdresse)
-);ALTER TABLE Modeles AUTO_INCREMENT = 101;
-
-create table if not exists Fournisseurs
-(
-	siret int primary key auto_increment not null,
-    nom varchar(30),
-    contact varchar(30),
-    idAdresse int,
-    score enum('1', '2', '3', '4'),
-    
-    foreign key (idAdresse) references Adresse(idAdresse)
 );
+ALTER TABLE Modeles AUTO_INCREMENT = 101;
+
 
 create table if not exists Commandes
 (
 	idCommande int primary key  auto_increment not null, 
+    numCommande int,
+    clientid int,
     dateCommande datetime,
-    dateLivraison dateTime
+    dateLivraison dateTime,
+    
+    foreign key (clientid) references Clients(idClient)
     
 );
 
@@ -137,21 +147,26 @@ create table if not exists Comptes
 
 insert into Comptes(pseudo, motdepasse) values ('root', sha1('rootroot')), ('bozo', sha1('bozobozo'));
 
+insert into adresse(idAdresse, rue, ville, codePostal, pays)
+values(1, "rue nulle part", "Marseille", "13000", "France");
 
-insert into Pieces(idPiece, nom) 
-values('C32', 'Cadre'),
-('C34', 'Cadre'),
-('C76', 'Cadre'),
-('C43',  'Cadre'),
-('C44f',  'Cadre'),
-('C43f',  'Cadre'),
-('C01' , 'Cadre'),
-('C02' , 'Cadre'),
-('C15',  'Cadre'),
-('C87' , 'Cadre'),
-('C87f',  'Cadre'),
-('C25' , 'Cadre'),
-('C26' , 'Cadre');
+insert into fournisseurs(siret, nom, contact, idAdresse, score) 
+values(0, "TEST", "CONTACT_TEST", 1, 2);
+
+insert into Pieces(idPiece, nom, fournisseurId) 
+values('C32', 'Cadre', 0),
+('C34', 'Cadre', 0),
+('C76', 'Cadre', 0),
+('C43',  'Cadre', 0),
+('C44f',  'Cadre', 0),
+('C43f',  'Cadre', 0),
+('C01' , 'Cadre', 0),
+('C02' , 'Cadre', 0),
+('C15',  'Cadre', 0),
+('C87' , 'Cadre', 0),
+('C87f',  'Cadre', 0),
+('C25' , 'Cadre', 0),
+('C26' , 'Cadre', 0);
  
 insert into Pieces(nom, idPiece) 
 values('Guidon', 'G7'),
@@ -269,5 +284,28 @@ values('Kilimandjaro',  569, 'VTT'),
 ('Mud Zinger I',  279, 'BMX'),
 ('Mud Zinger II',  359, 'BMX');
 
+insert into Adresse(rue, ville, codePostal,pays)
+values("rue de la pompe","paris","75002","france"),
+("Boulevard de Belleville","paris","75020","france"),
+("rue Lecourbe","paris","75019","france"),
+("Rue de Vaugirard","paris","75012","france"),
+("rue de Courcelles","paris","75014","france"),
+("avenue de la République","paris","75016","france"),
+("Avenue Mozart","paris","75018","france"),
+("place de la Bourse","paris","75010","france");
 
+insert into Clients(typeClient, nom, idAdresse, telephone, courriel, nomContact)
+values('boutique',"Haribo",1,"06 26 43 43 14","hario@gmail.com","Defer"),
+('boutique',"EDF",2,"06 46 45 41 24","EDF@gmail.com","Dureau"),
+('boutique',"PMU",4,"06 36 15 22 18","PMU@gmail.com","Blanc"),
+('boutique',"Michelin",3,"06 56 42 28 08","PMU@gmail.com","Blanc");
+
+  
+
+
+insert into Clients(typeClient, prenom,nom, idAdresse, telephone, courriel,remise,idFidelio)
+value('individuel',"Jean","Roul",5,"06 26 22 18 40","j.roul@gmail.com",4,1),
+('individuel',"Louise","¨Pril",6,"06 46 52 18 41","l.pril@gmail.com",1,2),
+('individuel',"Yanis","Quille",7,"06 16 50 98 44","y.quille@gmail.com",3,3),
+('individuel',"Nabile","zoul",8,"06 06 51 38 34","n.zoul@gmail.com",4,4);
 

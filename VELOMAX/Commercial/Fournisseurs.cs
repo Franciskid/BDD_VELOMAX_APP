@@ -6,27 +6,25 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class Fournisseurs:IMySQL
+    class Fournisseurs : IMySQL
     {
-        public int Siret { get; private set; }
-
         public string Nom { get; private set; }
 
         public string Contact { get; private set; }
 
-        public Adresse Iadresse { get; private set; }
+        public Adresse Adresse { get; private set; }
 
         public Score Score { get; private set; }
 
-        public Fournisseurs(int Siret, string Nom, string Contact, String Iadresse, int Scores)
+        public Fournisseurs(int Siret, string Nom, string Contact, int iDadresse, int Scores)
         {
-            this.Siret = Siret;
+            this.ID = Siret;
             this.Nom = Nom;
             this.Contact = Contact;
-            this.Iadresse = DataReader.GetObject<Adresse>(Iadresse);
+            this.Adresse = DataReader.GetObject<Adresse>(iDadresse);
             this.Score = (Score)Scores;
         }
-        public object ID => Siret;
-        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{Contact}' , '{Iadresse}', '{Score}'";
+        public object ID { get; }
+        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{Contact}' , '{Adresse.ID}', '{Score}'";
     }
 }

@@ -258,9 +258,9 @@
                         </TabControl>
                     </Grid>
                     <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right" Width="240" VerticalAlignment="Stretch">
-                        <Button x:Name="Butt_Add" Style="{DynamicResource MaterialDesignFlatButton}" Margin="20" Height="80" Click="Butt_Add_Click" Content="AJOUTER" Background="{StaticResource ConnexionPage}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="25" FontWeight="Heavy" IsDefault="True"/>
-                        <Button x:Name="Butt_Update" Style="{DynamicResource MaterialDesignFlatButton}" Margin="20" Height="80" Click="Butt_Update_Click" Content="MODIFIER" Background="{StaticResource ConnexionPage}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="25" FontWeight="Heavy"  IsDefault="True"/>
-                        <Button x:Name="Butt_Delete" Style="{DynamicResource MaterialDesignFlatButton}" Margin="20" Height="80" Click="Butt_Delete_Click" Content="SUPPRIMER" Background="{StaticResource ConnexionPage}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="25" FontWeight="Heavy"  IsDefault="True"/>
+                        <Button x:Name="Butt_Add" Style="{DynamicResource MaterialDesignOutlinedButton}" Margin="20" Height="80" Click="Butt_Add_Click" Content="AJOUTER" Background="{StaticResource ConnexionPage}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="25" FontWeight="Heavy" IsDefault="True"/>
+                        <Button x:Name="Butt_Update" Style="{DynamicResource MaterialDesignOutlinedButton}" Margin="20" Height="80" Click="Butt_Update_Click" Content="MODIFIER" Background="{StaticResource ConnexionPage}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="25" FontWeight="Heavy"  IsDefault="True"/>
+                        <Button x:Name="Butt_Delete" Style="{DynamicResource MaterialDesignOutlinedButton}" Margin="20" Height="80" Click="Butt_Delete_Click" Content="SUPPRIMER" Background="{StaticResource ConnexionPage}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="25" FontWeight="Heavy"  IsDefault="True"/>
                     </StackPanel>
                 </Grid>
 

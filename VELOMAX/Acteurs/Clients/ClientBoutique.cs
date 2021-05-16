@@ -10,16 +10,10 @@ namespace BDD_VELOMAX_APP
     {
         public string NomEntreprise { get; private set; }
 
-
-
         public string NomContact { get; private set; }
 
-        public ClientBoutique(object ID,Adresse adresse, string tel, string mail, string nomEntr, string nomContact) : base(adresse, tel, mail)
+        public ClientBoutique(object ID, string nomEntr, int idAdresse, string tel, string mail,  string nomContact) : base(ID, idAdresse, tel, mail)
         {
-            base.ID = ID;
-            base.Adresse = Adresse;
-            base.Telephone = tel;
-            base.AdresseMail = mail;
             this.NomEntreprise = nomEntr;
             this.NomContact = nomContact;
         }
