@@ -58,7 +58,7 @@ namespace BDD_VELOMAX_APP.Views
                         {
 
                         }
-                        var r = DataReader.ReadQuery("SELECT cadre, guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier  FROM velomax.assemblages where nom={0};",a.Nom) ;
+                        var r = DataReader.ReadQuery($"SELECT cadre, guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier  FROM velomax.assemblages where nom={a.Nom};");
                     }
                     
                 }
