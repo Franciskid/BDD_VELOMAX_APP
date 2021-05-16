@@ -63,7 +63,7 @@ namespace BDD_VELOMAX_APP
 
                     if (o != null && int.TryParse(o.ToString(), out int res))
                     {
-                        return res;// + 1; //+1 car la fct renvoie l'id -1 pour une raison inconnue EDIT : ne renvoie plus de +1 pour encore une raison inconnue
+                        return res;
                     }
 
                     return o;
