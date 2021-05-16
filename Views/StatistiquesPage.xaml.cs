@@ -29,6 +29,8 @@ namespace BDD_VELOMAX_APP.Views
             int n = 0;
             float Chiffredaffaire = 0;
             float totalclientencour = 0;
+            int j = 0;
+            int f = 0;
             InitializeComponent();
 
             this.DataContext = this;
@@ -86,29 +88,92 @@ namespace BDD_VELOMAX_APP.Views
 
 
 
-            /*
+            
             ///meilleurclients
             List<Smeilleur> Smeilleurs = new List<Smeilleur>();
-            foreach (Client b in DataReader.Read<Client>())
+  
+            foreach (Commande a in BDDReader.Read<Commande>())
             {
-                foreach (Commande a in DataReader.Read<Commande>())
+                foreach (ClientIndividuel b in BDDReader.Read<ClientIndividuel>())
                 {
-                    if(a.Client.ID==b.ID)
+                    j = 0;
+                    f = 0;
+                    if  (a.Client.ID.Equals(b.ID))
                     {
                         if (a.Piece != null)
                         {
-                            totalclientencour += a.Piece.Prix;
+                            var r = BDDReader.ReadQuery($"select sum(pieces.prix) from pieces, commandes, clients where commandes.clientid = clients.idClient and pieces.idPiece = commandes.pieceid and clients.nom='{b.Nom}';").FirstOrDefault();
+
+                            j = Convert.ToInt32(r[0]);
                         }
-                        if(a.Assemblage!=null)
+                        if (a.Modele != null)
                         {
-                            totalclientencour += 0;
+                            var s = BDDReader.ReadQuery($"select sum(modeles.prix) from modeles, commandes,clients where commandes.clientid=clients.idClient and commandes.modeleid=modeles.idModele and clients.nom='{b.Nom}';").FirstOrDefault();
+                            f = Convert.ToInt32(s[0]);
+                        }
+                        totalclientencour = j + f;
+                        if (totalclientencour != 0)
+                        {
+                            if (Smeilleurs.Contains(new Smeilleur("individuel", b.Nom, b.Telephone, b.AdresseMail, (float)totalclientencour)) == false)
+                            {
+                                bool test = true;
+                                foreach (Smeilleur J in Smeilleurs)
+                                {
+                                    if (J.Nom == b.Nom)
+                                        test = false;
+                                }
+                                if (test == true)
+                                {
+                                    Smeilleurs.Add(new Smeilleur("individuel", b.Nom, b.Telephone, b.AdresseMail, (float)totalclientencour));
+                                }
+                            }
+                        }
+                    }
+                  
+                }
+            }
+
+            foreach (Commande a in BDDReader.Read<Commande>())
+            {
+                foreach (ClientBoutique b in BDDReader.Read<ClientBoutique>())
+                {
+                    j = 0;
+                    f = 0;
+                    if (a.Client.ID.Equals(b.ID))
+                    {
+                        if (a.Piece!=null)
+                        {
+                            var r = BDDReader.ReadQuery($"select sum(pieces.prix) from pieces, commandes, clients where commandes.clientid = clients.idClient and pieces.idPiece = commandes.pieceid and clients.nom='{b.NomEntreprise}';").FirstOrDefault();
+                                                          
+                            j = Convert.ToInt32(r[0]);
+                        }
+                        if (a.Modele != null)
+                        {
+                            var s = BDDReader.ReadQuery($"select sum(modeles.prix) from modeles, commandes,clients where commandes.clientid=clients.idClient and commandes.modeleid=modeles.idModele and clients.nom='{b.NomEntreprise}';").FirstOrDefault();
+                            f = Convert.ToInt32(s[0]);
+                        }
+                    }
+                    totalclientencour = j + f;
+                    if (totalclientencour != 0)
+                    {
+                        if (Smeilleurs.Contains(new Smeilleur("Boutique", b.NomEntreprise, b.Telephone, b.AdresseMail, (float)totalclientencour)) == false)
+                        {
+
+                            bool test = true;
+                            foreach (Smeilleur J in Smeilleurs)
+                            {
+                                if (J.Nom == b.NomEntreprise)
+                                    test = false;
+                            }
+                            if (test == true)
+                            {
+                                Smeilleurs.Add(new Smeilleur("Boutique", b.NomEntreprise, b.Telephone, b.AdresseMail, (float)totalclientencour));
+                            }
                         }
                     }
                 }
-                Smeilleurs.Add(new Smeilleur(b.)
             }
-            */
-
+            smeilleurclient.ItemsSource = Smeilleurs;
             ///plusieurmoyenne
             foreach (Commande c in BDDReader.Read<Commande>())
             {
@@ -125,14 +190,16 @@ namespace BDD_VELOMAX_APP.Views
 
 
 
-
+            
             Chiffredaffaire = (int)prixmoyendescommandes;   ///chiffre d'affaire
 
             prixmoyendescommandes = (prixmoyendescommandes / n); ///prix moyen
 
-            nombrepiecevenduparclients = (int)nombrepiecevenduparclients / 1; /// nombre de piece vendu en moyenne 
+            nombrepiecevenduparclients = (int)nombrepiecevenduparclients / (BDDReader.Read<ClientBoutique>().Count+ BDDReader.Read<ClientIndividuel>().Count); /// nombre de piece vendu en moyenne 
 
             moyenne.Text = prixmoyendescommandes.ToString() + " € ";
+            chiffredaffaires.Text = Chiffredaffaire.ToString()+" € ";
+            moyenepieces.Text = nombrepiecevenduparclients.ToString();
 
 
 
@@ -202,24 +269,21 @@ namespace BDD_VELOMAX_APP.Views
         {
             public string TypeClient { get; set; }
 
-            public DateTime Datedebut { get; set; }
             public string Nom { get; set; }
 
             public string Telephone { get; set; }
 
             public string Courriel { get; set; }
 
-            public int Total_acheter { get; set; }
+            public float Total_acheter { get; set; }
 
-            public Smeilleur(string typeClient, string nom, string telephone, string courriel, DateTime datadebut, int score)
+            public Smeilleur(string typeClient, string nom, string telephone, string courriel, float score)
             {
                 this.TypeClient = typeClient;
                 this.Nom = nom;
                 this.Telephone = telephone;
                 this.Courriel = courriel;
                 this.Total_acheter = score;
-
-
 
             }
         }

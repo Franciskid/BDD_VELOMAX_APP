@@ -99,7 +99,9 @@
                         </DataTemplate>
                     </DataGrid.RowDetailsTemplate>
                 </DataGrid>
-                <TextBlock Grid.Row="6" Grid.Column="0" Background="Transparent" x:Name="moyenne" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"/> 
+                <TextBlock Grid.Row="6" Grid.Column="0" Background="Transparent" x:Name="moyenne" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" Background="Transparent" x:Name="moyenepieces" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="6" Grid.Column="1" Background="Transparent" x:Name="chiffredaffaires" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
 
         </Border>
