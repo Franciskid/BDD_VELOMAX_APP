@@ -129,11 +129,11 @@ namespace BDD_VELOMAX_APP
                             }
                             if (typeof(T) == typeof(Assemblage))
                             {
-                                l.Add((T)(IMySQL)new Assemblage((int)reader[val[0]], reader.GetStringSafe(1), reader.GetStringSafe(2), reader.GetStringSafe(3), reader.GetStringSafe(4), reader.GetStringSafe(5), reader.GetStringSafe(6), reader.GetStringSafe(7), reader.GetStringSafe(8), reader.GetStringSafe(9), reader.GetStringSafe(10), reader.GetStringSafe(11), reader.GetStringSafe(12), reader.GetStringSafe(12), reader.GetStringSafe(13)));
+                               l.Add((T)(IMySQL)new Assemblage((int)reader[val[0]], reader.GetStringSafe(1), reader.GetStringSafe(2), reader.GetStringSafe(3), reader.GetStringSafe(4), reader.GetStringSafe(5), reader.GetStringSafe(6), reader.GetStringSafe(7), reader.GetStringSafe(8), reader.GetStringSafe(9), reader.GetStringSafe(10), reader.GetStringSafe(11), reader.GetStringSafe(12), reader.GetStringSafe(12), reader.GetStringSafe(13)));
                             }
                             if (typeof(T) == typeof(Commande))
                             {
-                                l.Add((T)(IMySQL)new Commande((int)reader[val[0]], (int)reader[val[1]], (int)reader[val[2]], (string)reader[val[3]], (int)reader[val[4]], reader.GetDateTime(val[1]), reader.GetDateTime(val[2])));
+                          //l.Add((T)(IMySQL)new Commande((int)reader[val[0]], (int)reader[val[1]], (int)reader[val[2]], (string)reader[val[3]], (int)reader[val[4]], reader.GetDateTime(val[1]), reader.GetDateTime(val[2])));
                             }
                             if (typeof(T) == typeof(Fournisseurs))
                             {

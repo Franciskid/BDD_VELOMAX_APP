@@ -50,12 +50,12 @@
                 <TextBlock FontSize="50" FontWeight="Bold" Grid.Row="0"  Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" Foreground="AliceBlue" Margin="0, 0, 0, 20">
                     Menu Statistiques
                 </TextBlock>
-                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 1</TextBlock>
-                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 2</TextBlock>
-                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="3" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 3</TextBlock>
-                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 4</TextBlock>
-                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="5" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Prix moyenne des commandes </TextBlock>
-                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Stat 6</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">quantité vendu par piece</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">CLiens fideliser</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="3" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Meilleur clients </TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Moyene de pieces par clients</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="5" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Prix moyen des commandes </TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Chiffres d'affires</TextBlock>
                 <DataGrid Grid.Row="2" Grid.Column="0" Background="Transparent" x:Name="statsquantite" HorizontalAlignment="Stretch" Foreground="AliceBlue">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Foreground="AliceBlue"/>
@@ -89,6 +89,8 @@
                         <DataGridTextColumn Header="nom" Binding="{Binding Nom}"/>
                         <DataGridTextColumn Header="telephone" Binding="{Binding Telephone}"/>
                         <DataGridTextColumn Header="courriel" Binding="{Binding Courriel}"/>
+                        <DataGridTextColumn Header="Total acheter" Binding="{Binding Total_acheter}"/>
+
                     </DataGrid.Columns>
                     <DataGrid.RowDetailsTemplate>
                         <DataTemplate>
@@ -96,6 +98,7 @@
                         </DataTemplate>
                     </DataGrid.RowDetailsTemplate>
                 </DataGrid>
+                <TextBlock Grid.Row="6" Grid.Column="0" Background="Transparent" x:Name="moyenne" HorizontalAlignment="Stretch" Foreground="AliceBlue"/> 
             </Grid>
 
         </Border>
