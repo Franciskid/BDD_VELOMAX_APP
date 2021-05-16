@@ -267,6 +267,7 @@ namespace BDD_VELOMAX_APP.Views
 
         public class Smeilleur
         {
+            public float Total_acheter { get; set; }
             public string TypeClient { get; set; }
 
             public string Nom { get; set; }
@@ -275,15 +276,15 @@ namespace BDD_VELOMAX_APP.Views
 
             public string Courriel { get; set; }
 
-            public float Total_acheter { get; set; }
+            
 
             public Smeilleur(float score, string typeClient, string nom, string telephone, string courriel)
             {
+                this.Total_acheter = score;
                 this.TypeClient = typeClient;
                 this.Nom = nom;
                 this.Telephone = telephone;
                 this.Courriel = courriel;
-                this.Total_acheter = score;
 
             }
         }
