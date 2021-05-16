@@ -15,7 +15,17 @@ namespace BDD_VELOMAX_APP
 
         public string Prénom { get; set; }
 
-        public string Mail { get; set; }
+        private string mail;
+
+        public string Mail
+        {
+            get => mail;
+            set
+            {
+                this.mail = value;
+                this.OnPropertyChanged("Mail");
+            }
+        }
 
         private string phone;
 
