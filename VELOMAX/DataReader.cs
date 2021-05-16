@@ -86,7 +86,7 @@ namespace BDD_VELOMAX_APP
         /// <returns></returns>
         public static List<T> Read<T>(string query) where T : IMySQL
         {
-            //try
+            try
             {
                 using (MySqlConnection c = OpenConnexion())
                 {
@@ -129,11 +129,11 @@ namespace BDD_VELOMAX_APP
                             }
                             if (typeof(T) == typeof(Assemblage))
                             {
-                               l.Add((T)(IMySQL)new Assemblage((int)reader[val[0]], reader.GetStringSafe(1), reader.GetStringSafe(2), reader.GetStringSafe(3), reader.GetStringSafe(4), reader.GetStringSafe(5), reader.GetStringSafe(6), reader.GetStringSafe(7), reader.GetStringSafe(8), reader.GetStringSafe(9), reader.GetStringSafe(10), reader.GetStringSafe(11), reader.GetStringSafe(12), reader.GetStringSafe(12), reader.GetStringSafe(13)));
+                                l.Add((T)(IMySQL)new Assemblage((int)reader[val[0]], reader.GetStringSafe(1), reader.GetStringSafe(2), reader.GetStringSafe(3), reader.GetStringSafe(4), reader.GetStringSafe(5), reader.GetStringSafe(6), reader.GetStringSafe(7), reader.GetStringSafe(8), reader.GetStringSafe(9), reader.GetStringSafe(10), reader.GetStringSafe(11), reader.GetStringSafe(12), reader.GetStringSafe(12), reader.GetStringSafe(13)));
                             }
                             if (typeof(T) == typeof(Commande))
                             {
-                          //l.Add((T)(IMySQL)new Commande((int)reader[val[0]], (int)reader[val[1]], (int)reader[val[2]], (string)reader[val[3]], (int)reader[val[4]], reader.GetDateTime(val[1]), reader.GetDateTime(val[2])));
+                                l.Add((T)(IMySQL)new Commande((int)reader[val[0]], (int)reader[val[1]], (int)reader[val[2]], reader.GetStringSafe(3), reader.GetIntSafe(4), reader.GetDateTimeSafe(5), reader.GetDateTimeSafe(6)));
                             }
                             if (typeof(T) == typeof(Fournisseurs))
                             {
@@ -150,10 +150,10 @@ namespace BDD_VELOMAX_APP
                 }
 
             }
-            //catch (Exception ex)
-            //{
-            //    return null;
-            //}
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
 
@@ -209,6 +209,20 @@ namespace BDD_VELOMAX_APP
         public static string GetStringSafe(this MySqlDataReader @this, int column)
         {
             return !@this.IsDBNull(column) ? @this.GetString(column) : null;
+        }
+
+        /// <summary>
+        /// Vérifie si le string recherché est bien non null et en renvoie la valeur de manière sécurisé.
+        /// </summary>
+        /// <param name="this"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
+        public static int? GetIntSafe(this MySqlDataReader @this, int column)
+        {
+            if (!@this.IsDBNull(column))
+                return @this.GetInt32(column);
+
+            return null;
         }
 
         /// <summary>
