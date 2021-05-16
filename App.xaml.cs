@@ -49,6 +49,8 @@ namespace BDD_VELOMAX_APP
             var b = DataReader.Read<Adresse>();
             var a = DataReader.Read<Assemblage>();
             var c = DataReader.Read<Client>();
+            var cdd = DataReader.Read<ClientBoutique>();
+            var cded = DataReader.Read<ClientIndividuel>();
             var d = DataReader.Read<Commande>();
             var cazd = DataReader.Read<Compte>();
             var daz = DataReader.Read<Fidelio>();

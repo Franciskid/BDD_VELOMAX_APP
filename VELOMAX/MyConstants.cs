@@ -37,12 +37,12 @@ namespace BDD_VELOMAX_APP
                 { TABLE_ADRESSE, new List<string>() { TABLE_idADRESSE, "rue", "ville", "codePostal", "pays" } },
                 { TABLE_ASSEMBLAGES, new List<string>() { TABLE_idASSEMBLAGES, "nom", "grandeur", "cadre", "guidon", "freins", "selle", "derailleur_avant", "derailleur_arriere", "roue_avant", "roue_arriere", "reflecteurs", "pedalier", "ordinateur", "panier", } },
                 { TABLE_CLIENTS, new List<string>() { TABLE_idCLIENTS, "typeClient", "nom", "prenom", "idAdresse", "telephone", "courriel", "nomContact", "remise", "fidelio", "idFidelio", "dateAdhesionFidelio" } },
-                { TABLE_COMMANDES, new List<string>() { TABLE_idCOMMANDES, "dateCommande", "dateLivraison"} },
+                { TABLE_COMMANDES, new List<string>() { TABLE_idCOMMANDES, "numCommande", "clientid", "pieceid", "assemblageid", "dateCommande", "dateLivraison"} },
                 { TABLE_COMPTES, new List<string>() { TABLE_idCOMPTES, "pseudo", "motdepasse"} },
                 { TABLE_FIDELIO, new List<string>() { TABLE_idFIDELIO, "nom", "prix", "duree_annee", "rabais" } },
                 { TABLE_FOURNISSEURS, new List<string>() { TABLE_idFOURNISSEURS, "nom", "contact", "idAdresse", "score" } },
                 { TABLE_MODELES, new List<string>() { TABLE_idMODELES, "nom", "prix", "ligne", "dateIntroduction", "dateDiscontinuation" } },
-                { TABLE_PIECES, new List<string>() { TABLE_idPIECES, "nom", "nomFournisseur", "numProduit", "prix", "dateIntroduction", "dateDiscontinuation", "delaiApprovisionnement" } },
+                { TABLE_PIECES, new List<string>() { TABLE_idPIECES, "nom", "fournisseurId", "numProduit", "prix", "quantité", "dateIntroduction", "dateDiscontinuation", "delaiApprovisionnement" } },
             };
 
             return dico;

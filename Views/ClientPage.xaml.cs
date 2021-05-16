@@ -13,6 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace BDD_VELOMAX_APP.Views
 {
@@ -27,6 +31,7 @@ namespace BDD_VELOMAX_APP.Views
 
         public Fidelio SelectedFidelio { get; set; }
 
+     
         public ClientPage()
         {
             InitializeComponent();
@@ -38,7 +43,13 @@ namespace BDD_VELOMAX_APP.Views
             fidel.ForEach(x => ListeFidelio.Add(x));
 
             SelectedFidelio = ListeFidelio[0];
+            List<ClientIndividuel> a = DataReader.Read<ClientIndividuel>();
+            DatagridClients.ItemsSource = a;
+        
         }
+       
+
+
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -64,5 +75,12 @@ namespace BDD_VELOMAX_APP.Views
         {
 
         }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+       
     }
 }

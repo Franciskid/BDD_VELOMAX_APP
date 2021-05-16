@@ -30,7 +30,6 @@ namespace BDD_VELOMAX_APP
             {
                 return -1;
             }
-
         }
 
 
@@ -46,6 +45,7 @@ namespace BDD_VELOMAX_APP
 
             if (ExecuteNonQuery($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})") > 0)
             {
+                var a = DataReader.ReadQuery("SELECT LAST_INSERT_ID();");
                 object o = DataReader.ReadQuery("SELECT LAST_INSERT_ID();").FirstOrDefault().FirstOrDefault();
 
                 if (o != null && int.TryParse(o.ToString(), out int res))
