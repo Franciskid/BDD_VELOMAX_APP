@@ -9,11 +9,36 @@ namespace BDD_VELOMAX_APP
 {
     public class ClientViewModel : INotifyPropertyChanged
     {
-        public string Type { get; set; }
+        private string type;
+        public string Type {
+            get => type;
+            set
+            {
+                this.type = value;
+                this.OnPropertyChanged("Type");
+            }
+        }
 
-        public string Nom { get; set; }
+        private string nom;
+        public string Nom {
+            get => nom;
+            set
+            {
+                this.nom = value;
+                this.OnPropertyChanged("Nom");
+            }
+        }
 
-        public string Prénom { get; set; }
+        private string prénom;
+
+        public string Prénom {
+            get => prénom;
+            set
+            {
+                this.prénom = value;
+                this.OnPropertyChanged("Prénom");
+            }
+        }
 
         private string mail;
 
@@ -39,24 +64,98 @@ namespace BDD_VELOMAX_APP
             }
         }
 
-        public string Adresse { get; set; }
+        private string adresse;
+        public string Adresse {
+            get => adresse;
+            set
+            {
+                this.adresse = value;
+                this.OnPropertyChanged("Adresse");
+            }
+        }
 
-        public int CodePostal { get; set; }
+        private int codepostal;
+        public int CodePostal {
+            get => codepostal;
+            set
+            {
+                this.codepostal = value;
+                this.OnPropertyChanged("CodePostal");
+            }
+        }
 
-        public string Ville { get; set; }
+        private string ville;
 
-        public string Province { get; set; }
+        public string Ville {
+            get => ville;
+            set
+            {
+                this.ville = value;
+                this.OnPropertyChanged("Ville");
+            }
+        }
 
-        public int Remise { get; set; }
+        private string province;
+        public string Province {
+            get => province;
+            set
+            {
+                this.province = value;
+                this.OnPropertyChanged("Province");
+            }
+        }
 
-        public string ProgrammeFidélité { get; set; }
+        private int remise;
+        public int Remise {
+            get => remise;
+            set
+            {
+                this.remise = value;
+                this.OnPropertyChanged("Remise");
+            }
+        }
 
-        public DateTime DateAdhésion { get; set; }
+        private string programmefidélité;
+        public string ProgrammeFidélité {
+            get => programmefidélité;
+            set
+            {
+                this.programmefidélité = value;
+                this.OnPropertyChanged("ProgrammeFidélité");
+            }
+        }
 
-        public DateTime DateFin { get; set; }
+        private DateTime dateadhésion;
+        public DateTime DateAdhésion {
+            get => dateadhésion;
+            set
+            {
+                this.dateadhésion = value;
+                this.OnPropertyChanged("DateAdhésion");
+            }
+        }
 
-        public string NomContact { get; set; }
+        private DateTime datefin;
+        public DateTime DateFin {
+            get => datefin;
+            set
+            {
+                this.datefin = value;
+                this.OnPropertyChanged("DateFin");
+            }
+        }
 
+        private string nomcontact;
+        public string NomContact {
+            get => nomcontact;
+            set
+            {
+                this.nomcontact = value;
+                this.OnPropertyChanged("NomContact");
+            }
+        }
+
+       
         public ClientViewModel() { }
 
         public ClientViewModel(Client cli)
