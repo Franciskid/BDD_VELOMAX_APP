@@ -81,9 +81,9 @@ namespace BDD_VELOMAX_APP
 
             //o1.CodePostal = "UPDATE";
 
-           // bool b = DataWriter.Update(o1);
+            //bool b = BDDWriter.Update(o1);
 
-            int bbb = BDDWriter.Remove<Adresse>(id2);
+            //int bbb = BDDWriter.Remove<Adresse>(id2);
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
