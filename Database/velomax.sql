@@ -284,7 +284,7 @@ values('Kilimandjaro',  569, 'VTT'),
 ('Mud Zinger I',  279, 'BMX'),
 ('Mud Zinger II',  359, 'BMX');
 
-insert into Adresse(rue, ville, codePostal,pays)
+insert into adresse( rue, ville, codePostal, pays)
 values("rue de la pompe","paris","75002","france"),
 ("Boulevard de Belleville","paris","75020","france"),
 ("rue Lecourbe","paris","75019","france"),
@@ -292,14 +292,21 @@ values("rue de la pompe","paris","75002","france"),
 ("rue de Courcelles","paris","75014","france"),
 ("avenue de la République","paris","75016","france"),
 ("Avenue Mozart","paris","75018","france"),
+("Avenue des jardins","paris","75018","france"),
+("rue des tulipes","Sarcelles","95","france"),
+("place des clichys","paris","75018","france"),
+("rue des croyances","paris","75018","france"),
+("boulevard Charles de Gaulle","paris","75018","france"),
+("rue de Vichy","paris","75018","france"),
+("Allée du baron souriant","paris","75018","france"),
+("rue des lisiées","paris","75018","france"),
 ("place de la Bourse","paris","75010","france");
 
 insert into Clients(typeClient, nom, idAdresse, telephone, courriel, nomContact)
 values('boutique',"Haribo",1,"06 26 43 43 14","hario@gmail.com","Defer"),
 ('boutique',"EDF",2,"06 46 45 41 24","EDF@gmail.com","Dureau"),
 ('boutique',"PMU",4,"06 36 15 22 18","PMU@gmail.com","Blanc"),
-('boutique',"Micheline",3,"06 56 42 28 08","PMU@gmail.com","Blanc");
- --  (int)reader[val[0]], reader.GetStringSafe(2), reader.GetStringSafe(3), (int)reader[val[4]], reader.GetStringSafe(5), reader.GetStringSafe(6), (int)reader[val[8]], (int)reader[val[10]], reader.GetDateTimeSafe(11)));
+('boutique',"Micheline",5,"06 56 42 28 08","PMU@gmail.com","Blanc");
 
 insert into Clients(typeClient,prenom,nom,idAdresse,telephone,courriel,nomContact,remise,fidelio,idFidelio,dateAdhesionFidelio)
 values('individuel',"Jean","Raoul",1,"06 26 22 18 40","j.roul@gmail.com","rara",1,2,3,"20/06/13"),
