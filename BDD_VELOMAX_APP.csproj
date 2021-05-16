@@ -224,6 +224,7 @@
     <Compile Include="VELOMAX\Enum\AssemblagesEnum\Selles.cs" />
     <Compile Include="VELOMAX\Enum\NomModeles.cs" />
     <Compile Include="VELOMAX\MyConstants.cs" />
+    <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="Views\ClientPage.xaml.cs">
       <DependentUpon>ClientPage.xaml</DependentUpon>
     </Compile>
