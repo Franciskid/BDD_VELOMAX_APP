@@ -69,7 +69,7 @@ namespace BDD_VELOMAX_APP
             Read<T>($"SELECT * FROM {MyConstants.TypeToTable(typeof(T))} WHERE {nomPropriété ?? MyConstants.TypeToID(typeof(T))} = '{id}'").FirstOrDefault();
 
         /// <summary>
-        /// Renvoie le premier objet qui satisfait la condition liée à la propriété et à l'objet indiqués. Si aucune propriété n'est indiquée, on comparera l'objet à l'id de la table.
+        /// Renvoie toutes les commandes liées à un numéro de commande (pas leur id unique, le 'numCommande' qui lie des commandes entre elles)
         /// </summary>
         /// <param name="idCommande">Numéro de la commande</param>
         /// <returns></returns>
@@ -210,6 +210,7 @@ namespace BDD_VELOMAX_APP
         {
             return !@this.IsDBNull(column) ? @this.GetString(column) : null;
         }
+
         /// <summary>
         /// Vérifie si le datetime recherché est bien non null et en renvoie la valeur de manière sécurisé.
         /// </summary>
