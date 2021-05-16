@@ -130,10 +130,14 @@ create table if not exists Commandes
 	idCommande int primary key  auto_increment not null, 
     numCommande int,
     clientid int,
+    pieceid varchar(30),
+    assemblageid int,
     dateCommande datetime,
     dateLivraison dateTime,
     
-    foreign key (clientid) references Clients(idClient)
+    foreign key (clientid) references Clients(idClient),
+    foreign key (pieceid) references Pieces(idPiece),
+    foreign key (assemblageid) references Assemblages(idAssemblage)
     
 );
 

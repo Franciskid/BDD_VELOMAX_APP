@@ -125,7 +125,7 @@ namespace BDD_VELOMAX_APP
                             }
                             if (typeof(T) == typeof(Commande))
                             {
-                                l.Add((T)(IMySQL)new Commande((int)reader[val[0]], reader.GetDateTime(val[1]), reader.GetDateTime(val[2])));
+                                l.Add((T)(IMySQL)new Commande((int)reader[val[0]], (int)reader[val[1]], (int)reader[val[2]], (string)reader[val[3]], (int)reader[val[4]], reader.GetDateTime(val[1]), reader.GetDateTime(val[2])));
                             }
                             if (typeof(T) == typeof(Fournisseurs))
                             {
