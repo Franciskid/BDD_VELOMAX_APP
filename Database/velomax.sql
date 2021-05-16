@@ -330,7 +330,7 @@ values('individuel',"Jean","Raoul",1,"06 26 22 18 40","j.roul@gmail.com","rara",
 ('individuel',"Christian","Villeneuve",1,"06 12 54 81 67","christistheone@gmail.com","rara",1,2,3,"20/06/13");
 
 
-insert into Commandes(numCommande, clientid, pieceid, assemblageid, dateCommande, dateLivraison)
+insert into Commandes(numCommande, clientid, pieceid, modeleId, dateCommande, dateLivraison)
 values(1,1,'C01',Null,"17/01/12","20/01/12"),
 (1,1,'G12',Null,"17/01/12","20/01/12"),
 (2,2,'S37',Null,"10/02/12","20/02/12"),
