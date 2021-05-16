@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    abstract class Client : IMySQL
+    public abstract class Client : IMySQL
     {
         public Adresse Adresse { get; protected set; }
 

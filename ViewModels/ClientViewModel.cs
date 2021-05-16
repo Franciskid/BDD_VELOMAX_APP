@@ -1,40 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class ClientViewModel
+    public class ClientViewModel : INotifyPropertyChanged
     {
-        public string Type { get; }
+        public string Type { get; set; }
 
-        public string Nom { get; }
+        public string Nom { get; set; }
 
-        public string Prénom { get; }
+        public string Prénom { get; set; }
 
-        public string Mail { get; }
+        public string Mail { get; set; }
 
-        public string Téléphone { get; }
+        private string phone;
 
-        public string Adresse { get; }
+        public string Téléphone
+        {
+            get => phone;
+            set
+            {
+                this.phone = value;
+                this.OnPropertyChanged("Téléphone");
+            }
+        }
 
-        public int CodePostal { get; }
+        public string Adresse { get; set; }
 
-        public string Ville { get; }
+        public int CodePostal { get; set; }
 
-        public string Province { get; }
+        public string Ville { get; set; }
 
-        public int Remise { get; }
+        public string Province { get; set; }
 
-        public string ProgrammeFidélité { get; }
+        public int Remise { get; set; }
 
-        public DateTime DateAdhésion { get; }
+        public string ProgrammeFidélité { get; set; }
 
-        public DateTime DateFin { get; }
+        public DateTime DateAdhésion { get; set; }
 
-        public string NomContact { get; }
+        public DateTime DateFin { get; set; }
+
+        public string NomContact { get; set; }
+
+        public ClientViewModel() { }
 
         public ClientViewModel(Client cli)
         {
@@ -59,6 +72,16 @@ namespace BDD_VELOMAX_APP
             {
                 this.Type = "Boutique";
                 this.NomContact = ((ClientBoutique)cli).NomContact;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
