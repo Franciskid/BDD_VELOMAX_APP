@@ -4,11 +4,11 @@ GRANT SELECT, SHOW VIEW ON velomax.* TO 'bozo'@'localhost';
 
 use velomax;
 
+drop table if exists Commandes;
 drop table if exists Assemblages;
 drop table if exists Pieces;
 drop table if exists Modeles;
 drop table if exists Comptes;
-drop table if exists Commandes;
 drop table if exists Fournisseurs;
 drop table if exists Clients;
 drop table if exists Adresse;
@@ -353,14 +353,3 @@ values(1,1,'C01',Null,"17/01/12","20/01/12"),
 (13,11,null,100002,"25/03/12","30/03/12"),
 (14,12,null,100003,"01/04/12","03/04/12"),
 (15,13,null,100004,"25/03/12","30/03/12");
-
-
-
-
-
-
-
-
-
-
-
