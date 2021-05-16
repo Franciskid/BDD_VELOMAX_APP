@@ -28,7 +28,7 @@ namespace BDD_VELOMAX_APP
         public const string TABLE_idMODELES = "idModele";
         public const string TABLE_idPIECES = "idPiece";
 
-        public static readonly Dictionary<string, List<string>> DICOVALUES = InitializeDic();
+        public static Dictionary<string, List<string>> DICOVALUES { get; } = InitializeDic();
 
         private static Dictionary<string, List<string>> InitializeDic()
         {
