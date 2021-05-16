@@ -66,7 +66,7 @@ namespace BDD_VELOMAX_APP
         private void TestFunction2()
         {
 
-            Adresse ad1 = new Adresse(null, "igrgfeh", "iuh", "ibkb", "iugaud");
+            Adresse ad1 = new Adresse(null, "TEST", "iuh", "ibkb", "iugaud");
             Adresse ad2 = new Adresse(null, "iazgh", "iuazh", "ibkb", "iugaud");
             Adresse ad3 = new Adresse(null, "igazdh", "idazuh", "azdibkb", "iugaud");
 
@@ -79,11 +79,11 @@ namespace BDD_VELOMAX_APP
             var o2 = BDDReader.GetObject<Adresse>(id2);
 
 
-            //o1.CodePostal = "UPDATE";
+            o1.CodePostal = "UPDATE";
 
-            //bool b = BDDWriter.Update(o1);
+            bool b = BDDWriter.Update(o1);
 
-            //int bbb = BDDWriter.Remove<Adresse>(id2);
+            int bbb = BDDWriter.Remove<Adresse>(id2);
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
