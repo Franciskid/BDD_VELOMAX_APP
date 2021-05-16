@@ -36,16 +36,17 @@ namespace BDD_VELOMAX_APP.Views
            
             foreach (Pieces a in DataReader.Read<Pieces>())
             {
+                nbrpiecesvendu = 0;
                 foreach (Commande c in DataReader.Read<Commande>())
                 {
-                    nbrpiecesvendu = 0;
-                    if (c.Piece.Nom == a.Nom)
+                    
+                    if (a.ID.ToString()==c.Piece.ID.ToString())
                     { 
                         nbrpiecesvendu++;
                         nombrepiecevenduparclients ++;
                     }
                 }
-                statsquantites.Add(new Squantite(a.Nom, a.Prix, a.DelaiApprovisionnement, nbrpiecesvendu));
+                statsquantites.Add(new Squantite(a.ID.ToString(),a.Nom, a.Prix, a.DelaiApprovisionnement, nbrpiecesvendu));
             }
 
             statsquantite.ItemsSource = statsquantites;
@@ -117,6 +118,7 @@ namespace BDD_VELOMAX_APP.Views
         }
         public class Squantite
         {
+            public string ID { get; set; }
             public string Nom { get; set; }
 
             public float Prix { get; set; }
@@ -132,8 +134,9 @@ namespace BDD_VELOMAX_APP.Views
                     return String.Format("{0} vaut {1} il faut attendre le {2} avant de se faire livrer.", this.Nom, this.Prix,DateTime.Now.AddMonths( this.DelaiApprovisionnement.Month));
                 }
             }
-            public Squantite(string nom, float prix, DateTime delaiApprovisionnement, int quantite)
+            public Squantite(string ID,string nom, float prix, DateTime delaiApprovisionnement, int quantite)
             {
+                this.ID = ID;
                 this.Nom = nom;
                 this.Prix = prix;
                 this.DelaiApprovisionnement = delaiApprovisionnement;

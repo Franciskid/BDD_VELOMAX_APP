@@ -58,6 +58,7 @@
                 <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Chiffres d'affires</TextBlock>
                 <DataGrid Grid.Row="2" Grid.Column="0" Background="Transparent" x:Name="statsquantite" HorizontalAlignment="Stretch" Foreground="AliceBlue">
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ID}" Foreground="AliceBlue"/>
                         <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Foreground="AliceBlue"/>
                         <DataGridTextColumn Header="Prix" Binding="{Binding Prix}"/>
                         <DataGridTextColumn Header="quantité vendue" Binding="{Binding Quantité_vendue}"/>
@@ -98,7 +99,7 @@
                         </DataTemplate>
                     </DataGrid.RowDetailsTemplate>
                 </DataGrid>
-                <TextBlock Grid.Row="6" Grid.Column="0" Background="Transparent" x:Name="moyenne" HorizontalAlignment="Stretch" Foreground="AliceBlue"/> 
+                <TextBlock Grid.Row="6" Grid.Column="0" Background="Transparent" x:Name="moyenne" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"/> 
             </Grid>
 
         </Border>
