@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
+    /// <summary>
+    /// Classe static pour écrire des données dans la BDD (accessible à root uniquement).
+    /// </summary>
     static class BDDWriter
     {
         /// <summary>

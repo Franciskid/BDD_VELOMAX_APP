@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
+    /// <summary>
+    /// Classe static pour lire des informations depuis la BDD (accessible à bozo/root).
+    /// </summary>
     class BDDReader
     {
         /// <summary>
