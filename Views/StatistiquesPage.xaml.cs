@@ -40,12 +40,18 @@ namespace BDD_VELOMAX_APP.Views
                 nbrpiecesvendu = 0;
                 foreach (Commande c in DataReader.Read<Commande>())
                 {
-                    
-                    if (a.ID.ToString()==c.Piece.ID.ToString())
-                    { 
-                        nbrpiecesvendu++;
-                        nombrepiecevenduparclients ++;
+
+                    if (c.Piece != null)
+                    {
+
+                        if (a.ID.ToString() == c.Piece.ID.ToString())
+                        {
+                            nbrpiecesvendu++;
+                            nombrepiecevenduparclients++;
+                        }
+                        
                     }
+                    
                 }
                 statsquantites.Add(new Squantite(a.ID.ToString(),a.Nom, a.Prix, a.DelaiApprovisionnement, nbrpiecesvendu));
             }
@@ -112,7 +118,7 @@ namespace BDD_VELOMAX_APP.Views
 
             nombrepiecevenduparclients = (int) nombrepiecevenduparclients / 1; /// nombre de piece vendu en moyenne 
 
-            moyenne.Text =prixmoyendescommandes.ToString();
+            moyenne.Text =prixmoyendescommandes.ToString()+" € ";
 
 
             
