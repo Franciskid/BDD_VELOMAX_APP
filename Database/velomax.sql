@@ -284,7 +284,7 @@ values('Kilimandjaro',  569, 'VTT'),
 ('Mud Zinger I',  279, 'BMX'),
 ('Mud Zinger II',  359, 'BMX');
 
-insert into Adresse(rue, ville, codePostal,pays)
+insert into adresse( rue, ville, codePostal, pays)
 values("rue de la pompe","paris","75002","france"),
 ("Boulevard de Belleville","paris","75020","france"),
 ("rue Lecourbe","paris","75019","france"),
@@ -292,6 +292,14 @@ values("rue de la pompe","paris","75002","france"),
 ("rue de Courcelles","paris","75014","france"),
 ("avenue de la République","paris","75016","france"),
 ("Avenue Mozart","paris","75018","france"),
+("Avenue des jardins","paris","75018","france"),
+("rue des tulipes","Sarcelles","95","france"),
+("place des clichys","paris","75018","france"),
+("rue des croyances","paris","75018","france"),
+("boulevard Charles de Gaulle","paris","75018","france"),
+("rue de Vichy","paris","75018","france"),
+("Allée du baron souriant","paris","75018","france"),
+("rue des lisiées","paris","75018","france"),
 ("place de la Bourse","paris","75010","france");
 
 insert into Clients(typeClient, nom, idAdresse, telephone, courriel, nomContact)
