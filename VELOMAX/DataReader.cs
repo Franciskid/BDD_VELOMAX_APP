@@ -67,13 +67,11 @@ namespace BDD_VELOMAX_APP
         /// <returns></returns>
         public static T GetObject<T>(object id, string nomPropriété = null) where T : IMySQL =>
             Read<T>($"SELECT * FROM {MyConstants.TypeToTable(typeof(T))} WHERE {nomPropriété ?? MyConstants.TypeToID(typeof(T))} = '{id}'").FirstOrDefault();
-       
+
         /// <summary>
         /// Renvoie le premier objet qui satisfait la condition liée à la propriété et à l'objet indiqués. Si aucune propriété n'est indiquée, on comparera l'objet à l'id de la table.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="id"></param>
-        /// <param name="nomPropriété"></param>
+        /// <param name="idCommande">Numéro de la commande</param>
         /// <returns></returns>
         public static List<Commande> GetCommande(object idCommande) =>
             Read<Commande>($"SELECT * FROM {MyConstants.TypeToTable(typeof(Commande))} WHERE {"numCommande"} = '{idCommande}'");
