@@ -20,21 +20,38 @@ namespace BDD_VELOMAX_APP.Views
     /// </summary>
     public partial class Pagestastique : UserControl
     {
-        public Pagestastique()
-        {
+        int nbrpiecesvendu=0;
+        int nombrepiecevenduparclients = 0;
+        float prixmoyendescommandes=0;
+        int n = 0;
+        float Chiffredaffaire = 0;
+        float totalclientencour =0;
+            public Pagestastique()
+            {
             InitializeComponent();
 
             this.DataContext = this;
 
+            ///quantité
             List<Squantite> statsquantites = new List<Squantite>();
+           
             foreach (Pieces a in DataReader.Read<Pieces>())
             {
-                statsquantites.Add(new Squantite(a.Nom, a.Prix, a.DelaiApprovisionnement, a.Quantité));
+                foreach (Commande c in DataReader.Read<Commande>())
+                {
+                    nbrpiecesvendu = 0;
+                    if (c.Piece.Nom == a.Nom)
+                    { 
+                        nbrpiecesvendu++;
+                        nombrepiecevenduparclients ++;
+                    }
+                }
+                statsquantites.Add(new Squantite(a.Nom, a.Prix, a.DelaiApprovisionnement, nbrpiecesvendu));
             }
 
             statsquantite.ItemsSource = statsquantites;
-
-
+           
+            ///fidelité
             List<Sfidel> Sfidels = new List<Sfidel>();
 
             foreach (ClientIndividuel a in DataReader.Read<ClientIndividuel>())
@@ -47,6 +64,57 @@ namespace BDD_VELOMAX_APP.Views
             statsfidelite.ItemsSource = Sfidels;
 
 
+
+            /*
+            ///meilleurclients
+            List<Smeilleur> Smeilleurs = new List<Smeilleur>();
+            foreach (Client b in DataReader.Read<Client>())
+            {
+                foreach (Commande a in DataReader.Read<Commande>())
+                {
+                    if(a.Client.ID==b.ID)
+                    {
+                        if (a.Piece != null)
+                        {
+                            totalclientencour += a.Piece.Prix;
+                        }
+                        if(a.Assemblage!=null)
+                        {
+                            totalclientencour += 0;
+                        }
+                    }
+                }
+                Smeilleurs.Add(new Smeilleur(b.)
+            }
+            */
+
+            ///plusieurmoyenne
+            foreach (Commande c in DataReader.Read<Commande>())
+            {
+                if (c.Assemblage != null)
+                {
+                    prixmoyendescommandes += 100;
+                }
+                if (c.Piece!=null)
+                {
+                    prixmoyendescommandes += c.Piece.Prix;
+                }
+                n++;
+            }
+
+
+
+
+            Chiffredaffaire =(int) prixmoyendescommandes;   ///chiffre d'affaire
+
+            prixmoyendescommandes =(prixmoyendescommandes / n); ///prix moyen
+
+            nombrepiecevenduparclients = (int) nombrepiecevenduparclients / 1; /// nombre de piece vendu en moyenne 
+
+            moyenne.Text =prixmoyendescommandes.ToString();
+
+
+            
         }
         public class Squantite
         {
@@ -56,6 +124,7 @@ namespace BDD_VELOMAX_APP.Views
             public int Quantité_vendue { get; set; }
 
             public DateTime DelaiApprovisionnement { get; set; }
+
 
             public string Details
             {
@@ -69,6 +138,8 @@ namespace BDD_VELOMAX_APP.Views
                 this.Nom = nom;
                 this.Prix = prix;
                 this.DelaiApprovisionnement = delaiApprovisionnement;
+                this.Quantité_vendue = quantite;
+
 
             }
         }
@@ -99,6 +170,33 @@ namespace BDD_VELOMAX_APP.Views
                 this.Telephone = telephone;
                 this.Courriel = courriel;
                 this.Temps = (int)programme.Duree_annee;
+
+            }
+        }
+
+
+        public class Smeilleur
+        {
+            public string TypeClient { get; set; }
+
+            public DateTime Datedebut { get; set; }
+            public string Nom { get; set; }
+
+            public string Telephone { get; set; }
+
+            public string Courriel { get; set; }
+
+            public int Total_acheter { get; set; }
+
+            public Smeilleur(string typeClient, string nom, string telephone, string courriel, DateTime datadebut, int score)
+            {
+                this.TypeClient = typeClient;
+                this.Nom = nom;
+                this.Telephone = telephone;
+                this.Courriel = courriel;
+                this.Total_acheter = score;
+
+
 
             }
         }
