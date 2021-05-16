@@ -68,6 +68,14 @@ namespace BDD_VELOMAX_APP
         public static T GetObject<T>(object id, string nomPropriété = null) where T : IMySQL =>
             Read<T>($"SELECT * FROM {MyConstants.TypeToTable(typeof(T))} WHERE {nomPropriété ?? MyConstants.TypeToID(typeof(T))} = '{id}'").FirstOrDefault();
 
+        /// <summary>
+        /// Renvoie toutes les commandes liées à un numéro de commande (pas leur id unique, le 'numCommande' qui lie des commandes entre elles)
+        /// </summary>
+        /// <param name="idCommande">Numéro de la commande</param>
+        /// <returns></returns>
+        public static List<Commande> GetCommande(object idCommande) =>
+            Read<Commande>($"SELECT * FROM {MyConstants.TypeToTable(typeof(Commande))} WHERE {"numCommande"} = '{idCommande}'");
+
 
         /// <summary>
         /// Lit une table de donnée en entier en fonction d'une condition. 
@@ -103,11 +111,11 @@ namespace BDD_VELOMAX_APP
                             {
                                 l.Add((T)(IMySQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
                             }
-                            if (typeof(T) == typeof(ClientIndividuel) || (typeof(T) == typeof(Client) && (string)reader[val[1]] == "individuel"))
+                            if ((typeof(T) == typeof(ClientIndividuel) || typeof(T) == typeof(Client)) && (string)reader[val[1]] == "individuel")
                             {
                                 l.Add((T)(IMySQL)new ClientIndividuel((int)reader[val[0]], reader.GetStringSafe(2), reader.GetStringSafe(3), (int)reader[val[4]], reader.GetStringSafe(5), reader.GetStringSafe(6), (int)reader[val[8]], (int)reader[val[10]], reader.GetDateTimeSafe(11)));
                             }
-                            if (typeof(T) == typeof(ClientBoutique) || (typeof(T) == typeof(Client) && (string)reader[val[1]] == "boutique"))
+                            if ((typeof(T) == typeof(ClientBoutique) || typeof(T) == typeof(Client)) && (string)reader[val[1]] == "boutique")
                             {
                                 l.Add((T)(IMySQL)new ClientBoutique((int)reader[val[0]], reader.GetStringSafe(2), (int)reader[val[4]], reader.GetStringSafe(5), reader.GetStringSafe(6), reader.GetStringSafe(7)));
                             }
@@ -125,7 +133,7 @@ namespace BDD_VELOMAX_APP
                             }
                             if (typeof(T) == typeof(Commande))
                             {
-                                l.Add((T)(IMySQL)new Commande((int)reader[val[0]], reader.GetDateTime(val[1]), reader.GetDateTime(val[2])));
+                                l.Add((T)(IMySQL)new Commande((int)reader[val[0]], (int)reader[val[1]], (int)reader[val[2]], (string)reader[val[3]], (int)reader[val[4]], reader.GetDateTime(val[1]), reader.GetDateTime(val[2])));
                             }
                             if (typeof(T) == typeof(Fournisseurs))
                             {
@@ -202,6 +210,7 @@ namespace BDD_VELOMAX_APP
         {
             return !@this.IsDBNull(column) ? @this.GetString(column) : null;
         }
+
         /// <summary>
         /// Vérifie si le datetime recherché est bien non null et en renvoie la valeur de manière sécurisé.
         /// </summary>
