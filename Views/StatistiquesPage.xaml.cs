@@ -20,14 +20,15 @@ namespace BDD_VELOMAX_APP.Views
     /// </summary>
     public partial class Pagestastique : UserControl
     {
-        int nbrpiecesvendu=0;
-        int nombrepiecevenduparclients = 0;
-        float prixmoyendescommandes=0;
-        int n = 0;
-        float Chiffredaffaire = 0;
-        float totalclientencour =0;
             public Pagestastique()
             {
+
+            int nbrpiecesvendu = 0;
+            int nombrepiecevenduparclients = 0;
+            float prixmoyendescommandes = 0;
+            int n = 0;
+            float Chiffredaffaire = 0;
+            float totalclientencour = 0;
             InitializeComponent();
 
             this.DataContext = this;
@@ -49,7 +50,15 @@ namespace BDD_VELOMAX_APP.Views
                             nbrpiecesvendu++;
                             nombrepiecevenduparclients++;
                         }
-                        
+                    
+                    }
+                    if (c.Modele!=null)
+                    {
+                        if (a.ID.ToString() == c.Piece.ID.ToString())
+                        {
+
+                        }
+                        var r = DataReader.ReadQuery("SELECT cadre, guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier  FROM velomax.assemblages where nom={0};",a.Nom) ;
                     }
                     
                 }
@@ -98,9 +107,9 @@ namespace BDD_VELOMAX_APP.Views
             ///plusieurmoyenne
             foreach (Commande c in DataReader.Read<Commande>())
             {
-                if (c.Assemblage != null)
+                if (c.Modele != null)
                 {
-                    prixmoyendescommandes += 100;
+                    prixmoyendescommandes+=c.Modele.Prix;
                 }
                 if (c.Piece!=null)
                 {
