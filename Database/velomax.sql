@@ -298,7 +298,7 @@ insert into Clients(typeClient, nom, idAdresse, telephone, courriel, nomContact)
 values('boutique',"Haribo",1,"06 26 43 43 14","hario@gmail.com","Defer"),
 ('boutique',"EDF",2,"06 46 45 41 24","EDF@gmail.com","Dureau"),
 ('boutique',"PMU",4,"06 36 15 22 18","PMU@gmail.com","Blanc"),
-('boutique',"Michelin",3,"06 56 42 28 08","PMU@gmail.com","Blanc");
+('boutique',"Michelin",3,"06 56 42 28 08","Michelin@gmail.com","Blanc");
 
   
 

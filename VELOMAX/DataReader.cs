@@ -19,7 +19,7 @@ namespace BDD_VELOMAX_APP
         {
             try
             {
-                return OpenConnexion().State == System.Data.ConnectionState.Open;
+                return OpenConnexion()?.State == System.Data.ConnectionState.Open;
             }
             catch (Exception e)
             {
