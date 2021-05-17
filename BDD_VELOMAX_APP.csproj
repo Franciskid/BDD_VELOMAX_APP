@@ -234,14 +234,14 @@
     <Compile Include="Views\ConnectionPage.xaml.cs">
       <DependentUpon>ConnectionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pagestocks.xaml.cs">
+      <DependentUpon>Pagestocks.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PageTESTT.xaml.cs">
       <DependentUpon>PageTESTT.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StatistiquesPage.xaml.cs">
       <DependentUpon>StatistiquesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pagestkos.xaml.cs">
-      <DependentUpon>Pagestkos.xaml</DependentUpon>
     </Compile>
     <Page Include="Styles\ButtonResources.xaml">
       <SubType>Designer</SubType>
@@ -289,15 +289,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pagestocks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PageTESTT.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StatistiquesPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pagestkos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
