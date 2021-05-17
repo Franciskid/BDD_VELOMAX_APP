@@ -79,6 +79,7 @@ namespace BDD_VELOMAX_APP.Views
                 if (TabControl.SelectedIndex == 0) //Indiv
                 {
                     var fidelio = BDDReader.GetObject<Fidelio>(o.ProgrammeFidélité, "nom");
+
                     ClientIndividuel cli = new ClientIndividuel(null, o.Nom, o.Prénom, (int)id, o.Téléphone, o.Mail, (int)fidelio.ID, o.DateAdhésion);
 
                     cli.ID = BDDWriter.Insert(cli);
@@ -108,13 +109,19 @@ namespace BDD_VELOMAX_APP.Views
 
             try
             {
-                Adresse ad = new Adresse(null, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
-                long id = BDDWriter.Insert(ad);
+                var client = BDDReader.GetObject<Client>(o.ID);
+
+                Adresse ad = new Adresse((int)client.Adresse.ID, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
+                BDDWriter.Update(ad);
 
                 if (TabControl.SelectedIndex == 0) //Indiv
                 {
                     var fidelio = BDDReader.GetObject<Fidelio>(o.ProgrammeFidélité, "nom");
-                    ClientIndividuel cli = new ClientIndividuel(o.ID, o.Nom, o.Prénom, (int)id, o.Téléphone, o.Mail, (int)fidelio.ID, o.DateAdhésion);
+
+                    if (fidelio == null)
+                        fidelio = cb_fidelio.SelectedValue as Fidelio;
+
+                    ClientIndividuel cli = new ClientIndividuel(o.ID, o.Nom, o.Prénom, (int)client.Adresse.ID, o.Téléphone, o.Mail, (int)fidelio.ID, o.DateAdhésion);
 
                     if (BDDWriter.Update(cli))
                     {
@@ -128,7 +135,7 @@ namespace BDD_VELOMAX_APP.Views
                 }
                 else //boutique
                 {
-                    ClientBoutique cli = new ClientBoutique(o.ID, o.Nom, (int)id, o.Téléphone, o.Mail, o.NomContact, o.Remise);
+                    ClientBoutique cli = new ClientBoutique(o.ID, o.Nom, (int)client.Adresse.ID, o.Téléphone, o.Mail, o.NomContact, o.Remise);
 
                     var b = BDDWriter.Update(cli);
                     if (b)
@@ -197,6 +204,7 @@ namespace BDD_VELOMAX_APP.Views
                     o.Prénom = val.Prénom;
                     o.DateAdhésion = val.DateAdhésion;
                     o.DateFin = val.DateFin;
+                    o.ProgrammeFidélité = val.ProgrammeFidélité;
 
                     this.TabControl.SelectedIndex = 0;
                 }
@@ -204,7 +212,6 @@ namespace BDD_VELOMAX_APP.Views
                 {
                     o.NomContact = val.NomContact;
                     o.Remise = val.Remise;
-                    o.ProgrammeFidélité = val.ProgrammeFidélité;
                     this.TabControl.SelectedIndex = 1;
                 }
             }
