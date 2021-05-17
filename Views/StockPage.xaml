@@ -44,8 +44,13 @@
                                 </Grid>
 
                             </TabItem>
-                            <TabItem Header="pieces par fourniseur"> 
-                                
+                            <TabItem Header="pieces par fourniseur">
+                                <Grid>
+                                    <DataGrid x:Name="datagridfourniseur">
+
+                                    </DataGrid>
+                                </Grid>
+
                             </TabItem>
                             <TabItem Header="pieces velo">
 
