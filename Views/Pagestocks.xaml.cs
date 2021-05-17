@@ -16,13 +16,14 @@ using System.Windows.Shapes;
 namespace BDD_VELOMAX_APP.Views
 {
     /// <summary>
-    /// Logique d'interaction pour CommandePage.xaml
+    /// Logique d'interaction pour Pagestock.xaml
     /// </summary>
-    public partial class CommandePage : UserControl
+    public partial class Pagestock : UserControl
     {
-        public CommandePage()
+        public Pagestock()
         {
             InitializeComponent();
+            datagridpiece.ItemsSource = BDDReader.Read<Pieces>();
         }
     }
 }

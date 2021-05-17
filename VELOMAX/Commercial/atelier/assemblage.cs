@@ -9,7 +9,7 @@ namespace BDD_VELOMAX_APP
 {
     class Assemblage : IMySQL
     {
-        public NomModeles Nom { get; private set; }
+        public string Nom { get; private set; }
 
         public Grandeurs Grandeurs { get; private set; }
 
@@ -42,7 +42,7 @@ namespace BDD_VELOMAX_APP
             string derailleur_Arriere, string roue_Avant, string roue_Arriere, string Reflecteurs, string Pedalier, string Ordinateur, string Panier)
         {
             this.ID = idAssemblage;
-            this.Nom = MyHelper.StringToEnum<NomModeles>(Nom);
+            this.Nom = Nom;
             this.Grandeurs = MyHelper.StringToEnum<Grandeurs>(Grandeurs);
             this.Cadre = MyHelper.StringToEnum<Cadre>(Cadre);
             this.Guidon = MyHelper.StringToEnum<Guidon>(Guidon);
