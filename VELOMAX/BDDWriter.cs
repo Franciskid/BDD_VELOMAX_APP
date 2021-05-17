@@ -13,7 +13,7 @@ namespace BDD_VELOMAX_APP
     static class BDDWriter
     {
         /// <summary>
-        /// Execute une déclaration sur la base de donnée
+        /// Execute une déclaration sur la base de donnée et renvoie (nombre de lignes affectées, dernier id ajouté)
         /// </summary>
         /// <param name="commandes"></param>
         /// <param name="dbCreated"></param>
@@ -21,15 +21,14 @@ namespace BDD_VELOMAX_APP
         {
             try
             {
-                using (var c = BDDReader.OpenConnexion(dbCreated))
+                using (var con = BDDReader.OpenConnexion(dbCreated))
+                using (var com = new MySqlCommand(commandes, con))
                 {
-                    using (MySqlCommand command = new MySqlCommand(commandes, c))
-                    {
-                        return (command.ExecuteNonQuery(), command.LastInsertedId);
-                    }
+                    var a = (com.ExecuteNonQuery(), com.LastInsertedId);
+                    return a;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return (-1, -1);
             }

@@ -193,7 +193,7 @@ namespace BDD_VELOMAX_APP
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }

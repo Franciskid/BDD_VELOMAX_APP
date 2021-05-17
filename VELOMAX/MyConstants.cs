@@ -62,7 +62,7 @@ namespace BDD_VELOMAX_APP
             {
                 return TABLE_idFIDELIO;
             }
-            if (type == typeof(Client))
+            if (type == typeof(Client) || type == typeof(ClientBoutique) || type == typeof(ClientIndividuel))
             {
                 return TABLE_idCLIENTS;
             }
