@@ -24,24 +24,23 @@ namespace BDD_VELOMAX_APP.Views
         {
 
             int nbrpiecesvendu = 0;
-            int nombrepiecevenduparclients = 0;
-            float prixmoyendescommandes = 0;
-            int n = 0;
-            float Chiffredaffaire = 0;
-            float totalclientencour = 0;
-            int j = 0;
-            int f = 0;
             InitializeComponent();
 
             this.DataContext = this;
 
+            var piece = BDDReader.Read<Pieces>();
+            var commande = BDDReader.Read<Commande>();
+            var indiv = BDDReader.Read<ClientIndividuel>();
+            var bout = BDDReader.Read<ClientBoutique>();
+            var assemb = BDDReader.ReadQuery($"SELECT nom, cadre, guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier  FROM velomax.assemblages");
+
             ///quantité
             List<Squantite> statsquantites = new List<Squantite>();
 
-            foreach (Pieces a in BDDReader.Read<Pieces>())
+            foreach (Pieces a in piece)
             {
                 nbrpiecesvendu = 0;
-                foreach (Commande c in BDDReader.Read<Commande>())
+                foreach (Commande c in commande)
                 {
 
                     if (c.Piece != null)
@@ -50,20 +49,18 @@ namespace BDD_VELOMAX_APP.Views
                         if (a.ID.ToString() == c.Piece.ID.ToString())
                         {
                             nbrpiecesvendu++;
-                            nombrepiecevenduparclients++;
                         }
 
                     }
                     if (c.Modele != null)
                     {
 
-                        var r = BDDReader.ReadQuery($"SELECT cadre, guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier  FROM velomax.assemblages where nom='{c.Modele.Nom}';").FirstOrDefault();
+                        var r = assemb.Where(x => x[0].ToString() == c.Modele.Nom.ToString()).FirstOrDefault();
                         foreach (object i in r)
                         {
                             if (a.ID.ToString() == i.ToString())
                             {
                                 nbrpiecesvendu++;
-                                nombrepiecevenduparclients++;
                             }
                         }
                     }
@@ -74,44 +71,37 @@ namespace BDD_VELOMAX_APP.Views
 
             statsquantite.ItemsSource = statsquantites;
 
-            ///fidelité
-            List<Sfidel> Sfidels = new List<Sfidel>();
+            //fidelité
+            var Sfidels = indiv.Where(x => x.ProgrammeFidélité != null).Select(a => new Sfidel("individuel", a.Nom, a.Telephone, a.AdresseMail, a.DateAdhésionProgramme, a.ProgrammeFidélité)).ToList();
 
-            foreach (ClientIndividuel a in BDDReader.Read<ClientIndividuel>())
-            {
-                if (a.ProgrammeFidélité != null)
-                {
-                    Sfidels.Add(new Sfidel("individuel", a.Nom, a.Telephone, a.AdresseMail, a.DateAdhésionProgramme, a.ProgrammeFidélité));
-                }
-            }
             statsfidelite.ItemsSource = Sfidels;
 
 
 
-            
+
             ///meilleurclients
             List<Smeilleur> Smeilleurs = new List<Smeilleur>();
-  
-            foreach (Commande a in BDDReader.Read<Commande>())
+
+            foreach (Commande a in commande)
             {
-                foreach (ClientIndividuel b in BDDReader.Read<ClientIndividuel>())
+                foreach (ClientIndividuel b in indiv)
                 {
-                    j = 0;
-                    f = 0;
-                    if  (a.Client.ID.Equals(b.ID))
+                    float totalclientencour = 0;
+
+                    if (a.Client.ID.Equals(b.ID))
                     {
                         if (a.Piece != null)
                         {
                             var r = BDDReader.ReadQuery($"select sum(pieces.prix) from pieces, commandes, clients where commandes.clientid = clients.idClient and pieces.idPiece = commandes.pieceid and clients.nom='{b.Nom}';").FirstOrDefault();
 
-                            j = Convert.ToInt32(r[0]);
+                            totalclientencour += Convert.ToInt32(r[0]);
                         }
                         if (a.Modele != null)
                         {
                             var s = BDDReader.ReadQuery($"select sum(modeles.prix) from modeles, commandes,clients where commandes.clientid=clients.idClient and commandes.modeleid=modeles.idModele and clients.nom='{b.Nom}';").FirstOrDefault();
-                            f = Convert.ToInt32(s[0]);
+                            totalclientencour += Convert.ToInt32(s[0]);
                         }
-                        totalclientencour = j + f;
+
                         if (totalclientencour != 0)
                         {
                             if (Smeilleurs.Contains(new Smeilleur((float)totalclientencour, "individuel", b.Nom, b.Telephone, b.AdresseMail)) == false)
@@ -124,39 +114,33 @@ namespace BDD_VELOMAX_APP.Views
                                 }
                                 if (test == true)
                                 {
-                                    Smeilleurs.Add(new Smeilleur((float)totalclientencour,"individuel", b.Nom, b.Telephone, b.AdresseMail));
+                                    Smeilleurs.Add(new Smeilleur((float)totalclientencour, "individuel", b.Nom, b.Telephone, b.AdresseMail));
                                 }
                             }
                         }
                     }
-                  
-                }
-            }
 
-            foreach (Commande a in BDDReader.Read<Commande>())
-            {
-                foreach (ClientBoutique b in BDDReader.Read<ClientBoutique>())
+                }
+                foreach (ClientBoutique b in bout)
                 {
-                    j = 0;
-                    f = 0;
+                    float totalclientencour = 0;
                     if (a.Client.ID.Equals(b.ID))
                     {
-                        if (a.Piece!=null)
+                        if (a.Piece != null)
                         {
                             var r = BDDReader.ReadQuery($"select sum(pieces.prix) from pieces, commandes, clients where commandes.clientid = clients.idClient and pieces.idPiece = commandes.pieceid and clients.nom='{b.NomEntreprise}';").FirstOrDefault();
-                                                          
-                            j = Convert.ToInt32(r[0]);
+
+                            totalclientencour += Convert.ToInt32(r[0]);
                         }
                         if (a.Modele != null)
                         {
                             var s = BDDReader.ReadQuery($"select sum(modeles.prix) from modeles, commandes,clients where commandes.clientid=clients.idClient and commandes.modeleid=modeles.idModele and clients.nom='{b.NomEntreprise}';").FirstOrDefault();
-                            f = Convert.ToInt32(s[0]);
+                            totalclientencour += Convert.ToInt32(s[0]);
                         }
                     }
-                    totalclientencour = j + f;
                     if (totalclientencour != 0)
                     {
-                        if (Smeilleurs.Contains(new Smeilleur((float)totalclientencour,"Boutique", b.NomEntreprise, b.Telephone, b.AdresseMail)) == false)
+                        if (Smeilleurs.Contains(new Smeilleur((float)totalclientencour, "Boutique", b.NomEntreprise, b.Telephone, b.AdresseMail)) == false)
                         {
 
                             bool test = true;
@@ -167,38 +151,26 @@ namespace BDD_VELOMAX_APP.Views
                             }
                             if (test == true)
                             {
-                                Smeilleurs.Add(new Smeilleur((float)totalclientencour,"Boutique", b.NomEntreprise, b.Telephone, b.AdresseMail));
+                                Smeilleurs.Add(new Smeilleur((float)totalclientencour, "Boutique", b.NomEntreprise, b.Telephone, b.AdresseMail));
                             }
                         }
                     }
                 }
             }
+
             smeilleurclient.ItemsSource = Smeilleurs;
-            ///plusieurmoyenne
-            foreach (Commande c in BDDReader.Read<Commande>())
-            {
-                if (c.Modele != null)
-                {
-                    prixmoyendescommandes += c.Modele.Prix;
-                }
-                if (c.Piece != null)
-                {
-                    prixmoyendescommandes += c.Piece.Prix;
-                }
-                n++;
-            }
+
+            float prixcommandetotal = commande.Aggregate(0f, (x, y) => x += (y.Modele?.Prix ?? 0) + (y.Piece?.Prix ?? 0));
 
 
+            float Chiffredaffaire = (int)prixcommandetotal;   ///chiffre d'affaire
 
-            
-            Chiffredaffaire = (int)prixmoyendescommandes;   ///chiffre d'affaire
+            float prixmoyendescommandes = (prixcommandetotal / commande.Count); ///prix moyen
 
-            prixmoyendescommandes = (prixmoyendescommandes / n); ///prix moyen
-
-            nombrepiecevenduparclients = (int)nombrepiecevenduparclients / (BDDReader.Read<ClientBoutique>().Count+ BDDReader.Read<ClientIndividuel>().Count); /// nombre de piece vendu en moyenne 
+            float nombrepiecevenduparclients = (int)nbrpiecesvendu / (bout.Count + indiv.Count); /// nombre de piece vendu en moyenne 
 
             moyenne.Text = prixmoyendescommandes.ToString() + " € ";
-            chiffredaffaires.Text = Chiffredaffaire.ToString()+" € ";
+            chiffredaffaires.Text = Chiffredaffaire.ToString() + " € ";
             moyenepieces.Text = nombrepiecevenduparclients.ToString();
 
 
