@@ -6,7 +6,58 @@
              xmlns:local="clr-namespace:BDD_VELOMAX_APP.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
     <Grid>
-            
+        <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="15" Margin="20">
+            <!--Background="{StaticResource ConnexionPage}"-->
+            <Border.Background>
+                <RadialGradientBrush 
+                    GradientOrigin="0.5,0.5" 
+                    Center="0.5,0.5" RadiusX="1" RadiusY="1">
+                    <RadialGradientBrush.GradientStops>
+                        <GradientStop Color="{StaticResource ConnexionPageClrStart}" Offset="0" />
+                        <GradientStop Color="{StaticResource TitleBarGradientEnd}" Offset="0.8" />
+                        <GradientStop Color="{StaticResource ConnexionPageClrEnd}" Offset="1" />
+                    </RadialGradientBrush.GradientStops>
+                </RadialGradientBrush>
+            </Border.Background>
+
+            <DockPanel VerticalAlignment="Stretch">
+                
+
+                <!--DataGrid Height="250" Margin="20" Background="Lavender" BorderThickness="2" BorderBrush="AliceBlue" DockPanel.Dock="Top" SelectionChanged="DataGrid_SelectionChanged" Name="Datagridpiece"-->
+                
+
+                <Grid DockPanel.Dock="Bottom">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" HorizontalAlignment="Stretch">
+                        <TabControl Style="{StaticResource MaterialDesignTabControl}" Background="{StaticResource MenuBackColorTransp}" Foreground="AliceBlue" Margin="20, 0, 0, 0" >
+                            <TabItem Header="pieces en stock">
+                                <Grid>
+                                    <DataGrid x:Name="Datagridpiece">
+                                        
+                                    </DataGrid>
+                                </Grid>
+
+                            </TabItem>
+                            <TabItem Header="pieces par fourniseur"> 
+                                
+                            </TabItem>
+                            <TabItem Header="pieces velo">
+
+                            </TabItem>
+                            <TabItem Header="pieces type de velo">
+
+                            </TabItem>
+                        </TabControl>
+                    </Grid>
+                </Grid>
+            </DockPanel>
+        </Border>
     </Grid>
+
 </UserControl>
