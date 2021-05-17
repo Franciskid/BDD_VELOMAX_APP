@@ -240,6 +240,9 @@
     <Compile Include="Views\StatistiquesPage.xaml.cs">
       <DependentUpon>StatistiquesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pagestkos.xaml.cs">
+      <DependentUpon>Pagestkos.xaml</DependentUpon>
+    </Compile>
     <Page Include="Styles\ButtonResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -291,6 +294,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StatistiquesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pagestkos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
