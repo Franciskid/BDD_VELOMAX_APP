@@ -47,7 +47,7 @@
                 <Border Grid.Row="1" Grid.RowSpan="6" Grid.Column="0" HorizontalAlignment="Right" BorderThickness="2" BorderBrush="AliceBlue" VerticalAlignment="Stretch" Margin="0, -1, 0, 5"/>
                 <Border Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="AliceBlue" VerticalAlignment="Bottom" Margin="5, 0, 5, 0"/>
                 
-                <TextBlock FontSize="50" FontWeight="Bold" Grid.Row="0"  Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" Foreground="AliceBlue" Margin="0, 0, 0, 20">
+                <TextBlock FontSize="50" FontWeight="Bold" Grid.Row="0"  Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" Foreground="AliceBlue" Margin="0, 0, 0, 4">
                     Menu Statistiques
                 </TextBlock>
                 <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">quantité vendu par piece</TextBlock>
