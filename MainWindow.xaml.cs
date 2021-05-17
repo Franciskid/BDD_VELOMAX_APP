@@ -451,9 +451,15 @@ namespace BDD_VELOMAX_APP
 
                 case MyPages.Connecté:
                     return new ConnectedPage();
+
                 case MyPages.Stats:
                     return new Pagestastique();
 
+                case MyPages.Pieces:
+                    return new StockPage();
+
+                case MyPages.Commandes:
+                    return new CommandePage();
 
                 default:
                     return null;

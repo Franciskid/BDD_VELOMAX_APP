@@ -228,6 +228,9 @@
     <Compile Include="Views\ClientPage.xaml.cs">
       <DependentUpon>ClientPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CommandePage.xaml.cs">
+      <DependentUpon>CommandePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConnectedPage.xaml.cs">
       <DependentUpon>ConnectedPage.xaml</DependentUpon>
     </Compile>
@@ -242,6 +245,9 @@
     </Compile>
     <Compile Include="Views\Pagestkos.xaml.cs">
       <DependentUpon>Pagestkos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StockPage.xaml.cs">
+      <DependentUpon>StockPage.xaml</DependentUpon>
     </Compile>
     <Page Include="Styles\ButtonResources.xaml">
       <SubType>Designer</SubType>
@@ -281,6 +287,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CommandePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ConnectedPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -298,6 +308,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pagestkos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StockPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
