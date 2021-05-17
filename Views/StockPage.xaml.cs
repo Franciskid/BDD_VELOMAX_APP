@@ -23,14 +23,14 @@ namespace BDD_VELOMAX_APP.Views
         public StockPage()
         {
             InitializeComponent();
-            List<Pieces> pieces = BDDReader.Read<Pieces>();
+            List<Piece> pieces = BDDReader.Read<Piece>();
             List<Fournisseurs> fournisseurs = BDDReader.Read<Fournisseurs>();
             List<Modele> modeles = BDDReader.Read<Modele>();
 
             //pieces en stock
             List<Spieces> piecesliste = new List<Spieces>();
 
-            foreach (Pieces a in pieces)
+            foreach (Piece a in pieces)
             {
                 if (a.Quantité != 0)
                 {

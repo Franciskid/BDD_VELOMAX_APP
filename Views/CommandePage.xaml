@@ -58,7 +58,7 @@
                     <TextBlock Text="Prix Total" FontSize="30" HorizontalAlignment="Center" Foreground="AliceBlue"/>
                     <TextBlock x:Name="TB_PrixTotal" FontSize="20" HorizontalAlignment="Center" Foreground="AliceBlue"/>
                     
-                    <Button x:Name="Butt_Checkout" Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Click="Butt_Disconnect_Click" Content="Passer la commande" Background="{StaticResource DeepPurple}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20" IsDefault="True"/>
+                    <Button x:Name="Butt_Checkout" Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Click="Butt_Checkout_Click" Content="Passer la commande" Background="{StaticResource DeepPurple}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20" IsDefault="True"/>
 
                 </StackPanel>
                 
