@@ -309,8 +309,8 @@ values("rue de la pompe","paris","75002","france"),
 insert into Clients(typeClient, nom, idAdresse, telephone, courriel, nomContact, remise)
 values('boutique',"Haribo",1,"06 26 43 43 14","hario@gmail.com","Defer", 1),
 ('boutique',"EDF",2,"06 46 45 41 24","EDF@gmail.com","Dureau", 10),
-('boutique',"PMU",4,"06 36 15 22 18","PMU@gmail.com","Blanc, 8"),
-('boutique',"Micheline",3,"06 56 42 28 08","PMU@gmail.com","Blanc", 5);
+('boutique',"Micheline",3,"06 56 42 28 08","PMU@gmail.com","Blanc", 5), 
+('boutique',"PMU",4,"06 36 15 22 18","PMU@gmail.com","Blanc", 8);
 
 insert into Clients(typeClient,prenom,nom,idAdresse,telephone,courriel,nomContact,fidelio,idFidelio,dateAdhesionFidelio)
 values('individuel',"Jean","Raoul",1,"06 26 22 18 40","j.roul@gmail.com","rara",2,3,"20/06/13"),
