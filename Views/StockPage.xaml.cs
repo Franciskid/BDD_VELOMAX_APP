@@ -24,8 +24,11 @@ namespace BDD_VELOMAX_APP.Views
         {
             InitializeComponent();
             List <Pieces> pieces = BDDReader.Read<Pieces>();
-            List<Spieces> piecesliste = new List<Spieces>();
+            List <Fournisseurs> fournisseurs= BDDReader.Read<Fournisseurs>();
+
             //pieces en stock
+            List<Spieces> piecesliste = new List<Spieces>();
+            
             foreach (Pieces a in pieces)
             {
                 if (a.Quantité != 0)
@@ -37,6 +40,19 @@ namespace BDD_VELOMAX_APP.Views
             Datagridpiece.ItemsSource = piecesliste;
 
             // pieces par foursineur
+
+            List<Piecesfourniseur> piecesfourniseurs = new List<Piecesfourniseur>();
+            
+            foreach(Fournisseurs a in fournisseurs)
+            {
+                var piecesdufourniseur = BDDReader.ReadQuery($"select pieces.idPiece, pieces.nom, pieces.delaiApprovisionnement from pieces,fournisseurs where fournisseurId=pieces.fournisseurId and fournisseurs.nom='{a.Nom}';");
+
+                foreach (var b in piecesdufourniseur)
+                {
+                    piecesfourniseurs.Add(new Piecesfourniseur(a.Nom,b[0].ToString(), b[1].ToString(), new DateTime(2000, 12,12))) ;
+                }
+            }
+            datagridfourniseur.ItemsSource = piecesfourniseurs;
         }
 
 
@@ -67,6 +83,23 @@ namespace BDD_VELOMAX_APP.Views
                 this.DelaiApprovisionnement = delaiApprovisionnement;
                 this.Quantite= quantite;
 
+            }
+        }
+
+        public class Piecesfourniseur
+        {
+            public string Nom_fournisseur { get; set; }
+            public string ID { get; set; }
+            public string Nom { get; set; }
+
+            public DateTime Date { get; set; }
+
+            public Piecesfourniseur(string Nonf, string Id,string nom,DateTime dateapprivossoment)
+            {
+                this.Nom_fournisseur = Nonf;
+                this.ID = Id;
+                this.Nom = nom;
+                this.Date = dateapprivossoment;
             }
         }
     }
