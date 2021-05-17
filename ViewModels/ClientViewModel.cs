@@ -9,6 +9,17 @@ namespace BDD_VELOMAX_APP
 {
     public class ClientViewModel : INotifyPropertyChanged
     {
+        private object id;
+        public object ID
+        {
+            get => id;
+            set
+            {
+                this.id = value;
+                this.OnPropertyChanged("ID");
+            }
+        }
+
         private string type;
         public string Type {
             get => type;
@@ -160,6 +171,7 @@ namespace BDD_VELOMAX_APP
 
         public ClientViewModel(Client cli)
         {
+            this.ID = cli.ID;
             this.Adresse = cli.Adresse.Rue;
             this.Ville = cli.Adresse.Ville;
             this.CodePostal = int.Parse(cli.Adresse.CodePostal);

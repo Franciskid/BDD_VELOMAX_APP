@@ -45,14 +45,7 @@ namespace BDD_VELOMAX_APP
         public static long Insert(IMySQL obj)
         {
             string table = MyConstants.TypeToTable(obj.GetType());
-
-            var query = ExecuteNonQuery($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})");
-            if (query.Item1 > 0)
-            {
-                return query.Item2;
-            }
-
-            return -1;
+            return ExecuteNonQuery($"INSERT INTO {table}({string.Join(",", MyConstants.DICOVALUES[table].Skip(obj.ID == null ? 1 : 0))}) VALUES({obj.SaveStr()})").Item2;
         }
 
         /// <summary>
