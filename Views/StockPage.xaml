@@ -53,6 +53,9 @@
 
                             </TabItem>
                             <TabItem Header="pieces velo">
+                                <DataGrid x:Name="datagridvelo">
+
+                                </DataGrid>
 
                             </TabItem>
                             <TabItem Header="pieces type de velo">

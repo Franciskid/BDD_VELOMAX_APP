@@ -23,12 +23,13 @@ namespace BDD_VELOMAX_APP.Views
         public StockPage()
         {
             InitializeComponent();
-            List <Pieces> pieces = BDDReader.Read<Pieces>();
-            List <Fournisseurs> fournisseurs= BDDReader.Read<Fournisseurs>();
+            List<Pieces> pieces = BDDReader.Read<Pieces>();
+            List<Fournisseurs> fournisseurs = BDDReader.Read<Fournisseurs>();
+            List<Modele> modeles = BDDReader.Read<Modele>();
 
             //pieces en stock
             List<Spieces> piecesliste = new List<Spieces>();
-            
+
             foreach (Pieces a in pieces)
             {
                 if (a.Quantité != 0)
@@ -42,21 +43,35 @@ namespace BDD_VELOMAX_APP.Views
             // pieces par foursineur
 
             List<Piecesfourniseur> piecesfourniseurs = new List<Piecesfourniseur>();
-            
-            foreach(Fournisseurs a in fournisseurs)
+
+            foreach (Fournisseurs a in fournisseurs)
             {
                 var piecesdufourniseur = BDDReader.ReadQuery($"select pieces.idPiece, pieces.nom, pieces.delaiApprovisionnement from pieces,fournisseurs where fournisseurId=pieces.fournisseurId and fournisseurs.nom='{a.Nom}';");
 
                 foreach (var b in piecesdufourniseur)
                 {
-                    piecesfourniseurs.Add(new Piecesfourniseur(a.Nom,b[0].ToString(), b[1].ToString(), new DateTime(2000, 12,12))) ;
+                    ///piecesfourniseurs.Add(new Piecesfourniseur(a.Nom, b[0].ToString(), b[1].ToString(), Convert.ToDateTime(b[2].ToString()))) ;
                 }
             }
             datagridfourniseur.ItemsSource = piecesfourniseurs;
+
+            
+            // Pieces par velo
+            List<Piecesparvelo> piecesparvelos = new List<Piecesparvelo>();
+
+            foreach (Modele a in modeles)
+            {
+                var piecesdufourniseur = BDDReader.ReadQuery($"SELECT cadre, guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier  FROM velomax.assemblages, modeles where modeles.nom='{a.Nom}' and modeles.nom=assemblages.nom ;").FirstOrDefault();
+                foreach(object b in piecesdufourniseur)
+                {
+                    piecesparvelos.Add(new Piecesparvelo(a.Nom.ToString(), b.ToString()));
+                }
+
+            }
+            datagridvelo.ItemsSource = piecesparvelos;
+
+
         }
-
-
-
 
         public class Spieces
         {
@@ -101,6 +116,21 @@ namespace BDD_VELOMAX_APP.Views
                 this.Nom = nom;
                 this.Date = dateapprivossoment;
             }
+        }
+        public class Piecesparvelo
+        {
+            public string Nommodele { get; set; }
+
+            public string ID { get; set; }
+           
+
+            public Piecesparvelo(string nommodele,string Id)
+            {
+                this.Nommodele = nommodele;
+                this.ID = Id;
+            }
+
+
         }
     }
 }
