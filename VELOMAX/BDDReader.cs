@@ -142,9 +142,9 @@ namespace BDD_VELOMAX_APP
                             {
                                 l.Add((T)(IMySQL)new Fournisseurs((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (int)reader[val[3]], int.Parse((string)reader[val[4]])));
                             }
-                            if (typeof(T) == typeof(Pieces))
+                            if (typeof(T) == typeof(Piece))
                             {
-                                l.Add((T)(IMySQL)new Pieces(reader.GetStringSafe(0), reader.GetStringSafe(1), (int)reader[val[2]], (int)reader[val[3]], (Single)reader[val[4]], (int)reader[val[5]], reader.GetDateTimeSafe(6), reader.GetDateTimeSafe(7), reader.GetDateTimeSafe(8)));
+                                l.Add((T)(IMySQL)new Piece(reader.GetStringSafe(0), reader.GetStringSafe(1), (int)reader[val[2]], (int)reader[val[3]], (Single)reader[val[4]], (int)reader[val[5]], reader.GetDateTimeSafe(6), reader.GetDateTimeSafe(7), reader.GetDateTimeSafe(8)));
                             }
                         }
 

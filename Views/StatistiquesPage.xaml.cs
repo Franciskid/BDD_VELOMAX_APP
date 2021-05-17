@@ -28,7 +28,7 @@ namespace BDD_VELOMAX_APP.Views
 
             this.DataContext = this;
 
-            var piece = BDDReader.Read<Pieces>();
+            var piece = BDDReader.Read<Piece>();
             var commande = BDDReader.Read<Commande>();
             var indiv = BDDReader.Read<ClientIndividuel>();
             var bout = BDDReader.Read<ClientBoutique>();
@@ -37,7 +37,7 @@ namespace BDD_VELOMAX_APP.Views
             ///quantité
             List<Squantite> statsquantites = new List<Squantite>();
 
-            foreach (Pieces a in piece)
+            foreach (Piece a in piece)
             {
                 nbrpiecesvendu = 0;
                 foreach (Commande c in commande)

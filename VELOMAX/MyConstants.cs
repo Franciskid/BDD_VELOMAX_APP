@@ -87,11 +87,11 @@ namespace BDD_VELOMAX_APP
             {
                 return TABLE_idFOURNISSEURS;
             }
-            if (type == typeof(Pieces))
+            if (type == typeof(Piece))
             {
                 return TABLE_idPIECES;
             }
-            if (type == typeof(Pieces))
+            if (type == typeof(Piece))
             {
                 return TABLE_idPIECES;
             }
@@ -133,7 +133,7 @@ namespace BDD_VELOMAX_APP
             {
                 return TABLE_COMMANDES;
             }
-            if (type == typeof(Pieces))
+            if (type == typeof(Piece))
             {
                 return TABLE_PIECES;
             }

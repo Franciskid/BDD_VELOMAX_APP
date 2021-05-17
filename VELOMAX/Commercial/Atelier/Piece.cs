@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class Pieces:IMySQL
+    public class Piece : IMySQL
     {
         public string Nom { get; private set; }
 
@@ -24,7 +24,7 @@ namespace BDD_VELOMAX_APP
 
         public DateTime DelaiApprovisionnement { get; private set; }
 
-        public Pieces (string IdPiece, string Nom, int siretFournisseur, int NumProduit, float Prix, int qté, DateTime DateIntroduction, DateTime DateDiscontinuation, DateTime DelaiApprovisionnement)
+        public Piece (string IdPiece, string Nom, int siretFournisseur, int NumProduit, float Prix, int qté, DateTime DateIntroduction, DateTime DateDiscontinuation, DateTime DelaiApprovisionnement)
         {
             this.ID = IdPiece;
             this.Nom = Nom;
