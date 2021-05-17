@@ -454,6 +454,8 @@ namespace BDD_VELOMAX_APP
 
                 case MyPages.Stats:
                     return new Pagestastique();
+                case MyPages.Pieces:
+                    return new Pagestock();
 
                 case MyPages.Pieces:
                     return new StockPage();
