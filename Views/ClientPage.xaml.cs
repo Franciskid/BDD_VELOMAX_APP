@@ -31,7 +31,7 @@ namespace BDD_VELOMAX_APP.Views
 
         public Fidelio SelectedFidelio { get; set; }
 
-        public IEnumerable<ClientViewModel> ListeClients = BDDReader.Read<Client>().Select(x => new ClientViewModel(x));
+        public ObservableCollection<ClientViewModel> ListeClients = new ObservableCollection<ClientViewModel>();
 
 
         public ClientPage()
@@ -47,6 +47,8 @@ namespace BDD_VELOMAX_APP.Views
             DatagridClients.ItemsSource = ListeClients;
 
             this.cb_fidelio.ItemsSource = ListeFidelio;
+
+            BDDReader.Read<Client>().Select(x => new ClientViewModel(x)).ToList().ForEach(x => ListeClients.Add(x));
         }
        
 
@@ -64,7 +66,33 @@ namespace BDD_VELOMAX_APP.Views
 
         private void Butt_Add_Click(object sender, RoutedEventArgs e)
         {
+            var o = (ClientViewModel)this.DataContext;
 
+            if (TabControl.SelectedIndex == 0) //Indiv
+            {
+                Adresse ad = new Adresse(null, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
+                long id = BDDWriter.Insert(ad);
+
+                var fidelio = BDDReader.GetObject<Fidelio>(o.ProgrammeFidélité, "nom");
+                ClientIndividuel cli = new ClientIndividuel(null, o.Nom, o.Prénom, (int)id, o.Téléphone, o.Mail, (int)fidelio.ID, o.DateAdhésion);
+
+                cli.ID = BDDWriter.Insert(cli);
+
+                this.ListeClients.Add(new ClientViewModel(cli));
+
+            }
+            else //boutique
+            {
+                Adresse ad = new Adresse(null, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
+                long id = BDDWriter.Insert(ad);
+
+                ClientBoutique cli = new ClientBoutique(null, o.Nom, (int)id, o.Téléphone, o.Mail, o.NomContact, o.Remise);
+
+                cli.ID = BDDWriter.Insert(cli);
+
+                this.ListeClients.Add(new ClientViewModel(cli));
+
+            }
         }
 
         private void Butt_Update_Click(object sender, RoutedEventArgs e)
@@ -83,6 +111,7 @@ namespace BDD_VELOMAX_APP.Views
 
             var val = this.DatagridClients.SelectedItem as ClientViewModel;
 
+            o.ID = val.ID;
             o.Nom = val.Nom;
             o.Prénom = val.Prénom;
             o.Adresse = val.Adresse;

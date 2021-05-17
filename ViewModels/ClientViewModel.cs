@@ -184,16 +184,16 @@ namespace BDD_VELOMAX_APP
                 this.Type = "Individuel";
                 this.Nom = ind.Nom;
                 this.Prénom = ind.Prénom;
-                this.Remise = ind.Remise;
                 this.ProgrammeFidélité = ind.ProgrammeFidélité.Description;
                 this.DateAdhésion = ind.DateAdhésionProgramme;
                 this.DateFin = ind.DateAdhésionProgramme + new TimeSpan((int)ind.ProgrammeFidélité.Duree_annee * 365, (int)(ind.ProgrammeFidélité.Duree_annee % 1 * 12) * 8760, 0, 0);
             }
-            else
+            else if (cli is ClientBoutique bout)
             {
                 this.Type = "Boutique";
-                this.Nom = ((ClientBoutique)cli).NomEntreprise;
-                this.NomContact = ((ClientBoutique)cli).NomContact;
+                this.Nom = bout.NomEntreprise;
+                this.Remise = bout.Remise;
+                this.NomContact = bout.NomContact;
             }
         }
 

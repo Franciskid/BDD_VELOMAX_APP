@@ -15,7 +15,7 @@ namespace BDD_VELOMAX_APP
         public string AdresseMail { get; protected set; }
 
 
-        public object ID { get; protected set; }
+        public object ID { get; set; }
 
 
         protected Client(object ID, int idAdresse, string tel, string mail)

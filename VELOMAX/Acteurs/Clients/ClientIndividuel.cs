@@ -12,8 +12,6 @@ namespace BDD_VELOMAX_APP
 
         public string Prénom { get; private set; }
 
-        public int Remise { get; private set; }
-
 
         /// <summary>
         /// Programme fidélité du client. Si ce paramètre est null alors le client n'a pas souscris à un programme de fidélité
@@ -24,11 +22,10 @@ namespace BDD_VELOMAX_APP
         public DateTime DateAdhésionProgramme { get; private set; }
 
 
-        public ClientIndividuel(Object Id, string nom, string prenom, int idAdresse, string tel, string mail,int remise, int fidel, DateTime adhesion) : base(Id, idAdresse, tel, mail)
+        public ClientIndividuel(Object Id, string nom, string prenom, int idAdresse, string tel, string mail, int fidel, DateTime adhesion) : base(Id, idAdresse, tel, mail)
         {
             this.Prénom = prenom;
             this.Nom = nom;
-            this.Remise = remise;
             this.ProgrammeFidélité = BDDReader.GetObject<Fidelio>(fidel);
             this.DateAdhésionProgramme = adhesion;
         }
@@ -36,9 +33,9 @@ namespace BDD_VELOMAX_APP
         public override string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'individuel', '{Nom}','{Prénom}', " +
             $"{(base.Adresse.ID != null ? $"'{base.Adresse.ID}'" : "null")}, " +
             $"'{base.Telephone}','{base.AdresseMail}',''," +
-            $"'{Remise}'," +
+            $"null," +
             $"{(this.ProgrammeFidélité != null ? $"True" : "False")}," +
             $"'{(this.ProgrammeFidélité.ID != null ? $"{this.ProgrammeFidélité.ID}" : "null")}'," +
-            $"'{(this.ProgrammeFidélité != null ? $"{DateAdhésionProgramme:dd/MM:yyyy}" : "")}'";
+            $"'{(this.ProgrammeFidélité != null ? $"{DateAdhésionProgramme:yyyy-MM-dd}" : "")}'";
     }
 }

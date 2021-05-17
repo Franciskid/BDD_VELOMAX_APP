@@ -116,11 +116,11 @@ namespace BDD_VELOMAX_APP
                             }
                             if ((typeof(T) == typeof(ClientIndividuel) || typeof(T) == typeof(Client)) && (string)reader[val[1]] == "individuel")
                             {
-                                l.Add((T)(IMySQL)new ClientIndividuel((int)reader[val[0]], reader.GetStringSafe(2), reader.GetStringSafe(3), (int)reader[val[4]], reader.GetStringSafe(5), reader.GetStringSafe(6), (int)reader[val[8]], (int)reader[val[10]], reader.GetDateTimeSafe(11)));
+                                l.Add((T)(IMySQL)new ClientIndividuel((int)reader[val[0]], reader.GetStringSafe(2), reader.GetStringSafe(3), (int)reader[val[4]], reader.GetStringSafe(5), reader.GetStringSafe(6), (int)reader[val[10]], reader.GetDateTimeSafe(11)));
                             }
                             if ((typeof(T) == typeof(ClientBoutique) || typeof(T) == typeof(Client)) && (string)reader[val[1]] == "boutique")
                             {
-                                l.Add((T)(IMySQL)new ClientBoutique((int)reader[val[0]], reader.GetStringSafe(2), (int)reader[val[4]], reader.GetStringSafe(5), reader.GetStringSafe(6), reader.GetStringSafe(7)));
+                                l.Add((T)(IMySQL)new ClientBoutique((int)reader[val[0]], reader.GetStringSafe(2), (int)reader[val[4]], reader.GetStringSafe(5), reader.GetStringSafe(6), reader.GetStringSafe(7), (int)reader.GetIntSafe(8)));
                             }
                             if (typeof(T) == typeof(Modele))
                             {

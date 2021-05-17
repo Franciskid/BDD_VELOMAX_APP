@@ -43,7 +43,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Column="0" HorizontalAlignment="Stretch">
-                        <TabControl Style="{StaticResource MaterialDesignTabControl}" Background="{StaticResource MenuBackColorTransp}" Foreground="AliceBlue" Margin="20, 0, 0, 0" >
+                        <TabControl x:Name="TabControl" Style="{StaticResource MaterialDesignTabControl}" Background="{StaticResource MenuBackColorTransp}" Foreground="AliceBlue" Margin="20, 0, 0, 0" >
                             <TabItem Header="Client Individuel">
                                 <Grid  Background="{StaticResource ConnexionPage}">
                                     <Grid.ColumnDefinitions>
