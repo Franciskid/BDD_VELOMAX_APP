@@ -16,13 +16,13 @@ using System.Windows.Shapes;
 namespace BDD_VELOMAX_APP.Views
 {
     /// <summary>
-    /// Logique d'interaction pour UserControl1.xaml
+    /// Logique d'interaction pour StockPage.xaml
     /// </summary>
-    public partial class Pagestock : UserControl
+    public partial class StockPage : UserControl
     {
-        public Pagestock()
+        public StockPage()
         {
-           
+            InitializeComponent();
         }
     }
 }
