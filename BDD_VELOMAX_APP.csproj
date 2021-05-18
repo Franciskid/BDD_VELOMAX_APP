@@ -225,6 +225,7 @@
     <Compile Include="VELOMAX\Enum\NomModeles.cs" />
     <Compile Include="VELOMAX\MyConstants.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
+    <Compile Include="ViewModels\FournisseurViewModel.cs" />
     <Compile Include="ViewModels\ModeleCommandeViewModel.cs" />
     <Compile Include="ViewModels\PieceCommandeViewModel.cs" />
     <Compile Include="ViewModels\PrixCheckoutViewModel.cs" />
