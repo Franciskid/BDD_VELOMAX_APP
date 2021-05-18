@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -142,6 +143,9 @@ namespace BDD_VELOMAX_APP
 
         private void LaunchWorkerChangeImage()
         {
+            this.imageWorker.WorkerSupportsCancellation = true;
+            this.imageWorker.CancelAsync();
+            this.imageWorker = new BackgroundWorker();
             this.imageWorker.DoWork += new DoWorkEventHandler(this.backgroundWorker_DoWork_ChangeImage);
             this.imageWorker.RunWorkerAsync();
         }
@@ -211,7 +215,7 @@ namespace BDD_VELOMAX_APP
                 var source = this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
                     ChangeImage2((ImageBrush)MainBackgroundGrid.Background, (ImageBrush)MainBackgroundGrid2.Background, (ImageSource)FindResource($"BackImage{a}"), new TimeSpan(0, 0, 2), new TimeSpan(0, 0, 2)))
                     );
-                System.Threading.Thread.Sleep((Int32)FindResource($"TempsMSChangementBackgroundImage"));
+                System.Threading.Thread.Sleep(int.Parse(ConfigurationManager.AppSettings["RafraichissementImagesSec"].ToString()) * 1000);
 
                 int temp = r.Next(1, 11);
 
@@ -424,6 +428,16 @@ namespace BDD_VELOMAX_APP
         }
 
         #endregion
+
+        private void Butt_Paramètres_Click(object sender, RoutedEventArgs e)
+        {
+            Window win = new BDD_VELOMAX_APP.Views.ParamètresWindow();
+
+            if (win.ShowDialog() == true)
+            {
+                LaunchWorkerChangeImage();
+            }
+        }
     }
 
     public enum MyPages
@@ -460,6 +474,9 @@ namespace BDD_VELOMAX_APP
 
                 case MyPages.Commandes:
                     return new CommandePage();
+
+                case MyPages.Other:
+                    return new Menufidelio();
 
                 default:
                     return null;

@@ -243,6 +243,12 @@
     <Compile Include="Views\ConnectionPage.xaml.cs">
       <DependentUpon>ConnectionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Menufidelio.xaml.cs">
+      <DependentUpon>Menufidelio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ParamètresWindow.xaml.cs">
+      <DependentUpon>ParamètresWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StatistiquesPage.xaml.cs">
       <DependentUpon>StatistiquesPage.xaml</DependentUpon>
     </Compile>
@@ -301,6 +307,13 @@
     </Page>
     <Page Include="Views\ConnectionPage.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Menufidelio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ParamètresWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StatistiquesPage.xaml">

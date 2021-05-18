@@ -140,7 +140,7 @@ namespace BDD_VELOMAX_APP
                             }
                             if (typeof(T) == typeof(Fournisseurs))
                             {
-                                l.Add((T)(IMySQL)new Fournisseurs((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (int)reader[val[3]], int.Parse((string)reader[val[4]])));
+                                l.Add((T)(IMySQL)new Fournisseurs((int)reader[val[0]], (string)reader[val[1]], (string)reader[val[2]], (int)reader[val[3]], int.Parse((string)reader[val[4]]), int.Parse((string)reader[val[5]])));
                             }
                             if (typeof(T) == typeof(Piece))
                             {

@@ -1,0 +1,62 @@
+﻿<Window x:Class="BDD_VELOMAX_APP.Views.ParamètresWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BDD_VELOMAX_APP.Views"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="{StaticResource MenuBackColorTransp2}"
+        AllowsTransparency="True"
+        Title="VéloMax" Height="500" Width="500" 
+        WindowStyle="None" 
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterScreen">
+    <Border BorderBrush="AliceBlue" BorderThickness="1">
+        <Border BorderThickness="5">
+            <Border.BorderBrush >
+                <RadialGradientBrush Center="0.5, 0.5" RadiusX="1" RadiusY="3">
+                    <RadialGradientBrush.GradientStops>
+                        <GradientStop Color="{StaticResource ConnexionPageClrStart}" Offset="0" />
+                        <GradientStop Color="AliceBlue" Offset="1" />
+                    </RadialGradientBrush.GradientStops>
+                </RadialGradientBrush>
+            </Border.BorderBrush>
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Background="AliceBlue" Height="2" HorizontalAlignment="Stretch"/>
+
+                <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" FontSize="35" Foreground="AliceBlue">
+            PARAMÈTRES
+                </TextBlock>
+                <Border DockPanel.Dock="Top" Background="AliceBlue" Height="2" HorizontalAlignment="Stretch"/>
+
+                <Border DockPanel.Dock="Top" BorderBrush="AntiqueWhite" BorderThickness="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Margin="0, 30, 25, 30" Grid.Row="0">
+                            <materialDesign:PackIcon Kind="Clock" VerticalAlignment="Center" Height="30" Width="40" Margin="0, 0, 0, 0" Foreground="AliceBlue"/>
+                            <TextBox x:Name="TB_rafraiche" Style="{DynamicResource MaterialDesignTextBox}" materialDesign:HintAssist.Hint="Fréquence de rafraichissement de l'image d'arrière plan"  materialDesign:HintAssist.IsFloating="True"  HorizontalAlignment="Stretch" Foreground="AliceBlue" FontSize="15" VerticalAlignment="Center"/>
+                        </DockPanel>
+                        <DockPanel Margin="0, 30, 25, 30" Grid.Row="1">
+                            <materialDesign:PackIcon Kind="Bookshelf" VerticalAlignment="Center" Height="30" Width="40" Margin="0, 0, 0, 0" Foreground="AliceBlue"/>
+                            <TextBox x:Name="TB_Stock" Style="{DynamicResource MaterialDesignTextBox}" materialDesign:HintAssist.Hint="Stock à partir duquel inclure les objets dans le JSON"  materialDesign:HintAssist.IsFloating="True"  HorizontalAlignment="Stretch" Foreground="AliceBlue" FontSize="15" VerticalAlignment="Center"/>
+                        </DockPanel>
+                    </Grid>
+                </Border>
+
+                <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="Butt_Abort" Grid.Column="0"  Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Click="Butt_Abort_Click" Content="Annuler" Background="{StaticResource MenuFontColorFocus}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20" IsDefault="True" Margin="0, 0, 3, 0" Width="150"/>
+                    <Button x:Name="Butt_Save" Grid.Column="1"  Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Click="Butt_Save_Click" Content="Enregistrer" Background="{StaticResource DeepPurple}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20" IsDefault="True" Margin="3, 0, 0, 0" Width="150"/>
+                </Grid>
+            </DockPanel>
+        </Border>
+    </Border>
+</Window>
