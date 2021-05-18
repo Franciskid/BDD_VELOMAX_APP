@@ -203,7 +203,6 @@
     <Compile Include="VELOMAX\Commercial\Atelier\Pieces.cs" />
     <Compile Include="VELOMAX\Commercial\ProgrammesFidelio\Fidelio.cs" />
     <Compile Include="VELOMAX\Commercial\Atelier\Modele.cs" />
-    <Compile Include="VELOMAX\Commercial\ProgrammesFidelio\IFidelio.cs" />
     <Compile Include="VELOMAX\BDDReader.cs" />
     <Compile Include="VELOMAX\BDDWriter.cs" />
     <Compile Include="VELOMAX\Enum\Adresse.cs" />
