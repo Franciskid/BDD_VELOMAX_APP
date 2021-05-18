@@ -167,7 +167,7 @@ namespace BDD_VELOMAX_APP
         }
 
        
-        public ClientViewModel() { }
+        public ClientViewModel() { this.DateAdhésion = DateTime.Now; }
 
         public ClientViewModel(Client cli)
         {
