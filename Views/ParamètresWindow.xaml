@@ -31,6 +31,23 @@
                 </TextBlock>
                 <Border DockPanel.Dock="Top" Background="AliceBlue" Height="2" HorizontalAlignment="Stretch"/>
 
+                <Border DockPanel.Dock="Top" BorderBrush="AntiqueWhite" BorderThickness="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Margin="0, 30, 25, 30" Grid.Row="0">
+                            <materialDesign:PackIcon Kind="Clock" VerticalAlignment="Center" Height="30" Width="40" Margin="0, 0, 0, 0" Foreground="AliceBlue"/>
+                            <TextBox x:Name="TB_rafraiche" Style="{DynamicResource MaterialDesignTextBox}" materialDesign:HintAssist.Hint="Fréquence de rafraichissement de l'image d'arrière plan"  materialDesign:HintAssist.IsFloating="True"  HorizontalAlignment="Stretch" Foreground="AliceBlue" FontSize="15" VerticalAlignment="Center"/>
+                        </DockPanel>
+                        <DockPanel Margin="0, 30, 25, 30" Grid.Row="1">
+                            <materialDesign:PackIcon Kind="Bookshelf" VerticalAlignment="Center" Height="30" Width="40" Margin="0, 0, 0, 0" Foreground="AliceBlue"/>
+                            <TextBox x:Name="TB_Stock" Style="{DynamicResource MaterialDesignTextBox}" materialDesign:HintAssist.Hint="Stock à partir duquel inclure les objets dans le JSON"  materialDesign:HintAssist.IsFloating="True"  HorizontalAlignment="Stretch" Foreground="AliceBlue" FontSize="15" VerticalAlignment="Center"/>
+                        </DockPanel>
+                    </Grid>
+                </Border>
+
                 <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
