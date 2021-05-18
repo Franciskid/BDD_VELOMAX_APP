@@ -18,11 +18,6 @@ namespace BDD_VELOMAX_APP
 
         public DateTime Discontinuation { get; set; }
 
-        public ModeleCommandeViewModel(string nom, int prix)
-        {
-            this.Nom = nom;
-            this.Prix = prix;
-        }
         public ModeleCommandeViewModel(Modele modele)
         {
             this.Nom = modele.Nom.ToString();
