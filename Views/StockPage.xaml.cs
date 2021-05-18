@@ -50,14 +50,10 @@ namespace BDD_VELOMAX_APP.Views
 
                 foreach (var b in piecesdufourniseur)
                 {
-                    if (false)//b[3].ToString() !=null)
-                    {
-                        piecesfourniseurs.Add(new Piecesfourniseur(a.Nom, b[0].ToString(), b[1].ToString(), DateTime.Parse(b[3].ToString())));
-                    }
-                    if (true)
-                    {
-                        piecesfourniseurs.Add(new Piecesfourniseur(a.Nom, b[0].ToString(), b[1].ToString(), new DateTime()));
-                    }
+                 
+                        piecesfourniseurs.Add(new Piecesfourniseur(a.Nom, b[0].ToString(), b[1].ToString(),DateTime.Now.AddDays(a.Delai)));
+                  
+                    
                 }
             }
             datagridfourniseur.ItemsSource = piecesfourniseurs;

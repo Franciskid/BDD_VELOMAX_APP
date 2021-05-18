@@ -16,15 +16,18 @@ namespace BDD_VELOMAX_APP
 
         public Score Score { get; private set; }
 
-        public Fournisseurs(int Siret, string Nom, string Contact, int iDadresse, int Scores)
+        public int Delai { get; private set; }
+
+        public Fournisseurs(int Siret, string Nom, string Contact, int iDadresse, int Scores,int delai)
         {
             this.ID = Siret;
             this.Nom = Nom;
             this.Contact = Contact;
             this.Adresse = BDDReader.GetObject<Adresse>(iDadresse);
             this.Score = (Score)Scores;
+            this.Delai = delai;
         }
         public object ID { get; }
-        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{Contact}' , '{Adresse.ID}', '{Score}'";
+        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{Contact}' , '{Adresse.ID}','{Score}','{Delai}'";
     }
 }
