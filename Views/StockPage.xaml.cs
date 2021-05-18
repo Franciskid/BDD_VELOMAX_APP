@@ -26,7 +26,7 @@ namespace BDD_VELOMAX_APP.Views
             List<Piece> pieces = BDDReader.Read<Piece>();
             List<Fournisseurs> fournisseurs = BDDReader.Read<Fournisseurs>();
             List<Modele> modeles = BDDReader.Read<Modele>();
-
+            List<Assemblage> assemblages = BDDReader.Read<Assemblage>();
             //pieces en stock
             List<Spieces> piecesliste = new List<Spieces>();
 
@@ -50,27 +50,36 @@ namespace BDD_VELOMAX_APP.Views
 
                 foreach (var b in piecesdufourniseur)
                 {
-                    ///piecesfourniseurs.Add(new Piecesfourniseur(a.Nom, b[0].ToString(), b[1].ToString(), Convert.ToDateTime(b[2].ToString()))) ;
+                 
+                        piecesfourniseurs.Add(new Piecesfourniseur(a.Nom, b[0].ToString(), b[1].ToString(),DateTime.Now.AddDays(a.Delai)));
+                  
+                    
                 }
             }
             datagridfourniseur.ItemsSource = piecesfourniseurs;
 
-            
+
             // Pieces par velo
             List<Piecesparvelo> piecesparvelos = new List<Piecesparvelo>();
 
-            foreach (Modele a in modeles)
+            foreach (Assemblage a in assemblages)
             {
-                var piecesdufourniseur = BDDReader.ReadQuery($"SELECT cadre, guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier  FROM velomax.assemblages, modeles where modeles.nom='{a.Nom}' and modeles.nom=assemblages.nom ;").FirstOrDefault();
-                foreach(object b in piecesdufourniseur)
-                {
-                    piecesparvelos.Add(new Piecesparvelo(a.Nom.ToString(), b.ToString()));
-                }
+                piecesparvelos.Add(new Piecesparvelo(a.Nom.ToString(), a.Cadre.ToString(), a.Derailleur_Arriere.ToString(), a.Derailleur_Avant.ToString(), a.Selles.ToString(), a.Freins.ToString(), a.Guidon.ToString(), a.Roue_Avant.ToString(), a.Roue_Arriere.ToString(), a.Reflecteurs.ToString(), a.Pedalier.ToString(), a.Ordinateur.ToString(), a.Panier.ToString()));
+
 
             }
             datagridvelo.ItemsSource = piecesparvelos;
 
+            //Pieces par type de velo
+            List<Piecespartypedevelo> piecestpartypedervelos = new List<Piecespartypedevelo>();
+         
+            var f = BDDReader.ReadQuery($"SELECT modeles.ligne,guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier FROM velomax.modeles,assemblages where modeles.nom=assemblages.nom group by ligne;");
 
+            foreach (var b in f)
+             {
+                    piecestpartypedervelos.Add(new Piecespartypedevelo(b[0].ToString(), b[5].ToString(), b[4].ToString(), b[3].ToString(), b[2].ToString(), b[1].ToString(), b[6].ToString(), b[7].ToString(), b[8].ToString(), b[9].ToString(), b[10].ToString(), b[11].ToString()));
+             }
+            datagridpiecestypevelo.ItemsSource = piecestpartypedervelos;
         }
 
         public class Spieces
@@ -79,7 +88,7 @@ namespace BDD_VELOMAX_APP.Views
             public string Nom { get; set; }
 
             public float Prix { get; set; }
-            public int Quantite{ get; set; }
+            public int Quantite { get; set; }
 
             public DateTime DelaiApprovisionnement { get; set; }
             public string Details
@@ -96,7 +105,7 @@ namespace BDD_VELOMAX_APP.Views
                 this.Nom = nom;
                 this.Prix = prix;
                 this.DelaiApprovisionnement = delaiApprovisionnement;
-                this.Quantite= quantite;
+                this.Quantite = quantite;
 
             }
         }
@@ -109,7 +118,7 @@ namespace BDD_VELOMAX_APP.Views
 
             public DateTime Date { get; set; }
 
-            public Piecesfourniseur(string Nonf, string Id,string nom,DateTime dateapprivossoment)
+            public Piecesfourniseur(string Nonf, string Id, string nom, DateTime dateapprivossoment)
             {
                 this.Nom_fournisseur = Nonf;
                 this.ID = Id;
@@ -119,18 +128,106 @@ namespace BDD_VELOMAX_APP.Views
         }
         public class Piecesparvelo
         {
-            public string Nommodele { get; set; }
-
-            public string ID { get; set; }
-           
-
-            public Piecesparvelo(string nommodele,string Id)
+            public Piecesparvelo(string nommodele, string cadre, string derailleur_arriere, string derailleur_avant, string selle, string freins, string guidon, string roue_avant, string roue_arriere, string reflecteurs, string pedalier, string ordinateur, string panier)
             {
-                this.Nommodele = nommodele;
-                this.ID = Id;
+                Nommodele = nommodele;
+                this.cadre = cadre;
+                this.derailleur_arriere = derailleur_arriere;
+                this.derailleur_avant = derailleur_avant;
+                this.selle = selle;
+                this.freins = freins;
+                this.guidon = guidon;
+                this.roue_avant = roue_avant;
+                this.roue_arriere = roue_arriere;
+                this.reflecteurs = reflecteurs;
+                this.pedalier = pedalier;
+                this.ordinateur = ordinateur;
+                this.panier = panier;
             }
 
+            public string Nommodele { get; set; }
 
+            public string cadre { get; set; }
+
+            public string derailleur_arriere { get; set; }
+
+            public string derailleur_avant { get; set; }
+
+            public string selle { get; set; }
+
+            public string freins { get; set; }
+
+            public string guidon { get; set; }
+
+
+
+
+            public string roue_avant { get; set; }
+
+
+            public string roue_arriere { get; set; }
+
+            public string reflecteurs { get; set; }
+
+            public string pedalier { get; set; }
+
+            public string ordinateur { get; set; }
+
+            public string panier { get; set; }
+
+
+
+
+
+
+        }
+        public class Piecespartypedevelo
+        {
+            public Piecespartypedevelo(string typemodele, string derailleur_arriere, string derailleur_avant, string selle, string freins, string guidon, string roue_avant, string roue_arriere, string reflecteurs, string pedalier, string ordinateur, string panier)
+            {
+                Typemodele = typemodele;
+                this.derailleur_arriere = derailleur_arriere;
+                this.derailleur_avant = derailleur_avant;
+                this.selle = selle;
+                this.freins = freins;
+                this.guidon = guidon;
+                this.roue_avant = roue_avant;
+                this.roue_arriere = roue_arriere;
+                this.reflecteurs = reflecteurs;
+                this.pedalier = pedalier;
+                this.ordinateur = ordinateur;
+                this.panier = panier;
+            }
+
+            public string Typemodele { get; set; }
+
+           
+
+            public string derailleur_arriere { get; set; }
+
+            public string derailleur_avant { get; set; }
+
+            public string selle { get; set; }
+
+            public string freins { get; set; }
+
+            public string guidon { get; set; }
+
+
+
+
+            public string roue_avant { get; set; }
+
+
+            public string roue_arriere { get; set; }
+
+            public string reflecteurs { get; set; }
+
+            public string pedalier { get; set; }
+
+            public string ordinateur { get; set; }
+
+            public string panier { get; set; }
         }
     }
 }

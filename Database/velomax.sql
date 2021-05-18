@@ -30,6 +30,7 @@ create table if not exists Fournisseurs
     contact varchar(30),
     idAdresse int,
     score enum('1', '2', '3', '4'),
+    delaidelivraison varchar(30),
     
     foreign key (idAdresse) references Adresse(idAdresse) on delete cascade
 );
@@ -154,8 +155,8 @@ insert into Comptes(pseudo, motdepasse) values ('root', sha1('rootroot')), ('boz
 insert into adresse(idAdresse, rue, ville, codePostal, pays)
 values(1, "rue nulle part", "Marseille", "13000", "France");
 
-insert into fournisseurs(siret, nom, contact, idAdresse, score) 
-values(0, "TEST", "CONTACT_TEST", 1, 2);
+insert into fournisseurs(siret, nom, contact, idAdresse, score,delaidelivraison) 
+values(0, "TEST", "CONTACT_TEST", 1, 2,3);
 
 insert into Pieces(idPiece, nom, fournisseurId) 
 values('C32', 'Cadre', 0),
