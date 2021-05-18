@@ -300,7 +300,7 @@ namespace BDD_VELOMAX_APP.Views
             }
             catch
             {
-                MessageBox.Show($"Erreur : Impossible de modifier le {(TabControl.SelectedItem as TabItem).Header.ToString().ToLower()} spécifié");
+                MessageBox.Show($"Erreur : Impossible de modifier le fournisseur spécifié");
             }
         }
 
