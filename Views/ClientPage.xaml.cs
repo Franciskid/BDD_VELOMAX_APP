@@ -27,13 +27,16 @@ namespace BDD_VELOMAX_APP.Views
     {
         public float Remise { get; set; } = 0;
 
-        public ObservableCollection<Fidelio> ListeFidelio { get; set; } = new ObservableCollection<Fidelio>() { new Fidelio(-1, "Pas de fidélio", 0, 0, 0) };
+        public ObservableCollection<string> ListeFidelio { get; set; } = new ObservableCollection<string>() { "Pas de fidélio" };
 
-        public Fidelio SelectedFidelio { get; set; }
+        public string SelectedFidelio { get; set; }
 
         public ObservableCollection<ClientViewModel> ListeClients = new ObservableCollection<ClientViewModel>();
+        public ObservableCollection<FournisseurViewModel> ListeFournisseur = new ObservableCollection<FournisseurViewModel>();
+
 
         private List<ClientViewModel> clients = new List<ClientViewModel>();
+        private List<FournisseurViewModel> fournisseurs = new List<FournisseurViewModel>();
 
         public ClientPage()
         {
@@ -41,17 +44,24 @@ namespace BDD_VELOMAX_APP.Views
 
             var fidel = BDDReader.Read<Fidelio>();
 
-            fidel.ForEach(x => ListeFidelio.Add(x));
+            fidel.ForEach(x => ListeFidelio.Add(x.ID.ToString()));
 
             SelectedFidelio = ListeFidelio[0];
 
             DatagridClients.ItemsSource = ListeClients;
+            DatagridFournisseur.ItemsSource = ListeFournisseur;
 
             this.cb_fidelio.ItemsSource = ListeFidelio;
+            this.cb_score.ItemsSource = ((Score[])typeof(Score).GetEnumValues()).Select(x => x.ToString());
 
             clients = BDDReader.Read<Client>().Select(x => new ClientViewModel(x)).ToList();
 
             clients.ForEach(x => ListeClients.Add(x));
+
+
+            fournisseurs = BDDReader.Read<Fournisseurs>().Select(x => new FournisseurViewModel(x)).ToList();
+
+            fournisseurs.ForEach(x => ListeFournisseur.Add(x));
         }
 
 
@@ -69,7 +79,7 @@ namespace BDD_VELOMAX_APP.Views
 
         private void Butt_Add_Click(object sender, RoutedEventArgs e)
         {
-            var o = (ClientViewModel)this.DataContext;
+            var o = (ClientViewModel)this.TabClient.DataContext;
 
             try
             {
@@ -105,7 +115,7 @@ namespace BDD_VELOMAX_APP.Views
 
         private void Butt_Update_Click(object sender, RoutedEventArgs e)
         {
-            var o = (ClientViewModel)this.DataContext;
+            var o = (ClientViewModel)this.TabClient.DataContext;
 
             try
             {
@@ -158,7 +168,7 @@ namespace BDD_VELOMAX_APP.Views
 
         private void Butt_Delete_Click(object sender, RoutedEventArgs e)
         {
-            var o = (ClientViewModel)this.DataContext;
+            var o = (ClientViewModel)this.TabClient.DataContext;
 
             try
             {
@@ -182,9 +192,9 @@ namespace BDD_VELOMAX_APP.Views
         }
 
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGridClient_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var o = (ClientViewModel)this.DataContext;
+            var o = (ClientViewModel)this.TabClient.DataContext;
 
             var val = this.DatagridClients.SelectedItem as ClientViewModel;
 
@@ -207,6 +217,8 @@ namespace BDD_VELOMAX_APP.Views
                     o.ProgrammeFidélité = val.ProgrammeFidélité;
 
                     this.TabControl.SelectedIndex = 0;
+
+                    this.cb_fidelio.SelectedItem = val.ProgrammeFidélité;
                 }
                 else
                 {
@@ -218,5 +230,103 @@ namespace BDD_VELOMAX_APP.Views
         }
 
 
+        private void DataGridFournisseur_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var o = (FournisseurViewModel)this.TabFournisseur.DataContext;
+
+            var val = this.DatagridFournisseur.SelectedItem as FournisseurViewModel;
+
+            if (val != null)
+            {
+                o.Siret = val.Siret;
+                o.Score = val.Score;
+                o.Contact = val.Contact;
+                o.Nom = val.Nom;
+                o.Adresse = val.Adresse;
+                o.Ville = val.Ville;
+                o.CodePostal = val.CodePostal;
+                o.Province = val.Province;
+
+                this.cb_score.SelectedItem = val.Score;
+            }
+        }
+
+        private void Butt_Add_Fournisseur_Click(object sender, RoutedEventArgs e)
+        {
+            var o = (FournisseurViewModel)this.TabFournisseur.DataContext;
+
+            try
+            {
+                var client = BDDReader.GetObject<Client>(o.Siret);
+
+                Adresse ad = new Adresse((int)client.Adresse.ID, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
+                var idAd = BDDWriter.Insert(ad);
+
+                Fournisseurs fourn = new Fournisseurs(o.Siret, o.Nom, o.Contact, (int)idAd, (int)MyHelper.StringToEnum<Score>(o.Score), 10);
+
+                this.ListeFournisseur.Add(new FournisseurViewModel(fourn));
+
+            }
+            catch
+            {
+                MessageBox.Show($"Erreur : Impossible d'ajouter le fournisseur spécifié");
+            }
+        }
+
+        private void Butt_Update_Fournisseur_Click(object sender, RoutedEventArgs e)
+        {
+            var o = (FournisseurViewModel)this.TabFournisseur.DataContext;
+
+            try
+            {
+                var client = BDDReader.GetObject<Client>(o.Siret);
+
+                Adresse ad = new Adresse((int)client.Adresse.ID, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
+                BDDWriter.Update(ad);
+
+                Fournisseurs fourn = new Fournisseurs(o.Siret, o.Nom, o.Contact, (int)client.Adresse.ID, (int)MyHelper.StringToEnum<Score>(o.Score), 10);
+
+                var b = BDDWriter.Update(fourn);
+                if (b)
+                {
+                    this.fournisseurs.Remove(this.fournisseurs.Where(x => x.Siret.ToString() == o.Siret.ToString()).FirstOrDefault());
+                    this.fournisseurs.Add(new FournisseurViewModel(fourn));
+
+                    this.DatagridFournisseur.ItemsSource = new ObservableCollection<FournisseurViewModel>(from item in fournisseurs
+                                                                                                          orderby item.Siret ascending
+                                                                                                          select item);
+                }
+
+            }
+            catch
+            {
+                MessageBox.Show($"Erreur : Impossible de modifier le {(TabControl.SelectedItem as TabItem).Header.ToString().ToLower()} spécifié");
+            }
+        }
+
+        private void Butt_Delete_Fournisseur_Click(object sender, RoutedEventArgs e)
+        {
+            var o = (FournisseurViewModel)this.TabFournisseur.DataContext;
+
+            try
+            {
+                if (MessageBox.Show("Etes vous sûr de supprimer ce fournisseur ? Sa suppression entrainera celles de toutes ses pièces", "Attention", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+                {
+                    if (BDDWriter.Remove<Fournisseurs>(o.Siret) >= 1)
+                    {
+                        this.fournisseurs.Remove(this.fournisseurs.Where(x => x.Siret.ToString() == o.Siret.ToString()).FirstOrDefault());
+
+                        this.DatagridFournisseur.ItemsSource = new ObservableCollection<FournisseurViewModel>(from item in fournisseurs
+                                                                                                              orderby item.Siret ascending
+                                                                                                              select item);
+                    }
+
+                }
+            }
+            catch
+            {
+                MessageBox.Show($"Erreur : Impossible de supprimer le fournisseur spécifié");
+            }
+        }
     }
 }

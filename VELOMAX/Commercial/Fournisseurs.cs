@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class Fournisseurs : IMySQL
+    public class Fournisseurs : IMySQL
     {
         public string Nom { get; private set; }
 

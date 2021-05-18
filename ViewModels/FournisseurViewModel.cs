@@ -20,8 +20,8 @@ namespace BDD_VELOMAX_APP
             }
         }
 
-        private int nom;
-        public int Nom
+        private string nom;
+        public string Nom
         {
             get => nom;
             set
@@ -43,8 +43,8 @@ namespace BDD_VELOMAX_APP
             }
         }
 
-        private Score score;
-        public Score Score
+        private string score;
+        public string Score
         {
             get => score;
             set
@@ -66,8 +66,8 @@ namespace BDD_VELOMAX_APP
             }
         }
 
-        private int codepostal;
-        public int CodePostal
+        private string codepostal;
+        public string CodePostal
         {
             get => codepostal;
             set
@@ -104,6 +104,18 @@ namespace BDD_VELOMAX_APP
 
         public FournisseurViewModel() { }
 
+
+        public FournisseurViewModel(Fournisseurs f)
+        {
+            this.Siret = (int)f.ID;
+            this.Nom = f.Nom;
+            this.Contact = f.Contact;
+            this.score = f.Score.ToString();
+            this.Adresse = f.Adresse.Rue;
+            this.CodePostal = f.Adresse.CodePostal;
+            this.Ville = f.Adresse.Ville;
+            this.Province = f.Adresse.Province;
+        }
 
 
 

@@ -14,7 +14,7 @@
              d:DesignHeight="700" d:DesignWidth="900">
     <Grid>
         <TabControl x:Name="TabControl_Main" Style="{StaticResource MaterialDesignTabControl}" Background="{StaticResource MenuBackColorTransp}" Foreground="AliceBlue" Margin="20, 0, 0, 0">
-            <TabItem Header="Client">
+            <TabItem Header="Client" x:Name="TabClient">
                 <TabItem.DataContext>
                     <local:ClientViewModel/>
                 </TabItem.DataContext>
@@ -35,7 +35,7 @@
 
                     <DockPanel VerticalAlignment="Stretch">
 
-                        <DataGrid Height="250" Margin="20" Background="Lavender" BorderThickness="2" BorderBrush="AliceBlue" DockPanel.Dock="Top" SelectionChanged="DataGrid_SelectionChanged" Name="DatagridClients" materialDesign:DataGridAssist.EnableEditBoxAssist="False">
+                        <DataGrid Height="250" Margin="20" Background="Lavender" BorderThickness="2" BorderBrush="AliceBlue" DockPanel.Dock="Top" SelectionChanged="DataGridClient_SelectionChanged" Name="DatagridClients" materialDesign:DataGridAssist.EnableEditBoxAssist="False">
                         </DataGrid>
 
                         <Grid DockPanel.Dock="Bottom">
@@ -280,7 +280,7 @@
                 </Border>
             </TabItem>
 
-            <TabItem Header="Fournisseur">
+            <TabItem Header="Fournisseur" x:Name="TabFournisseur">
                 <TabItem.DataContext>
                     <local:FournisseurViewModel/>
                 </TabItem.DataContext>
@@ -300,7 +300,7 @@
 
                     <DockPanel VerticalAlignment="Stretch">
 
-                        <DataGrid Height="250" Margin="20" Background="Lavender" BorderThickness="2" BorderBrush="AliceBlue" DockPanel.Dock="Top" SelectionChanged="DataGrid_SelectionChanged" x:Name="DatagridFournisseur" materialDesign:DataGridAssist.EnableEditBoxAssist="False">
+                        <DataGrid Height="250" Margin="20" Background="Lavender" BorderThickness="2" BorderBrush="AliceBlue" DockPanel.Dock="Top" SelectionChanged="DataGridFournisseur_SelectionChanged"  x:Name="DatagridFournisseur" materialDesign:DataGridAssist.EnableEditBoxAssist="False">
                         </DataGrid>
 
                         <Grid DockPanel.Dock="Bottom">
@@ -309,7 +309,7 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Column="0" HorizontalAlignment="Stretch">
+                            <Grid Grid.Column="0" HorizontalAlignment="Stretch" Margin="20">
                                 <Grid  Background="{StaticResource ConnexionPage}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
@@ -323,27 +323,27 @@
                                     </Grid.RowDefinitions>
 
                                     <DockPanel Grid.Row="0" Grid.Column="0">
-                                        <materialDesign:PackIcon Kind="Account" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
+                                        <materialDesign:PackIcon Kind="Company" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
-                                        <TextBox x:Name="TB__Fournisseur_Nom" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
-                                             materialDesign:HintAssist.Hint="Nom"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
+                                        <TextBox x:Name="TB__Fournisseur_Siret" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
+                                             materialDesign:HintAssist.Hint="Siret"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
                                              VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10" Text="{Binding Siret, Mode=TwoWay}"/>
 
                                     </DockPanel>
                                     <DockPanel Grid.Row="1" Grid.Column="0">
-                                        <materialDesign:PackIcon Kind="AccountOutline" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
+                                        <materialDesign:PackIcon Kind="Company" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
-                                        <TextBox x:Name="TB__Fournisseur_Prenom" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
-                                             materialDesign:HintAssist.Hint="Prenom"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
+                                        <TextBox x:Name="TB__Fournisseur_Nom" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
+                                             materialDesign:HintAssist.Hint="Nom"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
                                              VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10" Text="{Binding Nom, Mode=TwoWay}"/>
 
                                     </DockPanel>
 
                                     <DockPanel Grid.Row="2" Grid.Column="0">
-                                        <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
+                                        <materialDesign:PackIcon Kind="User" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
-                                        <TextBox x:Name="TB__Fournisseur_Telephone" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
-                                             materialDesign:HintAssist.Hint="Telephone"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
+                                        <TextBox x:Name="TB__Fournisseur_Contact" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
+                                             materialDesign:HintAssist.Hint="Contact"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
                                              VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Contact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                     </DockPanel>
@@ -351,10 +351,9 @@
                                     <DockPanel Grid.Row="3" Grid.Column="0">
                                         <materialDesign:PackIcon Kind="Email" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
-                                        <ComboBox x:Name="TB__Fournisseur_Mail" Style="{StaticResource Box1}" Foreground="AliceBlue"
-                                             materialDesign:HintAssist.Hint="Mail"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
-                                             VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Score, Mode=TwoWay}"/>
-
+                                        <ComboBox Name="cb_score" Style="{StaticResource Box1}" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" Template="{DynamicResource MaterialDesignDataGridComboBoxEditableTemplate}" materialDesign:HintAssist.Hint="Score" IsEditable="True" Background="Transparent"
+                                                   SelectedItem="{Binding Score, Mode=TwoWay}" DisplayMemberPath="Description" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0, 20, 10, 0" Width="140">
+                                        </ComboBox>
                                     </DockPanel>
 
 
@@ -397,9 +396,9 @@
                                 </Grid>
                             </Grid>
                             <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right" Width="240" VerticalAlignment="Stretch">
-                                <Button x:Name="Butt_Add_Fournisseur" Style="{DynamicResource MaterialDesignOutlinedButton}" Margin="20" Height="80" Click="Butt_Add_Click" Content="AJOUTER" Background="{StaticResource ConnexionPage}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="25" FontWeight="Heavy" IsDefault="True"/>
-                                <Button x:Name="Butt_Update_Fournisseur" Style="{DynamicResource MaterialDesignOutlinedButton}" Margin="20" Height="80" Click="Butt_Update_Click" Content="MODIFIER" Background="{StaticResource ConnexionPage}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="25" FontWeight="Heavy"  IsDefault="True"/>
-                                <Button x:Name="Butt_Delete_Fournisseur" Style="{DynamicResource MaterialDesignOutlinedButton}" Margin="20" Height="80" Click="Butt_Delete_Click" Content="SUPPRIMER" Background="{StaticResource ConnexionPage}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="25" FontWeight="Heavy"  IsDefault="True"/>
+                                <Button x:Name="Butt_Add_Fournisseur" Style="{DynamicResource MaterialDesignOutlinedButton}" Margin="20" Height="80" Click="Butt_Add_Fournisseur_Click" Content="AJOUTER" Background="{StaticResource ConnexionPage}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="25" FontWeight="Heavy" IsDefault="True"/>
+                                <Button x:Name="Butt_Update_Fournisseur" Style="{DynamicResource MaterialDesignOutlinedButton}" Margin="20" Height="80" Click="Butt_Update_Fournisseur_Click"  Content="MODIFIER" Background="{StaticResource ConnexionPage}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="25" FontWeight="Heavy"  IsDefault="True"/>
+                                <Button x:Name="Butt_Delete_Fournisseur" Style="{DynamicResource MaterialDesignOutlinedButton}" Margin="20" Height="80" Click="Butt_Delete_Fournisseur_Click"  Content="SUPPRIMER" Background="{StaticResource ConnexionPage}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="25" FontWeight="Heavy"  IsDefault="True"/>
                             </StackPanel>
                         </Grid>
 
