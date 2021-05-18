@@ -132,8 +132,14 @@
 
                                     <DockPanel  Grid.Row="0" Grid.Column="2" >
                                         <materialDesign:PackIcon Kind="FormatListCheckbox" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 10, 15" Foreground="AliceBlue"/>
-                                        <ComboBox Name="cb_fidelio" Style="{DynamicResource MaterialDesignComboBox}" materialDesign:HintAssist.Hint="Fidélio" IsEditable="True" Background="Transparent"
-                                                   SelectedItem="{Binding ProgrammeFidélité, Mode=TwoWay}" DisplayMemberPath="Description" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0, 20, 10, 0">
+                                        <ComboBox Name="cb_fidelio" Style="{StaticResource Box1}" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" Template="{DynamicResource MaterialDesignDataGridComboBoxEditableTemplate}" materialDesign:HintAssist.Hint="Fidélio" IsEditable="True" Background="Transparent"
+                                                   SelectedItem="{Binding ProgrammeFidélité, Mode=TwoWay}" DisplayMemberPath="Description" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0, 20, 10, 0" Width="140">
+                                        </ComboBox>
+                                    </DockPanel>
+                                    <DockPanel  Grid.Row="3" Grid.Column="2" >
+                                        <materialDesign:PackIcon Kind="FormatListCheckbox" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 10, 15" Foreground="AliceBlue"/>
+                                        <ComboBox>
+                                            
                                         </ComboBox>
                                     </DockPanel>
 

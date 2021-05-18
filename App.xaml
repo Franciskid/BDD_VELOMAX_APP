@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Styles/ToolTipResources.xaml"/>
                 <ResourceDictionary Source="Styles/ColorResources.xaml"/>
                 <ResourceDictionary Source="Styles/ImageResources.xaml"/>
+                <ResourceDictionary Source="Styles/ComboBoxRessources.xaml"/>
                 
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
