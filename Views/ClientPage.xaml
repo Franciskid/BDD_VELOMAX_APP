@@ -351,7 +351,7 @@
                                     <DockPanel Grid.Row="3" Grid.Column="0">
                                         <materialDesign:PackIcon Kind="Email" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
-                                        <ComboBox x:Name="TB__Fournisseur_Mail" Style="{StaticResource}" Foreground="AliceBlue"
+                                        <ComboBox x:Name="TB__Fournisseur_Mail" Style="{StaticResource Box1}" Foreground="AliceBlue"
                                              materialDesign:HintAssist.Hint="Mail"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
                                              VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Score, Mode=TwoWay}"/>
 
