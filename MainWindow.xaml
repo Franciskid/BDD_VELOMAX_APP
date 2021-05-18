@@ -101,7 +101,7 @@
                                         <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Fermer}" />
                                     </Button.ToolTip>
                                 </Button>
-                                <Button Style="{StaticResource ParamButton}" x:Name="Butt_Paramètres" Grid.Column="2" BorderThickness="0" Margin="15, 0, 25, 0" Cursor="Hand">
+                                <Button Style="{StaticResource ParamButton}" x:Name="Butt_Paramètres" Grid.Column="2" BorderThickness="0" Margin="15, 0, 25, 0" Cursor="Hand" Click="Butt_Paramètres_Click">
                                     <materialDesign:PackIcon Kind="Settings" Height="25" Width="25"  Foreground="{Binding ElementName=Butt_Paramètres, Path=Foreground}"/>
                                     <Button.ToolTip>
                                         <ToolTip Style="{StaticResource MyToolTip}" Content="{StaticResource ResourceKey=Paramètres}" />

@@ -424,6 +424,13 @@ namespace BDD_VELOMAX_APP
         }
 
         #endregion
+
+        private void Butt_Paramètres_Click(object sender, RoutedEventArgs e)
+        {
+            Window win = new BDD_VELOMAX_APP.Views.ParamètresWindow();
+
+            win.ShowDialog();
+        }
     }
 
     public enum MyPages
