@@ -475,6 +475,9 @@ namespace BDD_VELOMAX_APP
                 case MyPages.Commandes:
                     return new CommandePage();
 
+                case MyPages.Other:
+                    return new Menufidelio();
+
                 default:
                     return null;
             }

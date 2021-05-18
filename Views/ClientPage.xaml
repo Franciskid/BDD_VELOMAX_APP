@@ -139,7 +139,7 @@
 
                                     <DockPanel  Grid.Row="1" Grid.Column="2" >
                                         <materialDesign:PackIcon Kind="DateRange" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 10, 15" Foreground="AliceBlue"/>
-                                        <DatePicker Style="{DynamicResource MaterialDesignDatePicker}" materialDesign:HintAssist.Hint="Fidélio Date Fin" MinWidth="72" Background="Transparent" FontSize="16"
+                                        <DatePicker x:Name="" Style="{DynamicResource MaterialDesignDatePicker}" materialDesign:HintAssist.Hint="Fidélio Date Fin" MinWidth="72" Background="Transparent" FontSize="16"
                                                   Foreground="AliceBlue" VerticalAlignment="Center" SelectedDate="{Binding DateAdhésion, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0, 20, 10, 0">
                                         </DatePicker>
                                     </DockPanel>
