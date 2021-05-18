@@ -31,7 +31,7 @@ create table if not exists Fournisseurs
     idAdresse int,
     score enum('1', '2', '3', '4'),
     
-    foreign key (idAdresse) references Adresse(idAdresse)
+    foreign key (idAdresse) references Adresse(idAdresse) on delete cascade
 );
 
 create table if not exists Pieces
@@ -120,7 +120,7 @@ create table if not exists Clients
     dateAdhesionFidelio datetime,
     
     foreign key (idFidelio) references Fidelio(idFidelio),
-    foreign key (idAdresse) references Adresse(idAdresse)
+    foreign key (idAdresse) references Adresse(idAdresse)  on delete cascade
 );
 ALTER TABLE Modeles AUTO_INCREMENT = 101;
 
@@ -135,7 +135,7 @@ create table if not exists Commandes
     dateCommande datetime,
     dateLivraison dateTime,
     
-    foreign key (clientid) references Clients(idClient),
+    foreign key (clientid) references Clients(idClient)  on delete cascade,
     foreign key (pieceid) references Pieces(idPiece)
     #foreign key (modeleid) references modeles(idModele)
     

@@ -197,10 +197,11 @@
     <Compile Include="VELOMAX\Acteurs\Clients\ClientBoutique.cs" />
     <Compile Include="VELOMAX\Acteurs\Clients\ClientIndividuel.cs" />
     <Compile Include="VELOMAX\Acteurs\Compte.cs" />
+    <Compile Include="VELOMAX\Acteurs\Spectateur.cs" />
     <Compile Include="VELOMAX\Commercial\Atelier\Assemblage.cs" />
     <Compile Include="VELOMAX\Commercial\Commande.cs" />
     <Compile Include="VELOMAX\Commercial\Fournisseurs.cs" />
-    <Compile Include="VELOMAX\Commercial\Atelier\Pieces.cs" />
+    <Compile Include="VELOMAX\Commercial\Atelier\Piece.cs" />
     <Compile Include="VELOMAX\Commercial\ProgrammesFidelio\Fidelio.cs" />
     <Compile Include="VELOMAX\Commercial\Atelier\Modele.cs" />
     <Compile Include="VELOMAX\BDDReader.cs" />
@@ -224,6 +225,9 @@
     <Compile Include="VELOMAX\Enum\NomModeles.cs" />
     <Compile Include="VELOMAX\MyConstants.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
+    <Compile Include="ViewModels\ModeleCommandeViewModel.cs" />
+    <Compile Include="ViewModels\PieceCommandeViewModel.cs" />
+    <Compile Include="ViewModels\PrixCheckoutViewModel.cs" />
     <Compile Include="Views\ClientPage.xaml.cs">
       <DependentUpon>ClientPage.xaml</DependentUpon>
     </Compile>

@@ -56,7 +56,7 @@ namespace BDD_VELOMAX_APP
             var daz = BDDReader.Read<Fidelio>();
             var eef = BDDReader.Read<Fournisseurs>();
             var f = BDDReader.Read<Modele>();
-            var fe = BDDReader.Read<Pieces>();
+            var fe = BDDReader.Read<Piece>();
 
         }
 

@@ -14,7 +14,7 @@ namespace BDD_VELOMAX_APP
 
         public Client Client { get; private set; }
 
-        public Pieces Piece { get; private set; }
+        public Piece Piece { get; private set; }
 
         public Modele Modele { get; private set; }
 
@@ -27,7 +27,7 @@ namespace BDD_VELOMAX_APP
             this.ID = idCommande;
             this.IDCommande = numCommande;
             this.Client = BDDReader.GetObject<Client>(idClient);
-            this.Piece = idPiece != null ? BDDReader.GetObject<Pieces>(idPiece) : null;
+            this.Piece = idPiece != null ? BDDReader.GetObject<Piece>(idPiece) : null;
             this.Modele = idModele != null ? BDDReader.GetObject<Modele>(idModele) : null;
             this.DateCommande = DateCommande;
             this.DateLivraison = DateLivraison;

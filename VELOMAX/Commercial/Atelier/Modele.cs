@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class Modele : IMySQL
+    public class Modele : IMySQL
     {
         /// <summary>
         /// int
