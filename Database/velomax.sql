@@ -201,51 +201,52 @@ values('Dérailleur avant', 'DV133'),
 ('Dérailleur avant', 'DV41'),
 ('Dérailleur avant', 'DV132');
 
-insert into Pieces(nom, idPiece) 
-values('Dérailleur avant', 'DR56'),
-('Dérailleur arrière', 'DR87'),
-('Dérailleur arrière', 'DR86'),
-('Dérailleur arrière', 'DR23'),
-('Dérailleur arrière', 'DR76'),
-('Dérailleur arrière', 'DR52');
 
 
-insert into Pieces(nom, idPiece) 
-values('Roue', 'R45'),
-('Roue', 'R48'),
-('Roue', 'R12'),
-('Roue', 'R19'),
-('Roue', 'R1'),
-('Roue', 'R11'),
-('Roue', 'R46'),
-('Roue', 'R47'),
-('Roue', 'R32'),
-('Roue', 'R18'),
-('Roue', 'R2'),
-('Roue', 'R44');
 
 
-insert into Pieces(nom, idPiece) 
-values('Réflecteur', 'R02'),
-('Réflecteur', 'R09'),
-('Réflecteur', 'R10');
-
-insert into Pieces(nom, idPiece) 
-values('Pédalier', 'P12'),
-('Pédalier', 'P34'),
-('Pédalier', 'P1'),
-('Pédalier', 'P15');
-
-insert into Pieces(nom, idPiece) 
-values('Ordinateur', 'O2'),
-('Ordinateur', 'O4');
 
 
-insert into Pieces(nom, idPiece) 
-values('Panier', 'S01'),
-('Panier', 'S05'),
-('Panier', 'S74'),
-('Panier', 'S73');
+
+
+
+
+
+insert into Pieces(nom, idPiece,quantité) 
+values('Pédalier', 'P12',41),
+('Pédalier', 'P34',53),
+('Pédalier', 'P1',21),
+('Pédalier', 'P15',45),
+('Ordinateur', 'O2',21),
+('Ordinateur', 'O4',0),
+('Panier', 'S01',12),
+('Panier', 'S05',23),
+('Panier', 'S74',95),
+('Panier', 'S73',41),
+('Réflecteur', 'R02',12),
+('Réflecteur', 'R09',42),
+('Réflecteur', 'R10',35),
+('Roue', 'R45',15),
+('Roue', 'R48',41),
+('Roue', 'R12',25),
+('Roue', 'R19',32),
+('Roue', 'R1',56),
+('Roue', 'R11',12),
+('Roue', 'R46',255),
+('Roue', 'R47',24),
+('Roue', 'R32',63),
+('Roue', 'R18',12),
+('Roue', 'R2',78),
+('Roue', 'R44',21),
+('Dérailleur avant', 'DR56',3),
+('Dérailleur arrière', 'DR87',12),
+('Dérailleur arrière', 'DR86',56),
+('Dérailleur arrière', 'DR23',32),
+('Dérailleur arrière', 'DR76',14),
+('Dérailleur arrière', 'DR52',21);
+
+
+
 
 
 insert into fidelio(nom,prix, duree_annee, rabais)
