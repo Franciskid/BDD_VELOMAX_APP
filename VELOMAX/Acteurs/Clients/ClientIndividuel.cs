@@ -8,18 +8,18 @@ namespace BDD_VELOMAX_APP
 {
     class ClientIndividuel : Client
     {
-        public string Nom { get; private set; }
+        public string Nom { get; set; }
 
-        public string Prénom { get; private set; }
+        public string Prénom { get; set; }
 
 
         /// <summary>
         /// Programme fidélité du client. Si ce paramètre est null alors le client n'a pas souscris à un programme de fidélité
         /// </summary>
-        public Fidelio ProgrammeFidélité { get; private set; }
+        public Fidelio ProgrammeFidélité { get; set; }
 
 
-        public DateTime DateAdhésionProgramme { get; private set; }
+        public DateTime DateAdhésionProgramme { get; set; }
 
 
         public ClientIndividuel(Object Id, string nom, string prenom, int idAdresse, string tel, string mail, int fidel, DateTime adhesion) : base(Id, idAdresse, tel, mail)

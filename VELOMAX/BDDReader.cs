@@ -112,7 +112,7 @@ namespace BDD_VELOMAX_APP
                             }
                             if (typeof(T) == typeof(Fidelio))
                             {
-                                l.Add((T)(IMySQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[3]], (Single)reader[val[4]]));
+                                l.Add((T)(IMySQL)new Fidelio((int)reader[val[0]], (string)reader[val[1]], (int)reader[val[2]], (Single)reader[val[4]], (Single)reader[val[3]]));
                             }
                             if ((typeof(T) == typeof(ClientIndividuel) || typeof(T) == typeof(Client)) && (string)reader[val[1]] == "individuel")
                             {
