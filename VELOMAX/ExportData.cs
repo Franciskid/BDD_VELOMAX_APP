@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -41,9 +43,15 @@ namespace BDD_VELOMAX_APP
         {
             try
             {
-                var json = Newtonsoft.Json.JsonConvert.SerializeObject(ToExport);
-                StreamWriter sw = new StreamWriter(filename);
-                sw.Write(json);
+                using (FileStream fs = File.Open(filename, FileMode.Create, FileAccess.ReadWrite))
+                using (StreamWriter sw = new StreamWriter(fs))
+                using (JsonWriter jw = new JsonTextWriter(sw))
+                {
+                    jw.Formatting = Formatting.Indented;
+                    JsonSerializer serializer = new JsonSerializer();
+                    serializer.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    serializer.Serialize(jw, ToExport);
+                }
 
                 return true;
             }
@@ -55,11 +63,11 @@ namespace BDD_VELOMAX_APP
 
         private bool ExportToXML(string filename)
         {
-            var writer = new System.Xml.Serialization.XmlSerializer(typeof(List<T>));
-            writer.Serialize(new StreamWriter(filename), ToExport);
-
             try
             {
+                var writer = new System.Xml.Serialization.XmlSerializer(typeof(List<T>));
+                writer.Serialize(new StreamWriter(filename), ToExport);
+                 
                 return true;
             }
             catch (Exception)

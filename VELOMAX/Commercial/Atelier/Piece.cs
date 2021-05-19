@@ -8,21 +8,21 @@ namespace BDD_VELOMAX_APP
 {
     public class Piece : IMySQL
     {
-        public string Nom { get; private set; }
+        public string Nom { get; set; }
 
-        public int SiretFournisseur { get; private set; }
+        public int SiretFournisseur { get; set; }
 
-        public int NumProduit { get; private set; }
+        public int NumProduit { get; set; }
 
-        public float Prix { get; private set; }
+        public float Prix { get; set; }
 
-        public int Quantité { get; private set; }
+        public int Quantité { get; set; }
 
-        public DateTime DateIntroduction { get; private set; }
+        public DateTime DateIntroduction { get; set; }
 
-        public DateTime DateDiscontinuation { get; private set; }
+        public DateTime DateDiscontinuation { get; set; }
 
-        public DateTime DelaiApprovisionnement { get; private set; }
+        public DateTime DelaiApprovisionnement { get; set; }
 
         public Piece (string IdPiece, string Nom, int siretFournisseur, int NumProduit, float Prix, int qté, DateTime DateIntroduction, DateTime DateDiscontinuation, DateTime DelaiApprovisionnement)
         {
@@ -36,9 +36,10 @@ namespace BDD_VELOMAX_APP
             this.DateDiscontinuation = DateDiscontinuation;
             this.DelaiApprovisionnement = DelaiApprovisionnement;
         }
+        public Piece() { }
 
 
-        public object ID { get; private set; }
+        public object ID { get; set; }
         public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{SiretFournisseur}','{NumProduit}','{Prix}','{Quantité}','{DateIntroduction}','{DateDiscontinuation}','{DelaiApprovisionnement}'";
     }
 }

@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="900">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/fidelio.png"/>
+        </Grid.Background>
         <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="15" Margin="20">
             <!--Background="{StaticResource ConnexionPage}"-->
             <Border.Background>

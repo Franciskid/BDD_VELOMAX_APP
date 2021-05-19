@@ -8,11 +8,11 @@ namespace BDD_VELOMAX_APP
 {
     public abstract class Client : IMySQL
     {
-        public Adresse Adresse { get; protected set; }
+        public Adresse Adresse { get; set; }
 
-        public string Telephone { get; protected set; }
+        public string Telephone { get; set; }
 
-        public string AdresseMail { get; protected set; }
+        public string AdresseMail { get; set; }
 
 
         public object ID { get; set; }

@@ -59,7 +59,7 @@ namespace BDD_VELOMAX_APP.Views
             var cli = BDDReader.Read<ClientIndividuel>();
             var fidel = BDDReader.Read<Fidelio>();
 
-            var cliSelec = from c in cli where c.DateAdhésionProgramme + TimeSpan.FromDays((from f in fidel where f.ID == c.ProgrammeFidélité.ID select f).FirstOrDefault().Duree_annee * 365) < DateTime.Now.AddMonths(2) select c;
+            var cliSelec = from c in cli where (c.DateAdhésionProgramme + TimeSpan.FromDays((from f in fidel where f.ID.ToString() == c.ProgrammeFidélité.ID.ToString() select f).FirstOrDefault().Duree_annee * 365) < DateTime.Now.AddMonths(2)) select c;
             var export = new ExportData<ClientIndividuel>(ExportData<ClientIndividuel>.ExportType.JSON, cliSelec.ToList());
 
             export.Export(GetFilename(true));
