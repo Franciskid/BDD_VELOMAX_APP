@@ -40,6 +40,7 @@ namespace BDD_VELOMAX_APP.Views
 
             Datagridpiece.ItemsSource = piecesliste;
 
+
             // pieces par foursineur
 
             List<Piecesfourniseur> piecesfourniseurs = new List<Piecesfourniseur>();
