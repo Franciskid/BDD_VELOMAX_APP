@@ -72,6 +72,10 @@ namespace BDD_VELOMAX_APP
 
 
 
+        /// <summary>
+        /// Execute les fichiers triggers
+        /// </summary>
+        /// <returns></returns>
         public static int ExecuteTriggers()
         {
             try
