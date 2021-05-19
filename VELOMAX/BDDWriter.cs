@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace BDD_VELOMAX_APP
                     return a;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return (-1, -1);
             }
@@ -69,5 +70,26 @@ namespace BDD_VELOMAX_APP
         /// <returns></returns>
         public static int Remove<T>(object id, string nomPropriété = null) => ExecuteNonQuery($"DELETE FROM {MyConstants.TypeToTable(typeof(T))} WHERE {nomPropriété ?? MyConstants.TypeToID(typeof(T))} = '{id}';").Item1;
 
+
+
+        public static int ExecuteTriggers()
+        {
+            try
+            {
+                using (var con = BDDReader.OpenConnexion(true))
+                {
+                    var com = new MySqlScript(con, File.ReadAllText("../../Database/triggers.sql"))
+                    {
+                        Delimiter = "$$"
+                    };
+
+                    return com.Execute();
+                }
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
     }
 }

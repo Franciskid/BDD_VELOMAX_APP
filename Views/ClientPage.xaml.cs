@@ -77,6 +77,45 @@ namespace BDD_VELOMAX_APP.Views
 
         }
 
+
+
+        private void DataGridClient_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var o = (ClientViewModel)this.TabClient.DataContext;
+
+            var val = this.DatagridClients.SelectedItem as ClientViewModel;
+
+            if (val != null)
+            {
+                o.ID = val.ID;
+                o.Type = val.Type;
+                o.Nom = val.Nom;
+                o.Adresse = val.Adresse;
+                o.Ville = val.Ville;
+                o.CodePostal = val.CodePostal;
+                o.Mail = val.Mail;
+                o.Téléphone = val.Téléphone;
+                o.Province = val.Province;
+                if (o.Type == "Individuel")
+                {
+                    o.Prénom = val.Prénom;
+                    o.DateAdhésion = val.DateAdhésion;
+                    o.DateFin = val.DateFin;
+                    o.ProgrammeFidélité = val.ProgrammeFidélité;
+
+                    this.TabControl.SelectedIndex = 0;
+
+                    this.cb_fidelio.SelectedItem = val.ProgrammeFidélité;
+                }
+                else
+                {
+                    o.NomContact = val.NomContact;
+                    o.Remise = val.Remise;
+                    this.TabControl.SelectedIndex = 1;
+                }
+            }
+        }
+
         private void Butt_Add_Click(object sender, RoutedEventArgs e)
         {
             var o = (ClientViewModel)this.TabClient.DataContext;
@@ -192,43 +231,6 @@ namespace BDD_VELOMAX_APP.Views
         }
 
 
-        private void DataGridClient_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var o = (ClientViewModel)this.TabClient.DataContext;
-
-            var val = this.DatagridClients.SelectedItem as ClientViewModel;
-
-            if (val != null)
-            {
-                o.ID = val.ID;
-                o.Type = val.Type;
-                o.Nom = val.Nom;
-                o.Adresse = val.Adresse;
-                o.Ville = val.Ville;
-                o.CodePostal = val.CodePostal;
-                o.Mail = val.Mail;
-                o.Téléphone = val.Téléphone;
-                o.Province = val.Province;
-                if (o.Type == "Individuel")
-                {
-                    o.Prénom = val.Prénom;
-                    o.DateAdhésion = val.DateAdhésion;
-                    o.DateFin = val.DateFin;
-                    o.ProgrammeFidélité = val.ProgrammeFidélité;
-
-                    this.TabControl.SelectedIndex = 0;
-
-                    this.cb_fidelio.SelectedItem = val.ProgrammeFidélité;
-                }
-                else
-                {
-                    o.NomContact = val.NomContact;
-                    o.Remise = val.Remise;
-                    this.TabControl.SelectedIndex = 1;
-                }
-            }
-        }
-
 
         private void DataGridFournisseur_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -257,15 +259,19 @@ namespace BDD_VELOMAX_APP.Views
 
             try
             {
-                var client = BDDReader.GetObject<Client>(o.Siret);
-
-                Adresse ad = new Adresse((int)client.Adresse.ID, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
+                Adresse ad = new Adresse(null, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
                 var idAd = BDDWriter.Insert(ad);
 
                 Fournisseurs fourn = new Fournisseurs(o.Siret, o.Nom, o.Contact, (int)idAd, (int)MyHelper.StringToEnum<Score>(o.Score), 10);
 
-                this.ListeFournisseur.Add(new FournisseurViewModel(fourn));
-
+                if (BDDWriter.Insert(fourn) >= 0)
+                {
+                    this.ListeFournisseur.Add(new FournisseurViewModel(fourn));
+                }
+                else
+                {
+                    BDDWriter.Remove(ad);
+                }
             }
             catch
             {
@@ -276,23 +282,23 @@ namespace BDD_VELOMAX_APP.Views
         private void Butt_Update_Fournisseur_Click(object sender, RoutedEventArgs e)
         {
             var o = (FournisseurViewModel)this.TabFournisseur.DataContext;
+            var oldidfournisseur = this.DatagridFournisseur.SelectedItem as FournisseurViewModel;
 
             try
             {
-                var client = BDDReader.GetObject<Client>(o.Siret);
+                var old = BDDReader.GetObject<Fournisseurs>(oldidfournisseur.Siret);
 
-                Adresse ad = new Adresse((int)client.Adresse.ID, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
+                Adresse ad = new Adresse((int)old.Adresse.ID, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
                 BDDWriter.Update(ad);
 
-                Fournisseurs fourn = new Fournisseurs(o.Siret, o.Nom, o.Contact, (int)client.Adresse.ID, (int)MyHelper.StringToEnum<Score>(o.Score), 10);
+                Fournisseurs newF = new Fournisseurs(o.Siret, o.Nom, o.Contact, (int)ad.ID, (int)MyHelper.StringToEnum<Score>(o.Score), 10);
 
-                var b = BDDWriter.Update(fourn);
-                if (b)
+                if (BDDWriter.Remove(old) && BDDWriter.Insert(newF) >= 0)
                 {
                     this.fournisseurs.Remove(this.fournisseurs.Where(x => x.Siret.ToString() == o.Siret.ToString()).FirstOrDefault());
-                    this.fournisseurs.Add(new FournisseurViewModel(fourn));
+                    this.fournisseurs.Add(new FournisseurViewModel(newF));
 
-                    this.DatagridFournisseur.ItemsSource = new ObservableCollection<FournisseurViewModel>(from item in fournisseurs
+                    this.DatagridFournisseur.ItemsSource = new ObservableCollection<FournisseurViewModel>(from item in this.fournisseurs
                                                                                                           orderby item.Siret ascending
                                                                                                           select item);
                 }

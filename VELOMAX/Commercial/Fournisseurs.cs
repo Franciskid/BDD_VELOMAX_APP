@@ -28,6 +28,6 @@ namespace BDD_VELOMAX_APP
             this.Delai = delai;
         }
         public object ID { get; }
-        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{Contact}' , '{Adresse.ID}','{Score}','{Delai}'";
+        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{Contact}' , '{Adresse.ID}','{(int)Score}','{Delai}'";
     }
 }

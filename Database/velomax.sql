@@ -66,21 +66,8 @@ create table if not exists Assemblages
     reflecteurs varchar(10) ,
     pedalier  varchar(10) ,
     ordinateur varchar(10) ,
-    panier  varchar(10) ,
+    panier  varchar(10)
     
-	foreign key (cadre) references Pieces(idPiece),
-    foreign key (guidon) references Pieces(idPiece),
-    foreign key (freins) references Pieces(idPiece),
-    foreign key (selle) references Pieces(idPiece),
-    foreign key (derailleur_avant) references Pieces(idPiece),
-    foreign key (derailleur_arriere) references Pieces(idPiece),
-    foreign key (roue_avant) references Pieces(idPiece),
-    foreign key (roue_arriere) references Pieces(idPiece),
-    foreign key (reflecteurs) references Pieces(idPiece),
-    foreign key (pedalier) references Pieces(idPiece),
-    foreign key (ordinateur) references Pieces(idPiece),
-    foreign key (panier) references Pieces(idPiece)
-   
 );
 ALTER TABLE assemblages AUTO_INCREMENT = 100001;
 
@@ -136,8 +123,8 @@ create table if not exists Commandes
     dateCommande datetime,
     dateLivraison dateTime,
     
-    foreign key (clientid) references Clients(idClient)  on delete cascade,
-    foreign key (pieceid) references Pieces(idPiece)
+    foreign key (clientid) references Clients(idClient)  on delete cascade
+    #foreign key (pieceid) references Pieces(idPiece)
     #foreign key (modeleid) references modeles(idModele)
     
 );
@@ -330,6 +317,7 @@ values('individuel',"Jean","Raoul",1,"06 26 22 18 40","j.roul@gmail.com","rara",
 ('individuel',"Léon","Quirion",1,"06 42 15 86 32","léonquirion@gmail.com","rara",2,3,"20/06/13"),
 ('individuel',"Christian","Villeneuve",1,"06 12 54 81 67","christistheone@gmail.com","rara",2,3,"20/06/13");
 
+SET SQL_SAFE_UPDATES = 0;
 
 insert into Commandes(numCommande, clientid, pieceid, modeleid, dateCommande, dateLivraison)
 values(1,1,'C01',Null,"17/01/12","20/01/12"),
@@ -373,3 +361,5 @@ values(1,1,'C01',Null,"17/01/12","20/01/12"),
 (13,11,null,104,"25/03/12","30/03/12"),
 (14,12,null,105,"01/04/12","03/04/12"),
 (15,13,null,107,"25/03/12","30/03/12");
+
+    

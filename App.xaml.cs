@@ -57,7 +57,6 @@ namespace BDD_VELOMAX_APP
             var eef = BDDReader.Read<Fournisseurs>();
             var f = BDDReader.Read<Modele>();
             var fe = BDDReader.Read<Piece>();
-
         }
 
         /// <summary>
@@ -89,6 +88,7 @@ namespace BDD_VELOMAX_APP
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             ExecuteSQLScript();
+            BDDWriter.ExecuteTriggers();
 
             TestFunction();
             TestFunction2();
