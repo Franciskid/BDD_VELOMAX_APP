@@ -145,25 +145,25 @@ values(1, "rue nulle part", "Marseille", "13000", "France");
 insert into fournisseurs(siret, nom, contact, idAdresse, score,delaidelivraison) 
 values(0, "TEST", "CONTACT_TEST", 1, 2,3);
 
-insert into Pieces(idPiece, nom, fournisseurId) 
-values('C32', 'Cadre', 0),
-('C34', 'Cadre', 0),
-('C76', 'Cadre', 0),
-('C43',  'Cadre', 0),
-('C44f',  'Cadre', 0),
-('C43f',  'Cadre', 0),
-('C01' , 'Cadre', 0),
-('C02' , 'Cadre', 0),
-('C15',  'Cadre', 0),
-('C87' , 'Cadre', 0),
-('C87f',  'Cadre', 0),
-('C25' , 'Cadre', 0),
-('C26' , 'Cadre', 0);
+insert into Pieces(idPiece, nom, fournisseurId, quantité) 
+values('C32', 'Cadre', 0, 10),
+('C34', 'Cadre', 0, 12),
+('C76', 'Cadre', 0, 2),
+('C43',  'Cadre', 0, 4),
+('C44f',  'Cadre', 0, 12),
+('C43f',  'Cadre', 0, 12),
+('C01' , 'Cadre', 0, 12),
+('C02' , 'Cadre', 0, 1),
+('C15',  'Cadre', 0, 12),
+('C87' , 'Cadre', 0, 0),
+('C87f',  'Cadre', 0, 12),
+('C25' , 'Cadre', 0, 32),
+('C26' , 'Cadre', 0, 12);
  
-insert into Pieces(nom, idPiece) 
-values('Guidon', 'G7'),
-('Guidon', 'G9'),
-('Guidon', 'G12');
+insert into Pieces(nom, idPiece, quantité) 
+values('Guidon', 'G7', 1),
+('Guidon', 'G9', 10),
+('Guidon', 'G12', 4);
 
 insert into Pieces(nom, idPiece) 
 values('Freins', 'F3'),
@@ -187,17 +187,6 @@ values('Dérailleur avant', 'DV133'),
 ('Dérailleur avant', 'DV15'),
 ('Dérailleur avant', 'DV41'),
 ('Dérailleur avant', 'DV132');
-
-
-
-
-
-
-
-
-
-
-
 
 insert into Pieces(nom, idPiece,quantité) 
 values('Pédalier', 'P12',41),

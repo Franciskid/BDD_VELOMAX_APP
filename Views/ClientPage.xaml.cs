@@ -38,6 +38,7 @@ namespace BDD_VELOMAX_APP.Views
         private List<ClientViewModel> clients = new List<ClientViewModel>();
         private List<FournisseurViewModel> fournisseurs = new List<FournisseurViewModel>();
 
+
         public ClientPage()
         {
             InitializeComponent();
@@ -62,19 +63,6 @@ namespace BDD_VELOMAX_APP.Views
             fournisseurs = BDDReader.Read<Fournisseurs>().Select(x => new FournisseurViewModel(x)).ToList();
 
             fournisseurs.ForEach(x => ListeFournisseur.Add(x));
-        }
-
-
-
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
         }
 
 

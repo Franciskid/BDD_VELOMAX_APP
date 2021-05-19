@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MaterialDesignExtensions.Controls;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +52,38 @@ namespace BDD_VELOMAX_APP.Views
 
             this.Close();
 
+        }
+
+        private void Butt_JSON_Click(object sender, RoutedEventArgs e)
+        {
+            var cli = BDDReader.Read<ClientIndividuel>();
+            var fidel = BDDReader.Read<Fidelio>();
+
+            var cliSelec = from c in cli where c.DateAdhésionProgramme + TimeSpan.FromDays((from f in fidel where f.ID == c.ProgrammeFidélité.ID select f).FirstOrDefault().Duree_annee * 365) < DateTime.Now.AddMonths(2) select c;
+            var export = new ExportData<ClientIndividuel>(ExportData<ClientIndividuel>.ExportType.JSON, cliSelec.ToList());
+
+            export.Export(GetFilename(true));
+
+            MessageBox.Show("L'export a bien eu lieu !", "!", MessageBoxButton.OK);
+        }
+
+        private void Butt_XML_Click(object sender, RoutedEventArgs e)
+        {
+            var export = new ExportData<Piece>(ExportData<Piece>.ExportType.XML, BDDReader.Read<Piece>($"select * from pieces where pieces.quantité < {ConfigurationManager.AppSettings["StockFaibleLimite"]}"));
+
+            export.Export(GetFilename(false));
+
+            MessageBox.Show("L'export a bien eu lieu !", "!", MessageBoxButton.OK);
+        }
+
+        private string GetFilename(bool json)
+        {
+            Microsoft.Win32.SaveFileDialog openFileDlg = new Microsoft.Win32.SaveFileDialog();
+            openFileDlg.DefaultExt = json ? "json" : "xml";
+            if (openFileDlg.ShowDialog() == true)
+                return openFileDlg.FileName;
+
+            return null;
         }
     }
 }
