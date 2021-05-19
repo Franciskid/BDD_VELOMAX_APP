@@ -96,7 +96,7 @@ namespace BDD_VELOMAX_APP.Views
             {
                 get
                 {
-                    return String.Format("{0} vaut {1} il faut attendre le {2} avant de se faire livrer.", this.ID, this.Prix, DateTime.Now.AddMonths(this.DelaiApprovisionnement.Month));
+                    return String.Format("{0} vaut {1} il faut attendre le {2} avant de se faire livrer.", this.ID, this.Prix, DateTime.Now.AddDays(3));
                 }
             }
 
