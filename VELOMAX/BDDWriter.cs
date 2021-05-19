@@ -29,7 +29,7 @@ namespace BDD_VELOMAX_APP
                     return a;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return (-1, -1);
             }
@@ -76,13 +76,13 @@ namespace BDD_VELOMAX_APP
         /// Execute les fichiers triggers
         /// </summary>
         /// <returns></returns>
-        public static int ExecuteTriggers()
+        public static int ExecuteScript(string statement)
         {
             try
             {
                 using (var con = BDDReader.OpenConnexion(true))
                 {
-                    var com = new MySqlScript(con, File.ReadAllText("../../Database/triggers.sql"))
+                    var com = new MySqlScript(con, statement) //Obligé d'utiliser un script pour que les delimiter soient reconnus
                     {
                         Delimiter = "$$"
                     };

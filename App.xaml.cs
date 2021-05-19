@@ -34,12 +34,30 @@ namespace BDD_VELOMAX_APP
 
         public static bool MySQLServerConnected { get; set; } = false;
 
+        /// <summary>
+        /// Exécute les scripts nécessaires à la création, au peuplement et au bon fonctionnement de la BDD.
+        /// </summary>
         private void ExecuteSQLScript()
         {
-            var fileContent = File.ReadAllText("../../Database/velomax.sql");
+            BDDWriter.ExecuteNonQuery(File.ReadAllText("../../Database/velomax.sql"), false);
 
-            BDDWriter.ExecuteNonQuery(fileContent, false);
+            BDDWriter.ExecuteScript(File.ReadAllText("../../Database/triggers.sql"));
         }
+
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            ExecuteSQLScript();
+
+            TestFunction();
+            TestFunction2();
+
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+        }
+
+
+
 
         /// <summary>
         /// On teste ici
@@ -85,16 +103,5 @@ namespace BDD_VELOMAX_APP
             int bbb = BDDWriter.Remove<Adresse>(id2);
         }
 
-        private void Application_Startup(object sender, StartupEventArgs e)
-        {
-            ExecuteSQLScript();
-            BDDWriter.ExecuteTriggers();
-
-            TestFunction();
-            TestFunction2();
-
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-        }
     }
 }

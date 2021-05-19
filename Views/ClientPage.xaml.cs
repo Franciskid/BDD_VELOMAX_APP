@@ -261,7 +261,7 @@ namespace BDD_VELOMAX_APP.Views
                     BDDWriter.Remove(ad);
                 }
             }
-            catch
+            catch (Exception)
             {
                 MessageBox.Show($"Erreur : Impossible d'ajouter le fournisseur spécifié");
             }

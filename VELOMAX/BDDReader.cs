@@ -46,7 +46,7 @@ namespace BDD_VELOMAX_APP
                     return null;
                 return mySQLCon;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
@@ -82,14 +82,14 @@ namespace BDD_VELOMAX_APP
 
         /// <summary>
         /// Lit une table de donnée en entier en fonction d'une condition. 
-        /// Les objets sélectionnés doivent forcément correspondre en type et en ordre à la classe <see cref="IMySQL"/> indiquée.
+        /// Les objets sélectionnés doivent forcément correspondre en type et en ordre à la classe <typeparamref name="T"/> indiquée.
         /// </summary>
         /// <typeparam name="T">Type <see cref="IMySQL"/></typeparam>
         /// <param name="query"></param>
         /// <returns></returns>
         public static List<T> Read<T>(string query) where T : IMySQL
         {
-            //try
+            try
             {
                 using (MySqlConnection c = OpenConnexion())
                 {
@@ -153,10 +153,10 @@ namespace BDD_VELOMAX_APP
                 }
 
             }
-            //catch (Exception ex)
-            //{
-            //    return null;
-            //}
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
 

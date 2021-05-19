@@ -62,24 +62,40 @@ namespace BDD_VELOMAX_APP.Views
             var cliSelec = from c in cli where (c.DateAdhésionProgramme + TimeSpan.FromDays((from f in fidel where f.ID.ToString() == c.ProgrammeFidélité.ID.ToString() select f).FirstOrDefault().Duree_annee * 365) < DateTime.Now.AddMonths(2)) select c;
             var export = new ExportData<ClientIndividuel>(ExportData<ClientIndividuel>.ExportType.JSON, cliSelec.ToList());
 
-            export.Export(GetFilename(true));
+            string str = GetFilename(true);
 
-            MessageBox.Show("L'export a bien eu lieu !", "!", MessageBoxButton.OK);
+            if (str != null)
+            {
+                if (export.Export(str))
+                {
+                    MessageBox.Show("L'export a bien eu lieu !", "!", MessageBoxButton.OK);
+                }
+
+            }
         }
 
         private void Butt_XML_Click(object sender, RoutedEventArgs e)
         {
             var export = new ExportData<Piece>(ExportData<Piece>.ExportType.XML, BDDReader.Read<Piece>($"select * from pieces where pieces.quantité < {ConfigurationManager.AppSettings["StockFaibleLimite"]}"));
 
-            export.Export(GetFilename(false));
+            string str = GetFilename(false);
 
-            MessageBox.Show("L'export a bien eu lieu !", "!", MessageBoxButton.OK);
+            if (str != null)
+            {
+                if (export.Export(str))
+                {
+                    MessageBox.Show("L'export a bien eu lieu !", "!", MessageBoxButton.OK);
+                }
+
+            }
         }
 
         private string GetFilename(bool json)
         {
             Microsoft.Win32.SaveFileDialog openFileDlg = new Microsoft.Win32.SaveFileDialog();
             openFileDlg.DefaultExt = json ? "json" : "xml";
+            openFileDlg.Filter = json ? "Fichiers JSON (*.json) | *.json" : "Fichiers XML(*.xml) | *.xml";
+            openFileDlg.AddExtension = true;
             if (openFileDlg.ShowDialog() == true)
                 return openFileDlg.FileName;
 
