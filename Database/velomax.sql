@@ -146,81 +146,81 @@ values(1, "rue nulle part", "Marseille", "13000", "France");
 insert into fournisseurs(siret, nom, contact, idAdresse, score,delaidelivraison) 
 values(0, "TEST", "CONTACT_TEST", 1, 2,3);
 
-insert into Pieces(idPiece, nom, fournisseurId, quantité) 
-values('C32', 'Cadre', 0, 10),
-('C34', 'Cadre', 0, 12),
-('C76', 'Cadre', 0, 2),
-('C43',  'Cadre', 0, 4),
-('C44f',  'Cadre', 0, 12),
-('C43f',  'Cadre', 0, 12),
-('C01' , 'Cadre', 0, 12),
-('C02' , 'Cadre', 0, 1),
-('C15',  'Cadre', 0, 12),
-('C87' , 'Cadre', 0, 0),
-('C87f',  'Cadre', 0, 12),
-('C25' , 'Cadre', 0, 32),
-('C26' , 'Cadre', 0, 12);
+insert into Pieces(idPiece, nom, fournisseurId, quantité,prix) 
+values('C32', 'Cadre', 0, 10,11),
+('C34', 'Cadre', 0, 12,10),
+('C76', 'Cadre', 0, 2,32),
+('C43',  'Cadre', 0, 4,21),
+('C44f',  'Cadre', 0, 12,33),
+('C43f',  'Cadre', 0, 12,29),
+('C01' , 'Cadre', 0, 12,2),
+('C02' , 'Cadre', 0, 1,8),
+('C15',  'Cadre', 0, 12,11),
+('C87' , 'Cadre', 0, 0,17),
+('C87f',  'Cadre', 0, 12,18),
+('C25' , 'Cadre', 0, 32,20),
+('C26' , 'Cadre', 0, 12,21);
  
-insert into Pieces(nom, idPiece, quantité) 
-values('Guidon', 'G7', 1),
-('Guidon', 'G9', 10),
-('Guidon', 'G12', 4);
+insert into Pieces(nom, idPiece, quantité,prix) 
+values('Guidon', 'G7', 1,23),
+('Guidon', 'G9', 10,15),
+('Guidon', 'G12', 4,21);
 
-insert into Pieces(nom, idPiece) 
-values('Freins', 'F3'),
-('Freins', 'F9');
+insert into Pieces(nom, idPiece,quantité,prix) 
+values('Freins', 'F3',8,27),
+('Freins', 'F9',7,43);
 
-insert into Pieces(nom, idPiece) 
-values('Selle', 'S88'),
-('Selle', 'S37'),
-('Selle', 'S35'),
-('Selle', 'S02'),
-('Selle', 'S03'),
-('Selle', 'S36'),
-('Selle', 'S87'),
-('Selle', 'S34');
+insert into Pieces(nom, idPiece,quantité,prix) 
+values('Selle', 'S88',10,23),
+('Selle', 'S37',10,21),
+('Selle', 'S35',10,16),
+('Selle', 'S02',10,27),
+('Selle', 'S03',15,18),
+('Selle', 'S36',19,34),
+('Selle', 'S87',16,45),
+('Selle', 'S34',10,17);
 
-insert into Pieces(nom, idPiece) 
-values('Dérailleur avant', 'DV133'),
-('Dérailleur avant', 'DV17'),
-('Dérailleur avant', 'DV87'),
-('Dérailleur avant', 'DV57'),
-('Dérailleur avant', 'DV15'),
-('Dérailleur avant', 'DV41'),
-('Dérailleur avant', 'DV132');
+insert into Pieces(nom, idPiece,quantité,prix) 
+values('Dérailleur avant', 'DV133',12,21),
+('Dérailleur avant', 'DV17',17,12),
+('Dérailleur avant', 'DV87',32,12),
+('Dérailleur avant', 'DV57',15,21),
+('Dérailleur avant', 'DV15',91,18),
+('Dérailleur avant', 'DV41',33,31),
+('Dérailleur avant', 'DV132',21,25);
 
-insert into Pieces(nom, idPiece,quantité) 
-values('Pédalier', 'P12',41),
-('Pédalier', 'P34',53),
-('Pédalier', 'P1',21),
-('Pédalier', 'P15',45),
-('Ordinateur', 'O2',21),
-('Ordinateur', 'O4',0),
-('Panier', 'S01',12),
-('Panier', 'S05',23),
-('Panier', 'S74',95),
-('Panier', 'S73',41),
-('Réflecteur', 'R02',12),
-('Réflecteur', 'R09',42),
-('Réflecteur', 'R10',35),
-('Roue', 'R45',15),
-('Roue', 'R48',41),
-('Roue', 'R12',25),
-('Roue', 'R19',32),
-('Roue', 'R1',56),
-('Roue', 'R11',12),
-('Roue', 'R46',255),
-('Roue', 'R47',24),
-('Roue', 'R32',63),
-('Roue', 'R18',12),
-('Roue', 'R2',78),
-('Roue', 'R44',21),
-('Dérailleur avant', 'DR56',3),
-('Dérailleur arrière', 'DR87',12),
-('Dérailleur arrière', 'DR86',56),
-('Dérailleur arrière', 'DR23',32),
-('Dérailleur arrière', 'DR76',14),
-('Dérailleur arrière', 'DR52',21);
+insert into Pieces(nom, idPiece,quantité,prix) 
+values('Pédalier', 'P12',9,41),
+('Pédalier', 'P34',7,53),
+('Pédalier', 'P1',5,21),
+('Pédalier', 'P15',8,45),
+('Ordinateur', 'O2',4,21),
+('Ordinateur', 'O4',3,0),
+('Panier', 'S01',2,12),
+('Panier', 'S05',8,23),
+('Panier', 'S74',7,95),
+('Panier', 'S73',3,41),
+('Réflecteur', 'R02',6,12),
+('Réflecteur', 'R09',9,42),
+('Réflecteur', 'R10',7,35),
+('Roue', 'R45',3,15),
+('Roue', 'R48',6,41),
+('Roue', 'R12',8,25),
+('Roue', 'R19',9,32),
+('Roue', 'R1',8,56),
+('Roue', 'R11',5,12),
+('Roue', 'R46',8,255),
+('Roue', 'R47',8,24),
+('Roue', 'R32',5,63),
+('Roue', 'R18',7,12),
+('Roue', 'R2',9,78),
+('Roue', 'R44',4,21),
+('Dérailleur avant', 'DR56',2,3),
+('Dérailleur arrière', 'DR87',5,12),
+('Dérailleur arrière', 'DR86',7,56),
+('Dérailleur arrière', 'DR23',5,32),
+('Dérailleur arrière', 'DR76',2,14),
+('Dérailleur arrière', 'DR52',3,21);
 
 
 
