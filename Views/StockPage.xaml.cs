@@ -34,7 +34,7 @@ namespace BDD_VELOMAX_APP.Views
             {
                 if (a.Quantité != 0)
                 {
-                    piecesliste.Add(new Spieces(a.ID.ToString(), a.Nom, a.Prix, a.DelaiApprovisionnement, a.Quantité));
+                    piecesliste.Add(new Spieces(a.ID.ToString(), a.Nom, a.Prix, a.DelaiApprovisionnementJour, a.Quantité));
                 }
             }
 
@@ -91,21 +91,21 @@ namespace BDD_VELOMAX_APP.Views
             public float Prix { get; set; }
             public int Quantite { get; set; }
 
-            public DateTime DelaiApprovisionnement { get; set; }
+            public int DelaiApprovisionnementJour { get; set; }
             public string Details
             {
                 get
                 {
-                    return String.Format("{0} vaut {1} il faut attendre le {2} avant de se faire livrer.", this.ID, this.Prix, DateTime.Now.AddDays(3));
+                    return String.Format("{0} vaut {1} il faut attendre le {2} avant de se faire livrer.", this.ID, this.Prix, DateTime.Now.AddDays(DelaiApprovisionnementJour));
                 }
             }
 
-            public Spieces(string ID, string nom, float prix, DateTime delaiApprovisionnement, int quantite)
+            public Spieces(string ID, string nom, float prix, int DelaiApprovisionnementJour, int quantite)
             {
                 this.ID = ID;
                 this.Nom = nom;
                 this.Prix = prix;
-                this.DelaiApprovisionnement = delaiApprovisionnement;
+                this.DelaiApprovisionnementJour = DelaiApprovisionnementJour;
                 this.Quantite = quantite;
 
             }

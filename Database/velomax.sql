@@ -45,7 +45,7 @@ create table if not exists Pieces
     quantité int not null default 0,
     dateIntroduction datetime,
     dateDiscontinuation datetime,
-    delaiApprovisionnement datetime,
+    delaiApprovisionnement int default 10,
     
 	foreign key (fournisseurId) references fournisseurs(siret)
 );
@@ -120,6 +120,7 @@ create table if not exists Commandes
     clientid int,
     pieceid varchar(30),
     modeleid int,
+    quantité int default 1,
     dateCommande datetime,
     dateLivraison dateTime,
     
@@ -285,7 +286,8 @@ values("rue de la pompe","paris","75002","france"),
 ("place de la Bourse","paris","75010","france");
 
 insert into Clients(typeClient, nom, idAdresse, telephone, courriel, nomContact, remise)
-values('boutique',"Haribo",1,"06 26 43 43 14","hario@gmail.com","Defer", 1),
+values('boutique',"VELOMAX",1,"01 85 63 82 36","velomax.noreply@gmail.com","COUTAU", 0),
+('boutique',"Haribo",1,"06 26 43 43 14","hario@gmail.com","Defer", 1),
 ('boutique',"EDF",2,"06 46 45 41 24","EDF@gmail.com","Dureau", 10),
 ('boutique',"Micheline",3,"06 56 42 28 08","PMU@gmail.com","Blanc", 5), 
 ('boutique',"PMU",4,"06 36 15 22 18","PMU@gmail.com","Blanc", 8);

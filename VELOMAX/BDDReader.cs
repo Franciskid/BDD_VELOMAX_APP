@@ -136,7 +136,7 @@ namespace BDD_VELOMAX_APP
                             }
                             if (typeof(T) == typeof(Commande))
                             {
-                                l.Add((T)(IMySQL)new Commande((int)reader[val[0]], (int)reader[val[1]], (int)reader[val[2]], reader.GetStringSafe(3), reader.GetIntSafe(4), reader.GetDateTimeSafe(5), reader.GetDateTimeSafe(6)));
+                                l.Add((T)(IMySQL)new Commande((int)reader[val[0]], (int)reader[val[1]], (int)reader[val[2]], reader.GetStringSafe(3), reader.GetIntSafe(4), (int)reader.GetIntSafe(5), reader.GetDateTimeSafe(6), reader.GetDateTimeSafe(7)));
                             }
                             if (typeof(T) == typeof(Fournisseurs))
                             {
@@ -144,7 +144,7 @@ namespace BDD_VELOMAX_APP
                             }
                             if (typeof(T) == typeof(Piece))
                             {
-                                l.Add((T)(IMySQL)new Piece(reader.GetStringSafe(0), reader.GetStringSafe(1), (int)reader[val[2]], (int)reader[val[3]], (Single)reader[val[4]], (int)reader[val[5]], reader.GetDateTimeSafe(6), reader.GetDateTimeSafe(7), reader.GetDateTimeSafe(8)));
+                                l.Add((T)(IMySQL)new Piece(reader.GetStringSafe(0), reader.GetStringSafe(1), (int)reader[val[2]], (int)reader[val[3]], (Single)reader[val[4]], (int)reader[val[5]], reader.GetDateTimeSafe(6), reader.GetDateTimeSafe(7), (int)reader.GetIntSafe(8)));
                             }
                         }
 

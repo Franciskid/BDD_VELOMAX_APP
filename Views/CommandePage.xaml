@@ -37,7 +37,7 @@
 
                 <StackPanel Grid.Column="1" Orientation="Vertical">
                     <TextBlock Text="Client :" Foreground="AliceBlue" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    <ComboBox x:Name="cb_Client" Style="{StaticResource Box2}" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" Template="{DynamicResource MaterialDesignDataGridComboBoxEditableTemplate}" Margin="10" Foreground="Gray" Height="50" SelectionChanged="cb_Client_SelectionChanged">
+                    <ComboBox x:Name="cb_Client" Style="{StaticResource Box2}" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" Template="{DynamicResource MaterialDesignDataGridComboBoxEditableTemplate}" Margin="10" IsEditable="True" Foreground="AliceBlue" Background="Transparent" Height="50" SelectionChanged="cb_Client_SelectionChanged" FontSize="22" VerticalContentAlignment="Center">
                         <ComboBox.DataContext>
                             <local:ClientViewModel/>
                         </ComboBox.DataContext>
@@ -74,7 +74,7 @@
             <TabItem.DataContext>
                 <local:CommandeViewModel/>
             </TabItem.DataContext>
-            <DataGrid x:Name="DataGridCheckout" Background="{StaticResource MenuFontColor}" Foreground="Black" FontWeight="Bold" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <DataGrid x:Name="DataGridCommandesOld" Margin="20" Background="{StaticResource MenuFontColor}" Foreground="Black" FontWeight="Bold" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 
             </DataGrid>
         </TabItem>

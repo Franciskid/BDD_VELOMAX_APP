@@ -20,7 +20,7 @@ namespace BDD_VELOMAX_APP
 
         public string Fournisseur { get; set; }
 
-        public DateTime DelaiApprovisionnement { get; set; }
+        public int DelaiApprovisionnementJour { get; set; }
 
 
         public PieceCommandeViewModel(string nom, int prix)
@@ -36,7 +36,7 @@ namespace BDD_VELOMAX_APP
             this.Id = (string)piece.ID;
             this.QuantitéStock = piece.Quantité;
             this.Fournisseur = BDDReader.GetObject<Fournisseurs>(piece.SiretFournisseur).Nom;
-            this.DelaiApprovisionnement = piece.DelaiApprovisionnement;
+            this.DelaiApprovisionnementJour = piece.DelaiApprovisionnementJour;
         }
 
         public PieceCommandeViewModel() { }

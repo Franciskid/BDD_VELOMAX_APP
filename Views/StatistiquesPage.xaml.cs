@@ -66,7 +66,7 @@ namespace BDD_VELOMAX_APP.Views
                     }
 
                 }
-                statsquantites.Add(new Squantite(a.ID.ToString(), a.Nom, a.Prix, a.DelaiApprovisionnement, nbrpiecesvendu));
+                statsquantites.Add(new Squantite(a.ID.ToString(), a.Nom, a.Prix, a.DelaiApprovisionnementJour, nbrpiecesvendu));
             }
 
             statsquantite.ItemsSource = statsquantites;
@@ -184,10 +184,10 @@ namespace BDD_VELOMAX_APP.Views
             public float Prix { get; set; }
             public int Quantité_vendue { get; set; }
 
-            public DateTime? DelaiApprovisionnement { get; set; }
+            public int? DelaiApprovisionnement { get; set; }
 
 
-            public Squantite(string ID, string nom, float prix, DateTime? delaiApprovisionnement, int quantite)
+            public Squantite(string ID, string nom, float prix, int? delaiApprovisionnement, int quantite)
             {
                 this.ID = ID;
                 this.Nom = nom;

@@ -22,9 +22,9 @@ namespace BDD_VELOMAX_APP
 
         public DateTime DateDiscontinuation { get; set; }
 
-        public DateTime DelaiApprovisionnement { get; set; }
+        public int DelaiApprovisionnementJour { get; set; }
 
-        public Piece (string IdPiece, string Nom, int siretFournisseur, int NumProduit, float Prix, int qté, DateTime DateIntroduction, DateTime DateDiscontinuation, DateTime DelaiApprovisionnement)
+        public Piece (string IdPiece, string Nom, int siretFournisseur, int NumProduit, float Prix, int qté, DateTime DateIntroduction, DateTime DateDiscontinuation, int DelaiApprovisionnementJour)
         {
             this.ID = IdPiece;
             this.Nom = Nom;
@@ -34,12 +34,12 @@ namespace BDD_VELOMAX_APP
             this.Quantité = qté;
             this.DateIntroduction = DateIntroduction;
             this.DateDiscontinuation = DateDiscontinuation;
-            this.DelaiApprovisionnement = DelaiApprovisionnement;
+            this.DelaiApprovisionnementJour = DelaiApprovisionnementJour;
         }
         public Piece() { }
 
 
         public object ID { get; set; }
-        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{SiretFournisseur}','{NumProduit}','{Prix}','{Quantité}','{DateIntroduction}','{DateDiscontinuation}','{DelaiApprovisionnement}'";
+        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{SiretFournisseur}','{NumProduit}','{Prix}','{Quantité}','{DateIntroduction}','{DateDiscontinuation}','{DelaiApprovisionnementJour}'";
     }
 }

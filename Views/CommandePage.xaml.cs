@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -30,6 +31,8 @@ namespace BDD_VELOMAX_APP.Views
 
         public ObservableCollection<PrixCheckoutViewModel> checkout = new ObservableCollection<PrixCheckoutViewModel>();
 
+        public ObservableCollection<CommandeViewModel> commandes = new ObservableCollection<CommandeViewModel>();
+
 
         private static Random rand = new Random(Guid.NewGuid().GetHashCode());
 
@@ -40,14 +43,24 @@ namespace BDD_VELOMAX_APP.Views
             var pieces = BDDReader.Read<Piece>();
             var modeles = BDDReader.Read<Modele>();
             var clients = BDDReader.Read<Client>();
+            var com = BDDReader.Read<Commande>();
 
             this.dataGridModele.ItemsSource = modeleCollec;
             this.dataGridPiece.ItemsSource = pieceCollec;
 
             pieces.ForEach(x => pieceCollec.Add(new PieceCommandeViewModel(x)));
             modeles.ForEach(x => modeleCollec.Add(new ModeleCommandeViewModel(x)));
+            com.ForEach(x => commandes.Add(new CommandeViewModel(x)));
 
             this.DataGridCheckout.ItemsSource = checkout;
+            this.DataGridCommandesOld.ItemsSource = commandes; 
+            ICollectionView cvTasks = CollectionViewSource.GetDefaultView(DataGridCommandesOld.ItemsSource);
+            if (cvTasks != null && cvTasks.CanGroup == true)
+            {
+                cvTasks.GroupDescriptions.Clear();
+                cvTasks.GroupDescriptions.Add(new PropertyGroupDescription("IDCommande"));
+            }
+            this.DataGridCommandesOld.ItemsSource = cvTasks;
 
             cb_Client.ItemsSource = clients.Select(x => {
                 if (x is ClientBoutique bout)
@@ -111,11 +124,11 @@ namespace BDD_VELOMAX_APP.Views
                 {
                     if (elem.Type == "Pièce")
                     {
-                        commande.Add(new Commande(null, numCom, idCli, elem.ID, null, DateTime.Now, DateTime.Now.AddDays(10)));
+                        commande.Add(new Commande(null, numCom, idCli, elem.ID, null, elem.Quantité, DateTime.Now,  DateTime.Now.AddDays(10)));
                     }
                     else if (elem.Type == "Vélo")
                     {
-                        commande.Add(new Commande(null, numCom, idCli, null, int.Parse(elem.ID), DateTime.Now, DateTime.Now.AddDays(10)));
+                        commande.Add(new Commande(null, numCom, idCli, null, int.Parse(elem.ID), elem.Quantité, DateTime.Now, DateTime.Now.AddDays(10)));
                     }
                 }
 
@@ -123,6 +136,7 @@ namespace BDD_VELOMAX_APP.Views
 
                 if (SendMail(BDDReader.GetObject<Client>(idCli).AdresseMail, commande))
                 {
+                    commande.ForEach(x => commandes.Add(new CommandeViewModel(x)));
                     MessageBox.Show("La commande a été passée avec succès. Le détail de la commande a été envoyé à l'email du client !", "Bravo !", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
@@ -150,7 +164,7 @@ namespace BDD_VELOMAX_APP.Views
                     cli.Port = 587;
                     cli.Credentials = new NetworkCredential("velomax.noreply@gmail.com", "mdpMailSend98;");
 
-                    MailMessage mail = new MailMessage("velomax.noreply@gmail.com", to)
+                    MailMessage mail = new MailMessage(((NetworkCredential)cli.Credentials).UserName, to)
                     {
                         Subject = "VELOMAX",
                         Priority = MailPriority.High,
@@ -168,7 +182,7 @@ namespace BDD_VELOMAX_APP.Views
                     }
 
 
-                    mail.AlternateViews.Add(GetEmbeddedImage($@"../../Images\mailHeader{rand.Next(1, 4)}.png", $@"<p>Bonjour <b>{nom}</b>,<br><br>Voici le détail de votre commande référence 
+                    mail.AlternateViews.Add(GetEmbeddedImage($@"../../Images\mailHeader{rand.Next(1, 4)}.png", $@"<p>Bonjour <b>{nom}</b>,<br><br>Vous trouverez ci-dessous le détail de votre commande référence 
                                         <i>'{com.FirstOrDefault().IDCommande}'</i> qui sera livrée le <b>{com.FirstOrDefault().DateLivraison:dd/MM/yyyy}</b> à l'adresse suivante : {com.FirstOrDefault().Client.Adresse}:
                                         <br><br><p>Merci pour votre confiance !</p><p>L'équipe <b>VéloMax</b>.</p><br><br><p>{Mailtexte(com)}</p><br><br>"));
 
@@ -197,7 +211,7 @@ namespace BDD_VELOMAX_APP.Views
         private string Mailtexte(List<Commande> a)
         {
             var client = a.FirstOrDefault().Client;
-            float prixtotal = a.Aggregate(0f, (x, y) => x += (y.Piece?.Prix ?? 0) + (y.Modele?.Prix ?? 0));
+            float prixtotal = a.Aggregate(0f, (x, y) => x += ((y.Piece?.Prix ?? 0) + (y.Modele?.Prix ?? 0)) * y.Quantité);
             string textemail = $@"<h2><b>Commande</b> (ref. {a.FirstOrDefault().IDCommande}) :</h2><ol type=""1"">";
             foreach (var com in a)
             {
@@ -220,7 +234,7 @@ namespace BDD_VELOMAX_APP.Views
             }
             else if (client is ClientBoutique bout)
             {
-                textemail += $"<h3>Total avec votre remise de {bout.Remise}% : <h2><b>{prixtotal * (100 - bout.Remise) / 100}</b></h2></h3>€</p><br>";
+                textemail += $"<h3>Total à payer avec votre remise de {bout.Remise}% : <h2><b>{prixtotal * (100 - bout.Remise) / 100}</b></h2></h3>€</p><br>";
             }
 
             return textemail;
