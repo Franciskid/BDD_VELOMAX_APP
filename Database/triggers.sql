@@ -1,5 +1,5 @@
 delimiter $$
-DROP TRIGGER if exists velomax.deletePiece$$
+#DROP TRIGGER if exists velomax.deletePiece$$
 CREATE TRIGGER deletePiece BEFORE DELETE on fournisseurs
 FOR EACH ROW
 begin
@@ -8,7 +8,7 @@ begin
 end$$
 
 
-DROP TRIGGER if exists velomax.commandePieces$$
+#DROP TRIGGER if exists velomax.commandePieces$$
 CREATE TRIGGER commandePieces after update
 ON pieces 
 for each row
@@ -22,7 +22,7 @@ end if;
 end$$
 
 
-DROP event if exists velomax.AjoutPieceCommandee$$
+#DROP event if exists velomax.AjoutPieceCommandee$$
 CREATE 
     EVENT `AjoutPieceCommandee` 
     ON SCHEDULE EVERY 1 DAY STARTS now() 
@@ -34,7 +34,7 @@ CREATE
     end if;
     END$$
 
-DROP TRIGGER if exists velomax.EnleverStockCommande$$
+#DROP TRIGGER if exists velomax.EnleverStockCommande$$
 CREATE TRIGGER EnleverStockCommande after insert
 ON commandes 
 for each row

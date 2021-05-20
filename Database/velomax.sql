@@ -4,15 +4,15 @@ GRANT SELECT, SHOW VIEW ON velomax.* TO 'bozo'@'localhost';
 
 use velomax;
 
-drop table if exists Commandes;
-drop table if exists Assemblages;
-drop table if exists Pieces;
-drop table if exists Modeles;
-drop table if exists Comptes;
-drop table if exists Fournisseurs;
-drop table if exists Clients;
-drop table if exists Adresse;
-drop table if exists Fidelio;
+#drop table if exists Commandes;
+#drop table if exists Assemblages;
+#drop table if exists Pieces;
+#drop table if exists Modeles;
+#drop table if exists Comptes;
+#drop table if exists Fournisseurs;
+#drop table if exists Clients;
+#drop table if exists Adresse;
+#drop table if exists Fidelio;
 
 create table if not exists Adresse
 (

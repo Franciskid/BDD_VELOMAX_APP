@@ -88,7 +88,7 @@ namespace BDD_VELOMAX_APP.Views
             {
                 if (export.Export(str))
                 {
-                    if (SendMail(string.IsNullOrWhiteSpace(this.TB_Mail.Text) ? "velomax.noreply@gmail.com" : this.TB_Mail.Text, export))
+                    if (SendMail(string.IsNullOrWhiteSpace(this.TB_Mail.Text) ? ConfigurationManager.AppSettings["mailVelomax"] : this.TB_Mail.Text, export))
                     {
                         MessageBox.Show("L'export a bien eu lieu !", "Wow bravo !", MessageBoxButton.OK);
                     }
@@ -128,11 +128,11 @@ namespace BDD_VELOMAX_APP.Views
                     cli.EnableSsl = true;
                     cli.Host = "smtp.gmail.com";
                     cli.Port = 587;
-                    cli.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["mailVelomax"], "mdpMailSend98;");
+                    cli.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["mailVelomax"], ConfigurationManager.AppSettings["mailVelomaxMDP"]);
 
                     MailMessage mail = new MailMessage(((NetworkCredential)cli.Credentials).UserName, to);
                     mail.Subject = "VELOMAX";
-                    mail.Priority = MailPriority.High;
+                    mail.Priority = MailPriority.Normal;
                     mail.Body = @"Nous vous remercions pour votre demande.\n" +
                         "Là voici en pièce jointe.";
                     mail.IsBodyHtml = true;

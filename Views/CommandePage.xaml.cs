@@ -163,12 +163,12 @@ namespace BDD_VELOMAX_APP.Views
                     cli.EnableSsl = true;
                     cli.Host = "smtp.gmail.com";
                     cli.Port = 587;
-                    cli.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["mailVelomax"], "mdpMailSend98;");
+                    cli.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["mailVelomax"], ConfigurationManager.AppSettings["mailVelomaxMDP"]);
 
                     MailMessage mail = new MailMessage(((NetworkCredential)cli.Credentials).UserName, to)
                     {
                         Subject = "VELOMAX",
-                        Priority = MailPriority.High,
+                        Priority = MailPriority.Normal,
                         IsBodyHtml = true,
 
                     };

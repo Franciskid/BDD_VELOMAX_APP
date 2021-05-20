@@ -166,6 +166,17 @@ namespace BDD_VELOMAX_APP
             }
         }
 
+        private int prixTotal;
+        public double AchatTotal
+        {
+            get => (int)prixTotal;
+            set
+            {
+                this.prixTotal = (int)value;
+                this.OnPropertyChanged("AchatTotal");
+            }
+        }
+
        
         public ClientViewModel() { this.DateAdhésion = DateTime.Now; }
 
@@ -195,6 +206,9 @@ namespace BDD_VELOMAX_APP
                 this.Remise = bout.Remise;
                 this.NomContact = bout.NomContact;
             }
+            bool sommeModele = double.TryParse(BDDReader.ReadQuery($"select sum(modeles.prix * commandes.quantité) as prix from commandes join modeles on commandes.modeleid = modeles.idModele where commandes.clientid = {this.ID};").FirstOrDefault().FirstOrDefault()?.ToString() ?? "", out double sumModele);
+            bool sommePiece = double.TryParse(BDDReader.ReadQuery($"select sum(pieces.prix * commandes.quantité) as prix from commandes join pieces on commandes.pieceid = pieces.idPiece where commandes.clientid = {this.ID};").FirstOrDefault().FirstOrDefault()?.ToString() ?? "", out double sumPiece);
+            this.AchatTotal = sumModele + sumPiece;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
