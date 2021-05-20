@@ -7,64 +7,77 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="900">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.3*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+    <TabControl x:Name="TabControl_Main" Style="{StaticResource MaterialDesignTabControl}" Background="{StaticResource MenuBackColorTransp}" Foreground="AliceBlue" Margin="20, 0, 0, 0">
+        <TabItem Header="Nouvelle commande">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.3*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-            <DataGrid Grid.Row="0" Margin="10" x:Name="dataGridModele" SelectedCellsChanged="dataGridModele_SelectedCellsChanged">
-                <DataGrid.DataContext>
-                    <local:PieceCommandeViewModel/>
-                </DataGrid.DataContext>
+                    <DataGrid Grid.Row="0" Margin="10" x:Name="dataGridModele" SelectedCellsChanged="dataGridModele_SelectedCellsChanged">
+                        <DataGrid.DataContext>
+                            <local:PieceCommandeViewModel/>
+                        </DataGrid.DataContext>
 
-            </DataGrid>
+                    </DataGrid>
 
-            <DataGrid Grid.Row="1" Margin="10" x:Name="dataGridPiece" SelectedCellsChanged="dataGridModele_SelectedCellsChanged">
-                <DataGrid.DataContext>
-                    <local:ModeleCommandeViewModel/>
-                </DataGrid.DataContext>
-
-            </DataGrid>
-        </Grid>
-
-        <StackPanel Grid.Column="1" Orientation="Vertical">
-            <TextBlock Text="Client :" Foreground="AliceBlue" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <ComboBox x:Name="cb_Client" Margin="10" Foreground="Gray" Height="50" SelectionChanged="cb_Client_SelectionChanged">
-                <ComboBox.DataContext>
-                    <local:ClientViewModel/>
-                </ComboBox.DataContext>
-            </ComboBox>
-            <TextBlock Text="Commande" Foreground="AliceBlue" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <Border Margin="10 10 10 10 "  materialDesign:ShadowAssist.Darken="False"
-                materialDesign:ShadowAssist.ShadowDepth="Depth5">
-                <StackPanel Orientation="Vertical">
-
-                    <DataGrid x:Name="DataGridCheckout" Background="{StaticResource ButtonOnHover}" Foreground="Black" FontWeight="Bold" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="300" MaxHeight="500">
+                    <DataGrid Grid.Row="1" Margin="10" x:Name="dataGridPiece" SelectedCellsChanged="dataGridModele_SelectedCellsChanged">
                         <DataGrid.DataContext>
                             <local:ModeleCommandeViewModel/>
                         </DataGrid.DataContext>
 
                     </DataGrid>
+                </Grid>
 
-                    <TextBlock Text="Remise" FontSize="30" HorizontalAlignment="Center" Foreground="AliceBlue"/>
-                    <TextBlock x:Name="TB_Remise" FontSize="20" HorizontalAlignment="Center" Foreground="AliceBlue"/>
-                    
-                    <TextBlock Text="Prix Total" FontSize="30" HorizontalAlignment="Center" Foreground="AliceBlue"/>
-                    <TextBlock x:Name="TB_PrixTotal" FontSize="20" HorizontalAlignment="Center" Foreground="AliceBlue"/>
-                    
-                    <Button x:Name="Butt_Checkout" Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Click="Butt_Checkout_Click" Content="Passer la commande" Background="{StaticResource DeepPurple}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20" IsDefault="True"/>
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <TextBlock Text="Client :" Foreground="AliceBlue" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="cb_Client" Style="{StaticResource Box2}" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" Template="{DynamicResource MaterialDesignDataGridComboBoxEditableTemplate}" Margin="10" Foreground="Gray" Height="50" SelectionChanged="cb_Client_SelectionChanged">
+                        <ComboBox.DataContext>
+                            <local:ClientViewModel/>
+                        </ComboBox.DataContext>
+                    </ComboBox>
+                    <TextBlock Text="Commande" Foreground="AliceBlue" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <Border Margin="10 10 10 10 "  materialDesign:ShadowAssist.Darken="False"
+                materialDesign:ShadowAssist.ShadowDepth="Depth5">
+                        <StackPanel Orientation="Vertical">
+
+                            <DataGrid x:Name="DataGridCheckout" Background="{StaticResource MenuFontColor}" Foreground="Black" FontWeight="Bold" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="280" MaxHeight="300">
+                                <DataGrid.DataContext>
+                                    <local:ModeleCommandeViewModel/>
+                                </DataGrid.DataContext>
+
+                            </DataGrid>
+
+                            <TextBlock Text="Remise" FontSize="30" HorizontalAlignment="Center" Foreground="AliceBlue"/>
+                            <TextBlock x:Name="TB_Remise" FontSize="20" HorizontalAlignment="Center" Foreground="AliceBlue"/>
+
+                            <TextBlock Text="Prix Total" FontSize="30" HorizontalAlignment="Center" Foreground="AliceBlue"/>
+                            <TextBlock x:Name="TB_PrixTotal" FontSize="20" HorizontalAlignment="Center" Foreground="AliceBlue"/>
+
+                            <Button x:Name="Butt_Checkout" Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Click="Butt_Checkout_Click" Content="Passer la commande" Background="{StaticResource DeepPurple}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20" IsDefault="True"/>
+
+                        </StackPanel>
+
+
+                    </Border>
 
                 </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Historique des commandes">
+            <TabItem.DataContext>
+                <local:CommandeViewModel/>
+            </TabItem.DataContext>
+            <DataGrid x:Name="DataGridCheckout" Background="{StaticResource MenuFontColor}" Foreground="Black" FontWeight="Bold" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 
-
-            </Border>
-
-        </StackPanel>
-    </Grid>
+            </DataGrid>
+        </TabItem>
+    </TabControl>
+    
 </UserControl>

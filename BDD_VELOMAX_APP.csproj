@@ -236,6 +236,7 @@
     <Compile Include="VELOMAX\ExportData.cs" />
     <Compile Include="VELOMAX\MyConstants.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
+    <Compile Include="ViewModels\CommandeViewModel.cs" />
     <Compile Include="ViewModels\FournisseurViewModel.cs" />
     <Compile Include="ViewModels\ModeleCommandeViewModel.cs" />
     <Compile Include="ViewModels\PieceCommandeViewModel.cs" />
@@ -381,6 +382,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="Images\fidelio.png" />
+    <None Include="Database\modelEABDDVelomax.mwb" />
     <None Include="packages.config" />
     <None Include="Projet VELOMAX.mdj" />
     <None Include="Properties\Settings.settings">
