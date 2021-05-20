@@ -42,7 +42,7 @@ create table if not exists Pieces
     fournisseurId int not null default 0,
     numProduit int not null default 1,
     prix float not null default 1,
-    quantité int not null default 0,
+    quantité int not null default 1,
     dateIntroduction datetime,
     dateDiscontinuation datetime,
     delaiApprovisionnement int default 10,

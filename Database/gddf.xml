@@ -8,7 +8,7 @@
     <Quantité>1</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">C02</ID>
   </Piece>
   <Piece>
@@ -19,7 +19,7 @@
     <Quantité>2</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">C76</ID>
   </Piece>
   <Piece>
@@ -30,7 +30,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">C87</ID>
   </Piece>
   <Piece>
@@ -41,7 +41,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">DV132</ID>
   </Piece>
   <Piece>
@@ -52,7 +52,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">DV133</ID>
   </Piece>
   <Piece>
@@ -63,7 +63,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">DV15</ID>
   </Piece>
   <Piece>
@@ -74,7 +74,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">DV17</ID>
   </Piece>
   <Piece>
@@ -85,7 +85,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">DV41</ID>
   </Piece>
   <Piece>
@@ -96,7 +96,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">DV57</ID>
   </Piece>
   <Piece>
@@ -107,7 +107,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">DV87</ID>
   </Piece>
   <Piece>
@@ -118,7 +118,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">F3</ID>
   </Piece>
   <Piece>
@@ -129,7 +129,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">F9</ID>
   </Piece>
   <Piece>
@@ -140,7 +140,7 @@
     <Quantité>1</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">G7</ID>
   </Piece>
   <Piece>
@@ -151,7 +151,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">O4</ID>
   </Piece>
   <Piece>
@@ -162,7 +162,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">S02</ID>
   </Piece>
   <Piece>
@@ -173,7 +173,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">S03</ID>
   </Piece>
   <Piece>
@@ -184,7 +184,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">S34</ID>
   </Piece>
   <Piece>
@@ -195,7 +195,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">S35</ID>
   </Piece>
   <Piece>
@@ -206,7 +206,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">S36</ID>
   </Piece>
   <Piece>
@@ -217,7 +217,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">S37</ID>
   </Piece>
   <Piece>
@@ -228,7 +228,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">S87</ID>
   </Piece>
   <Piece>
@@ -239,7 +239,7 @@
     <Quantité>0</Quantité>
     <DateIntroduction>0001-01-01T00:00:00</DateIntroduction>
     <DateDiscontinuation>0001-01-01T00:00:00</DateDiscontinuation>
-    <DelaiApprovisionnement>0001-01-01T00:00:00</DelaiApprovisionnement>
+    <DelaiApprovisionnementJour>10</DelaiApprovisionnementJour>
     <ID xsi:type="xsd:string">S88</ID>
   </Piece>
 </ArrayOfPiece>
