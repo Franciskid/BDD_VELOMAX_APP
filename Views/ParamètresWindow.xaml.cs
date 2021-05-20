@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -68,6 +71,7 @@ namespace BDD_VELOMAX_APP.Views
             {
                 if (export.Export(str))
                 {
+                    SendMail(string.IsNullOrWhiteSpace(this.TB_Mail.Text) ? "velomax.noreply@gmail.com" : this.TB_Mail.Text, export);
                     MessageBox.Show("L'export a bien eu lieu !", "!", MessageBoxButton.OK);
                 }
 
@@ -84,6 +88,7 @@ namespace BDD_VELOMAX_APP.Views
             {
                 if (export.Export(str))
                 {
+                    SendMail(string.IsNullOrWhiteSpace(this.TB_Mail.Text) ? "velomax.noreply@gmail.com" : this.TB_Mail.Text, export);
                     MessageBox.Show("L'export a bien eu lieu !", "!", MessageBoxButton.OK);
                 }
 
@@ -92,14 +97,54 @@ namespace BDD_VELOMAX_APP.Views
 
         private string GetFilename(bool json)
         {
-            Microsoft.Win32.SaveFileDialog openFileDlg = new Microsoft.Win32.SaveFileDialog();
-            openFileDlg.DefaultExt = json ? "json" : "xml";
-            openFileDlg.Filter = json ? "Fichiers JSON (*.json) | *.json" : "Fichiers XML(*.xml) | *.xml";
-            openFileDlg.AddExtension = true;
+            Microsoft.Win32.SaveFileDialog openFileDlg = new Microsoft.Win32.SaveFileDialog
+            {
+                DefaultExt = json ? "json" : "xml",
+                Filter = json ? "Fichiers JSON (*.json) | *.json" : "Fichiers XML(*.xml) | *.xml",
+                AddExtension = true
+            };
             if (openFileDlg.ShowDialog() == true)
                 return openFileDlg.FileName;
 
             return null;
+        }
+
+        private bool SendMail<T>(string to, ExportData<T> data)
+        {
+
+            using (SmtpClient cli = new SmtpClient())
+            {
+                cli.DeliveryMethod = SmtpDeliveryMethod.Network;
+                cli.UseDefaultCredentials = false;
+                cli.EnableSsl = true;
+                cli.Host = "smtp.gmail.com";
+                cli.Port = 587;
+                cli.Credentials = new NetworkCredential("velomax.noreply@gmail.com", "mdpMailSend98;");
+
+                MailMessage mail = new MailMessage("velomax.noreply@gmail.com", to);
+                mail.Subject = "VELOMAX";
+                mail.Priority = MailPriority.High;
+                mail.Body = @"Nous vous remercions pour votre demande.\n" +
+                    "Là voici en pièce jointe."; 
+                mail.IsBodyHtml = true;
+                mail.AlternateViews.Add(GetEmbeddedImage(@"../../Images\mailHeader.png", $@"<p>Bonjour,</p></p><p><p>Comme demandé via l'application, voici vos fichies en pièce-jointe.</p><p></p><p>Merci pour votre confiance</p>"));
+                Attachment attac = new Attachment(data.FileName);
+                mail.Attachments.Add(attac);
+
+                cli.Send(mail);
+            }
+
+            return true;
+        }
+
+        private AlternateView GetEmbeddedImage(String filePath, string body)
+        {
+            LinkedResource res = new LinkedResource(System.IO.Path.GetFullPath(filePath));
+            res.ContentId = Guid.NewGuid().ToString();
+            string htmlBody = $@"{body}<img src='cid:" + res.ContentId + @"'/>";
+            AlternateView alternateView = AlternateView.CreateAlternateViewFromString(htmlBody, null, MediaTypeNames.Text.Html);
+            alternateView.LinkedResources.Add(res);
+            return alternateView;
         }
     }
 }

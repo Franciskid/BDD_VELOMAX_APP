@@ -349,6 +349,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\mailHeader.PNG" />
+    <Resource Include="Images\veloLogoPetit.png" />
     <Resource Include="Images\fidelio2.jpg" />
     <Resource Include="Images\yellowcard.jpg" />
     <Resource Include="Images\veloBackground10.jpg" />

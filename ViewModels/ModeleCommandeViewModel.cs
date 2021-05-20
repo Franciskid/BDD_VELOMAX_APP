@@ -10,6 +10,9 @@ namespace BDD_VELOMAX_APP
     {
         public bool IsSelected { get; set; }
 
+
+        public int ID { get; set; }
+
         public string Nom { get; set; }
 
         public LigneProduit Ligne { get; set; }
@@ -20,6 +23,7 @@ namespace BDD_VELOMAX_APP
 
         public ModeleCommandeViewModel(Modele modele)
         {
+            this.ID = (int)modele.ID;
             this.Nom = modele.Nom.ToString();
             this.Ligne = modele.Ligne;
             this.Prix = modele.Prix;

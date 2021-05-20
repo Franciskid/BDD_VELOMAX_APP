@@ -33,6 +33,6 @@ namespace BDD_VELOMAX_APP
             this.DateLivraison = DateLivraison;
         }
 
-        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{DateCommande}','{DateLivraison}'";
+        public string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{IDCommande}','{Client.ID}',{(Piece != null ? $"'{Piece?.ID}'" : "null")},{(Modele != null ? $"'{Modele?.ID}'" : "null")},'{DateCommande:yyyy-MM-dd}','{DateLivraison:yyyy-MM-dd}'";
     }
 }

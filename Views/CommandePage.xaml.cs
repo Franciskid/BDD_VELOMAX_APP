@@ -93,7 +93,35 @@ namespace BDD_VELOMAX_APP.Views
 
         private void Butt_Checkout_Click(object sender, RoutedEventArgs e)
         {
+            int numCom = new Random(Guid.NewGuid().GetHashCode()).Next();
+            try
+            {
+                if (!int.TryParse(((string)cb_Client.SelectedItem).Split(' ').FirstOrDefault(), out int idCli))
+                {
+                    MessageBox.Show("Erreur", "Pas de client sélectionné !", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                List<Commande> commande = new List<Commande>();
+                foreach (var elem in checkout)
+                {
+                    if (elem.Type == "Pièce")
+                    {
+                        commande.Add(new Commande(null, numCom, idCli, elem.ID, null, DateTime.Now, DateTime.Now.AddDays(10)));
+                    }
+                    else if (elem.Type == "Vélo")
+                    {
+                        commande.Add(new Commande(null, numCom, idCli, null, int.Parse(elem.ID), DateTime.Now, DateTime.Now.AddDays(10)));
+                    }
+                }
 
+                commande.ForEach(x => BDDWriter.Insert(x));
+
+                MessageBox.Show("Bravo !", "La commande a été passée avec succès. Le détail de la commande a été envoyé à l'email du client !", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Erreur", "Erreur interne, veuillez recommencer !", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

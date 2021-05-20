@@ -37,7 +37,7 @@ namespace BDD_VELOMAX_APP
                 { TABLE_ADRESSE, new List<string>() { TABLE_idADRESSE, "rue", "ville", "codePostal", "pays" } },
                 { TABLE_ASSEMBLAGES, new List<string>() { TABLE_idASSEMBLAGES, "nom", "grandeur", "cadre", "guidon", "freins", "selle", "derailleur_avant", "derailleur_arriere", "roue_avant", "roue_arriere", "reflecteurs", "pedalier", "ordinateur", "panier", } },
                 { TABLE_CLIENTS, new List<string>() { TABLE_idCLIENTS, "typeClient", "nom", "prenom", "idAdresse", "telephone", "courriel", "nomContact", "remise", "fidelio", "idFidelio", "dateAdhesionFidelio" } },
-                { TABLE_COMMANDES, new List<string>() { TABLE_idCOMMANDES, "numCommande", "clientid", "pieceid", "assemblageid", "dateCommande", "dateLivraison"} },
+                { TABLE_COMMANDES, new List<string>() { TABLE_idCOMMANDES, "numCommande", "clientid", "pieceid", "modeleid", "dateCommande", "dateLivraison"} },
                 { TABLE_COMPTES, new List<string>() { TABLE_idCOMPTES, "pseudo", "motdepasse"} },
                 { TABLE_FIDELIO, new List<string>() { TABLE_idFIDELIO, "nom", "prix", "duree_annee", "rabais" } },
                 { TABLE_FOURNISSEURS, new List<string>() { TABLE_idFOURNISSEURS, "nom", "contact", "idAdresse", "score", "delaidelivraison" } },

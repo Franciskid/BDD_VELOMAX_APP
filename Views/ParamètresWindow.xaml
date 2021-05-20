@@ -9,7 +9,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Background="{StaticResource MenuBackColorTransp2}"
         AllowsTransparency="True"
-        Title="VéloMax" Height="500" Width="500" 
+        Title="VéloMax" Height="600" Width="500" 
         WindowStyle="None" 
         ShowInTaskbar="False"
         WindowStartupLocation="CenterScreen">
@@ -53,22 +53,24 @@
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Button Grid.Row="0" x:Name="Butt_JSON" Grid.Column="0"  Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Click="Butt_JSON_Click" Content="EXPORT JSON" Background="{StaticResource MenuCloseOpenFont}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20" IsDefault="True" Margin="10">
+                        <TextBox Grid.Row="0" x:Name="TB_Mail" Style="{DynamicResource MaterialDesignTextBox}" materialDesign:HintAssist.Hint="Destinataire des fichiers"  materialDesign:HintAssist.IsFloating="True"  HorizontalAlignment="Stretch" Foreground="AliceBlue" FontSize="15" VerticalAlignment="Center"/>
+
+                        <Button Grid.Row="1" x:Name="Butt_JSON" Grid.Column="0"  Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Click="Butt_JSON_Click" Content="EXPORT JSON" Background="{StaticResource MenuCloseOpenFont}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20" IsDefault="True" Margin="10">
                             <Button.ToolTip>
                                 <ToolTip Style="{StaticResource MyToolTip}">
                                     Export des clients dont le programme de fidélité arrive à expiration dans moins de 2 mois avec historique des abonnements afin de les relancer en JSON
                                 </ToolTip>
                             </Button.ToolTip>
                         </Button>
-                        <Button Grid.Row="1"  x:Name="Butt_XML" Grid.Column="1"  Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Click="Butt_XML_Click" Content="EXPORT XML" Background="{StaticResource MenuCloseOpenFont}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20" IsDefault="True" Margin="10">
+                        <Button Grid.Row="2"  x:Name="Butt_XML" Grid.Column="1"  Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Click="Butt_XML_Click" Content="EXPORT XML" Background="{StaticResource MenuCloseOpenFont}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20" IsDefault="True" Margin="10">
                             <Button.ToolTip>
                                 <ToolTip Style="{StaticResource MyToolTip}">
                                     Export des stocks faibles avec fournisseurs pour commande en XML
                                 </ToolTip>
                             </Button.ToolTip>
                         </Button>
-
                     </Grid>
                 </Border>
 

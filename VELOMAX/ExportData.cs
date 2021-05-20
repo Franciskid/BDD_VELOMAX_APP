@@ -26,6 +26,8 @@ namespace BDD_VELOMAX_APP
         public List<T> ToExport { get; set; }
 
 
+        public string FileName { get; set; }
+
         public ExportData(ExportType type, List<T> toExport)
         {
             this.TypeExport = type;
@@ -34,7 +36,7 @@ namespace BDD_VELOMAX_APP
 
         public bool Export(string path)
         {
-            string filename = (Directory.Exists(path) ? path + $"\\" : "../") + $"{(TypeExport == ExportType.JSON ? "JSONExport.json" : "XMLExport.xml")}";
+            this.FileName = path;
 
             return this.TypeExport == ExportType.JSON ? ExportToJSON(path) : ExportToXML(path);
         }
@@ -65,8 +67,11 @@ namespace BDD_VELOMAX_APP
         {
             try
             {
-                var writer = new System.Xml.Serialization.XmlSerializer(typeof(List<T>));
-                writer.Serialize(new StreamWriter(filename), ToExport);
+                using (var sw = new StreamWriter(filename))
+                {
+                    var writer = new System.Xml.Serialization.XmlSerializer(typeof(List<T>));
+                    writer.Serialize(sw, ToExport);
+                }
                  
                 return true;
             }

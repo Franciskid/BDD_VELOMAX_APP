@@ -8,7 +8,11 @@ namespace BDD_VELOMAX_APP
 {
     public class PrixCheckoutViewModel
     {
+        public string Type { get; set; }
+
         public string Nom { get; set; }
+
+        public string ID { get; set; }
 
         public int Quantité { get; set; }
 
@@ -26,14 +30,18 @@ namespace BDD_VELOMAX_APP
         }
         public PrixCheckoutViewModel(PieceCommandeViewModel p)
         {
-            this.Nom = $"{p.Nom} : {p.Id}";
+            this.Nom = $"{p.Nom}";
+            this.ID = p.Id;
+            this.Type = "Pièce";
             this.Quantité = 1;
             this.prixIndiv = p.Prix;
         }
 
         public PrixCheckoutViewModel(ModeleCommandeViewModel m)
         {
-            this.Nom = $"{m.Ligne} : {m.Nom}";
+            this.Nom = $"{m.Ligne}  {m.Nom}";
+            this.ID = m.ID.ToString();
+            this.Type = "Vélo";
             this.Quantité = 1;
             this.prixIndiv = m.Prix;
         }
