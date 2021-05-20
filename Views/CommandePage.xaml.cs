@@ -168,9 +168,9 @@ namespace BDD_VELOMAX_APP.Views
                     }
 
 
-                    mail.AlternateViews.Add(GetEmbeddedImage($@"../../Images\mailHeader{rand.Next(1, 4)}.png", $@"<p>Bonjour {nom},</p><p></p><p>Voici le détail de votre commande référence 
-                                        '{com.FirstOrDefault().IDCommande}' qui sera livrée le {com.FirstOrDefault().DateLivraison:dd/MM/yyyy} à l'adresse suivante : {com.FirstOrDefault().Client.Adresse}:
-                                        </p><p></p><p>Merci pour votre confiance</p><p></p><p></p><p>{Mailtexte(com)}</p><p></p>"));
+                    mail.AlternateViews.Add(GetEmbeddedImage($@"../../Images\mailHeader{rand.Next(1, 4)}.png", $@"<p>Bonjour <b>{nom}</b>,<br><br>Voici le détail de votre commande référence 
+                                        <i>'{com.FirstOrDefault().IDCommande}'</i> qui sera livrée le <b>{com.FirstOrDefault().DateLivraison:dd/MM/yyyy}</b> à l'adresse suivante : {com.FirstOrDefault().Client.Adresse}:
+                                        <br><br><p>Merci pour votre confiance !</p><p>L'équipe <b>VéloMax</b>.</p><br><br><p>{Mailtexte(com)}</p><br><br>"));
 
                     cli.Send(mail);
                 }
@@ -198,25 +198,29 @@ namespace BDD_VELOMAX_APP.Views
         {
             var client = a.FirstOrDefault().Client;
             float prixtotal = a.Aggregate(0f, (x, y) => x += (y.Piece?.Prix ?? 0) + (y.Modele?.Prix ?? 0));
-            string textemail = "<ul>";
+            string textemail = $@"<h2><b>Commande</b> (ref. {a.FirstOrDefault().IDCommande}) :</h2><ol type=""1"">";
             foreach (var com in a)
             {
                 if (com.Modele != null)
                 {
-                    textemail += $"<li><p>        {com.Modele.Ligne} de type {com.Modele.Nom} ref {com.Modele.ID} au prix de {com.Modele.Prix}€</p></li>";
+                    textemail += $@"<li><p>{com.Modele.Ligne} <i>{com.Modele.Nom}</i> ref. {com.Modele.ID} <ul><li type = ""disc""><b>Prix : {com.Modele.Prix}</b>€</p></li></ul></li>";
                 }
                 else if (com.Piece != null)
                 {
-                    textemail += $"<li><p>        {com.Piece.Nom} {com.Piece.ID} au prix de {com.Piece.Prix}€</p></li>";
+                    textemail += $@"<li><p>{com.Piece.Nom} ref. <i>{com.Piece.ID}</i> <ul><li type = ""disc""><b>Prix : {com.Piece.Prix}</b>€</p></li></ul></li>";
                 }
-                //textemail += "<p></p>";
+                textemail += "";
             }
 
-            textemail += $"</ul><p></p><p>Total TTC : {prixtotal}€</p>";
+            textemail += $"</ol><br><h4>Total TTC : <b>{prixtotal}</b>€</h4>";
 
             if (client is ClientIndividuel ind && ind.ProgrammeFidélité != null)
             {
-                textemail += $"<p></p><p>Total avec votre remise de {ind.ProgrammeFidélité.Rabais}% : {prixtotal * (100 - ind.ProgrammeFidélité.Rabais) / 100}€</p>";
+                textemail += $"<h3>Total avec votre remise de {ind.ProgrammeFidélité.Rabais}% : <b>{prixtotal * (100 - ind.ProgrammeFidélité.Rabais) / 100}</b>€</h3><br>";
+            }
+            else if (client is ClientBoutique bout)
+            {
+                textemail += $"<h3>Total avec votre remise de {bout.Remise}% : <h2><b>{prixtotal * (100 - bout.Remise) / 100}</b></h2></h3>€</p><br>";
             }
 
             return textemail;

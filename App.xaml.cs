@@ -17,11 +17,11 @@ namespace BDD_VELOMAX_APP
     public partial class App : Application
     {
 
-        public static bool IsConnected { get; set; } = true;
+        public static bool IsConnected { get; set; } = false;
 
         public static bool Admin { get; set; } = true;
 
-        private static Compte compte = new Compte(0, "TEST", "");
+        private static Compte compte;
         public static Compte Compte
         {
             get => compte;
