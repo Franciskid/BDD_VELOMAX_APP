@@ -127,7 +127,7 @@ namespace BDD_VELOMAX_APP.Views
                 mail.Body = @"Nous vous remercions pour votre demande.\n" +
                     "Là voici en pièce jointe."; 
                 mail.IsBodyHtml = true;
-                mail.AlternateViews.Add(GetEmbeddedImage(@"../../Images\mailHeader.png", $@"<p>Bonjour,</p></p><p><p>Comme demandé via l'application, voici vos fichies en pièce-jointe.</p><p></p><p>Merci pour votre confiance</p>"));
+                mail.AlternateViews.Add(GetEmbeddedImage(@"../../Images\mailHeader.png", $@"<p>Bonjour,</p></p><p><p>Comme demandé via l'application, voici vos fichiers en pièce-jointe.</p><p></p><p>Merci pour votre confiance</p>"));
                 Attachment attac = new Attachment(data.FileName);
                 mail.Attachments.Add(attac);
 
