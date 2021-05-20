@@ -148,11 +148,13 @@ namespace BDD_VELOMAX_APP.Views
                     cli.Port = 587;
                     cli.Credentials = new NetworkCredential("velomax.noreply@gmail.com", "mdpMailSend98;");
 
-                    MailMessage mail = new MailMessage("velomax.noreply@gmail.com", to);
-                    mail.Subject = "VELOMAX";
-                    mail.Priority = MailPriority.High;
-                    mail.IsBodyHtml = true;
-                    mail.AlternateViews.Add(GetEmbeddedImage(@"../../Images\mailHeader.png", $@"<p>Bonjour,</p></p><p><p>Voici le détail de votre commande référence '{com.FirstOrDefault().ID}' qui sera livrée le {com.FirstOrDefault().DateLivraison:dd/MM/yyyy} :</p><p></p><p>Merci pour votre confiance</p><p></p><p></p>"));
+                    MailMessage mail = new MailMessage("velomax.noreply@gmail.com", to)
+                    {
+                        Subject = "VELOMAX",
+                        Priority = MailPriority.High,
+                        IsBodyHtml = true
+                    };
+                    mail.AlternateViews.Add(GetEmbeddedImage(@"../../Images\mailHeader.png", $@"<p>Bonjour,</p><p></p><p>Voici le détail de votre commande référence '{com.FirstOrDefault().ID}' qui sera livrée le {com.FirstOrDefault().DateLivraison:dd/MM/yyyy} :</p><p></p><p>Merci pour votre confiance</p><p></p><p></p>"));
 
                     cli.Send(mail);
                 }
