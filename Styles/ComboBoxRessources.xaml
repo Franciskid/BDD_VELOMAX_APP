@@ -2,14 +2,16 @@
                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
-    
+
+    <Style TargetType="{x:Type ComboBox}" x:Key="Box2" BasedOn="{StaticResource {x:Type ComboBox}}">
+        
+    </Style>
     <Style TargetType="{x:Type ComboBox}" x:Key="Box1">
         <Setter Property="Width" Value="160"/>
         <Setter Property="FontFamily" Value="Agency FB"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Foreground" Value="white"/>
     </Style>
-
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -106,7 +108,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    
     <ControlTemplate x:Key="ComboBoxControlTemplate1" TargetType="{x:Type ComboBox}">
         <Grid x:Name="templateRoot" SnapsToDevicePixels="True">
             <Grid.ColumnDefinitions>
@@ -171,6 +173,5 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-
 
 </ResourceDictionary>

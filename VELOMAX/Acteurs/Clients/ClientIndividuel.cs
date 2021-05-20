@@ -19,14 +19,14 @@ namespace BDD_VELOMAX_APP
         public Fidelio ProgrammeFidélité { get; set; }
 
 
-        public DateTime DateAdhésionProgramme { get; set; }
+        public DateTime? DateAdhésionProgramme { get; set; }
 
 
-        public ClientIndividuel(Object Id, string nom, string prenom, int idAdresse, string tel, string mail, int fidel, DateTime adhesion) : base(Id, idAdresse, tel, mail)
+        public ClientIndividuel(Object Id, string nom, string prenom, int idAdresse, string tel, string mail, int? fidel, DateTime? adhesion) : base(Id, idAdresse, tel, mail)
         {
             this.Prénom = prenom;
             this.Nom = nom;
-            this.ProgrammeFidélité = BDDReader.GetObject<Fidelio>(fidel);
+            this.ProgrammeFidélité = fidel == null ? null : BDDReader.GetObject<Fidelio>(fidel);
             this.DateAdhésionProgramme = adhesion;
         }
 
@@ -35,7 +35,7 @@ namespace BDD_VELOMAX_APP
             $"'{base.Telephone}','{base.AdresseMail}',''," +
             $"null," +
             $"{(this.ProgrammeFidélité != null ? $"True" : "False")}," +
-            $"'{(this.ProgrammeFidélité.ID != null ? $"{this.ProgrammeFidélité.ID}" : "null")}'," +
-            $"'{(this.ProgrammeFidélité != null ? $"{DateAdhésionProgramme:yyyy-MM-dd}" : "")}'";
+            $"{(this.ProgrammeFidélité?.ID != null ? $"'{this.ProgrammeFidélité.ID}'" : "null")}," +
+            $"{(this.ProgrammeFidélité != null ? $"'{DateAdhésionProgramme:yyyy-MM-dd}'" : "null")}";
     }
 }

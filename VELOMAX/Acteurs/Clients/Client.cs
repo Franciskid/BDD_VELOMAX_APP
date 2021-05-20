@@ -27,5 +27,6 @@ namespace BDD_VELOMAX_APP
         }
 
         public virtual string SaveStr() => "idClient";
+
     }
 }

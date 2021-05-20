@@ -72,7 +72,7 @@ namespace BDD_VELOMAX_APP.Views
             statsquantite.ItemsSource = statsquantites;
 
             //fidelité
-            var Sfidels = indiv.Where(x => x.ProgrammeFidélité != null).Select(a => new Sfidel("individuel", a.Nom, a.Telephone, a.AdresseMail, a.DateAdhésionProgramme, a.ProgrammeFidélité)).ToList();
+            var Sfidels = indiv.Where(x => x.ProgrammeFidélité != null).Select(a => new Sfidel("individuel", a.Nom, a.Telephone, a.AdresseMail, a.DateAdhésionProgramme != null ? a.DateAdhésionProgramme : null, a.ProgrammeFidélité)).ToList();
 
             statsfidelite.ItemsSource = Sfidels;
 
@@ -184,17 +184,10 @@ namespace BDD_VELOMAX_APP.Views
             public float Prix { get; set; }
             public int Quantité_vendue { get; set; }
 
-            public DateTime DelaiApprovisionnement { get; set; }
+            public DateTime? DelaiApprovisionnement { get; set; }
 
 
-            public string Details
-            {
-                get
-                {
-                    return String.Format("{0} vaut {1} il faut attendre le {2} avant de se faire livrer.", this.Nom, this.Prix, DateTime.Now.AddMonths(this.DelaiApprovisionnement.Month));
-                }
-            }
-            public Squantite(string ID, string nom, float prix, DateTime delaiApprovisionnement, int quantite)
+            public Squantite(string ID, string nom, float prix, DateTime? delaiApprovisionnement, int quantite)
             {
                 this.ID = ID;
                 this.Nom = nom;
@@ -209,7 +202,7 @@ namespace BDD_VELOMAX_APP.Views
         {
             public string TypeClient { get; set; }
 
-            public DateTime Datedebut { get; set; }
+            public DateTime? Datedebut { get; set; }
             public string Nom { get; set; }
 
             public string Telephone { get; set; }
@@ -222,10 +215,10 @@ namespace BDD_VELOMAX_APP.Views
             {
                 get
                 {
-                    return String.Format("{0} est la date d'adhesion au programme {1}", this.Datedebut, this.Datedebut.AddYears(this.Temps));
+                    return Datedebut == null ? null : String.Format("{0} est la date d'adhesion au programme {1}", this.Datedebut, ((DateTime)(this.Datedebut)).AddYears(this.Temps));
                 }
             }
-            public Sfidel(string typeClient, string nom, string telephone, string courriel, DateTime datadebut, Fidelio programme)
+            public Sfidel(string typeClient, string nom, string telephone, string courriel, DateTime? datadebut, Fidelio programme)
             {
                 this.TypeClient = typeClient;
                 this.Nom = nom;

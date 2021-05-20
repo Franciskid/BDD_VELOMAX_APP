@@ -88,8 +88,15 @@ namespace BDD_VELOMAX_APP.Views
             {
                 if (export.Export(str))
                 {
-                    SendMail(string.IsNullOrWhiteSpace(this.TB_Mail.Text) ? "velomax.noreply@gmail.com" : this.TB_Mail.Text, export);
-                    MessageBox.Show("L'export a bien eu lieu !", "!", MessageBoxButton.OK);
+                    if (SendMail(string.IsNullOrWhiteSpace(this.TB_Mail.Text) ? "velomax.noreply@gmail.com" : this.TB_Mail.Text, export))
+                    {
+                        MessageBox.Show("L'export a bien eu lieu !", "Wow bravo !", MessageBoxButton.OK);
+                    }
+                    else
+                    {
+                        MessageBox.Show("L'export n'a pas eu lieu !", "Erreur", MessageBoxButton.OK);
+                    }
+                    
                 }
 
             }
@@ -111,35 +118,42 @@ namespace BDD_VELOMAX_APP.Views
 
         private bool SendMail<T>(string to, ExportData<T> data)
         {
-
-            using (SmtpClient cli = new SmtpClient())
+            try
             {
-                cli.DeliveryMethod = SmtpDeliveryMethod.Network;
-                cli.UseDefaultCredentials = false;
-                cli.EnableSsl = true;
-                cli.Host = "smtp.gmail.com";
-                cli.Port = 587;
-                cli.Credentials = new NetworkCredential("velomax.noreply@gmail.com", "mdpMailSend98;");
 
-                MailMessage mail = new MailMessage("velomax.noreply@gmail.com", to);
-                mail.Subject = "VELOMAX";
-                mail.Priority = MailPriority.High;
-                mail.Body = @"Nous vous remercions pour votre demande.\n" +
-                    "Là voici en pièce jointe."; 
-                mail.IsBodyHtml = true;
-                mail.AlternateViews.Add(GetEmbeddedImage(@"../../Images\mailHeader.png", $@"<p>Bonjour,</p></p><p><p>Comme demandé via l'application, voici vos fichiers en pièce-jointe.</p><p></p><p>Merci pour votre confiance</p>"));
-                Attachment attac = new Attachment(data.FileName);
-                mail.Attachments.Add(attac);
+                using (SmtpClient cli = new SmtpClient())
+                {
+                    cli.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    cli.UseDefaultCredentials = false;
+                    cli.EnableSsl = true;
+                    cli.Host = "smtp.gmail.com";
+                    cli.Port = 587;
+                    cli.Credentials = new NetworkCredential("velomax.noreply@gmail.com", "mdpMailSend98;");
 
-                cli.Send(mail);
+                    MailMessage mail = new MailMessage("velomax.noreply@gmail.com", to);
+                    mail.Subject = "VELOMAX";
+                    mail.Priority = MailPriority.High;
+                    mail.Body = @"Nous vous remercions pour votre demande.\n" +
+                        "Là voici en pièce jointe.";
+                    mail.IsBodyHtml = true;
+                    mail.AlternateViews.Add(GetEmbeddedImage(@"../../Images/mailHeader2.png", $@"<p>Bonjour,</p></p><p><p>Comme demandé via l'application, voici vos fichiers en pièce-jointe.</p><p></p><p>Merci pour votre confiance</p>"));
+                    Attachment attac = new Attachment(data.FileName);
+                    mail.Attachments.Add(attac);
+
+                    cli.Send(mail);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
 
-            return true;
         }
 
         private AlternateView GetEmbeddedImage(String filePath, string body)
         {
-            LinkedResource res = new LinkedResource(System.IO.Path.GetFullPath(filePath));
+            LinkedResource res = new LinkedResource(System.IO.Path.GetFullPath(filePath), MediaTypeNames.Image.Jpeg);
             res.ContentId = Guid.NewGuid().ToString();
             string htmlBody = $@"{body}<img src='cid:" + res.ContentId + @"'/>";
             AlternateView alternateView = AlternateView.CreateAlternateViewFromString(htmlBody, null, MediaTypeNames.Text.Html);

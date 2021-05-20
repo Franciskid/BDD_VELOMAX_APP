@@ -53,5 +53,11 @@ namespace BDD_VELOMAX_APP
         public object ID { get; private set; }
 
         public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Rue}', '{Ville}', '{CodePostal}', '{Province}'";
+
+
+        public override string ToString()
+        {
+            return $"{Rue} , {Ville} , {CodePostal}, {Province}";
+        }
     }
 }

@@ -291,21 +291,21 @@ values('boutique',"Haribo",1,"06 26 43 43 14","hario@gmail.com","Defer", 1),
 ('boutique',"PMU",4,"06 36 15 22 18","PMU@gmail.com","Blanc", 8);
 
 insert into Clients(typeClient,prenom,nom,idAdresse,telephone,courriel,nomContact,fidelio,idFidelio,dateAdhesionFidelio)
-values('individuel',"Jean","Raoul",1,"06 26 22 18 40","j.roul@gmail.com","rara",2,1,"20/08/13"),
-('individuel',"Louise","Pril",1,"06 46 52 18 41","l.pril@gmail.com","rara",2,3,"20/08/13"),
-('individuel',"Yanis","Quille",1,"06 16 50 98 44","y.quille@gmail.com","rara",2,2,"21/02/14"),
-('individuel',"Nabile","zoul",1,"06 06 51 38 34","n.zoul@gmail.com","rara",2,3,"20/08/13"),
-('individuel',"Marc","desbois",1,"06 52 45 15 23","marcusmorrisfan@gmail.com","rara",2,3,"20/07/22"),
-('individuel',"Thomas","felin",1,"06 87 54 36 41","thothoaimelamoto@gmail.com","rara",2,2,"20/07/23"),
-('individuel',"Anas","leroy",1,"06 87 56 52 12","Anasleroi@gmail.com","rara",2,3,"20/06/13"),
-('individuel',"Delphine","dufresne",1,"06 45 62 35 45","dufresnedel@gmail.com","rara",2,3,"20/08/14"),
-('individuel',"Valentine","duhamel",1,"06 45 87 51 23","vavadutar@gmail.com","rara",2,2,"20/08/13"),
-('individuel',"Claude","banta",1,"06 74 83 16 45","bantanavidaloca@gmail.com","rara",2,3,"21/02/13"),
-('individuel',"Clémence","leveille",1,"06 46 13 56 98","clémence.l@gmail.com","rara",2,3,"20/07/24"),
-('individuel',"Dominique","gilbert",1,"06 82 19 73 56","domidesdom@gmail.com","rara",2,2,"20/08/13"),
-('individuel',"Frédérique","lebrun",1,"06 42 51 85 63","frédo.dug@gmail.com","rara",2,3,"20/06/13"),
-('individuel',"Léon","Quirion",1,"06 42 15 86 32","léonquirion@gmail.com","rara",2,3,"20/06/13"),
-('individuel',"Christian","Villeneuve",1,"06 12 54 81 67","christistheone@gmail.com","rara",2,2,"20/06/13");
+values('individuel',"Jean","Raoul",1,"06 26 22 18 40","j.roul@gmail.com","rara",True,1,"20/08/13"),
+('individuel',"Louise","Pril",1,"06 46 52 18 41","l.pril@gmail.com","rara",True,3,"20/08/13"),
+('individuel',"Yanis","Quille",1,"06 16 50 98 44","y.quille@gmail.com","rara",True,2,"21/02/14"),
+('individuel',"Nabile","zoul",1,"06 06 51 38 34","n.zoul@gmail.com","rara",True,3,"20/08/13"),
+('individuel',"Marc","desbois",1,"06 52 45 15 23","marcusmorrisfan@gmail.com","rara",True,3,"20/07/22"),
+('individuel',"Thomas","felin",1,"06 87 54 36 41","thothoaimelamoto@gmail.com","rara",True,2,"20/07/23"),
+('individuel',"Anas","leroy",1,"06 87 56 52 12","Anasleroi@gmail.com","rara",True,3,"20/06/13"),
+('individuel',"Delphine","dufresne",1,"06 45 62 35 45","dufresnedel@gmail.com","rara",True,3,"20/08/14"),
+('individuel',"Valentine","duhamel",1,"06 45 87 51 23","vavadutar@gmail.com","rara",True,2,"20/08/13"),
+('individuel',"Claude","banta",1,"06 74 83 16 45","bantanavidaloca@gmail.com","rara",True,3,"21/02/13"),
+('individuel',"Clémence","leveille",1,"06 46 13 56 98","clémence.l@gmail.com","rara",False ,null,null),
+('individuel',"Dominique","gilbert",1,"06 82 19 73 56","domidesdom@gmail.com","rara",True,2,"20/08/13"),
+('individuel',"Frédérique","lebrun",1,"06 42 51 85 63","frédo.dug@gmail.com","rara",True,3,"20/06/13"),
+('individuel',"Léon","Quirion",1,"06 42 15 86 32","léonquirion@gmail.com","rara",True,3,"20/06/13"),
+('individuel',"Christian","Villeneuve",1,"06 12 54 81 67","christistheone@gmail.com","rara",True,2,"20/06/13");
 
 SET SQL_SAFE_UPDATES = 0;
 

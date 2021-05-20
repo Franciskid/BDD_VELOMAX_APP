@@ -9,8 +9,8 @@ namespace BDD_VELOMAX_APP
 {
     public class ClientViewModel : INotifyPropertyChanged
     {
-        private object id;
-        public object ID
+        private int id;
+        public int ID
         {
             get => id;
             set
@@ -136,8 +136,8 @@ namespace BDD_VELOMAX_APP
             }
         }
 
-        private DateTime dateadhésion;
-        public DateTime DateAdhésion {
+        private DateTime? dateadhésion;
+        public DateTime? DateAdhésion {
             get => dateadhésion;
             set
             {
@@ -146,8 +146,8 @@ namespace BDD_VELOMAX_APP
             }
         }
 
-        private DateTime datefin;
-        public DateTime DateFin {
+        private DateTime? datefin;
+        public DateTime? DateFin {
             get => datefin;
             set
             {
@@ -171,7 +171,7 @@ namespace BDD_VELOMAX_APP
 
         public ClientViewModel(Client cli)
         {
-            this.ID = cli.ID;
+            this.ID = (int)cli.ID;
             this.Adresse = cli.Adresse.Rue;
             this.Ville = cli.Adresse.Ville;
             this.CodePostal = int.Parse(cli.Adresse.CodePostal);
@@ -184,9 +184,9 @@ namespace BDD_VELOMAX_APP
                 this.Type = "Individuel";
                 this.Nom = ind.Nom;
                 this.Prénom = ind.Prénom;
-                this.ProgrammeFidélité = ind.ProgrammeFidélité.Description;
-                this.DateAdhésion = ind.DateAdhésionProgramme;
-                this.DateFin = ind.DateAdhésionProgramme + new TimeSpan((int)ind.ProgrammeFidélité.Duree_annee * 365, (int)(ind.ProgrammeFidélité.Duree_annee % 1 * 12) * 8760, 0, 0);
+                this.ProgrammeFidélité = ind.ProgrammeFidélité?.Description ?? null;
+                this.DateAdhésion = ind.ProgrammeFidélité == null ? (DateTime?)null : ind.DateAdhésionProgramme;
+                this.DateFin = ind.ProgrammeFidélité == null ? (DateTime?)null : ind.DateAdhésionProgramme + new TimeSpan((int)ind.ProgrammeFidélité.Duree_annee * 365, (int)(ind.ProgrammeFidélité.Duree_annee % 1 * 12) * 8760, 0, 0);
             }
             else if (cli is ClientBoutique bout)
             {

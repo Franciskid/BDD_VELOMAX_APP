@@ -27,7 +27,7 @@ namespace BDD_VELOMAX_APP.Views
     {
         public float Remise { get; set; } = 0;
 
-        public ObservableCollection<string> ListeFidelio { get; set; } = new ObservableCollection<string>() { "Pas de fidélio" };
+        public List<string> ListeFidelio { get; set; } = new List<string>() { "Pas de fidélio" };
 
         public string SelectedFidelio { get; set; }
 
@@ -45,7 +45,7 @@ namespace BDD_VELOMAX_APP.Views
 
             var fidel = BDDReader.Read<Fidelio>();
 
-            fidel.ForEach(x => ListeFidelio.Add(x.ID.ToString()));
+            fidel.ForEach(x => ListeFidelio.Add(x.Description.ToString()));
 
             SelectedFidelio = ListeFidelio[0];
 
@@ -53,6 +53,7 @@ namespace BDD_VELOMAX_APP.Views
             DatagridFournisseur.ItemsSource = ListeFournisseur;
 
             this.cb_fidelio.ItemsSource = ListeFidelio;
+
             this.cb_score.ItemsSource = ((Score[])typeof(Score).GetEnumValues()).Select(x => x.ToString());
 
             clients = BDDReader.Read<Client>().Select(x => new ClientViewModel(x)).ToList();
@@ -115,28 +116,36 @@ namespace BDD_VELOMAX_APP.Views
 
                 if (TabControl.SelectedIndex == 0) //Indiv
                 {
-                    var fidelio = BDDReader.GetObject<Fidelio>(o.ProgrammeFidélité, "nom");
+                    Fidelio fidelio = null;
+                    if (o.ProgrammeFidélité != "Pas de fidélio")
+                    {
+                        fidelio = BDDReader.GetObject<Fidelio>(o.ProgrammeFidélité, "nom");
+                    }
 
-                    ClientIndividuel cli = new ClientIndividuel(null, o.Nom, o.Prénom, (int)id, o.Téléphone, o.Mail, (int)fidelio.ID, o.DateAdhésion);
+                    ClientIndividuel cli = new ClientIndividuel(null, o.Nom, o.Prénom, (int)id, o.Téléphone, o.Mail, (int?)fidelio?.ID ?? null, o.DateAdhésion);
 
-                    cli.ID = BDDWriter.Insert(cli);
+                    cli.ID = (int)BDDWriter.Insert(cli);
 
-                    this.ListeClients.Add(new ClientViewModel(cli));
+                    this.clients.Add(new ClientViewModel(cli));
 
                 }
                 else //boutique
                 {
                     ClientBoutique cli = new ClientBoutique(null, o.Nom, (int)id, o.Téléphone, o.Mail, o.NomContact, o.Remise);
 
-                    cli.ID = BDDWriter.Insert(cli);
+                    cli.ID = (int)BDDWriter.Insert(cli);
 
-                    this.ListeClients.Add(new ClientViewModel(cli));
+                    this.clients.Add(new ClientViewModel(cli));
 
                 }
+
+                this.DatagridClients.ItemsSource = new ObservableCollection<ClientViewModel>(from item in clients
+                                                                                             orderby item.ID ascending
+                                                                                             select item);
             }
-            catch
+            catch (Exception ee)
             {
-                MessageBox.Show($"Erreur : Impossible d'ajouter le {(TabControl.SelectedItem as TabItem).Header.ToString().ToLower()} spécifié");
+                MessageBox.Show($"Erreur : impossible d'ajouter le {(TabControl.SelectedItem as TabItem).Header.ToString().ToLower()} spécifié");
             }
         }
 
@@ -153,12 +162,16 @@ namespace BDD_VELOMAX_APP.Views
 
                 if (TabControl.SelectedIndex == 0) //Indiv
                 {
-                    var fidelio = BDDReader.GetObject<Fidelio>(o.ProgrammeFidélité, "nom");
+                    Fidelio fidelio = null;
+                    if (o.ProgrammeFidélité != "Pas de fidélio")
+                    {
+                        fidelio = BDDReader.GetObject<Fidelio>(o.ProgrammeFidélité, "nom");
+                    }
 
                     if (fidelio == null)
                         fidelio = cb_fidelio.SelectedValue as Fidelio;
 
-                    ClientIndividuel cli = new ClientIndividuel(o.ID, o.Nom, o.Prénom, (int)client.Adresse.ID, o.Téléphone, o.Mail, (int)fidelio.ID, o.DateAdhésion);
+                    ClientIndividuel cli = new ClientIndividuel(o.ID, o.Nom, o.Prénom, (int)client.Adresse.ID, o.Téléphone, o.Mail, (int?)fidelio?.ID ?? null, o.DateAdhésion ?? DateTime.Now);
 
                     if (BDDWriter.Update(cli))
                     {
@@ -187,7 +200,7 @@ namespace BDD_VELOMAX_APP.Views
 
                 }
             }
-            catch
+            catch (Exception ee)
             {
                 MessageBox.Show($"Erreur : Impossible de modifier le {(TabControl.SelectedItem as TabItem).Header.ToString().ToLower()} spécifié");
             }
