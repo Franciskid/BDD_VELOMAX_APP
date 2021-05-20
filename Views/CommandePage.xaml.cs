@@ -119,7 +119,14 @@ namespace BDD_VELOMAX_APP.Views
 
                 commande.ForEach(x => BDDWriter.Insert(x));
 
-                MessageBox.Show("La commande a été passée avec succès. Le détail de la commande a été envoyé à l'email du client !", "Bravo !", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (SendMail(BDDReader.GetObject<Client>(idCli).AdresseMail, commande))
+                {
+                    MessageBox.Show("La commande a été passée avec succès. Le détail de la commande a été envoyé à l'email du client !", "Bravo !", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Erreur interne, l'email n'a pas été envoyé, veuillez recommencer (le mail du client n'est peut etre pas valide, la commande aura toute fois bien été passée) !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             catch
             {
@@ -128,28 +135,34 @@ namespace BDD_VELOMAX_APP.Views
         }
 
 
-        private bool SendMail<T>(string to, List<Commande> com)
+        private bool SendMail(string to, List<Commande> com)
         {
-
-            using (SmtpClient cli = new SmtpClient())
+            try
             {
-                cli.DeliveryMethod = SmtpDeliveryMethod.Network;
-                cli.UseDefaultCredentials = false;
-                cli.EnableSsl = true;
-                cli.Host = "smtp.gmail.com";
-                cli.Port = 587;
-                cli.Credentials = new NetworkCredential("velomax.noreply@gmail.com", "mdpMailSend98;");
+                using (SmtpClient cli = new SmtpClient())
+                {
+                    cli.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    cli.UseDefaultCredentials = false;
+                    cli.EnableSsl = true;
+                    cli.Host = "smtp.gmail.com";
+                    cli.Port = 587;
+                    cli.Credentials = new NetworkCredential("velomax.noreply@gmail.com", "mdpMailSend98;");
 
-                MailMessage mail = new MailMessage("velomax.noreply@gmail.com", to);
-                mail.Subject = "VELOMAX";
-                mail.Priority = MailPriority.High;
-                mail.IsBodyHtml = true;
-                mail.AlternateViews.Add(GetEmbeddedImage(@"../../Images\mailHeader.png", $@"<p>Bonjour,</p></p><p><p>Voici le détail de votre commande référence '{com.FirstOrDefault().ID}' qui sera livrée le {com.FirstOrDefault().DateLivraison:dd/MM/yyyy} :</p><p></p><p>Merci pour votre confiance</p><p></p><p></p>"));
+                    MailMessage mail = new MailMessage("velomax.noreply@gmail.com", to);
+                    mail.Subject = "VELOMAX";
+                    mail.Priority = MailPriority.High;
+                    mail.IsBodyHtml = true;
+                    mail.AlternateViews.Add(GetEmbeddedImage(@"../../Images\mailHeader.png", $@"<p>Bonjour,</p></p><p><p>Voici le détail de votre commande référence '{com.FirstOrDefault().ID}' qui sera livrée le {com.FirstOrDefault().DateLivraison:dd/MM/yyyy} :</p><p></p><p>Merci pour votre confiance</p><p></p><p></p>"));
 
-                cli.Send(mail);
+                    cli.Send(mail);
+                }
+
+                return true;
             }
-
-            return true;
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         private AlternateView GetEmbeddedImage(String filePath, string body)
