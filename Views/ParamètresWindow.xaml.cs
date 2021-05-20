@@ -128,9 +128,9 @@ namespace BDD_VELOMAX_APP.Views
                     cli.EnableSsl = true;
                     cli.Host = "smtp.gmail.com";
                     cli.Port = 587;
-                    cli.Credentials = new NetworkCredential("velomax.noreply@gmail.com", "mdpMailSend98;");
+                    cli.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["mailVelomax"], "mdpMailSend98;");
 
-                    MailMessage mail = new MailMessage("velomax.noreply@gmail.com", to);
+                    MailMessage mail = new MailMessage(((NetworkCredential)cli.Credentials).UserName, to);
                     mail.Subject = "VELOMAX";
                     mail.Priority = MailPriority.High;
                     mail.Body = @"Nous vous remercions pour votre demande.\n" +

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -162,13 +163,14 @@ namespace BDD_VELOMAX_APP.Views
                     cli.EnableSsl = true;
                     cli.Host = "smtp.gmail.com";
                     cli.Port = 587;
-                    cli.Credentials = new NetworkCredential("velomax.noreply@gmail.com", "mdpMailSend98;");
+                    cli.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["mailVelomax"], "mdpMailSend98;");
 
                     MailMessage mail = new MailMessage(((NetworkCredential)cli.Credentials).UserName, to)
                     {
                         Subject = "VELOMAX",
                         Priority = MailPriority.High,
-                        IsBodyHtml = true
+                        IsBodyHtml = true,
+
                     };
 
                     string nom = "";
