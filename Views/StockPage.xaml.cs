@@ -47,7 +47,7 @@ namespace BDD_VELOMAX_APP.Views
 
             foreach (Fournisseurs a in fournisseurs)
             {
-                var piecesdufourniseur = BDDReader.ReadQuery($"select pieces.idPiece, pieces.nom, pieces.delaiApprovisionnement from pieces,fournisseurs where fournisseurId=pieces.fournisseurId and fournisseurs.nom='{a.Nom}';");
+                var piecesdufourniseur = BDDReader.ReadQuery($@"select pieces.idPiece, pieces.nom, pieces.delaiApprovisionnement from pieces,fournisseurs where fournisseurId=pieces.fournisseurId and fournisseurs.nom=""{a.Nom}"";");
 
                 foreach (var b in piecesdufourniseur)
                 {

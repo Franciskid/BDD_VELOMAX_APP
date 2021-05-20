@@ -39,7 +39,7 @@ create table if not exists Pieces
 (
 	idPiece varchar(10) primary key not null,
     nom varchar(30),
-    fournisseurId int not null default 0,
+    fournisseurId int not null default 17254121,
     numProduit int not null default 1,
     prix float not null default 1,
     quantité int not null default 1,
@@ -140,26 +140,53 @@ create table if not exists Comptes
 
 insert into Comptes(pseudo, motdepasse) values ('root', sha1('rootroot')), ('bozo', sha1('bozobozo'));
 
-insert into adresse(idAdresse, rue, ville, codePostal, pays)
-values(1, "rue nulle part", "Marseille", "13000", "France");
+insert into adresse( rue, ville, codePostal, pays)
+values("rue de la pompe","paris","75002","france"),
+("Boulevard de Belleville","paris","75020","france"),
+("rue Lecourbe","paris","75019","france"),
+("Rue de Vaugirard","paris","75012","france"),
+("rue de Courcelles","paris","75014","france"),
+("avenue de la République","paris","75016","france"),
+("Avenue Mozart","paris","75018","france"),
+("Avenue des jardins","paris","75018","france"),
+("rue des tulipes","Sarcelles","95","france"),
+("place des clichys","paris","75018","france"),
+("rue des croyances","paris","75018","france"),
+("boulevard Charles de Gaulle","paris","75018","france"),
+("rue de Vichy","paris","75018","france"),
+("Allée du baron souriant","paris","75018","france"),
+("rue des lisiées","paris","75018","france"),
+("rue quelque part","paris","75018","france"),
+("rue des lisiées","paris","75004","france"),
+("rue des lisiées","marseille","36250","france"),
+("rue des lisiées","paris","75018","france"),
+("rue des lisiées","lyon","69004","france"),
+("rue des lisiées","lille","45021","france"),
+("rue des lisiées","montpellier","36502","france"),
+("rue des lisiées","grenoble","87025","france"),
+("rue des lisiées","grenoble","87025","france"),
+("place de la Bourse","toulon","54001","france");
 
 insert into fournisseurs(siret, nom, contact, idAdresse, score,delaidelivraison) 
-values(0, "TEST", "CONTACT_TEST", 1, 2,3);
+values(17524121, "Michelin", "George Mickeal", 21, 1,3),
+(17261521, "Aqualand", "Mickeal Jackson", 22, 3,5),
+(87512761, "Dunlop", "Buzz Aldrin", 23, 2,2),
+(17254121, "L_Elysée", "Quelqu'un", 24, 2, 10);
 
 insert into Pieces(idPiece, nom, fournisseurId, quantité,prix) 
-values('C32', 'Cadre', 0, 10,11),
-('C34', 'Cadre', 0, 12,10),
-('C76', 'Cadre', 0, 2,32),
-('C43',  'Cadre', 0, 4,21),
-('C44f',  'Cadre', 0, 12,33),
-('C43f',  'Cadre', 0, 12,29),
-('C01' , 'Cadre', 0, 12,2),
-('C02' , 'Cadre', 0, 1,8),
-('C15',  'Cadre', 0, 12,11),
-('C87' , 'Cadre', 0, 0,17),
-('C87f',  'Cadre', 0, 12,18),
-('C25' , 'Cadre', 0, 32,20),
-('C26' , 'Cadre', 0, 12,21);
+values('C32', 'Cadre', 17524121, 10,11),
+('C34', 'Cadre', 17524121, 12,10),
+('C76', 'Cadre', 17524121, 2,32),
+('C43',  'Cadre', 17261521, 4,21),
+('C44f',  'Cadre', 17261521, 12,33),
+('C43f',  'Cadre', 17261521, 12,29),
+('C01' , 'Cadre', 17261521, 12,2),
+('C02' , 'Cadre', 17261521, 1,8),
+('C15',  'Cadre', 87512761, 12,11),
+('C87' , 'Cadre', 87512761, 0,17),
+('C87f',  'Cadre', 87512761, 12,18),
+('C25' , 'Cadre', 87512761, 32,20),
+('C26' , 'Cadre', 17254121, 12,21);
  
 insert into Pieces(nom, idPiece, quantité,prix) 
 values('Guidon', 'G7', 1,23),
@@ -267,47 +294,29 @@ values('Kilimandjaro',  569, 'VTT'),
 ('Mud Zinger I',  279, 'BMX'),
 ('Mud Zinger II',  359, 'BMX');
 
-insert into adresse( rue, ville, codePostal, pays)
-values("rue de la pompe","paris","75002","france"),
-("Boulevard de Belleville","paris","75020","france"),
-("rue Lecourbe","paris","75019","france"),
-("Rue de Vaugirard","paris","75012","france"),
-("rue de Courcelles","paris","75014","france"),
-("avenue de la République","paris","75016","france"),
-("Avenue Mozart","paris","75018","france"),
-("Avenue des jardins","paris","75018","france"),
-("rue des tulipes","Sarcelles","95","france"),
-("place des clichys","paris","75018","france"),
-("rue des croyances","paris","75018","france"),
-("boulevard Charles de Gaulle","paris","75018","france"),
-("rue de Vichy","paris","75018","france"),
-("Allée du baron souriant","paris","75018","france"),
-("rue des lisiées","paris","75018","france"),
-("place de la Bourse","paris","75010","france");
-
 insert into Clients(typeClient, nom, idAdresse, telephone, courriel, nomContact, remise)
-values('boutique',"VELOMAX",1,"01 85 63 82 36","velomax.noreply@gmail.com","COUTAU", 0),
-('boutique',"Haribo",1,"06 26 43 43 14","hario@gmail.com","Defer", 1),
-('boutique',"EDF",2,"06 46 45 41 24","EDF@gmail.com","Dureau", 10),
-('boutique',"Micheline",3,"06 56 42 28 08","PMU@gmail.com","Blanc", 5), 
-('boutique',"PMU",4,"06 36 15 22 18","PMU@gmail.com","Blanc", 8);
+values('boutique',"VELOMAX",1,"01 85 63 82 36","velomax.noreply@gmail.com","Legrand", 0),
+('boutique',"Haribo",2,"06 26 43 43 14","hario@gmail.com","Defer", 1),
+('boutique',"EDF",3,"06 46 45 41 24","EDF@gmail.com","Dureau", 10),
+('boutique',"Micheline",4,"06 56 42 28 08","PMU@gmail.com","Blanc", 5), 
+('boutique',"PMU",5,"06 36 15 22 18","PMU@gmail.com","Blanc", 8);
 
 insert into Clients(typeClient,prenom,nom,idAdresse,telephone,courriel,nomContact,fidelio,idFidelio,dateAdhesionFidelio)
-values('individuel',"Jean","Raoul",1,"06 26 22 18 40","j.roul@gmail.com","rara",True,1,"20/08/13"),
-('individuel',"Louise","Pril",1,"06 46 52 18 41","l.pril@gmail.com","rara",True,3,"20/08/13"),
-('individuel',"Yanis","Quille",1,"06 16 50 98 44","y.quille@gmail.com","rara",True,2,"21/02/14"),
-('individuel',"Nabile","zoul",1,"06 06 51 38 34","n.zoul@gmail.com","rara",True,3,"20/08/13"),
-('individuel',"Marc","desbois",1,"06 52 45 15 23","marcusmorrisfan@gmail.com","rara",True,3,"20/07/22"),
-('individuel',"Thomas","felin",1,"06 87 54 36 41","thothoaimelamoto@gmail.com","rara",True,2,"20/07/23"),
-('individuel',"Anas","leroy",1,"06 87 56 52 12","Anasleroi@gmail.com","rara",True,3,"20/06/13"),
-('individuel',"Delphine","dufresne",1,"06 45 62 35 45","dufresnedel@gmail.com","rara",True,3,"20/08/14"),
-('individuel',"Valentine","duhamel",1,"06 45 87 51 23","vavadutar@gmail.com","rara",True,2,"20/08/13"),
-('individuel',"Claude","banta",1,"06 74 83 16 45","bantanavidaloca@gmail.com","rara",True,3,"21/02/13"),
-('individuel',"Clémence","leveille",1,"06 46 13 56 98","clémence.l@gmail.com","rara",False ,null,null),
-('individuel',"Dominique","gilbert",1,"06 82 19 73 56","domidesdom@gmail.com","rara",True,2,"20/08/13"),
-('individuel',"Frédérique","lebrun",1,"06 42 51 85 63","frédo.dug@gmail.com","rara",True,3,"20/06/13"),
-('individuel',"Léon","Quirion",1,"06 42 15 86 32","léonquirion@gmail.com","rara",True,3,"20/06/13"),
-('individuel',"Christian","Villeneuve",1,"06 12 54 81 67","christistheone@gmail.com","rara",True,2,"20/06/13");
+values('individuel',"Jean","Raoul",6,"06 26 22 18 40","j.roul@gmail.com","rara",True,1,"20/08/13"),
+('individuel',"Louise","Pril",7,"06 46 52 18 41","l.pril@gmail.com","rara",True,3,"20/08/13"),
+('individuel',"Yanis","Quille",8,"06 16 50 98 44","y.quille@gmail.com","rara",True,2,"21/02/14"),
+('individuel',"Nabile","zoul",9,"06 06 51 38 34","n.zoul@gmail.com","rara",True,3,"20/08/13"),
+('individuel',"Marc","desbois",10,"06 52 45 15 23","marcusmorrisfan@gmail.com","rara",True,3,"20/07/22"),
+('individuel',"Thomas","felin",11,"06 87 54 36 41","thothoaimelamoto@gmail.com","rara",True,2,"20/07/23"),
+('individuel',"Anas","leroy",12,"06 87 56 52 12","Anasleroi@gmail.com","rara",True,3,"20/06/13"),
+('individuel',"Delphine","dufresne",13,"06 45 62 35 45","dufresnedel@gmail.com","rara",True,3,"20/08/14"),
+('individuel',"Valentine","duhamel",14,"06 45 87 51 23","vavadutar@gmail.com","rara",True,2,"20/08/13"),
+('individuel',"Claude","banta",15,"06 74 83 16 45","bantanavidaloca@gmail.com","rara",True,3,"21/02/13"),
+('individuel',"Clémence","leveille",16,"06 46 13 56 98","clémence.l@gmail.com","rara",False ,null,null),
+('individuel',"Dominique","gilbert",17,"06 82 19 73 56","domidesdom@gmail.com","rara",True,2,"20/08/13"),
+('individuel',"Frédérique","lebrun",18,"06 42 51 85 63","frédo.dug@gmail.com","rara",True,3,"20/06/13"),
+('individuel',"Léon","Quirion",19,"06 42 15 86 32","léonquirion@gmail.com","rara",True,3,"20/06/13"),
+('individuel',"Christian","Villeneuve",20,"06 12 54 81 67","christistheone@gmail.com","rara",True,2,"20/06/13");
 
 SET SQL_SAFE_UPDATES = 0;
 
