@@ -50,12 +50,12 @@
                 <TextBlock FontSize="50" FontWeight="Bold" Grid.Row="0"  Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" Foreground="AliceBlue" Margin="0, 0, 0, 4">
                     Menu Statistiques
                 </TextBlock>
-                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">quantité vendu par piece</TextBlock>
-                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">CLiens fideliser</TextBlock>
-                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="3" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Meilleur clients </TextBlock>
-                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Moyene de pieces par clients</TextBlock>
-                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="5" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Prix moyen des commandes </TextBlock>
-                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Chiffres d'affires</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Quantité vendue par piece</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Clients fidelisés</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="3" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Meilleur client</TextBlock>
+                <TextBlock FontSize="20" FontWeight="Bold" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Moyenne de pièces vendues par clients</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="5" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Prix moyen des commandes</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Chiffre d'affaire</TextBlock>
                 <DataGrid Grid.Row="2" Grid.Column="0" Background="Transparent" x:Name="statsquantite" HorizontalAlignment="Stretch" Foreground="AliceBlue">
                     <DataGrid.Columns>
                     </DataGrid.Columns>
