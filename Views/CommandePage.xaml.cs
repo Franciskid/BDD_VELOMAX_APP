@@ -136,10 +136,10 @@ namespace BDD_VELOMAX_APP.Views
                 }
 
                 commande.ForEach(x => BDDWriter.Insert(x));
+                commande.ForEach(x => commandes.Add(new CommandeViewModel(x)));
 
                 if (SendMail(BDDReader.GetObject<Client>(idCli).AdresseMail, commande))
                 {
-                    commande.ForEach(x => commandes.Add(new CommandeViewModel(x)));
                     MessageBox.Show("La commande a été passée avec succès. Le détail de la commande a été envoyé à l'email du client !", "Bravo !", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
