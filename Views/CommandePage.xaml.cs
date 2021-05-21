@@ -104,7 +104,9 @@ namespace BDD_VELOMAX_APP.Views
             }
             else
             {
-                this.TB_Remise.Text = BDDReader.GetObject<ClientIndividuel>(txt[0]).ProgrammeFidélité.Rabais + "%";
+                var client = BDDReader.GetObject<ClientIndividuel>(txt[0]);
+
+                this.TB_Remise.Text = client.ProgrammeFidélité == null ? "0%" : client.ProgrammeFidélité.Rabais + "%";
             }
 
             TB_PrixTotal.Text = (checkout.Aggregate(0f, (x, y) => x += y.Prix * y.Quantité) * (100 - int.Parse(TB_Remise.Text.Substring(0, TB_Remise.Text.Length - 1))) / 100).ToString() + "€";

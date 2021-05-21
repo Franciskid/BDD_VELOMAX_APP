@@ -64,27 +64,5 @@
     "telephone": "06 42 15 86 32",
     "adresseMail": "léonquirion@gmail.com",
     "id": 19
-  },
-  {
-    "nom": "Villeneuve",
-    "prénom": "Christian",
-    "programmeFidélité": {
-      "prix": 25.0,
-      "rabais": 8.0,
-      "duree_annee": 1.0,
-      "description": "Fidélio Or",
-      "id": 2
-    },
-    "dateAdhésionProgramme": "2020-06-13T00:00:00",
-    "adresse": {
-      "rue": "rue des lisiées",
-      "codePostal": "69004",
-      "ville": "lyon",
-      "province": "france",
-      "id": 20
-    },
-    "telephone": "06 12 54 81 67",
-    "adresseMail": "test@gmail.com",
-    "id": 20
   }
 ]
