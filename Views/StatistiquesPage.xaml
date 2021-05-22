@@ -51,12 +51,15 @@
                     Menu Statistiques
                 </TextBlock>
                 <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Quantité vendue par piece</TextBlock>
-                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Clients fidelisés</TextBlock>
+                <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Clients fidélisés</TextBlock>
                 <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="3" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Meilleur client</TextBlock>
                 <TextBlock FontSize="20" FontWeight="Bold" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Moyenne de pièces vendues par clients</TextBlock>
                 <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="5" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center">Prix moyen des commandes</TextBlock>
                 <TextBlock FontSize="29" FontWeight="Bold" Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">Chiffre d'affaire</TextBlock>
                 <DataGrid Grid.Row="2" Grid.Column="0" Background="Transparent" x:Name="statsquantite" HorizontalAlignment="Stretch" Foreground="AliceBlue">
+                    <DataGrid.DataContext>
+                        <local:SQuantite/>
+                    </DataGrid.DataContext>
                     <DataGrid.Columns>
                     </DataGrid.Columns>
                     <DataGrid.RowDetailsTemplate>
@@ -66,6 +69,9 @@
                     </DataGrid.RowDetailsTemplate>
                 </DataGrid>
                 <DataGrid Grid.Row="2" Grid.Column="1" Background="Transparent" x:Name="statsfidelite" HorizontalAlignment="Stretch" Foreground="AliceBlue">
+                    <DataGrid.DataContext>
+                        <local:Sfidel/>
+                    </DataGrid.DataContext>
                     <DataGrid.Columns>
    
                     </DataGrid.Columns>

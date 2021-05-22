@@ -35,7 +35,7 @@ namespace BDD_VELOMAX_APP.Views
             var assemb = BDDReader.ReadQuery($"SELECT nom, cadre, guidon, freins, selle, derailleur_avant, derailleur_arriere, roue_avant, roue_arriere, reflecteurs, pedalier, ordinateur, panier  FROM velomax.assemblages");
 
             ///quantité
-            List<Squantite> statsquantites = new List<Squantite>();
+            List<SQuantite> statsquantites = new List<SQuantite>();
 
             foreach (Piece a in piece)
             {
@@ -66,7 +66,7 @@ namespace BDD_VELOMAX_APP.Views
                     }
 
                 }
-                statsquantites.Add(new Squantite(a.ID.ToString(), a.Nom, a.Prix, a.DelaiApprovisionnementJour, nbrpiecesvendu));
+                statsquantites.Add(new SQuantite(a.ID.ToString(), a.Nom, a.Prix, a.DelaiApprovisionnementJour, nbrpiecesvendu));
             }
 
             statsquantite.ItemsSource = statsquantites;
@@ -167,7 +167,7 @@ namespace BDD_VELOMAX_APP.Views
 
             float prixmoyendescommandes = (prixcommandetotal / commande.Count); ///prix moyen
 
-            float nombrepiecevenduparclients = (int)nbrpiecesvendu / (bout.Count + indiv.Count); /// nombre de piece vendu en moyenne 
+            float nombrepiecevenduparclients = ((float)nbrpiecesvendu / (bout.Count + indiv.Count)); /// nombre de piece vendu en moyenne 
 
             moyenne.Text = prixmoyendescommandes.ToString() + " € ";
             chiffredaffaires.Text = Chiffredaffaire.ToString() + " € ";
@@ -176,82 +176,94 @@ namespace BDD_VELOMAX_APP.Views
 
 
         }
-        public class Squantite
+        
+    }
+    public class SQuantite
+    {
+        public string ID { get; set; }
+        public string Nom { get; set; }
+
+        public float Prix { get; set; }
+        public int Quantité_vendue { get; set; }
+
+        public int? DelaiApprovisionnement { get; set; }
+
+        public string Details
         {
-            public string ID { get; set; }
-            public string Nom { get; set; }
-
-            public float Prix { get; set; }
-            public int Quantité_vendue { get; set; }
-
-            public int? DelaiApprovisionnement { get; set; }
-
-
-            public Squantite(string ID, string nom, float prix, int? delaiApprovisionnement, int quantite)
+            get
             {
-                this.ID = ID;
-                this.Nom = nom;
-                this.Prix = prix;
-                this.DelaiApprovisionnement = delaiApprovisionnement;
-                this.Quantité_vendue = quantite;
-
-
-            }
-        }
-        public class Sfidel
-        {
-            public string TypeClient { get; set; }
-
-            public DateTime? Datedebut { get; set; }
-            public string Nom { get; set; }
-
-            public string Telephone { get; set; }
-
-            public string Courriel { get; set; }
-
-            public int Temps { get; set; }
-
-            public string Details
-            {
-                get
-                {
-                    return Datedebut == null ? null : String.Format("{0} est la date d'adhesion au programme {1}", this.Datedebut, ((DateTime)(this.Datedebut)).AddYears(this.Temps));
-                }
-            }
-            public Sfidel(string typeClient, string nom, string telephone, string courriel, DateTime? datadebut, Fidelio programme)
-            {
-                this.TypeClient = typeClient;
-                this.Nom = nom;
-                this.Telephone = telephone;
-                this.Courriel = courriel;
-                this.Temps = (int)programme.Duree_annee;
-
+                return $"Il faudra attendre jusqu'au {DateTime.Now.AddDays((double)DelaiApprovisionnement):dd/MM/yyyy} pour recevoir la pièce";
             }
         }
 
-
-        public class Smeilleur
+        public SQuantite(string ID, string nom, float prix, int? delaiApprovisionnement, int quantite)
         {
-            public float Total_acheter { get; set; }
-            public string TypeClient { get; set; }
+            this.ID = ID;
+            this.Nom = nom;
+            this.Prix = prix;
+            this.DelaiApprovisionnement = delaiApprovisionnement;
+            this.Quantité_vendue = quantite;
 
-            public string Nom { get; set; }
 
-            public string Telephone { get; set; }
+        }
+        public SQuantite() { }
+    }
+    public class Sfidel
+    {
+        public string TypeClient { get; set; }
 
-            public string Courriel { get; set; }
+        public DateTime? Datedebut { get; set; }
+        public string Nom { get; set; }
 
-            
+        public string Telephone { get; set; }
 
-            public Smeilleur(float score, string typeClient, string nom, string telephone, string courriel)
+        public string Courriel { get; set; }
+
+        public int Temps { get; set; }
+
+        public string Details
+        {
+            get
             {
-                this.Total_acheter = score;
-                this.TypeClient = typeClient;
-                this.Nom = nom;
-                this.Telephone = telephone;
-                this.Courriel = courriel;
-
+                return Datedebut == null ? null : String.Format("{0} est la date d'adhesion au programme {1}", this.Datedebut, ((DateTime)(this.Datedebut)).AddYears(this.Temps));
             }
+        }
+        public Sfidel(string typeClient, string nom, string telephone, string courriel, DateTime? datadebut, Fidelio programme)
+        {
+            this.TypeClient = typeClient;
+            this.Nom = nom;
+            this.Telephone = telephone;
+            this.Courriel = courriel;
+            this.Datedebut = datadebut;
+            this.Temps = (int)programme.Duree_annee;
+
+        }
+
+        public Sfidel() { }
+    }
+
+
+    public class Smeilleur
+    {
+        public float Total_acheter { get; set; }
+        public string TypeClient { get; set; }
+
+        public string Nom { get; set; }
+
+        public string Telephone { get; set; }
+
+        public string Courriel { get; set; }
+
+
+
+        public Smeilleur(float score, string typeClient, string nom, string telephone, string courriel)
+        {
+            this.Total_acheter = score;
+            this.TypeClient = typeClient;
+            this.Nom = nom;
+            this.Telephone = telephone;
+            this.Courriel = courriel;
+
         }
     }
 }

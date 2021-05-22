@@ -55,6 +55,16 @@ namespace BDD_VELOMAX_APP
 
 
         /// <summary>
+        /// Renvoie toutes les commandes liées à un numéro de commande (pas leur id unique, le 'numCommande' qui lie des commandes entre elles)
+        /// </summary>
+        /// <param name="idCommande">Numéro de la commande</param>
+        /// <returns></returns>
+        public static List<Commande> GetCommande(object idCommande) =>
+            Read<Commande>($"SELECT * FROM {MyConstants.TypeToTable(typeof(Commande))} WHERE {"numCommande"} = '{idCommande}'");
+
+
+
+        /// <summary>
         /// Lit une table
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -70,14 +80,6 @@ namespace BDD_VELOMAX_APP
         /// <returns></returns>
         public static T GetObject<T>(object id, string nomPropriété = null) where T : IMySQL =>
             Read<T>($"SELECT * FROM {MyConstants.TypeToTable(typeof(T))} WHERE {nomPropriété ?? MyConstants.TypeToID(typeof(T))} = '{id}'").FirstOrDefault();
-
-        /// <summary>
-        /// Renvoie toutes les commandes liées à un numéro de commande (pas leur id unique, le 'numCommande' qui lie des commandes entre elles)
-        /// </summary>
-        /// <param name="idCommande">Numéro de la commande</param>
-        /// <returns></returns>
-        public static List<Commande> GetCommande(object idCommande) =>
-            Read<Commande>($"SELECT * FROM {MyConstants.TypeToTable(typeof(Commande))} WHERE {"numCommande"} = '{idCommande}'");
 
 
         /// <summary>
