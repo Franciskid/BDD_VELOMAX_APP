@@ -8,7 +8,7 @@ namespace BDD_VELOMAX_APP
 {
     public class PieceCommandeViewModel
     {
-        public bool IsSelected { get; set; }
+        public bool Sélectionné { get; set; }
 
         public string Nom { get; set; }
 
@@ -35,7 +35,7 @@ namespace BDD_VELOMAX_APP
             this.Prix = piece.Prix;
             this.Id = (string)piece.ID;
             this.QuantitéStock = piece.Quantité;
-            this.Fournisseur = BDDReader.GetObject<Fournisseurs>(piece.SiretFournisseur).Nom;
+            this.Fournisseur = BDDReader.Get<Fournisseurs>(piece.SiretFournisseur).Nom;
             this.DelaiApprovisionnementJour = piece.DelaiApprovisionnementJour;
         }
 

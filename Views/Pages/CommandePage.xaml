@@ -7,9 +7,22 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="900">
-    <TabControl x:Name="TabControl_Main" Style="{StaticResource MaterialDesignTabControl}" Background="{StaticResource MenuBackColorTransp}" Foreground="AliceBlue" Margin="20, 0, 0, 0">
+    <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="15" Margin="20">
+        <!--Background="{StaticResource ConnexionPage}"-->
+        <Border.Background>
+            <RadialGradientBrush 
+                    GradientOrigin="0.5,0.5" 
+                    Center="0.5,0.5" RadiusX="1" RadiusY="1">
+                <RadialGradientBrush.GradientStops>
+                    <GradientStop Color="{StaticResource ConnexionPageClrStart}" Offset="0" />
+                    <GradientStop Color="{StaticResource TitleBarGradientEnd}" Offset="0.8" />
+                    <GradientStop Color="{StaticResource ConnexionPageClrEnd}" Offset="1" />
+                </RadialGradientBrush.GradientStops>
+            </RadialGradientBrush>
+        </Border.Background>
+    <TabControl x:Name="TabControl_Main" Style="{StaticResource MaterialDesignTabControl}" Background="{StaticResource MenuBackColorTransp}" Foreground="AliceBlue" Margin="20, 0, 20, 0">
         <TabItem Header="Nouvelle commande">
-            <Grid>
+            <Grid Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1.3*"/>
                     <ColumnDefinition/>
@@ -36,31 +49,31 @@
                 </Grid>
 
                 <StackPanel Grid.Column="1" Orientation="Vertical">
-                    <TextBlock Text="Client :" Foreground="AliceBlue" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Client :" Foreground="AliceBlue" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center"/>
                     <ComboBox x:Name="cb_Client" Style="{StaticResource Box2}" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" Template="{DynamicResource MaterialDesignDataGridComboBoxEditableTemplate}" Margin="10" IsEditable="True" Foreground="AliceBlue" Background="Transparent" Height="50" SelectionChanged="cb_Client_SelectionChanged" FontSize="22" VerticalContentAlignment="Center">
                         <ComboBox.DataContext>
                             <local:ClientViewModel/>
                         </ComboBox.DataContext>
                     </ComboBox>
-                    <TextBlock Text="Commande" Foreground="AliceBlue" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    <Border Margin="10 10 10 10 "  materialDesign:ShadowAssist.Darken="False"
+                    <TextBlock Text="Commande" Foreground="AliceBlue" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <Border Margin="10, 10, 10, 0"  materialDesign:ShadowAssist.Darken="False"
                 materialDesign:ShadowAssist.ShadowDepth="Depth5">
                         <StackPanel Orientation="Vertical">
 
-                            <DataGrid x:Name="DataGridCheckout" Background="{StaticResource MenuFontColor}" Foreground="Black" FontWeight="Bold" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="280" MaxHeight="300">
+                            <DataGrid x:Name="DataGridCheckout" Background="{StaticResource MenuFontColor}" Foreground="Black" FontWeight="Bold" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="250" MaxHeight="300">
                                 <DataGrid.DataContext>
                                     <local:ModeleCommandeViewModel/>
                                 </DataGrid.DataContext>
 
                             </DataGrid>
 
-                            <TextBlock Text="Remise" FontSize="30" HorizontalAlignment="Center" Foreground="AliceBlue"/>
+                            <TextBlock Text="Remise" FontSize="20" HorizontalAlignment="Center" Foreground="AliceBlue"/>
                             <TextBlock x:Name="TB_Remise" FontSize="20" HorizontalAlignment="Center" Foreground="AliceBlue"/>
 
                             <TextBlock Text="Prix Total" FontSize="30" HorizontalAlignment="Center" Foreground="AliceBlue"/>
                             <TextBlock x:Name="TB_PrixTotal" FontSize="20" HorizontalAlignment="Center" Foreground="AliceBlue"/>
 
-                            <Button x:Name="Butt_Checkout" Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Click="Butt_Checkout_Click" Content="Passer la commande" Background="{StaticResource DeepPurple}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20" IsDefault="True"/>
+                            <Button x:Name="Butt_Checkout" Style="{DynamicResource MaterialDesignFlatButton}" Height="40" Click="Butt_Checkout_Click" Content="Finaliser la commande" Background="{StaticResource DeepPurple}" Foreground="AliceBlue" materialDesign:ButtonAssist.CornerRadius="15" FontSize="20" IsDefault="True"/>
 
                         </StackPanel>
 
@@ -79,5 +92,7 @@
             </DataGrid>
         </TabItem>
     </TabControl>
-    
+
+    </Border>
+
 </UserControl>

@@ -18,9 +18,9 @@ namespace BDD_VELOMAX_APP.Views
     /// <summary>
     /// Logique d'interaction pour Menufidelio.xaml
     /// </summary>
-    public partial class Menufidelio : UserControl
+    public partial class FidelioPage : UserControl
     {
-        public Menufidelio()
+        public FidelioPage()
         {
             InitializeComponent();
         }

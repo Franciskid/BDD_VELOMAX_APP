@@ -23,7 +23,7 @@ namespace BDD_VELOMAX_APP
             this.MDP_SHA1 = motdepasse;
         }
 
-        public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}',sha1('{MDP_SHA1}')";
+        public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Nom}','{MDP_SHA1}'";
     }
 
     public static partial class MyHelper

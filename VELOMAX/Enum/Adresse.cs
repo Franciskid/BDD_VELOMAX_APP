@@ -50,7 +50,7 @@ namespace BDD_VELOMAX_APP
         }
 
 
-        public object ID { get; private set; }
+        public object ID { get; set; }
 
         public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") + $"'{Rue}', '{Ville}', '{CodePostal}', '{Province}'";
 

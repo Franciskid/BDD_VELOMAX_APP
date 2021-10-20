@@ -28,12 +28,17 @@ namespace BDD_VELOMAX_APP.Views
 
         private void Butt_Disconnect_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.FenetrePrincipale.ChangePage(MyPages.Connexion);
-            MainWindow.FenetrePrincipale.JustDisconnected();
+            App.MainWindow_.ChangePage(MyPages.Connexion);
+            App.MainWindow_.JustDisconnected();
 
             App.IsConnected = false;
             App.Compte = null;
 
+            Properties.Settings.Default.StayConnected = false;
+            Properties.Settings.Default.UserConnectedAdmin = false;
+            Properties.Settings.Default.UserConnectedName = null;
+
+            Properties.Settings.Default.Save();
         }
     }
 }

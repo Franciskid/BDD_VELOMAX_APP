@@ -20,7 +20,7 @@ namespace BDD_VELOMAX_APP
 
         public float Prix
         {
-            get => prixIndiv * Quantité;
+            get => prixIndiv;
             set => prixIndiv = value;
         }
 

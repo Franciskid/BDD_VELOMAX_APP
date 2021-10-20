@@ -31,7 +31,7 @@ namespace BDD_VELOMAX_APP
             {
                 case LigneProduit.VTT:
                     return "VTT";
-                case LigneProduit.Vélo_Course:
+                case LigneProduit.Vélo_de_course:
                     return "Vélo de course";
                 case LigneProduit.Classique:
                     return "Classique";
@@ -50,7 +50,7 @@ namespace BDD_VELOMAX_APP
                 case "VTT":
                     return LigneProduit.VTT;
                 case "Vélo de course":
-                    return LigneProduit.Vélo_Course;
+                    return LigneProduit.Vélo_de_course;
                 case "Classique":
                     return LigneProduit.Classique;
                 case "BMX":

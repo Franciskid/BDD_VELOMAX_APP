@@ -9,7 +9,7 @@ namespace BDD_VELOMAX_APP
     public enum LigneProduit
     {
         VTT,
-        Vélo_Course,
+        Vélo_de_course,
         Classique,
         BMX
     }
@@ -22,7 +22,7 @@ namespace BDD_VELOMAX_APP
             {
                 case LigneProduit.VTT:
                     return "VTT";
-                case LigneProduit.Vélo_Course:
+                case LigneProduit.Vélo_de_course:
                     return "Vélo de course";
                 case LigneProduit.Classique:
                     return "Classique";

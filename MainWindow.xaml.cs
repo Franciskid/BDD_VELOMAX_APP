@@ -19,22 +19,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Globalization;
+using System.Windows.Controls.Primitives;
 
 namespace BDD_VELOMAX_APP
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        private BackgroundWorker connexionWorker;
+        private BackgroundWorker imageWorker;
 
-        public static MainWindow FenetrePrincipale { get; private set; }
 
-        private BackgroundWorker connexionWorker = new BackgroundWorker();
-        private BackgroundWorker imageWorker = new BackgroundWorker();
-
-        MyPages currentPage;
-
+        private MyPages currentPage;
         public MyPages CurrentPage
         {
             get => currentPage;
@@ -59,7 +58,7 @@ namespace BDD_VELOMAX_APP
                         this.TB_Clients.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
                         break;
 
-                    case MyPages.Pieces:
+                    case MyPages.Stock:
                         //this.ButtClients.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
                         this.LogoPieces.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
                         this.TB_Pieces.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
@@ -77,7 +76,7 @@ namespace BDD_VELOMAX_APP
                         this.TB_Stats.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
                         break;
 
-                    case MyPages.Other:
+                    case MyPages.Autre:
                         //this.ButtOther.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#293f99"));
                         this.LogoOther.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
                         this.TB_Other.Foreground = (SolidColorBrush)FindResource("MenuFontColorFocus");
@@ -86,182 +85,206 @@ namespace BDD_VELOMAX_APP
             }
         }
 
-        private void ModifyColorButton()
-        {
-            List<Button> buttons = new List<Button>()
-            {
-                this.ButtMain,
-                ButtClients,
-                ButtCommande,
-                ButtPieces,
-                ButtStats,
-                ButtOther
-            };
-            List<TextBlock> tb = new List<TextBlock>()
-            {
-                this.TB_Clients,
-                TB_Commandes,
-                TB_Pieces,
-                TB_Main,
-                TB_Other,
-                TB_Stats
-            };
-            List<PackIcon> logos = new List<PackIcon>()
-            {
-                LogoMain,
-                LogoClients,
-                LogoCommandes,
-                LogoPieces,
-                LogoStats,
-                LogoOther,
-            };
 
-            //buttons.ForEach(x => x.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#00000000"));
-            logos.ForEach(x => x.Foreground = (SolidColorBrush)FindResource("MenuFontColor"));//BrushConverter().ConvertFrom("#d7d7f7"));
-            tb.ForEach(x => x.Foreground = (SolidColorBrush)FindResource("MenuFontColor")); //new BrushConverter().ConvertFrom("#d7d7f7"));
+        #region Menu valeurs
+
+        private const int MENUCLOSECONSTWIDTH = 92, MENUOPENCONSTWIDTH = 300, MENUCLOSEOPENTIMECONSTWIDTH = 500;
+
+        private int menuCloseWidth = MENUCLOSECONSTWIDTH, menuOpenWidth = MENUOPENCONSTWIDTH, menuOpenCloseTimeMS = MENUCLOSEOPENTIMECONSTWIDTH;
+
+        public int MenuCloseWidth
+        {
+            get => menuCloseWidth;
+            set
+            {
+                this.menuCloseWidth = value;
+                this.OnPropertyChanged("MenuCloseWidth");
+            }
         }
+        public int MenuOpenWidth
+        {
+            get => menuOpenWidth;
+            set
+            {
+                this.menuOpenWidth = value;
+                this.OnPropertyChanged("MenuOpenWidth");
+            }
+        }
+        public string MenuOpenCloseTimeMS
+        {
+            get
+            {
+                return $"0:0:{((float)menuOpenCloseTimeMS / 1000).ToString(CultureInfo.GetCultureInfo("en-US"))}"; //Pour avoir un "." au lieu d'une ","
+            }
+            set
+            {
+                this.OnPropertyChanged("MenuOpenCloseTimeMS");
+            }
+        }
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        #endregion
 
 
         public MainWindow()
         {
             InitializeComponent();
 
-            CurrentPage = MyPages.Connexion;
-
-            LaunchWorkerCheckConnexion();
-            LaunchWorkerChangeImage();
-
-            FenetrePrincipale = this;
+            this.DataContext = this;
+            this.GridMenu.Width = 0;
         }
 
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LaunchWorkerCheckConnexion();
+
+            if (Properties.Settings.Default.RafraichissementImage)
+            {
+                LaunchWorkerChangeImage();
+            }
+
+            if (Properties.Settings.Default.StayConnected && BDDReader.ServerIsUp())
+            {
+                App.IsConnected = true;
+                App.Compte = new Compte(null, Properties.Settings.Default.UserConnectedName, null);
+                App.Admin = Properties.Settings.Default.UserConnectedAdmin;
+                CurrentPage = MyPages.Connecté;
+
+                this.menuOpenCloseTimeMS = 1000;
+                this.MenuOpenCloseTimeMS = "";
+
+                JustConnected(true);
+            }
+            else
+            {
+                CurrentPage = MyPages.Connexion;
+                this.MenuOpenWidth = 0;
+            }
+
+
+
+            this.menuOpenCloseTimeMS = 500;
+            this.MenuOpenCloseTimeMS = "";
+        }
+
+
+        #region Taches en arrière plan
+
         private void LaunchWorkerCheckConnexion()
         {
+            this.connexionWorker = new BackgroundWorker();
             this.connexionWorker.DoWork += new DoWorkEventHandler(this.backgroundWorker_DoWork_Connection);
             this.connexionWorker.RunWorkerAsync();
         }
 
         private void LaunchWorkerChangeImage()
         {
-            this.imageWorker.WorkerSupportsCancellation = true;
-            this.imageWorker.CancelAsync();
             this.imageWorker = new BackgroundWorker();
+            this.imageWorker.WorkerSupportsCancellation = true;
             this.imageWorker.DoWork += new DoWorkEventHandler(this.backgroundWorker_DoWork_ChangeImage);
             this.imageWorker.RunWorkerAsync();
         }
 
+
         private async void backgroundWorker_DoWork_Connection(object sender, DoWorkEventArgs e)
-        {
-            CheckConnexion();
-        }
-        private void CheckConnexion()
         {
             while (true)
             {
-                if (BDDReader.ServerIsUp())
-                {
-                    if (!App.MySQLServerConnected)
-                    {
-                        App.MySQLServerConnected = true;
-
-                        this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
-                        {
-                            this.TB_Connected.Text = (string)FindResource("Connecting");
-                            this.Spinner.Visibility = Visibility.Visible;
-                            this.logoConnecté.Visibility = Visibility.Hidden;
-                        }));
-
-                        System.Threading.Thread.Sleep(1500);
-
-                    }
-
-                    this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
-                    {
-                        this.TB_Connected.Text = (string)FindResource("Connected") + (App.IsConnected && App.Compte?.Nom != null ? $" ({App.Compte?.Nom})" : "");
-                        this.logoConnecté.Kind = PackIconKind.DatabaseCheck;
-                        this.logoConnecté.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#086e1e"));
-                        this.Spinner.Visibility = Visibility.Hidden;
-                        this.logoConnecté.Visibility = Visibility.Visible;
-                    }));
-                }
-                else
-                {
-                    if (App.MySQLServerConnected)
-                    {
-                        App.MySQLServerConnected = false;
-
-                        this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
-                        {
-                            this.TB_Connected.Text = (string)FindResource("CantConnect");
-                            this.logoConnecté.Kind = PackIconKind.DatabaseRemove;
-                            this.logoConnecté.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#c71c33"));
-                        }));
-                    }
-                }
+                CheckConnexion();
 
                 System.Threading.Thread.Sleep(100);
             }
-
         }
 
-        private bool firstGrid = true;
-        private Random r = new Random();
-        private async void backgroundWorker_DoWork_ChangeImage(object sender, DoWorkEventArgs e)
+        private void CheckConnexion()
         {
-            int a = 2;
-
-            while (true)
+            if (BDDReader.ServerIsUp())
             {
-                var source = this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
-                    ChangeImage2((ImageBrush)MainBackgroundGrid.Background, (ImageBrush)MainBackgroundGrid2.Background, (ImageSource)FindResource($"BackImage{a}"), new TimeSpan(0, 0, 2), new TimeSpan(0, 0, 2)))
-                    );
-                System.Threading.Thread.Sleep(int.Parse(ConfigurationManager.AppSettings["RafraichissementImagesSec"].ToString()) * 1000);
-
-                int temp = r.Next(1, 11);
-
-                while (a == temp)
-                    temp = r.Next(1, 11);
-                a = temp;
-
-                //var source = this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
-                //    ChangeImage((ImageBrush)MainBackgroundGrid.Background, (ImageSource)FindResource($"BackImage{a}"), new TimeSpan(0, 0, 1), new TimeSpan(0, 0, 1)))
-                //    );
-
-            }
-        }
-
-
-        private void ChangeImage(ImageBrush image, ImageSource newIm, TimeSpan fadeInTime, TimeSpan fadeOutTime)
-        {
-            var fadeInAnimation = new DoubleAnimation(0, 1, fadeInTime);
-
-            fadeInAnimation.Completed += (o, e) =>
-            {
-                image.Opacity = 1;
-            };
-
-            if (image.ImageSource != null)
-            {
-                var fadeOutAnimation = new DoubleAnimation(1, 0, fadeOutTime);
-
-                fadeOutAnimation.Completed += (o, e) =>
+                if (!App.MySQLServerConnected)
                 {
-                    image.ImageSource = newIm;
-                    image.Opacity = 0;
-                    image.BeginAnimation(Brush.OpacityProperty, fadeInAnimation, HandoffBehavior.Compose);
-                };
+                    this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
+                    {
+                        App.MySQLServerConnected = true;
 
-                image.BeginAnimation(Brush.OpacityProperty, fadeOutAnimation);
+                        this.TB_Connected.Text = (string)FindResource("Connecting");
+                        this.Spinner.Visibility = Visibility.Visible;
+                        this.logoConnecté.Visibility = Visibility.Hidden;
+                    }));
+
+                    System.Threading.Thread.Sleep(1500);
+
+                }
+
+                this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
+                {
+                    this.TB_Connected.Text = (string)FindResource("Connected") + (App.IsConnected && App.Compte?.Nom != null ? $" ({App.Compte?.Nom})" : "");
+                    this.logoConnecté.Kind = PackIconKind.DatabaseCheck;
+                    this.logoConnecté.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#086e1e"));
+                    this.Spinner.Visibility = Visibility.Hidden;
+                    this.logoConnecté.Visibility = Visibility.Visible;
+                }));
             }
             else
             {
-                image.Opacity = 0;
-                image.ImageSource = newIm;
-                image.BeginAnimation(Brush.OpacityProperty, fadeInAnimation, HandoffBehavior.Compose);
+                if (App.MySQLServerConnected)
+                {
+                    this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
+                    {
+                        App.MySQLServerConnected = false;
+
+                        this.TB_Connected.Text = (string)FindResource("CantConnect");
+                        this.logoConnecté.Kind = PackIconKind.DatabaseRemove;
+                        this.logoConnecté.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#c71c33"));
+                    }));
+                }
             }
         }
 
-        private void ChangeImage2(ImageBrush image1, ImageBrush image2, ImageSource newIm, TimeSpan fadeInTime, TimeSpan fadeOutTime)
+
+        private async void backgroundWorker_DoWork_ChangeImage(object sender, DoWorkEventArgs e)
+        {
+            int a = 2;
+            Random r = new Random();
+            long timestartImage = DateTime.Now.Ticks;
+
+            this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
+                        ChangeImage((ImageBrush)MainBackgroundGrid.Background, (ImageBrush)MainBackgroundGrid2.Background, (ImageSource)FindResource($"BackImage{a}"), new TimeSpan(0, 0, 2), new TimeSpan(0, 0, 2)))
+                        );
+
+            while (imageWorker?.CancellationPending == false)
+            {
+                if (timestartImage + (Properties.Settings.Default.RafraichissementImageSec * 10000000) < DateTime.Now.Ticks)
+                {
+                    int temp = r.Next(1, 11);
+
+                    while (a == temp)
+                        temp = r.Next(1, 11);
+                    a = temp;
+
+                    var source = this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
+                        ChangeImage((ImageBrush)MainBackgroundGrid.Background, (ImageBrush)MainBackgroundGrid2.Background, (ImageSource)FindResource($"BackImage{a}"), new TimeSpan(0, 0, 2), new TimeSpan(0, 0, 2)))
+                        );
+
+                    timestartImage = DateTime.Now.Ticks;
+                }
+
+                System.Threading.Thread.Sleep(10); //Juste pour calmer le cpu
+            }
+        }
+
+        private bool firstGrid = true;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void ChangeImage(ImageBrush image1, ImageBrush image2, ImageSource newIm, TimeSpan fadeInTime, TimeSpan fadeOutTime)
         {
             var fadeInAnimation = new DoubleAnimation(0, 1, fadeInTime);
 
@@ -307,16 +330,37 @@ namespace BDD_VELOMAX_APP
         }
 
 
+        #endregion
+
+
+        #region Boutons menu
+
+        private bool buttonClickManual = false;
+
         private void ButtMenuOpen_Click(object sender, RoutedEventArgs e)
         {
             ButtMenuOpen.Visibility = Visibility.Hidden;
             ButtMenuClose.Visibility = Visibility.Visible;
+
+            this.MenuCloseWidth = (int)this.GridMenu.ActualWidth;
+            if (!buttonClickManual)
+            {
+                this.MenuOpenWidth = MENUOPENCONSTWIDTH;
+            }
         }
 
         private void ButtMenuClose_Click(object sender, RoutedEventArgs e)
         {
             ButtMenuClose.Visibility = Visibility.Hidden;
             ButtMenuOpen.Visibility = Visibility.Visible;
+
+
+            this.MenuOpenWidth = (int)this.GridMenu.ActualWidth;
+
+            if (!buttonClickManual)
+            {
+                this.MenuCloseWidth = MENUCLOSECONSTWIDTH;
+            }
         }
 
 
@@ -332,7 +376,7 @@ namespace BDD_VELOMAX_APP
 
         private void ButtPieces_Click(object sender, RoutedEventArgs e)
         {
-            ChangePage(MyPages.Pieces);
+            ChangePage(MyPages.Stock);
         }
 
         private void ButtCommande_Click(object sender, RoutedEventArgs e)
@@ -347,9 +391,51 @@ namespace BDD_VELOMAX_APP
 
         private void ButtOther_Click(object sender, RoutedEventArgs e)
         {
-            ChangePage(MyPages.Other);
+            ChangePage(MyPages.Autre);
         }
 
+        private void ModifyColorButton()
+        {
+            List<Button> buttons = new List<Button>()
+            {
+                this.ButtMain,
+                ButtClients,
+                ButtCommande,
+                ButtPieces,
+                ButtStats,
+                ButtOther
+            };
+            List<TextBlock> tb = new List<TextBlock>()
+            {
+                this.TB_Clients,
+                TB_Commandes,
+                TB_Pieces,
+                TB_Main,
+                TB_Other,
+                TB_Stats
+            };
+            List<PackIcon> logos = new List<PackIcon>()
+            {
+                LogoMain,
+                LogoClients,
+                LogoCommandes,
+                LogoPieces,
+                LogoStats,
+                LogoOther,
+            };
+
+            //buttons.ForEach(x => x.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#00000000"));
+            logos.ForEach(x => x.Foreground = (SolidColorBrush)FindResource("MenuFontColor"));//BrushConverter().ConvertFrom("#d7d7f7"));
+            tb.ForEach(x => x.Foreground = (SolidColorBrush)FindResource("MenuFontColor")); //new BrushConverter().ConvertFrom("#d7d7f7"));
+        }
+
+        #endregion
+
+
+        /// <summary>
+        /// Permet de naviguer entre les pages
+        /// </summary>
+        /// <param name="page"></param>
         public void ChangePage(MyPages page)
         {
             if (App.IsConnected)
@@ -359,34 +445,96 @@ namespace BDD_VELOMAX_APP
                     CurrentPage = page;
                 }
             }
-            else
+            else if (page != MyPages.Connexion)
             {
                 MessageBox.Show("Impossible de changer de page, vous devez d'abord vous authentifier pour y accéder !", "Erreur");
             }
         }
 
-
         /// <summary>
         /// Appeler quand on vient de se connecter
         /// </summary>
-        public void JustConnected()
+        public void JustConnected(bool animation = true)
         {
             this.TB_Connected.Text += $" ({App.Compte.Nom})";
 
             this.Butt_User.Visibility = Visibility.Visible;
             TB_UserCompte.Text = App.Compte.Nom;
+
+            if (animation)
+            {
+                this.buttonClickManual = true;
+                if (ButtMenuClose.Visibility == Visibility.Visible)
+                {
+                    this.MenuCloseWidth = MENUCLOSECONSTWIDTH;
+
+                    ButtMenuClose.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                }
+                else
+                {
+                    this.MenuOpenWidth = MENUOPENCONSTWIDTH;
+
+                    ButtMenuOpen.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                }
+
+                this.buttonClickManual = false;
+            }
         }
 
         /// <summary>
-        /// Appeler quand on vient de se connecter
+        /// Appeler quand on vient de se deconnecter
         /// </summary>
         public void JustDisconnected()
         {
             this.TB_Connected.Text = (string)FindResource("Connected");
 
             this.Butt_User.Visibility = Visibility.Collapsed;
+
+            this.buttonClickManual = true;
+            if (ButtMenuClose.Visibility == Visibility.Visible)
+            {
+                this.MenuOpenWidth = MENUOPENCONSTWIDTH;
+                this.MenuCloseWidth = 0;
+                ButtMenuClose.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
+            else
+            {
+                this.MenuOpenWidth = 0;
+                this.MenuCloseWidth = MENUCLOSECONSTWIDTH;
+                ButtMenuOpen.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
+
+            this.GridMenu.Width = 0;
+            this.buttonClickManual = false;
         }
 
+        /// <summary>
+        /// Met à jouer l'arret ou le démarrage  du rafraichissement de l'image d'arrière plan
+        /// </summary>
+        public void RefreshBackgroundState()
+        {
+            if (Properties.Settings.Default.RafraichissementImage && this.imageWorker == null)
+            {
+                LaunchWorkerChangeImage();
+            }
+            else if (!Properties.Settings.Default.RafraichissementImage && this.imageWorker != null)
+            {
+                this.imageWorker.CancelAsync();
+                this.imageWorker.Dispose();
+                this.imageWorker = null;
+            }
+        }
+
+
+        #region Bar titre
+
+        private void Butt_Paramètres_Click(object sender, RoutedEventArgs e)
+        {
+            Window win = new BDD_VELOMAX_APP.Views.ParamètresWindow();
+            win.ShowDialog();
+
+            RefreshBackgroundState();
+        }
 
         private void GridTitleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -412,6 +560,9 @@ namespace BDD_VELOMAX_APP
             SystemCommands.ShowSystemMenu(this, GetMousePosition());
         }
 
+        #endregion
+
+
         #region Helper mouse pos
 
         /// <summary>
@@ -429,15 +580,6 @@ namespace BDD_VELOMAX_APP
 
         #endregion
 
-        private void Butt_Paramètres_Click(object sender, RoutedEventArgs e)
-        {
-            Window win = new BDD_VELOMAX_APP.Views.ParamètresWindow();
-
-            if (win.ShowDialog() == true)
-            {
-                LaunchWorkerChangeImage();
-            }
-        }
     }
 
     public enum MyPages
@@ -445,15 +587,15 @@ namespace BDD_VELOMAX_APP
         Connexion,
         Connecté,
         Clients,
-        Pieces,
+        Stock,
         Commandes,
         Stats,
-        Other
+        Autre
     }
 
     public static partial class MyHelper
     {
-        public static object ToView(this MyPages m)
+        public static UserControl ToView(this MyPages m)
         {
             switch (m)
             {
@@ -467,16 +609,16 @@ namespace BDD_VELOMAX_APP
                     return new ConnectedPage();
 
                 case MyPages.Stats:
-                    return new Pagestastique();
+                    return new StatistiquesPage();
 
-                case MyPages.Pieces:
+                case MyPages.Stock:
                     return new StockPage();
 
                 case MyPages.Commandes:
                     return new CommandePage();
 
-                case MyPages.Other:
-                    return new Menufidelio();
+                case MyPages.Autre:
+                    return new FidelioPage();
 
                 default:
                     return null;

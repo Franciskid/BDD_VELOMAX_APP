@@ -13,29 +13,30 @@
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="900">
     <Grid>
-        <TabControl x:Name="TabControl_Main" Style="{StaticResource MaterialDesignTabControl}" Background="{StaticResource MenuBackColorTransp}" Foreground="AliceBlue" Margin="20, 0, 0, 0">
-            <TabItem Header="Client" x:Name="TabClient">
-                <TabItem.DataContext>
-                    <local:ClientViewModel/>
-                </TabItem.DataContext>
-
-                <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="15" Margin="20, 0, 20, 10">
-                    <!--Background="{StaticResource ConnexionPage}"-->
-                    <Border.Background>
-                        <RadialGradientBrush 
+        <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="15" Margin="20">
+            <!--Background="{StaticResource ConnexionPage}"-->
+            <Border.Background>
+                <RadialGradientBrush 
                     GradientOrigin="0.5,0.5" 
                     Center="0.5,0.5" RadiusX="1" RadiusY="1">
-                            <RadialGradientBrush.GradientStops>
-                                <GradientStop Color="{StaticResource ConnexionPageClrStart}" Offset="0" />
-                                <GradientStop Color="{StaticResource TitleBarGradientEnd}" Offset="0.8" />
-                                <GradientStop Color="{StaticResource ConnexionPageClrEnd}" Offset="1" />
-                            </RadialGradientBrush.GradientStops>
-                        </RadialGradientBrush>
-                    </Border.Background>
+                    <RadialGradientBrush.GradientStops>
+                        <GradientStop Color="{StaticResource ConnexionPageClrStart}" Offset="0" />
+                        <GradientStop Color="{StaticResource TitleBarGradientEnd}" Offset="0.8" />
+                        <GradientStop Color="{StaticResource ConnexionPageClrEnd}" Offset="1" />
+                    </RadialGradientBrush.GradientStops>
+                </RadialGradientBrush>
+            </Border.Background>
+
+            <TabControl x:Name="TabControl_Main" Style="{StaticResource MaterialDesignTabControl}" Background="{StaticResource MenuBackColorTransp}" Foreground="AliceBlue" Margin="20, 0, 20, 0">
+                <TabItem Header="Client" x:Name="TabClient">
+                    <TabItem.DataContext>
+                        <local:ClientViewModel/>
+                    </TabItem.DataContext>
+
 
                     <DockPanel VerticalAlignment="Stretch">
 
-                        <DataGrid Height="250" Margin="20" Background="Lavender" BorderThickness="2" BorderBrush="AliceBlue" DockPanel.Dock="Top" SelectionChanged="DataGridClient_SelectionChanged" Name="DatagridClients" materialDesign:DataGridAssist.EnableEditBoxAssist="False">
+                        <DataGrid Height="220" Margin="20" Background="Lavender" BorderThickness="2" BorderBrush="AliceBlue" DockPanel.Dock="Top" SelectionChanged="DataGridClient_SelectionChanged" Name="DatagridClients" materialDesign:DataGridAssist.EnableEditBoxAssist="False">
                         </DataGrid>
 
                         <Grid DockPanel.Dock="Bottom">
@@ -132,58 +133,55 @@
 
                                             </DockPanel>
 
-                                            <DockPanel  Grid.Row="0" Grid.Column="2" >
-                                                <materialDesign:PackIcon Kind="FormatListCheckbox" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 10, 15" Foreground="AliceBlue"/>
+                                            <DockPanel  Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Center">
+                                                <materialDesign:PackIcon Kind="FormatListCheckbox" Height="30" Width="40"  VerticalAlignment="Bottom" Margin="0, 0, 10, 6" Foreground="AliceBlue"/>
                                                 <ComboBox Name="cb_fidelio"  Style="{StaticResource Box2}" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" Template="{DynamicResource MaterialDesignDataGridComboBoxEditableTemplate}" IsEditable="True" Foreground="AliceBlue" Background="Transparent"
                                                    SelectedItem="{Binding ProgrammeFidélité, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0, 20, 10, 0" Width="130">
                                                 </ComboBox>
                                             </DockPanel>
 
-                                            <DockPanel  Grid.Row="1" Grid.Column="2" >
-                                                <materialDesign:PackIcon Kind="DateRange" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 10, 15" Foreground="AliceBlue"/>
+                                            <DockPanel  Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Center">
+                                                <materialDesign:PackIcon Kind="DateRange" Height="30" Width="40"  VerticalAlignment="Bottom" Margin="0, 0, 10, 6" Foreground="AliceBlue"/>
                                                 <DatePicker Style="{DynamicResource MaterialDesignDatePicker}" materialDesign:HintAssist.Hint="Fidélio Date Fin" MinWidth="72" Background="Transparent" FontSize="16"
                                                   Foreground="AliceBlue" VerticalAlignment="Center" SelectedDate="{Binding DateAdhésion, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0, 20, 10, 0">
                                                 </DatePicker>
                                             </DockPanel>
 
-                                            <DockPanel  Grid.Row="2" Grid.Column="2" >
-                                                <materialDesign:PackIcon Kind="BirthdayCake" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 10, 15" Foreground="AliceBlue"/>
+                                            <DockPanel  Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Center">
+                                                <materialDesign:PackIcon Kind="BirthdayCake" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 10, 6" Foreground="AliceBlue"/>
                                                 <DatePicker Style="{DynamicResource MaterialDesignDatePicker}" materialDesign:HintAssist.Hint="Anniversaire" MinWidth="72" Background="Transparent" FontSize="20"
                                                   Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0, 20, 10, 0">
                                                 </DatePicker>
                                             </DockPanel>
-                                            
+
                                         </Grid>
                                     </TabItem>
 
                                     <TabItem Header="Client Boutique">
                                         <Grid Background="{StaticResource ConnexionPage}">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
                                             </Grid.RowDefinitions>
 
 
-                                            <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                                            <DockPanel Grid.Row="0" Grid.Column="0">
                                                 <materialDesign:PackIcon Kind="Building" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
                                                 <TextBox x:Name="TB_CliBoutique_Nom" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
-                                             materialDesign:HintAssist.Hint="Nom Entreprise"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
+                                             materialDesign:HintAssist.Hint="Entreprise"  materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="AliceBlue"  materialDesign:HintAssist.HelperTextFontSize="20" 
                                              VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10"  Text="{Binding Nom, Mode=TwoWay}"/>
 
                                             </DockPanel>
 
-                                            <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+                                            <DockPanel Grid.Row="1" Grid.Column="0">
                                                 <materialDesign:PackIcon Kind="Account" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
                                                 <TextBox x:Name="TB_CliBoutique_NomContact" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
@@ -193,7 +191,7 @@
                                             </DockPanel>
 
 
-                                            <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+                                            <DockPanel Grid.Row="2" Grid.Column="0">
                                                 <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
                                                 <TextBox x:Name="TB_CliBoutique_Telephone" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
@@ -202,7 +200,7 @@
 
                                             </DockPanel>
 
-                                            <DockPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+                                            <DockPanel Grid.Row="3" Grid.Column="0">
                                                 <materialDesign:PackIcon Kind="Email" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
                                                 <TextBox x:Name="TB_CliBoutique_Mail" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
@@ -211,7 +209,7 @@
 
                                             </DockPanel>
 
-                                            <DockPanel  Grid.Row="0" Grid.Column="5"  Grid.RowSpan="4"  Grid.ColumnSpan="3">
+                                            <DockPanel  Grid.Row="0" Grid.Column="2"  Grid.RowSpan="4">
                                                 <materialDesign:PackIcon Kind="TicketPercent" VerticalAlignment="Center" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
                                                 <TextBox x:Name="TB_CliIndividuel_Remise" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue" materialDesign:TextFieldAssist.PrefixText="%" materialDesign:TextFieldAssist.HasFilledTextField="True" 
@@ -222,7 +220,7 @@
 
 
 
-                                            <DockPanel Grid.Row="0" Grid.Column="3">
+                                            <DockPanel Grid.Row="0" Grid.Column="1">
                                                 <materialDesign:PackIcon Kind="MapMarker" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
                                                 <TextBox  x:Name="TB_CliBoutique_Rue" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
@@ -231,7 +229,7 @@
 
                                             </DockPanel>
 
-                                            <DockPanel  Grid.Row="1" Grid.Column="3">
+                                            <DockPanel  Grid.Row="1" Grid.Column="1">
                                                 <materialDesign:PackIcon Kind="City" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
                                                 <TextBox x:Name="TB_CliBoutique_Ville" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
@@ -240,7 +238,7 @@
 
                                             </DockPanel>
 
-                                            <DockPanel  Grid.Row="2" Grid.Column="3">
+                                            <DockPanel  Grid.Row="2" Grid.Column="1">
                                                 <materialDesign:PackIcon Kind="Number0Box" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
                                                 <TextBox  x:Name="TB_CliBoutique_CodePostal" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
@@ -249,7 +247,7 @@
 
                                             </DockPanel>
 
-                                            <DockPanel  Grid.Row="3" Grid.Column="3" >
+                                            <DockPanel  Grid.Row="3" Grid.Column="1" >
                                                 <materialDesign:PackIcon Kind="Map" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
                                                 <TextBox x:Name="TB_CliBoutique_Province" Style="{DynamicResource MaterialDesignTextBox}" Foreground="AliceBlue"
@@ -271,31 +269,16 @@
 
                     </DockPanel>
 
+                </TabItem>
 
-                </Border>
-            </TabItem>
-
-            <TabItem Header="Fournisseur" x:Name="TabFournisseur">
-                <TabItem.DataContext>
-                    <local:FournisseurViewModel/>
-                </TabItem.DataContext>
-
-                <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="15" Margin="20, 0, 20, 10">
-                    <Border.Background>
-                        <RadialGradientBrush 
-                    GradientOrigin="0.5,0.5" 
-                    Center="0.5,0.5" RadiusX="1" RadiusY="1">
-                            <RadialGradientBrush.GradientStops>
-                                <GradientStop Color="{StaticResource ConnexionPageClrStart}" Offset="0" />
-                                <GradientStop Color="{StaticResource TitleBarGradientEnd}" Offset="0.8" />
-                                <GradientStop Color="{StaticResource ConnexionPageClrEnd}" Offset="1" />
-                            </RadialGradientBrush.GradientStops>
-                        </RadialGradientBrush>
-                    </Border.Background>
+                <TabItem Header="Fournisseur" x:Name="TabFournisseur">
+                    <TabItem.DataContext>
+                        <local:FournisseurViewModel/>
+                    </TabItem.DataContext>
 
                     <DockPanel VerticalAlignment="Stretch">
 
-                        <DataGrid Height="250" Margin="20" Background="Lavender" BorderThickness="2" BorderBrush="AliceBlue" DockPanel.Dock="Top" SelectionChanged="DataGridFournisseur_SelectionChanged"  x:Name="DatagridFournisseur" materialDesign:DataGridAssist.EnableEditBoxAssist="False">
+                        <DataGrid Height="220" Margin="20" Background="Lavender" BorderThickness="2" BorderBrush="AliceBlue" DockPanel.Dock="Top" SelectionChanged="DataGridFournisseur_SelectionChanged"  x:Name="DatagridFournisseur" materialDesign:DataGridAssist.EnableEditBoxAssist="False">
                         </DataGrid>
 
                         <Grid DockPanel.Dock="Bottom">
@@ -344,7 +327,7 @@
                                     </DockPanel>
 
                                     <DockPanel Grid.Row="3" Grid.Column="0">
-                                        <materialDesign:PackIcon Kind="Email" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
+                                        <materialDesign:PackIcon Kind="Score" VerticalAlignment="Bottom" Height="30" Width="40" Margin="0, 0, 0, 15" Foreground="AliceBlue"/>
 
                                         <ComboBox Name="cb_score" Style="{StaticResource Box2}" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" Template="{DynamicResource MaterialDesignDataGridComboBoxEditableTemplate}" materialDesign:HintAssist.Hint="Score" IsEditable="True" Background="Transparent"
                                                    SelectedItem="{Binding Score, Mode=TwoWay}" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0, 20, 10, 0" Width="140">
@@ -399,10 +382,8 @@
 
                     </DockPanel>
 
-
-                </Border>
-
-            </TabItem>
-        </TabControl>
+                </TabItem>
+            </TabControl>
+        </Border>
     </Grid>
 </UserControl>

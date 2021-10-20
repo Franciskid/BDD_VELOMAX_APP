@@ -45,9 +45,9 @@ namespace BDD_VELOMAX_APP
         {
             try
             {
-                using (FileStream fs = File.Open(filename, FileMode.Create, FileAccess.ReadWrite))
-                using (StreamWriter sw = new StreamWriter(fs))
-                using (JsonWriter jw = new JsonTextWriter(sw))
+                using (var fs = File.Open(filename, FileMode.Create, FileAccess.ReadWrite))
+                using (var sw = new StreamWriter(fs))
+                using (var jw = new JsonTextWriter(sw))
                 {
                     jw.Formatting = Formatting.Indented;
                     JsonSerializer serializer = new JsonSerializer();
@@ -67,7 +67,8 @@ namespace BDD_VELOMAX_APP
         {
             try
             {
-                using (var sw = new StreamWriter(filename))
+                using (var fs = File.Open(filename, FileMode.Create, FileAccess.ReadWrite))
+                using (var sw = new StreamWriter(fs))
                 {
                     var writer = new System.Xml.Serialization.XmlSerializer(typeof(List<T>));
                     writer.Serialize(sw, ToExport);

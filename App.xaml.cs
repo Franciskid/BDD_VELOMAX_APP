@@ -4,10 +4,13 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using CefSharp;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using MySql.Data.MySqlClient;
+using CefSharp.Wpf;
+using BDD_VELOMAX_APP.VeloMaxExtensions;
 
 namespace BDD_VELOMAX_APP
 {
@@ -16,7 +19,6 @@ namespace BDD_VELOMAX_APP
     /// </summary>
     public partial class App : Application
     {
-
         public static bool IsConnected { get; set; } = false;
 
         public static bool Admin { get; set; } = true;
@@ -32,7 +34,42 @@ namespace BDD_VELOMAX_APP
             }
         }
 
-        public static bool MySQLServerConnected { get; set; } = false;
+        private static bool mySQLServerConnected = false;
+
+        /// <summary>
+        /// Setter => seulement depuis le thread principal | getter => peut etre appelé n'importe où
+        /// </summary>
+        public static bool MySQLServerConnected 
+        {
+            get => mySQLServerConnected;
+            set
+            {
+                if (!value)
+                {
+                    if (mySQLServerConnected && IsConnected)
+                    {
+                        MessageBox.Show("Vous allez être déconnecté car le programme n'arrive plus à communiquer avec la base de donnée !", "Alerte", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.ServiceNotification);
+                    }
+
+                    IsConnected = false;
+                    Admin = false;
+                    compte = null;
+
+                    MainWindow_.CurrentPage = MyPages.Connexion;
+                    MainWindow_.JustDisconnected();
+
+                }
+
+                mySQLServerConnected = value;
+            }
+        }
+
+
+        /// <summary>
+        /// Main Window, renvoie App.Current.MainWindow
+        /// </summary>
+        public static MainWindow MainWindow_ => (MainWindow)App.Current.MainWindow;
+
 
         /// <summary>
         /// Exécute les scripts nécessaires à la création, au peuplement et au bon fonctionnement de la BDD.
@@ -49,58 +86,21 @@ namespace BDD_VELOMAX_APP
         {
             ExecuteSQLScript();
 
-            TestFunction();
-            TestFunction2();
+            this.MainWindow = new MainWindow();
+            this.MainWindow.Show();
 
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-        }
+            var settings = new CefSettings();
+            settings.RegisterScheme(new CefCustomScheme()
+            {
+                SchemeName = ResourceSchemeHandlerFactory.SchemeName,
+                SchemeHandlerFactory = new ResourceSchemeHandlerFactory()
+            });
 
+            settings.CefCommandLineArgs.Add("disable-gpu"); // Disable GPU acceleration
+            settings.CefCommandLineArgs.Add("disable-gpu-vsync"); //Disable GPU vsync
 
+            Cef.Initialize(settings, performDependencyCheck: true);
 
-
-        /// <summary>
-        /// On teste ici
-        /// </summary>
-        private void TestFunction()
-        {
-            var b = BDDReader.Read<Adresse>();
-            var a = BDDReader.Read<Assemblage>();
-            var c = BDDReader.Read<Client>();
-            var cdd = BDDReader.Read<ClientBoutique>();
-            var cded = BDDReader.Read<ClientIndividuel>();
-            var d = BDDReader.Read<Commande>();
-            var cazd = BDDReader.Read<Compte>();
-            var daz = BDDReader.Read<Fidelio>();
-            var eef = BDDReader.Read<Fournisseurs>();
-            var f = BDDReader.Read<Modele>();
-            var fe = BDDReader.Read<Piece>();
-        }
-
-        /// <summary>
-        /// On teste ici
-        /// </summary>
-        private void TestFunction2()
-        {
-
-            Adresse ad1 = new Adresse(null, "TEST", "iuh", "ibkb", "iugaud");
-            Adresse ad2 = new Adresse(null, "iazgh", "iuazh", "ibkb", "iugaud");
-            Adresse ad3 = new Adresse(null, "igazdh", "idazuh", "azdibkb", "iugaud");
-
-
-            int id1 = (int)BDDWriter.Insert(ad1);
-            int id2 = (int)BDDWriter.Insert(ad2);
-            int id3 = (int)BDDWriter.Insert(ad3);
-
-            var o1 = BDDReader.GetObject<Adresse>(id1);
-            var o2 = BDDReader.GetObject<Adresse>(id2);
-
-
-            o1.CodePostal = "UPDATE";
-
-            bool b = BDDWriter.Update(o1);
-
-            int bbb = BDDWriter.Remove<Adresse>(id2);
         }
 
     }

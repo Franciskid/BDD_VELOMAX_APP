@@ -3,12 +3,12 @@
 
 
     <SolidColorBrush x:Key="MenuBackColor" Color="#0d1536"/>
-    <SolidColorBrush x:Key="MenuBackColorTransp2" Color="#CC0d1536"/>
+    <SolidColorBrush x:Key="MenuBackColorTransp2" Color="#BF0d1536"/>
     <SolidColorBrush x:Key="MenuBackColorTransp" Color="#80b5d0ff"/>
     <SolidColorBrush x:Key="MainPage" Color="#3d35db"/>
 
     <SolidColorBrush x:Key="MenuFontColor" Color="AliceBlue"/>
-    <SolidColorBrush x:Key="MenuFontColorFocus" Color="#cc7523"/>
+    <SolidColorBrush x:Key="MenuFontColorFocus" Color="#774fdb"/>
 
     <SolidColorBrush x:Key="ParamHover" Color="#aac8e3"/>
 
@@ -29,5 +29,10 @@
     <Color x:Key="TitleBarGradientStart">#0d1536</Color>
     <Color x:Key="TitleBarGradientMid">#800d1536</Color>
     <Color x:Key="TitleBarGradientEnd">#000d1536</Color>
+
+
+    <Color x:Key="MessageBoxGradientStart">#CC031809</Color>
+    <Color x:Key="MessageBoxGradientMiddle">#4D1bab42</Color>
+    <Color x:Key="MessageBoxGradientEnd">#001bab42</Color>
 
 </ResourceDictionary>

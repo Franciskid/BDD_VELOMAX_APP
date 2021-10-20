@@ -26,7 +26,6 @@ namespace BDD_VELOMAX_APP.Views
     public partial class ClientPage : UserControl
     {
         public float Remise { get; set; } = 0;
-
         public List<string> ListeFidelio { get; set; } = new List<string>() { "Pas de fidélio" };
 
         public string SelectedFidelio { get; set; }
@@ -109,35 +108,32 @@ namespace BDD_VELOMAX_APP.Views
         {
             var o = (ClientViewModel)this.TabClient.DataContext;
 
+            Adresse ad = null;
             try
             {
-                Adresse ad = new Adresse(null, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
+                ad = new Adresse(null, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
                 long id = BDDWriter.Insert(ad);
+
+                Client cli = null;
 
                 if (TabControl.SelectedIndex == 0) //Indiv
                 {
                     Fidelio fidelio = null;
                     if (o.ProgrammeFidélité != "Pas de fidélio")
                     {
-                        fidelio = BDDReader.GetObject<Fidelio>(o.ProgrammeFidélité, "nom");
+                        fidelio = BDDReader.Get<Fidelio>(o.ProgrammeFidélité, "nom");
                     }
 
-                    ClientIndividuel cli = new ClientIndividuel(null, o.Nom, o.Prénom, (int)id, o.Téléphone, o.Mail, (int?)fidelio?.ID ?? null, o.DateAdhésion);
-
-                    cli.ID = (int)BDDWriter.Insert(cli);
-
-                    this.clients.Add(new ClientViewModel(cli));
-
+                    cli = new ClientIndividuel(null, o.Nom, o.Prénom, (int)id, o.Téléphone, o.Mail, (int?)fidelio?.ID ?? null, o.DateAdhésion);
                 }
                 else //boutique
                 {
-                    ClientBoutique cli = new ClientBoutique(null, o.Nom, (int)id, o.Téléphone, o.Mail, o.NomContact, o.Remise);
-
-                    cli.ID = (int)BDDWriter.Insert(cli);
-
-                    this.clients.Add(new ClientViewModel(cli));
-
+                    cli = new ClientBoutique(null, o.Nom, (int)id, o.Téléphone, o.Mail, o.NomContact, o.Remise);
                 }
+
+                cli.ID = (int)BDDWriter.Insert(cli);
+
+                this.clients.Add(new ClientViewModel(cli));
 
                 this.DatagridClients.ItemsSource = new ObservableCollection<ClientViewModel>(from item in clients
                                                                                              orderby item.ID ascending
@@ -145,6 +141,8 @@ namespace BDD_VELOMAX_APP.Views
             }
             catch (Exception ee)
             {
+                BDDWriter.Delete(ad);
+
                 MessageBox.Show($"Erreur : impossible d'ajouter le {(TabControl.SelectedItem as TabItem).Header.ToString().ToLower()} spécifié");
             }
         }
@@ -155,49 +153,38 @@ namespace BDD_VELOMAX_APP.Views
 
             try
             {
-                var client = BDDReader.GetObject<Client>(o.ID);
+                var client = BDDReader.Get<Client>(o.ID);
 
                 Adresse ad = new Adresse((int)client.Adresse.ID, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
                 BDDWriter.Update(ad);
+
+                Client cli = null;
 
                 if (TabControl.SelectedIndex == 0) //Indiv
                 {
                     Fidelio fidelio = null;
                     if (o.ProgrammeFidélité != "Pas de fidélio")
                     {
-                        fidelio = BDDReader.GetObject<Fidelio>(o.ProgrammeFidélité, "nom");
+                        fidelio = BDDReader.Get<Fidelio>(o.ProgrammeFidélité, "nom");
                     }
 
                     if (fidelio == null)
                         fidelio = cb_fidelio.SelectedValue as Fidelio;
 
-                    ClientIndividuel cli = new ClientIndividuel(o.ID, o.Nom, o.Prénom, (int)client.Adresse.ID, o.Téléphone, o.Mail, (int?)fidelio?.ID ?? null, o.DateAdhésion ?? DateTime.Now);
+                    cli = new ClientIndividuel(o.ID, o.Nom, o.Prénom, (int)client.Adresse.ID, o.Téléphone, o.Mail, (int?)fidelio?.ID ?? null, o.DateAdhésion ?? DateTime.Now);
 
-                    if (BDDWriter.Update(cli))
-                    {
-                        this.clients.Remove(this.clients.Where(x => x.ID == o.ID).FirstOrDefault());
-                        this.clients.Add(new ClientViewModel(cli));
-
-                        this.DatagridClients.ItemsSource = new ObservableCollection<ClientViewModel>(from item in clients
-                                                                                                     orderby item.ID ascending
-                                                                                                     select item);
-                    }
                 }
                 else //boutique
                 {
-                    ClientBoutique cli = new ClientBoutique(o.ID, o.Nom, (int)client.Adresse.ID, o.Téléphone, o.Mail, o.NomContact, o.Remise);
+                    cli = new ClientBoutique(o.ID, o.Nom, (int)client.Adresse.ID, o.Téléphone, o.Mail, o.NomContact, o.Remise);
+                }
 
-                    var b = BDDWriter.Update(cli);
-                    if (b)
-                    {
-                        this.clients.Remove(this.clients.Where(x => x.ID == o.ID).FirstOrDefault());
-                        this.clients.Add(new ClientViewModel(cli));
+                if (BDDWriter.Update(cli))
+                {
+                    this.clients.Remove(this.clients.Where(x => x.ID == o.ID).FirstOrDefault());
+                    this.clients.Add(new ClientViewModel(cli));
 
-                        this.DatagridClients.ItemsSource = new ObservableCollection<ClientViewModel>(from item in clients
-                                                                                                     orderby item.ID ascending
-                                                                                                     select item);
-                    }
-
+                    this.DatagridClients.ItemsSource = new ObservableCollection<ClientViewModel>(from item in clients orderby item.ID ascending select item);
                 }
             }
             catch (Exception ee)
@@ -214,7 +201,7 @@ namespace BDD_VELOMAX_APP.Views
             {
                 if (MessageBox.Show("Etes vous sûr de supprimer ce client ? Sa suppression entrainera celles de toutes ses commandes et autres données à son égard", "Attention", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
                 {
-                    if (BDDWriter.Remove<Client>(o.ID) >= 1)
+                    if (BDDWriter.Delete<Client>(o.ID) >= 1)
                     {
                         this.clients.Remove(this.clients.Where(x => x.ID == o.ID).FirstOrDefault());
 
@@ -258,9 +245,10 @@ namespace BDD_VELOMAX_APP.Views
         {
             var o = (FournisseurViewModel)this.TabFournisseur.DataContext;
 
+            Adresse ad = null;
             try
             {
-                Adresse ad = new Adresse(null, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
+                ad = new Adresse(null, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
                 var idAd = BDDWriter.Insert(ad);
 
                 Fournisseurs fourn = new Fournisseurs(o.Siret, o.Nom, o.Contact, (int)idAd, (int)MyHelper.StringToEnum<Score>(o.Score), 10);
@@ -271,11 +259,13 @@ namespace BDD_VELOMAX_APP.Views
                 }
                 else
                 {
-                    BDDWriter.Remove(ad);
+                    BDDWriter.Delete(ad);
                 }
             }
             catch (Exception)
             {
+                BDDWriter.Delete(ad);
+
                 MessageBox.Show($"Erreur : Impossible d'ajouter le fournisseur spécifié");
             }
         }
@@ -287,14 +277,14 @@ namespace BDD_VELOMAX_APP.Views
 
             try
             {
-                var old = BDDReader.GetObject<Fournisseurs>(oldidfournisseur.Siret);
+                var old = BDDReader.Get<Fournisseurs>(oldidfournisseur.Siret);
 
                 Adresse ad = new Adresse((int)old.Adresse.ID, o.Adresse, o.Ville, o.CodePostal.ToString(), o.Province);
                 BDDWriter.Update(ad);
 
                 Fournisseurs newF = new Fournisseurs(o.Siret, o.Nom, o.Contact, (int)ad.ID, (int)MyHelper.StringToEnum<Score>(o.Score), 10);
 
-                if (BDDWriter.Remove(old) && BDDWriter.Insert(newF) >= 0)
+                if (BDDWriter.Update(newF, old.ID))
                 {
                     this.fournisseurs.Remove(this.fournisseurs.Where(x => x.Siret.ToString() == o.Siret.ToString()).FirstOrDefault());
                     this.fournisseurs.Add(new FournisseurViewModel(newF));
@@ -305,9 +295,9 @@ namespace BDD_VELOMAX_APP.Views
                 }
 
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show($"Erreur : Impossible de modifier le fournisseur spécifié");
+                MessageBox.Show($"Erreur : Impossible de modifier le fournisseur spécifié : {ex}");
             }
         }
 
@@ -319,7 +309,7 @@ namespace BDD_VELOMAX_APP.Views
             {
                 if (MessageBox.Show("Etes vous sûr de supprimer ce fournisseur ? Sa suppression entrainera celles de toutes ses pièces", "Attention", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
                 {
-                    if (BDDWriter.Remove<Fournisseurs>(o.Siret) >= 1)
+                    if (BDDWriter.Delete<Fournisseurs>(o.Siret) >= 1)
                     {
                         this.fournisseurs.Remove(this.fournisseurs.Where(x => x.Siret.ToString() == o.Siret.ToString()).FirstOrDefault());
 

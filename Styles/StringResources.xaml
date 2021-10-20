@@ -5,7 +5,7 @@
     <!--Boutons menu -->
     <system:String x:Key="MenuMain">Menu Principal</system:String>
     <system:String x:Key="MenuStats">Statistiques</system:String>
-    <system:String x:Key="MenuAutre">Menu fidelio</system:String>
+    <system:String x:Key="MenuAutre">Menu Fidelio</system:String>
     <system:String x:Key="MenuClient">Client/Fournisseur</system:String>
     <system:String x:Key="MenuPieces">Pièces</system:String>
     <system:String x:Key="MenuCommandes">Commandes</system:String>
@@ -23,4 +23,11 @@
     
     <!--Titre-->
     <system:String x:Key="Title">VéloMax</system:String>
+    
+    <!--Paramètre-->
+    <system:String x:Key="Param_Image">Fréquence de rafraichissement de l'image d'arrière plan (sec)</system:String>
+    <system:String x:Key="Param_XML">Stock à partir duquel inclure les objets dans le XML</system:String>
+    <system:String x:Key="Param_JSON">Période de fin d'abonnement Fidelio à partir de laquelle prévenir le client</system:String>
+    
+    
 </ResourceDictionary>

@@ -26,7 +26,7 @@ namespace BDD_VELOMAX_APP
         {
             this.Prénom = prenom;
             this.Nom = nom;
-            this.ProgrammeFidélité = fidel == null ? null : BDDReader.GetObject<Fidelio>(fidel);
+            this.ProgrammeFidélité = fidel == null ? null : BDDReader.Get<Fidelio>(fidel);
             this.DateAdhésionProgramme = adhesion;
         }
 

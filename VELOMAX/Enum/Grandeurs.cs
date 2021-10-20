@@ -12,7 +12,7 @@ namespace BDD_VELOMAX_APP
         Hommes,
         Dames,
         Jeunes,
-        Garcons,
+        Garçons,
         Filles,
     }
 }

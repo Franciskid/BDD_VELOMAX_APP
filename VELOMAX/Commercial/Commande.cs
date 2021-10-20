@@ -20,6 +20,8 @@ namespace BDD_VELOMAX_APP
 
         public int Quantité { get; private set; }
 
+        public float Prix => this.Quantité * (this.Piece == null ? this.Modele.Prix : this.Piece.Prix);
+
         public DateTime DateCommande { get; private set; }
 
         public DateTime DateLivraison { get; private set; }
@@ -28,9 +30,9 @@ namespace BDD_VELOMAX_APP
         {
             this.ID = idCommande;
             this.IDCommande = numCommande;
-            this.Client = BDDReader.GetObject<Client>(idClient);
-            this.Piece = idPiece != null ? BDDReader.GetObject<Piece>(idPiece) : null;
-            this.Modele = idModele != null ? BDDReader.GetObject<Modele>(idModele) : null;
+            this.Client = BDDReader.Get<Client>(idClient);
+            this.Piece = idPiece != null ? BDDReader.Get<Piece>(idPiece) : null;
+            this.Modele = idModele != null ? BDDReader.Get<Modele>(idModele) : null;
             this.Quantité = quantité;
             this.DateCommande = DateCommande;
             this.DateLivraison = DateLivraison;

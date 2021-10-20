@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\CefSharp.Common.91.1.210\build\CefSharp.Common.props" Condition="Exists('packages\CefSharp.Common.91.1.210\build\CefSharp.Common.props')" />
+  <Import Project="packages\cef.redist.x86.91.1.21\build\cef.redist.x86.props" Condition="Exists('packages\cef.redist.x86.91.1.21\build\cef.redist.x86.props')" />
+  <Import Project="packages\cef.redist.x64.91.1.21\build\cef.redist.x64.props" Condition="Exists('packages\cef.redist.x64.91.1.21\build\cef.redist.x64.props')" />
   <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,6 +48,15 @@
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp, Version=91.1.210.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>packages\CefSharp.Common.91.1.210\lib\net452\CefSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.Core, Version=91.1.210.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>packages\CefSharp.Common.91.1.210\lib\net452\CefSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.Wpf, Version=91.1.210.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>packages\CefSharp.Wpf.91.1.210\lib\net452\CefSharp.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -124,6 +136,15 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Primitives.3.1.1\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\MigraDoc.DocumentObjectModel-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\MigraDoc.Rendering-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.RtfRendering-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\MigraDoc.RtfRendering-gdi.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=8.0.25.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.8.0.25\lib\net48\MySql.Data.dll</HintPath>
     </Reference>
@@ -141,6 +162,12 @@
     </Reference>
     <Reference Include="Newtonsoft.Json.Bson, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.Bson.1.0.2\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\PdfSharp-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\PdfSharp.Charting-gdi.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero2, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\PresentationFramework.Aero2.1.0.1\lib\PresentationFramework.Aero2.dll</HintPath>
@@ -163,6 +190,7 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Diagnostics.DiagnosticSource.4.7.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
@@ -204,6 +232,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Settings.cs" />
+    <Compile Include="VELOMAXExtensions\AutoClosingMessageBox.cs" />
+    <Compile Include="VELOMAXExtensions\Blur.cs" />
+    <Compile Include="VELOMAXExtensions\MyPDF.cs" />
+    <Compile Include="VELOMAXExtensions\ResourceSchemeHandler.cs" />
     <Compile Include="VELOMAX\Acteurs\Clients\Client.cs" />
     <Compile Include="VELOMAX\Acteurs\Clients\ClientBoutique.cs" />
     <Compile Include="VELOMAX\Acteurs\Clients\ClientIndividuel.cs" />
@@ -214,8 +247,8 @@
     <Compile Include="VELOMAX\Commercial\Atelier\Piece.cs" />
     <Compile Include="VELOMAX\Commercial\ProgrammesFidelio\Fidelio.cs" />
     <Compile Include="VELOMAX\Commercial\Atelier\Modele.cs" />
-    <Compile Include="VELOMAX\BDDReader.cs" />
-    <Compile Include="VELOMAX\BDDWriter.cs" />
+    <Compile Include="VELOMAX\BDD\BDDReader.cs" />
+    <Compile Include="VELOMAX\BDD\BDDWriter.cs" />
     <Compile Include="VELOMAX\Enum\Adresse.cs" />
     <Compile Include="VELOMAX\Enum\AssemblagesEnum\Cadre.cs" />
     <Compile Include="VELOMAX\Enum\AssemblagesEnum\Derailleur_arriere.cs" />
@@ -234,35 +267,41 @@
     <Compile Include="VELOMAX\Enum\AssemblagesEnum\Selles.cs" />
     <Compile Include="VELOMAX\Enum\NomModeles.cs" />
     <Compile Include="VELOMAX\ExportData.cs" />
-    <Compile Include="VELOMAX\MyConstants.cs" />
+    <Compile Include="VELOMAX\BDD\BDDConstants.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\CommandeViewModel.cs" />
     <Compile Include="ViewModels\FournisseurViewModel.cs" />
     <Compile Include="ViewModels\ModeleCommandeViewModel.cs" />
     <Compile Include="ViewModels\PieceCommandeViewModel.cs" />
     <Compile Include="ViewModels\PrixCheckoutViewModel.cs" />
-    <Compile Include="Views\ClientPage.xaml.cs">
+    <Compile Include="Views\Pages\ClientPage.xaml.cs">
       <DependentUpon>ClientPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CommandePage.xaml.cs">
+    <Compile Include="Views\Windows\CommandeConfirmationWindow.xaml.cs">
+      <DependentUpon>CommandeConfirmationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\CommandePage.xaml.cs">
       <DependentUpon>CommandePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ConnectedPage.xaml.cs">
+    <Compile Include="Views\Pages\ConnectedPage.xaml.cs">
       <DependentUpon>ConnectedPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ConnectionPage.xaml.cs">
+    <Compile Include="Views\Pages\ConnectionPage.xaml.cs">
       <DependentUpon>ConnectionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Menufidelio.xaml.cs">
-      <DependentUpon>Menufidelio.xaml</DependentUpon>
+    <Compile Include="Views\Pages\FidelioPage.xaml.cs">
+      <DependentUpon>FidelioPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ParamètresWindow.xaml.cs">
+    <Compile Include="Views\Windows\MyMessageBox.xaml.cs">
+      <DependentUpon>MyMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ParamètresWindow.xaml.cs">
       <DependentUpon>ParamètresWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StatistiquesPage.xaml.cs">
+    <Compile Include="Views\Pages\StatistiquesPage.xaml.cs">
       <DependentUpon>StatistiquesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StockPage.xaml.cs">
+    <Compile Include="Views\Pages\StockPage.xaml.cs">
       <DependentUpon>StockPage.xaml</DependentUpon>
     </Compile>
     <Page Include="Styles\ButtonResources.xaml">
@@ -303,40 +342,48 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ClientPage.xaml">
+    <Page Include="Views\Pages\ClientPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CommandePage.xaml">
+    <Page Include="Views\Windows\CommandeConfirmationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ConnectedPage.xaml">
+    <Page Include="Views\Pages\CommandePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ConnectionPage.xaml">
+    <Page Include="Views\Pages\ConnectedPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Menufidelio.xaml">
+    <Page Include="Views\Pages\ConnectionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ParamètresWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\StatistiquesPage.xaml">
+    <Page Include="Views\Pages\FidelioPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\StockPage.xaml">
+    <Page Include="Views\Windows\MyMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ParamètresWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\StatistiquesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\StockPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="VELOMAX\IMySQL.cs" />
+    <Compile Include="VELOMAX\BDD\IMySQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -350,6 +397,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\smiley.png" />
+    <None Include="Rapport_Dahmouche_Coutau_deLagrevol.docx" />
     <Resource Include="Images\mailHeader2.PNG" />
     <Resource Include="Images\mailHeader3.PNG" />
     <Resource Include="Images\mailHeader1.PNG" />
@@ -382,9 +431,9 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="Images\fidelio.png" />
-    <None Include="Database\modelEABDDVelomax.mwb" />
+    <None Include="Database\modeleEA_BDDVelomax.mwb" />
     <None Include="packages.config" />
-    <None Include="Projet VELOMAX.mdj" />
+    <None Include="Projet_VELOMAX.mdj" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -423,6 +472,11 @@
     <Error Condition="!Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets'))" />
     <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('packages\cef.redist.x64.91.1.21\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cef.redist.x64.91.1.21\build\cef.redist.x64.props'))" />
+    <Error Condition="!Exists('packages\cef.redist.x86.91.1.21\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cef.redist.x86.91.1.21\build\cef.redist.x86.props'))" />
+    <Error Condition="!Exists('packages\CefSharp.Common.91.1.210\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\CefSharp.Common.91.1.210\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('packages\CefSharp.Common.91.1.210\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\CefSharp.Common.91.1.210\build\CefSharp.Common.targets'))" />
   </Target>
   <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="packages\CefSharp.Common.91.1.210\build\CefSharp.Common.targets" Condition="Exists('packages\CefSharp.Common.91.1.210\build\CefSharp.Common.targets')" />
 </Project>

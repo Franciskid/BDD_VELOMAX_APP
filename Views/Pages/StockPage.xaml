@@ -35,9 +35,9 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Column="0" HorizontalAlignment="Stretch">
-                        <TabControl Style="{StaticResource MaterialDesignTabControl}" Background="{StaticResource MenuBackColorTransp}" Foreground="AliceBlue" Margin="20, 0, 0, 0" >
+                        <TabControl Style="{StaticResource MaterialDesignTabControl}" Background="{StaticResource MenuBackColorTransp}" Foreground="AliceBlue" Margin="20, 0, 20, 0">
                             <TabItem Header="pieces en stock">
-                                <Grid>
+                                <Grid Margin="20">
                                     <DataGrid x:Name="Datagridpiece">
                                         
                                     </DataGrid>
@@ -45,7 +45,7 @@
 
                             </TabItem>
                             <TabItem Header="pieces par fourniseur">
-                                <Grid>
+                                <Grid Margin="20">
                                     <DataGrid x:Name="datagridfourniseur">
 
                                     </DataGrid>
@@ -53,13 +53,13 @@
 
                             </TabItem>
                             <TabItem Header="pieces velo">
-                                <DataGrid x:Name="datagridvelo">
+                                <DataGrid x:Name="datagridvelo" Margin="20">
 
                                 </DataGrid>
 
                             </TabItem>
                             <TabItem Header="pieces type de velo">
-                                <DataGrid x:Name="datagridpiecestypevelo">
+                                <DataGrid x:Name="datagridpiecestypevelo" Margin="20">
 
                                 </DataGrid>
 

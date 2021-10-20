@@ -27,9 +27,9 @@ namespace BDD_VELOMAX_APP
         public Modele(int? id, string nom, int prix, string ligne, DateTime intro, DateTime discont)
         {
             this.ID = id;
-            this.Nom = MyHelper.StringToEnum<NomModeles>(nom);
+            this.Nom = MyHelper.StringToEnum<NomModeles>(nom.Replace(' ', '_'));
             this.Prix = prix;
-            this.Ligne = MyHelper.StringToEnum<LigneProduit>(ligne);
+            this.Ligne = MyHelper.StringToEnum<LigneProduit>(ligne.Replace(' ', '_'));
             this.Introduction = intro;
             this.Discontinuation = discont;
         }

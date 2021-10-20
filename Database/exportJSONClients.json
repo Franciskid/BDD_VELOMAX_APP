@@ -1,5 +1,49 @@
 [
   {
+    "nom": "desbois",
+    "prénom": "Marc",
+    "programmeFidélité": {
+      "prix": 60.0,
+      "rabais": 10.0,
+      "duree_annee": 1.0,
+      "description": "Fidélio Platine",
+      "id": 3
+    },
+    "dateAdhésionProgramme": "2020-07-22T00:00:00",
+    "adresse": {
+      "rue": "place des clichys",
+      "codePostal": "75018",
+      "ville": "paris",
+      "province": "france",
+      "id": 10
+    },
+    "telephone": "06 52 45 15 23",
+    "adresseMail": "marcusmorrisfan@gmail.com",
+    "id": 10
+  },
+  {
+    "nom": "felin",
+    "prénom": "Thomas",
+    "programmeFidélité": {
+      "prix": 25.0,
+      "rabais": 8.0,
+      "duree_annee": 1.0,
+      "description": "Fidélio Or",
+      "id": 2
+    },
+    "dateAdhésionProgramme": "2020-07-23T00:00:00",
+    "adresse": {
+      "rue": "rue des croyances",
+      "codePostal": "75018",
+      "ville": "paris",
+      "province": "france",
+      "id": 11
+    },
+    "telephone": "06 87 54 36 41",
+    "adresseMail": "thothoaimelamoto@gmail.com",
+    "id": 11
+  },
+  {
     "nom": "leroy",
     "prénom": "Anas",
     "programmeFidélité": {

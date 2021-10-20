@@ -69,7 +69,7 @@ create table if not exists Assemblages
     panier  varchar(10)
     
 );
-ALTER TABLE assemblages AUTO_INCREMENT = 100001;
+ALTER TABLE assemblages AUTO_INCREMENT = 101;
 
 create table if not exists Modeles
 (
@@ -171,7 +171,7 @@ insert into fournisseurs(siret, nom, contact, idAdresse, score,delaidelivraison)
 values(17524121, "Michelin", "George Mickeal", 21, 1,3),
 (17261521, "Aqualand", "Mickeal Jackson", 22, 3,5),
 (87512761, "Dunlop", "Buzz Aldrin", 23, 2,2),
-(17254121, "L_Elysée", "Quelqu'un", 24, 2, 10);
+(17254121, "L'Elysée", "Quelqu'un", 24, 2, 10);
 
 insert into Pieces(idPiece, nom, fournisseurId, quantité,prix) 
 values('C32', 'Cadre', 17524121, 10,11),
@@ -268,13 +268,13 @@ values('Kilimandjaro', 'Adultes', 'C32', 'G7', 'F3', 'S88', 'DV133', 'DR56', 'R4
 ('Orléans', 'Dames', 'C44f', 'G9', 'F9', 'S35', 'DV57', 'DR86', 'R19', 'R18', 'R02',  'P34', Null, Null),
 ('BlueJay', 'Hommes', 'C43', 'G9', 'F9', 'S37', 'DV57', 'DR87', 'R19', 'R18', 'R02',  'P34', 'O4', Null),
 ('BlueJay', 'Dames', 'C43f', 'G9', 'F9', 'S35', 'DV57', 'DR87', 'R19', 'R18', 'R02',  'P34', 'O4', Null),
-('Trail Explorer', 'Filles', 'C01', 'G12', Null, 'S02', Null, Null, 'R1', 'R2', 'R09',  'P1', Null, 'S01'),
-('Trail Explorer', 'Garcons', 'C02', 'G12', Null, 'S03', Null, Null, 'R1', 'R2', 'R09',  'P1', Null, 'S05'),
-('Night Hawk', 'Jeunes', 'C15', 'G12', 'F9', 'S36', 'DV15', 'DR23', 'R11', 'R12', 'R10', 'P15', Null, 'S74'),
-('Tierra Verde', 'Hommes', 'C87', 'G12', 'F9', 'S36', 'DV41', 'DR76', 'R11', 'R12', 'R10',  'P15', Null, 'S74'),
-('Tierra Verde', 'Dames', 'C87f', 'G12', 'F9', 'S34', 'DV41', 'DR76', 'R11', 'R12', 'R10', 'P15', Null, 'S73'),
-('Mud Zinger I', 'Jeunes', 'C25', 'G7', 'F3', 'S87', 'DV132', 'DR52', 'R44', 'R47', Null, 'P12', Null, Null),
-('Mud Zinger II', 'Adultes', 'C26', 'G7', 'F3', 'S87', 'DV133', 'DR52', 'R44', 'R47', Null, 'P12', Null, Null);
+('Trail_Explorer', 'Filles', 'C01', 'G12', Null, 'S02', Null, Null, 'R1', 'R2', 'R09',  'P1', Null, 'S01'),
+('Trail_Explorer', 'Garcons', 'C02', 'G12', Null, 'S03', Null, Null, 'R1', 'R2', 'R09',  'P1', Null, 'S05'),
+('Night_Hawk', 'Jeunes', 'C15', 'G12', 'F9', 'S36', 'DV15', 'DR23', 'R11', 'R12', 'R10', 'P15', Null, 'S74'),
+('Tierra_Verde', 'Hommes', 'C87', 'G12', 'F9', 'S36', 'DV41', 'DR76', 'R11', 'R12', 'R10',  'P15', Null, 'S74'),
+('Tierra_Verde', 'Dames', 'C87f', 'G12', 'F9', 'S34', 'DV41', 'DR76', 'R11', 'R12', 'R10', 'P15', Null, 'S73'),
+('Mud_Zinger_I', 'Jeunes', 'C25', 'G7', 'F3', 'S87', 'DV132', 'DR52', 'R44', 'R47', Null, 'P12', Null, Null),
+('Mud_Zinger_II', 'Adultes', 'C26', 'G7', 'F3', 'S87', 'DV133', 'DR52', 'R44', 'R47', Null, 'P12', Null, Null);
 
 
 insert into modeles(nom, prix, ligne)
@@ -286,13 +286,13 @@ values('Kilimandjaro',  569, 'VTT'),
 ('Orléans',  229, 'Vélo de course'),
 ('BlueJay', 349, 'Vélo de course'),
 ('BlueJay',  349, 'Vélo de course'),
-('Trail Explorer',  129, 'Classique'),
-('Trail Explorer',  129, 'Classique'),
-('Night Hawk',  189, 'Classique'),
-('Tierra Verde',  199, 'Classique'),
-('Tierra Verde',  199, 'Classique'),
-('Mud Zinger I',  279, 'BMX'),
-('Mud Zinger II',  359, 'BMX');
+('Trail_Explorer',  129, 'Classique'),
+('Trail_Explorer',  129, 'Classique'),
+('Night_Hawk',  189, 'Classique'),
+('Tierra_Verde',  199, 'Classique'),
+('Tierra_Verde',  199, 'Classique'),
+('Mud_Zinger_I',  279, 'BMX'),
+('Mud_Zinger_II',  359, 'BMX');
 
 insert into Clients(typeClient, nom, idAdresse, telephone, courriel, nomContact, remise)
 values('boutique',"VELOMAX",1,"01 85 63 82 36","velomax.noreply@gmail.com","Legrand", 0),
