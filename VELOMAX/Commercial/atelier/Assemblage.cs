@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace BDD_VELOMAX_APP
 {
-    class Assemblage : IMySQL
+    public class Assemblage : IMySQL
     {
+        public object ID { get; private set; }
+
         public NomModeles Nom { get; private set; }
 
         public Grandeurs Grandeurs { get; private set; }
@@ -42,23 +44,22 @@ namespace BDD_VELOMAX_APP
             string derailleur_Arriere, string roue_Avant, string roue_Arriere, string Reflecteurs, string Pedalier, string Ordinateur, string Panier)
         {
             this.ID = idAssemblage;
-            this.Nom = MyHelper.StringToEnum<NomModeles>(Nom);
-            this.Grandeurs = MyHelper.StringToEnum<Grandeurs>(Grandeurs);
+            this.Nom = MyHelper.StringToEnum<NomModeles>(Nom?.Replace(' ', '_'));
+            this.Grandeurs = MyHelper.StringToEnum<Grandeurs>(Grandeurs?.Replace(' ', '_'));
             this.Cadre = MyHelper.StringToEnum<Cadre>(Cadre);
             this.Guidon = MyHelper.StringToEnum<Guidon>(Guidon);
             this.Freins = MyHelper.StringToEnum<Freins>(Freins);
             this.Selles = MyHelper.StringToEnum<Selles>(Selles);
-            this.Derailleur_Avant = MyHelper.StringToEnum<Derailleur_avant>(derailleur_Avant);
-            this.Derailleur_Arriere = MyHelper.StringToEnum<Derailleur_arriere>(derailleur_Arriere);
-            this.Roue_Avant = MyHelper.StringToEnum<Roue_avant>(roue_Avant);
-            this.Roue_Arriere = MyHelper.StringToEnum<Roue_arriere>(roue_Arriere);
+            this.Derailleur_Avant = MyHelper.StringToEnum<Derailleur_avant>(derailleur_Avant?.Replace(' ', '_'));
+            this.Derailleur_Arriere = MyHelper.StringToEnum<Derailleur_arriere>(derailleur_Arriere?.Replace(' ', '_'));
+            this.Roue_Avant = MyHelper.StringToEnum<Roue_avant>(roue_Avant?.Replace(' ', '_'));
+            this.Roue_Arriere = MyHelper.StringToEnum<Roue_arriere>(roue_Arriere?.Replace(' ', '_'));
             this.Reflecteurs = MyHelper.StringToEnum<Reflecteurs>(Reflecteurs);
             this.Pedalier = MyHelper.StringToEnum<Pedalier>(Pedalier);
             this.Ordinateur = MyHelper.StringToEnum<Ordinateur>(Ordinateur);
             this.Panier = MyHelper.StringToEnum<Panier>(Panier);
         }
 
-        public object ID { get; private set; }
         public virtual string SaveStr() => (ID != null ? $"'{ID}', " : "") +$"'{Nom}', '{Grandeurs}', '{Cadre}', '{Guidon}','{Freins}', '{Selles}', '{Derailleur_Avant}', '{Derailleur_Arriere}','{Roue_Avant}', '{Roue_Arriere}', '{Reflecteurs}', '{Pedalier}','{Ordinateur}', '{Panier}'";
     }
 
